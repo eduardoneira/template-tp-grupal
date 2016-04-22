@@ -16,6 +16,20 @@ apply plugin: "jacoco"
 apply from: 'gradle/fatjar.gradle'
 apply from: 'gradle/quality.gradle'
 
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
