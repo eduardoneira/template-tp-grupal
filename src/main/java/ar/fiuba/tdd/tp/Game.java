@@ -13,6 +13,10 @@ public class Game {
     private String name;
     private Set<String> keywords;
 
+    public String getName(){
+        return name;
+    }
+
     public Game(String n){
         this.name = n;
 

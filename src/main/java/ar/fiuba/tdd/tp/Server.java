@@ -19,8 +19,7 @@ public class Server {
         int portNumber = Integer.parseInt(args[0]);*/
 
         int portNumber = 8081;
-
-        BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
         String fromUser;
 
         while((fromUser = stdIn.readLine()) != null) {

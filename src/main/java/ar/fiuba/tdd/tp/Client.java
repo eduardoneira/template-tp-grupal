@@ -22,10 +22,10 @@ public class Client {
         int portNumber = 8081;
 
         Socket socket = new Socket(hostName, portNumber);
-        PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+        PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
+        BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
         try {
-            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
             String fromServer;
             String fromUser;
 
@@ -37,8 +37,10 @@ public class Client {
                 fromServer = in.readLine();
                 if(fromServer != null) {
                     System.out.println("Server: " + fromServer);
-                    if (fromServer.equals("ganaste"))
+                    // TODO: esto es viejo, actualizarlo
+                    if (fromServer.equals("ganaste")) {
                         break;
+                    }
                 }
 
             }

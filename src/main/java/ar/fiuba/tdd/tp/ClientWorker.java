@@ -1,8 +1,5 @@
 package ar.fiuba.tdd.tp;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -26,16 +23,18 @@ class ClientWorker implements Runnable {
         PrintWriter out = null;
         try {
             clientSocket = serverSocket.accept();
-            out = new PrintWriter(clientSocket.getOutputStream(), true);
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+            out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
 
             //System.out.println("Entrando al loop de input/output");
             String inputLine, outputLine;
             while ((inputLine = in.readLine()) != null) {
                 outputLine = game.processComand(inputLine);
                 out.println(outputLine);
-                if (outputLine.equals("ganaste"))
+                /// TODO: esto es viejo, deberia cambiar pero deberia estar en algun lado la condicion de victoria
+                if (outputLine.equals("ganaste")) {
                     break;
+                }
             }
 
             out.close();
