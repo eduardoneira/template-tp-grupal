@@ -4,21 +4,21 @@ package ar.fiuba.tdd.tp;
  */
 public class Room extends ConcreteGameObjectContainer implements CanHaveItemsTakenFrom {
 
-    public Room(String n){
-        super(n);
+    public Room(String name) {
+        super(name);
     }
 
     @Override
-    public TakeableItem takeItem(String n) {
-        GameObject o = getChild(n);
-        if(!(o instanceof TakeableItem)){
+    public TakeableItem takeItem(String itemName) {
+        GameObject item = getChild(itemName);
+        if (!(item instanceof TakeableItem)) {
             return null; // cant take item
         }
-        removeChild(n);
-        return (TakeableItem) o;
+        removeChild(itemName);
+        return (TakeableItem) item;
     }
 
-    public void addItem(GameObject o){
-        addChild(o);
+    public void addObject(GameObject obj) {
+        addChild(obj);
     }
 }

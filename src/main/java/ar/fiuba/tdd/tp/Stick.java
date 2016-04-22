@@ -4,7 +4,7 @@ package ar.fiuba.tdd.tp;
  */
 public class Stick extends ConcreteGameObjectLeaf implements TakeableItem {
 
-    public Stick(String n){
-        super(n);
+    public Stick(String name) {
+        super(name);
     }
 }

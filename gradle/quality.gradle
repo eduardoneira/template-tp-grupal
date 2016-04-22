@@ -7,12 +7,24 @@ findbugs {
     toolVersion = "3.0.0"
     sourceSets = [sourceSets.main]
     effort = "max"
+    tasks.withType(FindBugs) {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+    }
 }
 
 pmd {
     toolVersion = '4.3'
     sourceSets = [sourceSets.main]
     ruleSets = ["basic", "braces", "strings", "unusedcode"]
+    tasks.withType(Pmd) {
+        reports {
+            xml.enabled = false
+            html.enabled = true
+        }
+    }
 }
 
 cpd {

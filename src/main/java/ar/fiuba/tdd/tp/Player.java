@@ -1,4 +1,5 @@
 package ar.fiuba.tdd.tp;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,30 +12,30 @@ public class Player extends ConcreteGameObjectLeaf implements CanTakeItems{
     private Map<String, Action> actions;
     private Room scene;
 
-    public Player(String n){
-        super(n);
-        inventory = new Inventory(n + "'s inventory");
+    public Player(String name) {
+        super(name);
+        inventory = new Inventory(name + "'s inventory");
         actions = new HashMap<String, Action>();
     }
 
     @Override
-    public void receiveItem(TakeableItem o) {
-        inventory.store(o);
+    public void receiveItem(TakeableItem obj) {
+        inventory.store(obj);
     }
 
-    public void addAction(Action a){
-        actions.put(a.getName(), a);
+    public void addAction(Action action) {
+        actions.put(action.getName(), action);
     }
 
-    public String doAction(String a, String[] o){
-        if(actions.containsKey(a)){
-            return actions.get(a).doAction(this, scene, o);
+    public String doAction(String actionName, String[] params) {
+        if (actions.containsKey(actionName)) {
+            return actions.get(actionName).doAction(this, scene, params);
         } else {
             return "invalid command";
         }
     }
 
-    public void placeInRoom(Room r){
-        this.scene = r;
+    public void placeInRoom(Room room) {
+        this.scene = room;
     }
 }

@@ -1,4 +1,5 @@
 package ar.fiuba.tdd.tp;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,33 +9,33 @@ import java.util.Map;
 public class ConcreteGameObjectContainer extends ConcreteGameObject implements CanBeLookedAt {
     private Map<String, GameObject> children;
 
-    public ConcreteGameObjectContainer(String n){
-        super(n);
+    public ConcreteGameObjectContainer(String name) {
+        super(name);
         children = new HashMap<String, GameObject>();
     }
 
     // TODO: ver valores duplicados
-    protected void addChild(GameObject o){
-        children.put(o.getName(), o);
+    protected void addChild(GameObject obj) {
+        children.put(obj.getName(), obj);
     }
 
-    protected void removeChild(String name){
+    protected void removeChild(String name) {
         children.remove(name);
     }
 
-    protected GameObject getChild(String name){
+    protected GameObject getChild(String name) {
         return children.get(name);
     }
 
     @Override
     public String lookAt() {
-        StringBuilder s = new StringBuilder();
-        s.append(getName());
-        s.append(" with ");
-        for(String n : children.keySet()){
-            s.append(getChild(n).lookAt());
-            s.append(" and ");
+        StringBuilder builder = new StringBuilder();
+        builder.append(getName());
+        builder.append(" with ");
+        for (String n : children.keySet()) {
+            builder.append(getChild(n).lookAt());
+            builder.append(" and ");
         }
-        return s.toString();
+        return builder.toString();
     }
 }

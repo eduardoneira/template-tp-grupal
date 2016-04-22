@@ -5,9 +5,11 @@ package ar.fiuba.tdd.tp;
 public abstract class ConcreteGameObject implements GameObject {
     private String name;
 
-    public ConcreteGameObject(String n){
-        this.name = n;
+    public ConcreteGameObject(String name) {
+        this.name = name;
     }
 
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 }

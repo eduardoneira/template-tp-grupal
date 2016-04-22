@@ -4,8 +4,8 @@ package ar.fiuba.tdd.tp;
  */
 public abstract class ConcreteGameObjectLeaf extends ConcreteGameObject implements  CanBeLookedAt{
 
-    public ConcreteGameObjectLeaf(String n){
-        super(n);
+    public ConcreteGameObjectLeaf(String name) {
+        super(name);
     }
 
     @Override

@@ -35,21 +35,19 @@ public class Client {
                 out.println(fromUser);
 
                 fromServer = in.readLine();
-                if(fromServer != null) {
+                if (fromServer != null) {
                     System.out.println("Server: " + fromServer);
                     // TODO: esto es viejo, actualizarlo
                     if (fromServer.equals("ganaste")) {
                         break;
                     }
                 }
-
             }
         } catch (UnknownHostException e) {
             System.err.println("Don't know about host " + hostName);
             System.exit(1);
         } catch (IOException e) {
-            System.err.println("Couldn't get I/O for the connection to " +
-                    hostName);
+            System.err.println("Couldn't get I/O for the connection to " + hostName);
             System.exit(1);
         }
     }

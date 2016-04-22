@@ -1,4 +1,5 @@
 package ar.fiuba.tdd.tp;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,49 +14,51 @@ public class Game {
     private String name;
     private Set<String> keywords;
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
-    public Game(String n){
-        this.name = n;
+    public Game(String name) {
+        this.name = name;
 
         // TODO: armar factories para los distintos juegos, aca hardcodeo para probar
 
-        String n_room = "room", n_stick = "stick", n_player = "player";
+        String nameRoom = "room";
+        String nameStick = "stick";
+        String namePlayer = "player";
 
-        Room cuarto = new Room(n_room);
-        cuarto.addItem(new Stick(n_stick));
+        Room cuarto = new Room(nameRoom);
+        cuarto.addObject(new Stick(nameStick));
 
-        this.player = new Player(n_player);
-        PickUp a_pickup = new PickUp();
-        player.addAction(a_pickup);
-        LookAround a_lookaround = new LookAround();
-        player.addAction(a_lookaround);
+        this.player = new Player(namePlayer);
+        PickUp actionPickup = new PickUp();
+        player.addAction(actionPickup);
+        LookAround actionLookaround = new LookAround();
+        player.addAction(actionLookaround);
         player.placeInRoom(cuarto);
 
         keywords = new HashSet<String>();
-        keywords.add(n_room);
-        keywords.add(n_stick);
+        keywords.add(nameRoom);
+        keywords.add(nameStick);
         //keywords.add(n_player); no se usa nunca, pero podria ser
-        keywords.add(a_pickup.getName());
-        keywords.add(a_lookaround.getName());
+        keywords.add(actionPickup.getName());
+        keywords.add(actionLookaround.getName());
     }
 
-    public String processComand(String s) {
+    public String processComand(String stringCommand) {
 
-        String[] tokens = s.split(" ");
-        List<String> parsed = new LinkedList<String>();
-        for (String elem : tokens) {
+        String[] splitCommand = stringCommand.split(" ");
+        List<String> parsedCommand = new LinkedList<String>();
+        for (String elem : splitCommand) {
             if (keywords.contains(elem)) {
-                parsed.add(elem);
+                parsedCommand.add(elem);
             }
         }
-        if(parsed.size() > 0) {
-            String command = parsed.get(0);
-            parsed.remove(0);
+        if (parsedCommand.size() > 0) {
+            String command = parsedCommand.get(0);
+            parsedCommand.remove(0);
 
-            return player.doAction(command, parsed.toArray(new String[parsed.size()]));
+            return player.doAction(command, parsedCommand.toArray(new String[parsedCommand.size()]));
         } else {
             return "invalid command";
         }

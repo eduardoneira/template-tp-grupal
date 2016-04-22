@@ -4,15 +4,15 @@ package ar.fiuba.tdd.tp;
  */
 public class Inventory extends ConcreteGameObjectContainer {
 
-    public Inventory(String n){
-        super(n);
+    public Inventory(String name) {
+        super(name);
     }
 
-    public void store(TakeableItem o){
-        addChild(o);
+    public void store(TakeableItem obj) {
+        addChild(obj);
     }
 
-    public void drop(String n){
-        removeChild(n);
+    public void drop(String itemName) {
+        removeChild(itemName);
     }
 }

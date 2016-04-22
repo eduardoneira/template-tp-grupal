@@ -6,7 +6,7 @@ public class LookAround implements Action {
 
     @Override
     public String doAction(CanDoActions doer, CanHaveActionsDoneOn doee, Object[] args) {
-        if(!(doee instanceof CanBeLookedAt)){
+        if (!(doee instanceof CanBeLookedAt)) {
             return "invalid argument";
         }
         return ((CanBeLookedAt) doee).lookAt();

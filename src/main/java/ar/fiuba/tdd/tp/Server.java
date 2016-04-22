@@ -3,8 +3,8 @@ package ar.fiuba.tdd.tp;
  * Created by Master on 20/04/2016.
  */
 
-import java.net.*;
 import java.io.*;
+import java.net.*;
 
 public class Server {
 
@@ -22,11 +22,11 @@ public class Server {
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
         String fromUser;
 
-        while((fromUser = stdIn.readLine()) != null) {
+        while ((fromUser = stdIn.readLine()) != null) {
 
             // TODO: refactorizar
             String[] tokens = fromUser.split(" ");
-            if(tokens.length != 3 || !tokens[0].equals("load") || !tokens[1].equals("game")){
+            if (tokens.length != 3 || !tokens[0].equals("load") || !tokens[1].equals("game")) {
                 System.out.println("Error: Invalid command");
                 continue;
             }
@@ -39,9 +39,9 @@ public class Server {
                 System.exit(-1);
             }
 
-            ClientWorker w = new ClientWorker(serverSocket);
-            Thread t = new Thread(w);
-            t.start();
+            ClientWorker worker = new ClientWorker(serverSocket);
+            Thread thread = new Thread(worker);
+            thread.start();
 
             System.out.println(tokens[2] + " loaded and listening on port " + portNumber);
             ++portNumber;

@@ -1,4 +1,5 @@
 package ar.fiuba.tdd.tp;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -17,7 +18,7 @@ class ClientWorker implements Runnable {
         game = new Game("");
     }
 
-    public void run(){
+    public void run() {
 
         BufferedReader in = null;
         PrintWriter out = null;
@@ -27,7 +28,8 @@ class ClientWorker implements Runnable {
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
 
             //System.out.println("Entrando al loop de input/output");
-            String inputLine, outputLine;
+            String inputLine;
+            String outputLine;
             while ((inputLine = in.readLine()) != null) {
                 outputLine = game.processComand(inputLine);
                 out.println(outputLine);
