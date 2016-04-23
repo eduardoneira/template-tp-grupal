@@ -33,6 +33,7 @@ public class Client {
             while ((fromUser = stdIn.readLine()) != null) {
                 System.out.println("Client: " + fromUser);
                 out.println(fromUser);
+                out.flush();
 
                 fromServer = in.readLine();
                 if (fromServer != null) {

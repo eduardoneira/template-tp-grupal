@@ -10,12 +10,12 @@ import java.net.Socket;
 class ClientWorker implements Runnable {
     private Socket clientSocket;
     private ServerSocket serverSocket;
-    private Game game;
+    private FetchQuest game;
 
     //Constructor
     ClientWorker(ServerSocket server) {
         this.serverSocket = server;
-        game = new Game("");
+        game = new FetchQuest();
     }
 
     public void run() {
@@ -30,15 +30,18 @@ class ClientWorker implements Runnable {
             //System.out.println("Entrando al loop de input/output");
             String inputLine;
             String outputLine;
-            while ((inputLine = in.readLine()) != null) {
+            inputLine = in.readLine();
+            while (inputLine != null) {
+                System.out.println("INPUT LINE "+inputLine);
                 outputLine = game.processComand(inputLine);
                 out.println(outputLine);
+                out.flush();
                 /// TODO: esto es viejo, deberia cambiar pero deberia estar en algun lado la condicion de victoria
                 if (outputLine.equals("ganaste")) {
                     break;
                 }
+                inputLine = in.readLine();
             }
-
             out.close();
             in.close();
             clientSocket.close();
