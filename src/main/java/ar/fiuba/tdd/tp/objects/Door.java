@@ -1,25 +1,22 @@
 package ar.fiuba.tdd.tp.objects;
 
-import ar.fiuba.tdd.tp.actions.CanBeClosed;
-import ar.fiuba.tdd.tp.actions.CanBeOpened;
-import ar.fiuba.tdd.tp.actions.CanCloseThings;
-import ar.fiuba.tdd.tp.actions.CanOpen;
+import ar.fiuba.tdd.tp.actions.*;
 
 public class Door extends ConcreteGameObjectLeaf implements CanBeOpened, CanBeClosed {
 
-    CanBeOpenedStrategy openedStrategy;
+    CanBeOpenedClosedStrategy openedClosedStrategy;
 
     public Door(String name) {
         super(name);
-        openedStrategy = new CanBeOpenedStrategy();
+        openedClosedStrategy = new CanBeOpenedClosedStrategy();
     }
 
     public String beOpenedBy(CanOpen opener) {
-        return openedStrategy.beOpenedBy(opener);
+        return openedClosedStrategy.beOpenedBy(opener);
     }
 
     public String beClosedBy(CanCloseThings closer) {
-        return openedStrategy.beClosedBy(closer);
+        return openedClosedStrategy.beClosedBy(closer);
     }
 
 

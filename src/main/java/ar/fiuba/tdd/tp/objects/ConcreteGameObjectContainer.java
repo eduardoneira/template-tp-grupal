@@ -20,6 +20,10 @@ public class ConcreteGameObjectContainer extends ConcreteGameObject {
         children.remove(name);
     }
 
+    protected void removeChild(GameObject object) {
+        children.remove(object.getName());
+    }
+
     protected GameObject getChild(String name) {
         return children.get(name);
     }

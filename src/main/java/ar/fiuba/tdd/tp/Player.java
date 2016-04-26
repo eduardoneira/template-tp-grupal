@@ -3,6 +3,7 @@ package ar.fiuba.tdd.tp;
 import ar.fiuba.tdd.tp.actions.Action;
 import ar.fiuba.tdd.tp.objects.ConcreteGameObjectLeaf;
 import ar.fiuba.tdd.tp.objects.GameObject;
+import ar.fiuba.tdd.tp.objects.Room;
 
 import java.util.*;
 

@@ -4,16 +4,17 @@ import ar.fiuba.tdd.tp.actions.CanBeLookedAt;
 import ar.fiuba.tdd.tp.actions.CanBeMoved;
 import ar.fiuba.tdd.tp.actions.CanHaveThingsMovedTo;
 
-public class Stick extends ConcreteGameObjectLeaf implements CanBeMoved, CanBeLookedAt {
+public class Stick extends ConcreteGameObjectLeaf implements CanBeMoved {
 
-    private MoveStrategy movedStrategy;
+    private MoveStrategy moveStrategy;
 
     public Stick(String name) {
         super(name);
-        movedStrategy = new CanBeMovedStrategy();
+        moveStrategy = new CanBeMovedStrategy(this);
     }
 
+    @Override
     public String moveTo(CanHaveThingsMovedTo whereTo) {
-        return movedStrategy.moveTo(whereTo);
+        return moveStrategy.moveTo(whereTo);
     }
 }
