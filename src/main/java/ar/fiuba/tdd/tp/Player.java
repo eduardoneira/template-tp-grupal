@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.Action;
+import ar.fiuba.tdd.tp.actions.CanBeMoved;
+import ar.fiuba.tdd.tp.actions.CanHaveThingsMovedTo;
 import ar.fiuba.tdd.tp.objects.ConcreteGameObjectLeaf;
 import ar.fiuba.tdd.tp.objects.GameObject;
 import ar.fiuba.tdd.tp.objects.Room;
@@ -26,10 +28,16 @@ public class Player extends ConcreteGameObjectLeaf {
     public String doAction(String actionName, List<String> params) {
         if (actions.containsKey(actionName)) {
             List<GameObject> objectsInvolved = new ArrayList<GameObject>();
+            objectsInvolved.add(this);
             Iterator<String> it = params.iterator();
             while (it.hasNext()) {
                 // Que el inventario se fije si tiene el item, sino lo delegue a room (chain of responsibility)
                 String parameter = it.next();
+                if (inventory.contains(parameter)){
+                    objectsInvolved.add(inventory.getChild(parameter));
+                } else if (scene.contains(parameter)) {
+                    objectsInvolved.add(scene.getChild(parameter));
+                }
             }
             return actions.get(actionName).doAction(objectsInvolved);
         } else {
@@ -40,4 +48,9 @@ public class Player extends ConcreteGameObjectLeaf {
     public void placeInRoom(Room room) {
         this.scene = room;
     }
+
+    public Room currentRoom() {
+        return this.scene;
+    }
+
 }

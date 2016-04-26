@@ -2,15 +2,11 @@ package ar.fiuba.tdd.tp.objects;
 
 import ar.fiuba.tdd.tp.actions.*;
 
-/**
- * Created by Master on 26/04/2016.
- */
-public class CanBeOpenedClosedStrategy {
+public class CanBeOpenedClosedStrategy implements OpenStrategy {
     CanBeOpenedClosed instance;
     boolean open;
 
-    public CanBeOpenedClosedStrategy(CanBeOpenedClosed instance){
-        this.instance = instance;
+    public CanBeOpenedClosedStrategy(){
     }
 
     public String beOpenedBy(CanOpen opener) {

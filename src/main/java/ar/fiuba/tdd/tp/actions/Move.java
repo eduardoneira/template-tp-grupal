@@ -12,6 +12,7 @@ public class Move implements Action {
         // objs[0] es el que mueve, objs[1] es el objeto a mover, objs[2] es el objeto a donde moverlo
         // por ahora asumo que cualquiera puede mover objetos, no chequeo objs[0]
         if (!(objectsInvolved.size() == 3) || !(objectsInvolved.get(1) instanceof CanBeMoved) || !(objectsInvolved.get(2) instanceof CanHaveThingsMovedTo)) {
+            System.out.println(objectsInvolved.get(2) instanceof CanHaveThingsMovedTo);
             return "invalid command";
         }
         // tal vez deberia ser objectThatDoesTheMoving.move(objectToMove, objectToMoveTo)
