@@ -1,8 +1,8 @@
 package ar.fiuba.tdd.tp.objects.strategies.move;
 
 import ar.fiuba.tdd.tp.abilities.CanBeMoved;
-import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedFrom;
 import ar.fiuba.tdd.tp.abilities.CanHaveParent;
+import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedFrom;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanBeMoved;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanHaveParent;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
@@ -10,11 +10,11 @@ import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 public class CanHaveThingsMovedFromStrategy implements CanHaveThingsMovedFrom {
     ChildrenState children;
 
-    public CanHaveThingsMovedFromStrategy(){
+    public CanHaveThingsMovedFromStrategy() {
         this.children = new ChildrenState();
     }
 
-    public CanHaveThingsMovedFromStrategy(ChildrenState children){
+    public CanHaveThingsMovedFromStrategy(ChildrenState children) {
         this.children = children;
     }
 

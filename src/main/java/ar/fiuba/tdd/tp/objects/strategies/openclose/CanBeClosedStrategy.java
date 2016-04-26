@@ -1,18 +1,17 @@
-package ar.fiuba.tdd.tp.objects.strategies.open_close;
+package ar.fiuba.tdd.tp.objects.strategies.openclose;
 
 import ar.fiuba.tdd.tp.abilities.CanBeClosed;
-import ar.fiuba.tdd.tp.abilities.CanCloseThings;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanCloseThings;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 public class CanBeClosedStrategy implements CanBeClosed {
     BooleanState open;
 
-    public CanBeClosedStrategy(CanBeClosed instance){
+    public CanBeClosedStrategy(CanBeClosed instance) {
         this.open = new BooleanState(true);
     }
 
-    public CanBeClosedStrategy(BooleanState state){
+    public CanBeClosedStrategy(BooleanState state) {
         open = state;
     }
 

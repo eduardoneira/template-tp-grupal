@@ -1,9 +1,9 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.actions.Action;
 import ar.fiuba.tdd.tp.abilities.CanBeMoved;
 import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedFrom;
 import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedTo;
+import ar.fiuba.tdd.tp.actions.Action;
 import ar.fiuba.tdd.tp.objects.general.*;
 
 import java.util.*;
@@ -34,7 +34,7 @@ public class Player extends ConcreteGameObject implements GameObjectCanHaveThing
             while (it.hasNext()) {
                 // Que el inventario se fije si tiene el item, sino lo delegue a room (chain of responsibility)
                 String parameter = it.next();
-                if (inventory.contains(parameter)){
+                if (inventory.contains(parameter)) {
                     objectsInvolved.add(inventory.getChild(parameter));
                 } else if (scene.contains(parameter)) {
                     objectsInvolved.add(scene.getChild(parameter));

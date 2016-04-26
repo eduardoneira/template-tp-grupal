@@ -2,12 +2,10 @@ package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.abilities.CanBeClosed;
 import ar.fiuba.tdd.tp.abilities.CanBeOpened;
-import ar.fiuba.tdd.tp.abilities.CanCloseThings;
-import ar.fiuba.tdd.tp.abilities.CanOpen;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanCloseThings;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanOpen;
-import ar.fiuba.tdd.tp.objects.strategies.open_close.CanBeOpenedClosedStrategy;
+import ar.fiuba.tdd.tp.objects.strategies.openclose.CanBeOpenedClosedStrategy;
 
 public class Door extends ConcreteGameObject implements CanBeOpened, CanBeClosed {
 

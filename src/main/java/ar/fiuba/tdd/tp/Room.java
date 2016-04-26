@@ -1,9 +1,9 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.abilities.CanBeMoved;
+import ar.fiuba.tdd.tp.abilities.CanHaveParent;
 import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedFrom;
 import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedTo;
-import ar.fiuba.tdd.tp.abilities.CanHaveParent;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.strategies.move.CanHaveThingsMovedToOrFromStrategy;
 

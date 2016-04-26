@@ -1,9 +1,7 @@
-package ar.fiuba.tdd.tp.objects.strategies.open_close;
+package ar.fiuba.tdd.tp.objects.strategies.openclose;
 
 import ar.fiuba.tdd.tp.abilities.CanBeClosed;
 import ar.fiuba.tdd.tp.abilities.CanBeOpened;
-import ar.fiuba.tdd.tp.abilities.CanCloseThings;
-import ar.fiuba.tdd.tp.abilities.CanOpen;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanCloseThings;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanOpen;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
@@ -12,13 +10,13 @@ public class CanBeOpenedClosedStrategy implements CanBeOpened, CanBeClosed {
     CanBeOpenedStrategy openedStrategy;
     CanBeClosedStrategy closedStrategy;
 
-    public CanBeOpenedClosedStrategy(){
+    public CanBeOpenedClosedStrategy() {
         BooleanState state = new BooleanState(false);
         openedStrategy = new CanBeOpenedStrategy(state);
         closedStrategy = new CanBeClosedStrategy(state);
     }
 
-    public CanBeOpenedClosedStrategy(BooleanState state){
+    public CanBeOpenedClosedStrategy(BooleanState state) {
         openedStrategy = new CanBeOpenedStrategy(state);
         closedStrategy = new CanBeClosedStrategy(state);
     }
@@ -37,12 +35,12 @@ public class CanBeOpenedClosedStrategy implements CanBeOpened, CanBeClosed {
     }
 
     // funciones de control para ser usadas por clases que extiendan esta funcionalidad
-    public void setOpen(){
+    public void setOpen() {
         openedStrategy.setOpen();
         closedStrategy.setOpen(); // redundante
     }
 
-    public void setClosed(){
+    public void setClosed() {
         openedStrategy.setClosed(); // redundante
         closedStrategy.setClosed();
     }
