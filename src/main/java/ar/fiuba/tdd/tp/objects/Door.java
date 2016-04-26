@@ -8,7 +8,7 @@ public class Door extends ConcreteGameObjectLeaf implements CanBeOpened, CanBeCl
 
     public Door(String name) {
         super(name);
-        openedClosedStrategy = new CanBeOpenedClosedStrategy();
+        openedClosedStrategy = new CanBeOpenedClosedStrategy(this);
     }
 
     public String beOpenedBy(CanOpen opener) {
@@ -18,6 +18,4 @@ public class Door extends ConcreteGameObjectLeaf implements CanBeOpened, CanBeCl
     public String beClosedBy(CanCloseThings closer) {
         return openedClosedStrategy.beClosedBy(closer);
     }
-
-
 }

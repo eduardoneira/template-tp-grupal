@@ -6,15 +6,28 @@ import ar.fiuba.tdd.tp.actions.CanOpen;
 
 public class CanBeOpenedStrategy implements OpenStrategy {
     CanBeOpened instance;
-    boolean open;
+    BooleanState open;
 
-    public CanBeOpenedStrategy(CanBeOpened instance){
-        this.instance = instance;
+    public CanBeOpenedStrategy(){
+        open = new BooleanState(false);
+    }
+
+    public CanBeOpenedStrategy(BooleanState state){
+        open = state;
     }
 
     public String beOpenedBy(CanOpen opener) {
         // tal vez diferenciar si ya estaba abierto?
-        open = true;
+        open.setTrue();
         return ""; // VER
+    }
+
+    // funciones de control para ser usadas por clases que extiendan esta funcionalidad
+    public void setOpen(){
+        open.setTrue();
+    }
+
+    public void setClosed(){
+        open.setFalse();
     }
 }
