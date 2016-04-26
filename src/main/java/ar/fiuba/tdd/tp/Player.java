@@ -26,7 +26,7 @@ public class Player extends ConcreteGameObjectLeaf {
         if (actions.containsKey(actionName)) {
             List<GameObject> objectsInvolved = new ArrayList<GameObject>();
             Iterator<String> it = params.iterator();
-            while(it.hasNext()) {
+            while (it.hasNext()) {
                 // Que el inventario se fije si tiene el item, sino lo delegue a room (chain of responsibility)
                 String parameter = it.next();
             }

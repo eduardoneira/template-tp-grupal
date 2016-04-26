@@ -32,7 +32,7 @@ class ClientWorker implements Runnable {
             String outputLine;
             inputLine = in.readLine();
             while (inputLine != null) {
-                System.out.println("INPUT LINE "+inputLine);
+                System.out.println("INPUT LINE " + inputLine);
                 outputLine = game.processComand(inputLine);
                 out.println(outputLine);
                 out.flush();

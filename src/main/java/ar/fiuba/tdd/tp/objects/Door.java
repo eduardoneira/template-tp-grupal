@@ -9,7 +9,7 @@ public class Door extends ConcreteGameObjectLeaf implements CanBeOpened, CanBeCl
 
     CanBeOpenedStrategy openedStrategy;
 
-    public Door(String name){
+    public Door(String name) {
         super(name);
         openedStrategy = new CanBeOpenedStrategy();
     }
