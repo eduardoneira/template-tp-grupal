@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.Actions.Action;
+import ar.fiuba.tdd.tp.Objects.ConcreteGameObjectLeaf;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,8 @@
 package ar.fiuba.tdd.tp;
+
+import ar.fiuba.tdd.tp.Objects.ConcreteGameObjectContainer;
+import ar.fiuba.tdd.tp.Objects.GameObject;
+
 /**
  * Created by Master on 21/04/2016.
  */

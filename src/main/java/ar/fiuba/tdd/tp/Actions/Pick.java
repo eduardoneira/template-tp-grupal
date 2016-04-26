@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.tp.Actions;
 
-import ar.fiuba.tdd.tp.*;
+import ar.fiuba.tdd.tp.Objects.GameObject;
 
 import java.util.List;
 
