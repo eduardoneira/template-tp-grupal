@@ -4,11 +4,11 @@ import ar.fiuba.tdd.tp.actions.CanBeMoved;
 import ar.fiuba.tdd.tp.actions.CanHaveThingsMovedFrom;
 import ar.fiuba.tdd.tp.actions.CanHaveThingsMovedTo;
 
-public class CanBeMovedStrategy implements MoveStrategy{
+public class CanBeMovedToStrategy implements MoveToStrategy {
     CanHaveThingsMovedTo parent;
     CanBeMoved instance;
 
-    public CanBeMovedStrategy(CanBeMoved instance) {
+    public CanBeMovedToStrategy(CanBeMoved instance) {
         this.instance = instance;
     }
 
@@ -22,7 +22,7 @@ public class CanBeMovedStrategy implements MoveStrategy{
         return whereTo.haveMovedTo(instance);
     }
 
-    protected void setParent(CanHaveThingsMovedTo parent) {
+    public void setParent(CanHaveThingsMovedTo parent) {
         this.parent = parent;
     }
 }

@@ -1,9 +1,12 @@
 package ar.fiuba.tdd.tp.objects;
 
+import ar.fiuba.tdd.tp.actions.CanBePlaced;
+import ar.fiuba.tdd.tp.actions.CanHavePlaced;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConcreteGameObjectContainer extends ConcreteGameObject {
+public class ConcreteGameObjectContainer extends ConcreteGameObject implements CanHavePlaced {
     private Map<String, GameObject> children;
 
     public ConcreteGameObjectContainer(String name) {
@@ -24,7 +27,15 @@ public class ConcreteGameObjectContainer extends ConcreteGameObject {
         children.remove(object.getName());
     }
 
-    protected GameObject getChild(String name) {
+    public boolean contains(String name) {
+        return children.containsKey(name);
+    }
+
+    public GameObject getChild(String name) {
         return children.get(name);
+    }
+
+    public void place(CanBePlaced toPlace){
+        this.addChild((GameObject) toPlace);
     }
 }
