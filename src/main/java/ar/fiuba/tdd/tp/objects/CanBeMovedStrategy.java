@@ -1,11 +1,8 @@
-package ar.fiuba.tdd.tp.Objects;
+package ar.fiuba.tdd.tp.objects;
 
-import ar.fiuba.tdd.tp.Actions.CanBeMoved;
-import ar.fiuba.tdd.tp.Actions.CanHaveThingsMovedTo;
+import ar.fiuba.tdd.tp.actions.CanBeMoved;
+import ar.fiuba.tdd.tp.actions.CanHaveThingsMovedTo;
 
-/**
- * Created by Master on 26/04/2016.
- */
 public class CanBeMovedStrategy {
     CanHaveThingsMovedTo parent;
     CanBeMoved instance;

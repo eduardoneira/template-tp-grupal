@@ -1,13 +1,7 @@
 package ar.fiuba.tdd.tp;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-/**
- * Created by Master on 21/04/2016.
- */
 public class Game {
 
     protected Player player;
@@ -42,7 +36,7 @@ public class Game {
             String command = parsedCommand.get(0);
             parsedCommand.remove(0);
 
-            return player.doAction(command, parsedCommand.toArray(new String[parsedCommand.size()]));
+            return player.doAction(command, parsedCommand);
         } else {
             return "invalid command";
         }

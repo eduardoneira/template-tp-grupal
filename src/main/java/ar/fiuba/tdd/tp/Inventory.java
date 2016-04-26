@@ -1,17 +1,15 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.Objects.ConcreteGameObjectContainer;
+import ar.fiuba.tdd.tp.objects.ConcreteGameObjectContainer;
+import ar.fiuba.tdd.tp.objects.GameObject;
 
-/**
- * Created by Master on 21/04/2016.
- */
 public class Inventory extends ConcreteGameObjectContainer {
 
     public Inventory(String name) {
         super(name);
     }
 
-    public void store(TakeableItem obj) {
+    public void store(GameObject obj) {
         addChild(obj);
     }
 

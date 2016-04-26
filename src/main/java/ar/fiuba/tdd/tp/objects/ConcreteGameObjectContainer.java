@@ -1,11 +1,8 @@
-package ar.fiuba.tdd.tp.Objects;
+package ar.fiuba.tdd.tp.objects;
 
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Master on 21/04/2016.
- */
 public class ConcreteGameObjectContainer extends ConcreteGameObject {
     private Map<String, GameObject> children;
 

@@ -1,11 +1,9 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.Actions.LookAt;
-import ar.fiuba.tdd.tp.Actions.Pick;
+import ar.fiuba.tdd.tp.actions.LookAt;
+import ar.fiuba.tdd.tp.actions.Pick;
+import ar.fiuba.tdd.tp.objects.Stick;
 
-/**
- * Created by fernando on 23/04/16.
- */
 public class FetchQuest extends Game {
     public FetchQuest() {
         super("Fetch Quest");
@@ -13,7 +11,7 @@ public class FetchQuest extends Game {
         String nameStick = "stick";
 
         Room cuarto = new Room(nameRoom);
-        cuarto.addObject(new Stick(nameStick));
+        cuarto.haveMovedTo(new Stick(nameStick));
 
         player.placeInRoom(cuarto);
         keywords.add(nameStick);

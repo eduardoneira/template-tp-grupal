@@ -1,7 +1,4 @@
 package ar.fiuba.tdd.tp;
-/**
- * Created by Master on 20/04/2016.
- */
 
 import java.io.*;
 import java.net.*;

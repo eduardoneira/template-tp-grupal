@@ -1,15 +1,13 @@
-package ar.fiuba.tdd.tp.Objects;
+package ar.fiuba.tdd.tp.objects;
 
-import ar.fiuba.tdd.tp.Objects.ConcreteGameObject;
+import ar.fiuba.tdd.tp.actions.CanBeLookedAt;
 
-/**
- * Created by Master on 21/04/2016.
- */
 public class ConcreteGameObjectLeaf extends ConcreteGameObject {
 
     public ConcreteGameObjectLeaf(String name) {
         super(name);
     }
+
 
 
 }

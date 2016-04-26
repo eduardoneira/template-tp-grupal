@@ -1,12 +1,9 @@
-package ar.fiuba.tdd.tp.Actions;
+package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.Objects.GameObject;
+import ar.fiuba.tdd.tp.objects.GameObject;
 
 import java.util.List;
 
-/**
- * Created by Master on 21/04/2016.
- */
 public class Pick extends Move {
 
     // esto es lo de antes, podemos cambiarlo y reusar el codigo de antes aunque no sea tan 'lindo' para leer, o de ultima hacer un wrapper
@@ -23,6 +20,12 @@ public class Pick extends Move {
 
     @Override
     public String doAction(List<GameObject> objectsInvolved) {
+        if (objectsInvolved.size() == 0) {
+            return "No object selected";
+        }
+        if (!(objectsInvolved.get(0) instanceof CanBeMoved)){
+            return "Cannot be moved";
+        }
         // ej: pick stick -> move stick player
         objectsInvolved.add(objectsInvolved.get(0));
         return super.doAction(objectsInvolved);

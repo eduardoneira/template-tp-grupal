@@ -1,14 +1,11 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.Actions.Action;
-import ar.fiuba.tdd.tp.Objects.ConcreteGameObjectLeaf;
+import ar.fiuba.tdd.tp.actions.Action;
+import ar.fiuba.tdd.tp.objects.ConcreteGameObjectLeaf;
+import ar.fiuba.tdd.tp.objects.GameObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-/**
- * Created by Master on 21/04/2016.
- */
 public class Player extends ConcreteGameObjectLeaf {
 
     private Inventory inventory;
@@ -25,9 +22,15 @@ public class Player extends ConcreteGameObjectLeaf {
         actions.put(action.getName(), action);
     }
 
-    public String doAction(String actionName, String[] params) {
+    public String doAction(String actionName, List<String> params) {
         if (actions.containsKey(actionName)) {
-            return actions.get(actionName).doAction(this, scene, params);
+            List<GameObject> objectsInvolved = new ArrayList<GameObject>();
+            Iterator<String> it = params.iterator();
+            while(it.hasNext()){
+                // Que el inventario se fije si tiene el item, sino lo delegue a room (chain of responsibility)
+                String parameter = it.next();
+            }
+            return actions.get(actionName).doAction(objectsInvolved);
         } else {
             return "invalid command";
         }

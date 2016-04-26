@@ -1,28 +1,27 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.Objects.ConcreteGameObjectContainer;
-import ar.fiuba.tdd.tp.Objects.GameObject;
+import ar.fiuba.tdd.tp.actions.CanBeMoved;
+import ar.fiuba.tdd.tp.actions.CanHaveThingsMovedTo;
+import ar.fiuba.tdd.tp.objects.ConcreteGameObjectContainer;
+import ar.fiuba.tdd.tp.objects.GameObject;
 
-/**
- * Created by Master on 21/04/2016.
- */
-public class Room extends ConcreteGameObjectContainer implements CanHaveItemsTakenFrom {
+public class Room extends ConcreteGameObjectContainer implements CanHaveThingsMovedTo {
 
     public Room(String name) {
         super(name);
     }
 
-    @Override
-    public TakeableItem takeItem(String itemName) {
+    public CanBeMoved takeItem(String itemName) {
         GameObject item = getChild(itemName);
-        if (!(item instanceof TakeableItem)) {
+        if (!(item instanceof CanBeMoved)) {
             return null; // cant take item
         }
         removeChild(itemName);
-        return (TakeableItem) item;
+        return (CanBeMoved) item;
     }
 
-    public void addObject(GameObject obj) {
+    public String haveMovedTo(CanBeMoved obj) {
         addChild(obj);
+        return "There you go!";
     }
 }

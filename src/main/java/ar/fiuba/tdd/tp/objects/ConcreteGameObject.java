@@ -1,12 +1,9 @@
-package ar.fiuba.tdd.tp.Objects;
+package ar.fiuba.tdd.tp.objects;
 
-import ar.fiuba.tdd.tp.Actions.CanBeLookedAt;
-import ar.fiuba.tdd.tp.Objects.GameObject;
+import ar.fiuba.tdd.tp.actions.CanBeLookedAt;
 
-/**
- * Created by Master on 21/04/2016.
- */
 public abstract class ConcreteGameObject implements GameObject, CanBeLookedAt {
+
     private String name;
 
     public ConcreteGameObject(String name) {
@@ -16,5 +13,9 @@ public abstract class ConcreteGameObject implements GameObject, CanBeLookedAt {
     @Override
     public String getName() {
         return name;
+    }
+
+    public String lookAt(){
+        return getName();
     }
 }
