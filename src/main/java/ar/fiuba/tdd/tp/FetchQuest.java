@@ -2,8 +2,6 @@ package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.LookAt;
 import ar.fiuba.tdd.tp.actions.Pick;
-import ar.fiuba.tdd.tp.objects.Room;
-import ar.fiuba.tdd.tp.objects.Stick;
 
 public class FetchQuest extends Game {
     public FetchQuest() {

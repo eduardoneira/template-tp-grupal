@@ -2,9 +2,6 @@ package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.Open;
 import ar.fiuba.tdd.tp.actions.Pick;
-import ar.fiuba.tdd.tp.objects.Door;
-import ar.fiuba.tdd.tp.objects.Room;
-import ar.fiuba.tdd.tp.objects.Stick;
 import org.junit.Test;
 
 import java.util.ArrayList;

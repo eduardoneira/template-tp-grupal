@@ -1,16 +1,14 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.Action;
-import ar.fiuba.tdd.tp.actions.CanBeMoved;
-import ar.fiuba.tdd.tp.actions.CanHaveThingsMovedFrom;
-import ar.fiuba.tdd.tp.actions.CanHaveThingsMovedTo;
-import ar.fiuba.tdd.tp.objects.ConcreteGameObjectLeaf;
-import ar.fiuba.tdd.tp.objects.GameObject;
-import ar.fiuba.tdd.tp.objects.Room;
+import ar.fiuba.tdd.tp.abilities.CanBeMoved;
+import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedFrom;
+import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedTo;
+import ar.fiuba.tdd.tp.objects.general.*;
 
 import java.util.*;
 
-public class Player extends ConcreteGameObjectLeaf implements CanHaveThingsMovedTo, CanHaveThingsMovedFrom {
+public class Player extends ConcreteGameObject implements GameObjectCanHaveThingsMovedTo {
 
     private Inventory inventory;
     private Map<String, Action> actions;
@@ -29,7 +27,9 @@ public class Player extends ConcreteGameObjectLeaf implements CanHaveThingsMoved
     public String doAction(String actionName, List<String> params) {
         if (actions.containsKey(actionName)) {
             List<GameObject> objectsInvolved = new ArrayList<GameObject>();
+            // siempre el jugador es quien hace la accion
             objectsInvolved.add(this);
+
             Iterator<String> it = params.iterator();
             while (it.hasNext()) {
                 // Que el inventario se fije si tiene el item, sino lo delegue a room (chain of responsibility)
@@ -54,16 +54,18 @@ public class Player extends ConcreteGameObjectLeaf implements CanHaveThingsMoved
         return this.scene;
     }
 
-    public String haveMovedTo(CanBeMoved toMove) {
+    @Override
+    public String haveMovedTo(GameObjectCanBeMoved toMove) {
         return inventory.haveMovedTo(toMove);
     }
 
-    public String haveMovedFrom(CanBeMoved toMove) {
-        return inventory.haveMovedFrom(toMove);
+    @Override
+    public GameObjectCanHaveParent getChild(String name) {
+        return inventory.getChild(name);
     }
 
-    public boolean has(String name) {
+    @Override
+    public boolean contains(String name) {
         return inventory.contains(name);
     }
-
 }
