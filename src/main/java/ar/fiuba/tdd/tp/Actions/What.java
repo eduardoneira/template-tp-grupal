@@ -11,7 +11,7 @@ public class What implements Action {
     @Override
     public String doAction(List<GameObject> objectsInvolved) {
         // ej: what can i do with door
-        if (!(objectsInvolved.length == 2) || !(objectsInvolved.get(1) instanceof CanBeCheckedForPossibleActions)) {
+        if (!(objectsInvolved.size() == 2) || !(objectsInvolved.get(1) instanceof CanBeCheckedForPossibleActions)) {
             return "invalid command";
         }
         // tal vez deberia ser objectThatChecks.check(objectToCheck)

@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by Master on 21/04/2016.
  */
-public class Player extends ConcreteGameObjectLeaf implements CanTakeItems{
+public class Player extends ConcreteGameObjectLeaf {
 
     private Inventory inventory;
     private Map<String, Action> actions;
@@ -18,11 +18,6 @@ public class Player extends ConcreteGameObjectLeaf implements CanTakeItems{
         super(name);
         inventory = new Inventory(name + "'s inventory");
         actions = new HashMap<String, Action>();
-    }
-
-    @Override
-    public void receiveItem(TakeableItem obj) {
-        inventory.store(obj);
     }
 
     public void addAction(Action action) {

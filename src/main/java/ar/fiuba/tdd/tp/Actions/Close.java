@@ -16,9 +16,9 @@ public class Close implements Action {
         }
 
         CanCloseThings objectThatDoesTheClosing = (CanCloseThings) objectsInvolved.get(0);
-        CanBeClosed objectThatIsClosed = (CanBeClosed) objectsInvolved.get(1);
+        CanBeClosed objectToClosed = (CanBeClosed) objectsInvolved.get(1);
 
-        return objectThatDoesTheClosing.close(objectThatIsClosed);
+        return objectThatDoesTheClosing.close(objectToClosed);
     }
 
     @Override

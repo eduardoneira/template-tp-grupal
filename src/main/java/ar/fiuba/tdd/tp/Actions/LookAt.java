@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp.Actions;
 
-import ar.fiuba.tdd.tp.CanBeLookedAt;
 import ar.fiuba.tdd.tp.GameObject;
 
 import java.util.List;
@@ -14,7 +13,7 @@ public class LookAt implements Action {
     public String doAction(List<GameObject> objectsInvolved) {
         // ej: look at room
         // por ahora asumo que cualquiera puede 'ver' cosas, por eso no chequeo al obj[0]
-        if (!(objectsInvolved.length == 2) || !(objectsInvolved.get(1) instanceof CanBeLookedAt)) {
+        if (!(objectsInvolved.size() == 2) || !(objectsInvolved.get(1) instanceof CanBeLookedAt)) {
             return "invalid command";
         }
         // tal vez deberia ser objectThatLooks.lookAt(objectThatIsLookedAt)

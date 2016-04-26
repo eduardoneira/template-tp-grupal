@@ -25,7 +25,7 @@ public class Pick extends Move {
     public String doAction(List<GameObject> objectsInvolved) {
         // ej: pick stick -> move stick player
         objectsInvolved.add(objectsInvolved.get(0));
-        return super(objectsInvolved);
+        return super.doAction(objectsInvolved);
     }
 
     @Override
