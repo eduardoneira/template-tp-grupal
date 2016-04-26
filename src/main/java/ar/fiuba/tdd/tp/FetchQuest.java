@@ -1,5 +1,8 @@
 package ar.fiuba.tdd.tp;
 
+import ar.fiuba.tdd.tp.Actions.LookAt;
+import ar.fiuba.tdd.tp.Actions.Pick;
+
 /**
  * Created by fernando on 23/04/16.
  */
@@ -15,8 +18,8 @@ public class FetchQuest extends Game {
         player.placeInRoom(cuarto);
         keywords.add(nameStick);
 
-        PickUp actionPickup = new PickUp();
-        LookAround actionLookaround = new LookAround();
+        Pick actionPickup = new Pick();
+        LookAt actionLookaround = new LookAt();
 
         player.addAction(actionPickup);
         player.addAction(actionLookaround);
@@ -27,5 +30,4 @@ public class FetchQuest extends Game {
         keywords.add(actionPickup.getName());
         keywords.add(actionLookaround.getName());
     }
-
 }

@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by Master on 21/04/2016.
  */
-public class ConcreteGameObjectContainer extends ConcreteGameObject implements CanBeLookedAt {
+public class ConcreteGameObjectContainer extends ConcreteGameObject {
     private Map<String, GameObject> children;
 
     public ConcreteGameObjectContainer(String name) {
@@ -25,17 +25,5 @@ public class ConcreteGameObjectContainer extends ConcreteGameObject implements C
 
     protected GameObject getChild(String name) {
         return children.get(name);
-    }
-
-    @Override
-    public String lookAt() {
-        StringBuilder builder = new StringBuilder();
-        builder.append(getName());
-        builder.append(" with ");
-        for (String n : children.keySet()) {
-            builder.append(getChild(n).lookAt());
-            builder.append(" and ");
-        }
-        return builder.toString();
     }
 }

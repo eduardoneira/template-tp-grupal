@@ -5,6 +5,4 @@ package ar.fiuba.tdd.tp;
 public interface GameObject {
 
     String getName();
-
-    String lookAt();
 }
