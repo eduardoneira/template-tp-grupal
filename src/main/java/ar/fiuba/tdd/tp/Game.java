@@ -24,7 +24,7 @@ public class Game {
 
     public String processComand(String stringCommand) {
 
-        System.out.println("SERVER PROCESS "+stringCommand);
+        System.out.println("SERVER PROCESS " + stringCommand);
         String[] splitCommand = stringCommand.split(" ");
         List<String> parsedCommand = new LinkedList<String>();
         for (String elem : splitCommand) {

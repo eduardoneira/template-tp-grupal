@@ -15,7 +15,7 @@ public abstract class ConcreteGameObject implements GameObject, CanBeLookedAt {
         return name;
     }
 
-    public String lookAt(){
+    public String lookAt() {
         return getName();
     }
 }

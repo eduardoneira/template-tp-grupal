@@ -5,11 +5,11 @@ import ar.fiuba.tdd.tp.actions.CanOpen;
 
 public class CanBeOpenedStrategy {
 
-    String beOpenedBy(CanOpen opener){
+    String beOpenedBy(CanOpen opener) {
         return "opened!";
     }
 
-    String beClosedBy(CanCloseThings closer){
+    String beClosedBy(CanCloseThings closer) {
         return "closed!";
     }
 }

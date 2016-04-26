@@ -23,7 +23,7 @@ public class Pick extends Move {
         if (objectsInvolved.size() == 0) {
             return "No object selected";
         }
-        if (!(objectsInvolved.get(0) instanceof CanBeMoved)){
+        if (!(objectsInvolved.get(0) instanceof CanBeMoved)) {
             return "Cannot be moved";
         }
         // ej: pick stick -> move stick player
