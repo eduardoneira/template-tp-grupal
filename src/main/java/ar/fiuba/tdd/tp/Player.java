@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.Action;
 import ar.fiuba.tdd.tp.actions.CanBeMoved;
+import ar.fiuba.tdd.tp.actions.CanHaveThingsMovedFrom;
 import ar.fiuba.tdd.tp.actions.CanHaveThingsMovedTo;
 import ar.fiuba.tdd.tp.objects.ConcreteGameObjectLeaf;
 import ar.fiuba.tdd.tp.objects.GameObject;
@@ -9,7 +10,7 @@ import ar.fiuba.tdd.tp.objects.Room;
 
 import java.util.*;
 
-public class Player extends ConcreteGameObjectLeaf {
+public class Player extends ConcreteGameObjectLeaf implements CanHaveThingsMovedTo, CanHaveThingsMovedFrom {
 
     private Inventory inventory;
     private Map<String, Action> actions;
@@ -51,6 +52,18 @@ public class Player extends ConcreteGameObjectLeaf {
 
     public Room currentRoom() {
         return this.scene;
+    }
+
+    public String haveMovedTo(CanBeMoved toMove) {
+        return inventory.haveMovedTo(toMove);
+    }
+
+    public String haveMovedFrom(CanBeMoved toMove) {
+        return inventory.haveMovedFrom(toMove);
+    }
+
+    public boolean has(String name) {
+        return inventory.contains(name);
     }
 
 }

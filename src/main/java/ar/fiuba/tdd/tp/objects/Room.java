@@ -20,6 +20,7 @@ public class Room extends ConcreteGameObjectContainer implements CanHaveThingsMo
     @Override
     public String haveMovedTo(CanBeMoved obj) {
         moveToStrategy.haveMovedTo(obj);
+        obj.setParent(this);
         return "There you go!";
     }
 

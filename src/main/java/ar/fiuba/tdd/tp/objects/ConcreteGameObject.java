@@ -1,9 +1,6 @@
 package ar.fiuba.tdd.tp.objects;
 
-import ar.fiuba.tdd.tp.actions.CanBeLookedAt;
-import ar.fiuba.tdd.tp.actions.CanBePlaced;
-import ar.fiuba.tdd.tp.actions.CanHavePlaced;
-import ar.fiuba.tdd.tp.actions.CanHaveThingsMovedTo;
+import ar.fiuba.tdd.tp.actions.*;
 
 public abstract class ConcreteGameObject implements GameObject, CanBeLookedAt, CanBePlaced {
 
@@ -26,5 +23,6 @@ public abstract class ConcreteGameObject implements GameObject, CanBeLookedAt, C
 
     public void setParent(CanHavePlaced parent) {
         parent.place(this);
+        moveToStrategy.setParent((CanHaveThingsMovedTo) parent);
     }
 }

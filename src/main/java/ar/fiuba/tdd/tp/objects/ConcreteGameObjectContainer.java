@@ -1,12 +1,11 @@
 package ar.fiuba.tdd.tp.objects;
 
-import ar.fiuba.tdd.tp.actions.CanBePlaced;
-import ar.fiuba.tdd.tp.actions.CanHavePlaced;
+import ar.fiuba.tdd.tp.actions.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ConcreteGameObjectContainer extends ConcreteGameObject implements CanHavePlaced {
+public class ConcreteGameObjectContainer extends ConcreteGameObject implements CanHavePlaced, CanHaveThingsMovedTo, CanHaveThingsMovedFrom {
     private Map<String, GameObject> children;
 
     public ConcreteGameObjectContainer(String name) {
@@ -37,5 +36,16 @@ public class ConcreteGameObjectContainer extends ConcreteGameObject implements C
 
     public void place(CanBePlaced toPlace){
         this.addChild((GameObject) toPlace);
+    }
+
+    public String haveMovedTo(CanBeMoved toMove) {
+        addChild(toMove);
+        toMove.setParent(this);
+        return "";
+    }
+
+    public String haveMovedFrom(CanBeMoved toMove) {
+        removeChild(toMove);
+        return "";
     }
 }
