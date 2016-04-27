@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class AbrirPuertaTests {
 
-    private Room room;
+    /*private Room room;
     private Player player;
     private Key key;
     private Door door;
@@ -35,5 +35,5 @@ public class AbrirPuertaTests {
         player.addAction(new Open());
         player.doAction("open", new ArrayList<String>(){{add("stick");}});
         //assert(door.isOpen());
-    }
+    }*/
 }

@@ -3,13 +3,14 @@ package ar.fiuba.tdd.tp;
 import ar.fiuba.tdd.tp.abilities.CanBeMoved;
 import ar.fiuba.tdd.tp.abilities.CanHaveChildren;
 import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedTo;
+import ar.fiuba.tdd.tp.abilities.control.ParentControlFunctions;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanBeMoved;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanHaveChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanHaveThingsMovedTo;
 import ar.fiuba.tdd.tp.objects.strategies.move.CanBeMovedStrategy;
 
-public class Stick extends ConcreteGameObject implements GameObjectCanBeMoved {
+public class Stick extends ConcreteGameObject implements GameObjectCanBeMoved, ParentControlFunctions {
     private CanBeMovedStrategy beMoved;
 
     public Stick(String name) {
@@ -25,5 +26,10 @@ public class Stick extends ConcreteGameObject implements GameObjectCanBeMoved {
     @Override
     public GameObjectCanHaveChildren getParent() {
         return beMoved.getParent();
+    }
+
+    @Override
+    public void setParent(GameObjectCanHaveChildren parent) {
+        beMoved.setParent(parent);
     }
 }

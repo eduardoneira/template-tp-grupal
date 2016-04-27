@@ -2,12 +2,14 @@ package ar.fiuba.tdd.tp.objects.strategies.openclose;
 
 import ar.fiuba.tdd.tp.abilities.CanBeClosed;
 import ar.fiuba.tdd.tp.abilities.CanBeOpened;
+import ar.fiuba.tdd.tp.abilities.control.LockControlFunctions;
+import ar.fiuba.tdd.tp.abilities.control.OpenCloseControlFunctions;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanCloseThings;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanOpen;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 // asumo que todos los unlockables pueden ser abiertos o cerrados
-public class CanBeUnlockedStrategy implements CanBeOpened, CanBeClosed {
+public class CanBeUnlockedStrategy implements CanBeOpened, CanBeClosed, OpenCloseControlFunctions, LockControlFunctions {
     CanBeOpenedClosedStrategy openedClosedStrategy;
     BooleanState locked;
     int lock;
@@ -41,22 +43,27 @@ public class CanBeUnlockedStrategy implements CanBeOpened, CanBeClosed {
     }
 
     // funciones de control
+    @Override
     public void setOpen() {
         openedClosedStrategy.setOpen();
     }
 
+    @Override
     public void setClosed() {
         openedClosedStrategy.setClosed();
     }
 
+    @Override
     public void setLock(int lock) {
         this.lock = lock;
     }
 
+    @Override
     public void setLocked() {
         locked.setTrue();
     }
 
+    @Override
     public void setUnlocked() {
         locked.setFalse();
     }

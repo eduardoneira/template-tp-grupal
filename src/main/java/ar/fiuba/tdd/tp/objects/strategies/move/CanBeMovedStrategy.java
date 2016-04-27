@@ -19,10 +19,14 @@ public class CanBeMovedStrategy implements CanBeMoved, ParentControlFunctions {
     @Override
     public String moveTo(GameObjectCanHaveThingsMovedTo whereTo) {
         // el requisito para 'parent' es que pueda tener cosas, pero no necesariamente que me deje salir despues
-        if (!(this.parent instanceof CanHaveThingsMovedFrom)) {
+        if (this.parent != null && !(this.parent instanceof CanHaveThingsMovedFrom)) {
             return "invalid command";
         }
-        ((CanHaveThingsMovedFrom)this.parent).haveMovedFrom(instance);
+        if(this.parent != null){
+            ((CanHaveThingsMovedFrom)this.parent).haveMovedFrom(instance);
+        } else {
+            this.parent = new ParentState();
+        }
         this.parent.setParent(whereTo);
         return whereTo.haveMovedTo(instance);
     }

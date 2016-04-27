@@ -29,7 +29,7 @@ public class FetchQuestTests {
         System.out.println(room.lookAt());
         player.addAction(new Pick());
         System.out.println(player.doAction("pick", new ArrayList<String>(){{add("stick");}}));
-        assert(player.has("stick"));
+        assert(player.contains("stick"));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class FetchQuestTests {
         room.haveMovedTo(stick);
         player.addAction(new Pick());
         player.doAction("pick", new ArrayList<String>(){{add("stick");}});
-        assert(player.has("stick"));
+        assert(player.contains("stick"));
     }
 }
 
