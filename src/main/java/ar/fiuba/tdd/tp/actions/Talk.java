@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.abilities.CanBeTalkedTo;
-import ar.fiuba.tdd.tp.abilities.CanTalkToOthers;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanBeTalkedTo;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanTalkToOthers;
@@ -12,9 +10,8 @@ public class Talk implements Action {
     @Override
     public String doAction(List<GameObject> objectsInvolved) {
         // ej: talk to thief
-        if (!(objectsInvolved.size() == 2)
-                || !(objectsInvolved.get(0) instanceof GameObjectCanTalkToOthers)
-                || !(objectsInvolved.get(1) instanceof GameObjectCanBeTalkedTo)) {
+
+        if (BinaryActionChecker.check(objectsInvolved, GameObjectCanTalkToOthers.class, GameObjectCanBeTalkedTo.class)) {
             return "invalid command";
         }
 

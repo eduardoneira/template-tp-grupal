@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.abilities.CanBeClosed;
-import ar.fiuba.tdd.tp.abilities.CanCloseThings;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanBeClosed;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanCloseThings;

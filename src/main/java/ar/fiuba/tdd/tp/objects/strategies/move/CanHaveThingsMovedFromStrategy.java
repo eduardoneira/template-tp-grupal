@@ -1,13 +1,10 @@
 package ar.fiuba.tdd.tp.objects.strategies.move;
 
 import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedFrom;
-import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanBeMoved;
-import ar.fiuba.tdd.tp.objects.general.GameObjectCanHaveParent;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
-public class CanHaveThingsMovedFromStrategy implements CanHaveThingsMovedFrom, ChildrenControlFunctions {
-    ChildrenState children;
+public class CanHaveThingsMovedFromStrategy extends CanHaveThingsMovedStrategy implements CanHaveThingsMovedFrom {
 
     public CanHaveThingsMovedFromStrategy() {
         this.children = new ChildrenState();
@@ -23,23 +20,4 @@ public class CanHaveThingsMovedFromStrategy implements CanHaveThingsMovedFrom, C
         return ""; // VER
     }
 
-    @Override
-    public GameObjectCanHaveParent getChild(String name) {
-        return children.getChild(name);
-    }
-
-    @Override
-    public boolean contains(String name) {
-        return this.children.contains(name);
-    }
-
-    @Override
-    public void addChild(GameObjectCanHaveParent child) {
-        this.children.addChild(child);
-    }
-
-    @Override
-    public void removeChild(GameObjectCanHaveParent child) {
-        this.children.removeChild(child);
-    }
 }

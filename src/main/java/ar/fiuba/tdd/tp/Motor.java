@@ -1,8 +1,5 @@
 package ar.fiuba.tdd.tp;
 
-/**
- * Created by Edu on 4/27/2016.
- */
 public class Motor {
 
     public static String[] GAMESAVAILABLE = {"Fetch Quest",

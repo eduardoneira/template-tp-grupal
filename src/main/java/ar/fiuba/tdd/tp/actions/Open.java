@@ -1,7 +1,5 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.abilities.CanBeOpened;
-import ar.fiuba.tdd.tp.abilities.CanOpen;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanBeOpened;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanOpen;
@@ -12,9 +10,7 @@ public class Open implements Action {
     @Override
     public String doAction(List<GameObject> objectsInvolved) {
         // ej: open door
-        if (!(objectsInvolved.size() == 2)
-                || !(objectsInvolved.get(0) instanceof GameObjectCanOpen)
-                || !(objectsInvolved.get(1) instanceof GameObjectCanBeOpened)) {
+        if (BinaryActionChecker.check(objectsInvolved, GameObjectCanOpen.class, GameObjectCanBeOpened.class)) {
             return "invalid command";
         }
 
