@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.Pick;
-import ar.fiuba.tdd.tp.objects.concrete.Player;
+import ar.fiuba.tdd.tp.objects.concrete.player.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.Stick;
 import org.junit.Before;

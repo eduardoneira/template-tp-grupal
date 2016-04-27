@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.objects.concrete;
+package ar.fiuba.tdd.tp.objects.concrete.door;
 
 import ar.fiuba.tdd.tp.abilities.CanBeClosed;
 import ar.fiuba.tdd.tp.abilities.CanBeOpened;
@@ -17,6 +17,7 @@ public class Door extends ConcreteGameObject implements GameObjectCanBeOpened, G
     public Door(String name) {
         super(name);
         openedClosedStrategy = new CanBeOpenedClosedStrategy();
+        parent = new ParentState();
     }
 
     public Door(String name, CanBeOpenedClosedStrategy openedClosedStrategy) {
@@ -42,6 +43,16 @@ public class Door extends ConcreteGameObject implements GameObjectCanBeOpened, G
     @Override
     public void setClosed() {
         openedClosedStrategy.setClosed();
+    }
+
+    @Override
+    public boolean isOpen() {
+        return openedClosedStrategy.isOpen();
+    }
+
+    @Override
+    public boolean isClosed() {
+        return openedClosedStrategy.isClosed();
     }
 
     @Override

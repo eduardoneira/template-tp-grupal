@@ -14,6 +14,7 @@ public class CanBeMovedStrategy implements CanBeMoved, ParentControlFunctions {
 
     public CanBeMovedStrategy(GameObjectCanBeMoved instance) {
         this.instance = instance;
+        this.parent = new ParentState();
     }
 
     @Override

@@ -32,4 +32,14 @@ public class CanBeClosedStrategy implements CanBeClosed, OpenCloseControlFunctio
     public void setClosed() {
         open.setFalse();
     }
+
+    @Override
+    public boolean isOpen() {
+        return open.getValue();
+    }
+
+    @Override
+    public boolean isClosed() {
+        return !open.getValue();
+    }
 }

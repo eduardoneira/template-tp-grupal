@@ -39,12 +39,22 @@ public class CanBeOpenedClosedStrategy implements CanBeOpened, CanBeClosed, Open
     @Override
     public void setOpen() {
         openedStrategy.setOpen();
-        closedStrategy.setOpen(); // redundante
+        //closedStrategy.setOpen(); redundante
     }
 
     @Override
     public void setClosed() {
-        openedStrategy.setClosed(); // redundante
-        closedStrategy.setClosed();
+        openedStrategy.setClosed();
+        //closedStrategy.setClosed(); redundante
+    }
+
+    @Override
+    public boolean isOpen() {
+        return openedStrategy.isOpen();
+    }
+
+    @Override
+    public boolean isClosed() {
+        return openedStrategy.isClosed();
     }
 }

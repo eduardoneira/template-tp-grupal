@@ -1,6 +1,8 @@
-package ar.fiuba.tdd.tp.objects.concrete;
+package ar.fiuba.tdd.tp.objects.concrete.player;
 
 import ar.fiuba.tdd.tp.actions.Action;
+import ar.fiuba.tdd.tp.objects.concrete.Inventory;
+import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.general.*;
 
 import java.util.*;

@@ -8,4 +8,8 @@ public interface OpenCloseControlFunctions {
     void setOpen();
 
     void setClosed();
+
+    boolean isOpen();
+
+    boolean isClosed();
 }
