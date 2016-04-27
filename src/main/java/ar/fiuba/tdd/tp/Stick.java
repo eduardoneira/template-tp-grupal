@@ -1,8 +1,8 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.abilities.CanBeMoved;
-import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedTo;
 import ar.fiuba.tdd.tp.abilities.CanHaveChildren;
+import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedTo;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanBeMoved;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanHaveChildren;

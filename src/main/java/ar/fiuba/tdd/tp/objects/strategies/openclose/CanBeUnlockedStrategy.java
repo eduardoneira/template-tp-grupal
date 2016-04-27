@@ -1,9 +1,7 @@
-package ar.fiuba.tdd.tp.objects.strategies.open_close;
+package ar.fiuba.tdd.tp.objects.strategies.openclose;
 
 import ar.fiuba.tdd.tp.abilities.CanBeClosed;
 import ar.fiuba.tdd.tp.abilities.CanBeOpened;
-import ar.fiuba.tdd.tp.abilities.CanCloseThings;
-import ar.fiuba.tdd.tp.abilities.CanOpen;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanCloseThings;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanOpen;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
@@ -14,13 +12,13 @@ public class CanBeUnlockedStrategy implements CanBeOpened, CanBeClosed {
     BooleanState locked;
     int lock;
 
-    public CanBeUnlockedStrategy(int lock){
+    public CanBeUnlockedStrategy(int lock) {
         this.lock = lock;
         openedClosedStrategy = new CanBeOpenedClosedStrategy();
         locked = new BooleanState(true);
     }
 
-    public CanBeUnlockedStrategy(int lock, BooleanState locked){
+    public CanBeUnlockedStrategy(int lock, BooleanState locked) {
         this.lock = lock;
         openedClosedStrategy = new CanBeOpenedClosedStrategy();
         this.locked = locked;
@@ -28,7 +26,7 @@ public class CanBeUnlockedStrategy implements CanBeOpened, CanBeClosed {
 
     @Override
     public String beOpenedBy(GameObjectCanOpen opener) {
-        if(locked.getValue() == false){
+        if (locked.getValue() == false) {
             openedClosedStrategy.beOpenedBy(opener);
         } else {
             // ver si el que abre tiene el lock, entonces abrir normal
@@ -43,11 +41,11 @@ public class CanBeUnlockedStrategy implements CanBeOpened, CanBeClosed {
     }
 
     // funciones de control
-    public void setOpen(){
+    public void setOpen() {
         openedClosedStrategy.setOpen();
     }
 
-    public void setClosed(){
+    public void setClosed() {
         openedClosedStrategy.setClosed();
     }
 

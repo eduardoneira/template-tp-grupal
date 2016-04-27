@@ -6,11 +6,11 @@ package ar.fiuba.tdd.tp.objects.states;
 public class BooleanState {
     private boolean state;
 
-    public BooleanState(){
+    public BooleanState() {
         setTrue();
     }
 
-    public BooleanState(boolean state){
+    public BooleanState(boolean state) {
         this.state = state;
     }
 
@@ -22,5 +22,7 @@ public class BooleanState {
         state = false;
     }
 
-    public boolean getValue() { return state; }
+    public boolean getValue() {
+        return state;
+    }
 }
