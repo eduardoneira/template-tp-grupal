@@ -12,7 +12,6 @@ public class FetchQuestTests {
     private Room room;
     private Player player;
     private Stick stick;
-    private Door door;
 
     @Before
     public void initialization() {
@@ -20,7 +19,6 @@ public class FetchQuestTests {
         player = new Player("player");
         player.placeInRoom(room);
         stick = new Stick("stick");
-        door = new Door("door");
     }
 
     @Test
@@ -31,8 +29,6 @@ public class FetchQuestTests {
         System.out.println(room.lookAt());
         player.addAction(new Pick());
         System.out.println(player.doAction("pick", new ArrayList<String>(){{add("stick");}}));
-        door.setParent(room);
-        assert(room.contains("door"));
         assert(player.has("stick"));
     }
 
@@ -40,12 +36,6 @@ public class FetchQuestTests {
     public void placeObjectInRoom() {
         room.haveMovedTo(stick);
         assert(room.contains("stick"));
-    }
-
-    @Test
-    public void placeDoorInRoom() {
-        room.place(door);
-        assert(room.contains("door"));
     }
 
     @Test
