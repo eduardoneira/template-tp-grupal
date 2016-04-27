@@ -21,10 +21,10 @@ public class FetchQuest extends Game {
         player.addAction(new Pick(player));
         //player.addAction(actionLookaround);
 
+        keywords.add(actionPickup.getName());
         keywords.add(nameRoom);
         keywords.add(nameStick);
 
-        keywords.add(actionPickup.getName());
         //keywords.add(actionLookaround.getName());
     }
 }

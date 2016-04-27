@@ -28,7 +28,7 @@ public class ConcreteGameObject implements GameObjectCanBeLookedAt {
 
     @Override
     public boolean canHandleAction(String actionName, List<GameObject> objectsInvolved) {
-        if(actions.containsKey(actionName)){
+        if (actions.containsKey(actionName)) {
             return actions.get(actionName).canHandleAction(actionName, objectsInvolved);
         }
         return false;

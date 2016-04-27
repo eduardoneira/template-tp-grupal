@@ -35,7 +35,7 @@ public class BeOpened extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if(objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != ARGS_SIZE) {
             return false;
         }
         return true;

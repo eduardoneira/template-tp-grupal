@@ -16,12 +16,12 @@ public class HaveMovedFrom extends ActionHandler {
 
     private ChildrenState children;
 
-    public HaveMovedFrom(GameObject instance){
+    public HaveMovedFrom(GameObject instance) {
         super(instance);
         children = new ChildrenState();
     }
 
-    public HaveMovedFrom(GameObject instance, ChildrenState children){
+    public HaveMovedFrom(GameObject instance, ChildrenState children) {
         super(instance);
         this.children = children;
     }

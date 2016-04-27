@@ -5,9 +5,6 @@ import ar.fiuba.tdd.tp.abilities.control.ParentControlFunctions;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 
-/**
- * Created by Master on 27/04/2016.
- */
 public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject implements ParentControlFunctions, ChildrenControlFunctions {
 
     protected ChildrenState children;

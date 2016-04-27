@@ -20,7 +20,7 @@ public class Open extends ActionHandler {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        if(!canHandleAction(actionName, objectsInvolved)){
+        if (!canHandleAction(actionName, objectsInvolved)) {
             return "invalid command";
         }
 
@@ -37,7 +37,7 @@ public class Open extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if(objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != ARGS_SIZE) {
             return false;
         }
 

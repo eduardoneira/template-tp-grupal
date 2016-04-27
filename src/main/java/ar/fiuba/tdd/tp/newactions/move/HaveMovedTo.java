@@ -18,12 +18,12 @@ public class HaveMovedTo extends ActionHandler {
     ChildrenState children;
     GameObject instance;
 
-    public HaveMovedTo(GameObject instance){
+    public HaveMovedTo(GameObject instance) {
         super(instance);
         children = new ChildrenState();
     }
 
-    public HaveMovedTo(GameObject instance, ChildrenState children){
+    public HaveMovedTo(GameObject instance, ChildrenState children) {
         super(instance);
         this.children = children;
     }
