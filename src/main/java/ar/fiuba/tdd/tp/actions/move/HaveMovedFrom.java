@@ -1,6 +1,6 @@
-package ar.fiuba.tdd.tp.newactions.move;
+package ar.fiuba.tdd.tp.actions.move;
 
-import ar.fiuba.tdd.tp.newactions.ActionHandler;
+import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
@@ -16,7 +16,7 @@ public class HaveMovedFrom extends ActionHandler {
 
     private ChildrenState children;
 
-    public HaveMovedFrom(GameObject instance, ChildrenState children){
+    public HaveMovedFrom(GameObject instance, ChildrenState children) {
         super(instance);
         this.children = children;
     }

@@ -1,9 +1,8 @@
-package ar.fiuba.tdd.tp.newactions.move;
+package ar.fiuba.tdd.tp.actions.move;
 
-import ar.fiuba.tdd.tp.newactions.ActionHandler;
+import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
 
@@ -22,17 +21,16 @@ public class Move extends ActionHandler {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        if(!canHandleAction(actionName, objectsInvolved)){
+        if (!canHandleAction(actionName, objectsInvolved)) {
             return "invalid command";
         }
 
-        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
         GameObject whereToMove = objectsInvolved.get(WHERE_TO_MOVE);
-
         List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<GameObject>();
         objectsInvolvedForObjectToMove.add(this.instance);
         objectsInvolvedForObjectToMove.add(whereToMove);
 
+        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
         List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
         objectsInvolvedForWhereToMove.add(this.instance);
         objectsInvolvedForWhereToMove.add(objectToMove);
@@ -45,17 +43,16 @@ public class Move extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if(objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != ARGS_SIZE) {
             return false;
         }
 
-        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
         GameObject whereToMove = objectsInvolved.get(WHERE_TO_MOVE);
-
         List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<GameObject>();
         objectsInvolvedForObjectToMove.add(this.instance);
         objectsInvolvedForObjectToMove.add(whereToMove);
 
+        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
         List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
         objectsInvolvedForWhereToMove.add(this.instance);
         objectsInvolvedForWhereToMove.add(objectToMove);

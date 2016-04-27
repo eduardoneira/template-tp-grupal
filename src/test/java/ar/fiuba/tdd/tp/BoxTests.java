@@ -1,14 +1,11 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.newactions.pick.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Box;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.player.Player;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 

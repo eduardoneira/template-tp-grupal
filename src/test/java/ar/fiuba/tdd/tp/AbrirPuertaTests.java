@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.tp;
 
 
-import ar.fiuba.tdd.tp.newactions.open.Open;
+import ar.fiuba.tdd.tp.actions.open.Open;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.door.Door;

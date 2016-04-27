@@ -1,11 +1,8 @@
 package ar.fiuba.tdd.tp.objects.concrete.player;
 
-import ar.fiuba.tdd.tp.newactions.move.HaveMovedTo;
-import ar.fiuba.tdd.tp.newactions.move.Move;
-import ar.fiuba.tdd.tp.newactions.pick.Pick;
+import ar.fiuba.tdd.tp.actions.move.HaveMovedTo;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.general.*;
-import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
 import java.util.*;
 

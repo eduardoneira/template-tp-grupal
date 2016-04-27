@@ -1,8 +1,8 @@
 package ar.fiuba.tdd.tp.objects.concrete;
 
-import ar.fiuba.tdd.tp.newactions.lookat.BeLookedAtAndChildren;
-import ar.fiuba.tdd.tp.newactions.move.HaveMovedFrom;
-import ar.fiuba.tdd.tp.newactions.move.HaveMovedTo;
+import ar.fiuba.tdd.tp.actions.lookat.BeLookedAtAndChildren;
+import ar.fiuba.tdd.tp.actions.move.HaveMovedFrom;
+import ar.fiuba.tdd.tp.actions.move.HaveMovedTo;
 import ar.fiuba.tdd.tp.objects.general.*;
 
 public class Room extends ConcreteGameObjectWithChildren {

@@ -1,13 +1,11 @@
 package ar.fiuba.tdd.tp.objects.concrete;
 
 import ar.fiuba.tdd.tp.abilities.control.OpenCloseControlFunctions;
-import ar.fiuba.tdd.tp.abilities.control.ParentControlFunctions;
-import ar.fiuba.tdd.tp.newactions.lookat.BeLookedAtAndChildrenChangeVisibility;
-import ar.fiuba.tdd.tp.newactions.move.HaveMovedFrom;
-import ar.fiuba.tdd.tp.newactions.move.HaveMovedTo;
+import ar.fiuba.tdd.tp.actions.lookat.BeLookedAtAndChildrenChangeVisibility;
+import ar.fiuba.tdd.tp.actions.move.HaveMovedFrom;
+import ar.fiuba.tdd.tp.actions.move.HaveMovedTo;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
-import ar.fiuba.tdd.tp.objects.states.ParentState;
 
 public class Box extends ConcreteGameObjectWithParentAndChildren implements OpenCloseControlFunctions {
 

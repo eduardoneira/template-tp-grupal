@@ -2,7 +2,6 @@ package ar.fiuba.tdd.tp.objects.states;
 
 import ar.fiuba.tdd.tp.abilities.control.ParentControlFunctions;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
-import ar.fiuba.tdd.tp.objects.general.GameObjectCanHaveChildren;
 
 
 public class ParentState implements ParentControlFunctions {

@@ -1,13 +1,12 @@
 package ar.fiuba.tdd.tp.objects.general;
 
-import ar.fiuba.tdd.tp.abilities.CanBeLookedAt;
-import ar.fiuba.tdd.tp.newactions.ActionHandler;
+import ar.fiuba.tdd.tp.actions.ActionHandler;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ConcreteGameObject implements GameObjectCanBeLookedAt {
+public class ConcreteGameObject implements GameObject {
     private Map<String, ActionHandler> actions;
     private String name;
 
@@ -28,7 +27,7 @@ public class ConcreteGameObject implements GameObjectCanBeLookedAt {
 
     @Override
     public boolean canHandleAction(String actionName, List<GameObject> objectsInvolved) {
-        if(actions.containsKey(actionName)){
+        if (actions.containsKey(actionName)) {
             return actions.get(actionName).canHandleAction(actionName, objectsInvolved);
         }
         return false;
@@ -42,9 +41,5 @@ public class ConcreteGameObject implements GameObjectCanBeLookedAt {
     @Override
     public void removeAction(String actionName) {
         actions.remove(actionName);
-    }
-
-    public String lookAt() {
-        return getName();
     }
 }

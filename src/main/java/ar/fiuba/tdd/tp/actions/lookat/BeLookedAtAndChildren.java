@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.newactions.lookat;
+package ar.fiuba.tdd.tp.actions.lookat;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;

@@ -1,6 +1,6 @@
-package ar.fiuba.tdd.tp.newactions.open;
+package ar.fiuba.tdd.tp.actions.open;
 
-import ar.fiuba.tdd.tp.newactions.ActionHandler;
+import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
@@ -29,7 +29,7 @@ public class BeOpened extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if(objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != ARGS_SIZE) {
             return false;
         }
         return true;

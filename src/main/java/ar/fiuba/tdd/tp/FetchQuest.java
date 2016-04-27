@@ -1,8 +1,7 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.newactions.pick.Pick;
+import ar.fiuba.tdd.tp.actions.pick.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
-import ar.fiuba.tdd.tp.objects.concrete.Stick;
 
 public class FetchQuest extends Game {
     public FetchQuest() {
@@ -21,10 +20,10 @@ public class FetchQuest extends Game {
         player.addAction(new Pick(player));
         //player.addAction(actionLookaround);
 
+        keywords.add(actionPickup.getName());
         keywords.add(nameRoom);
         keywords.add(nameStick);
 
-        keywords.add(actionPickup.getName());
         //keywords.add(actionLookaround.getName());
     }
 }

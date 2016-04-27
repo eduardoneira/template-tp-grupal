@@ -1,6 +1,6 @@
-package ar.fiuba.tdd.tp.newactions.move;
+package ar.fiuba.tdd.tp.actions.move;
 
-import ar.fiuba.tdd.tp.newactions.ActionHandler;
+import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 
@@ -18,12 +18,12 @@ public class BeMoved extends ActionHandler {
 
     ParentState parent;
 
-    public BeMoved(GameObject instance){
+    public BeMoved(GameObject instance) {
         super(instance);
         parent = new ParentState();
     }
 
-    public BeMoved(GameObject instance, ParentState parent){
+    public BeMoved(GameObject instance, ParentState parent) {
         super(instance);
         this.parent = parent;
     }
@@ -53,8 +53,8 @@ public class BeMoved extends ActionHandler {
         me.add(this.instance);
 
         // tal vez pasarle quien mueve
-        if(objectsInvolved.size() != ARGS_SIZE
-                || (this.parent.getParent() != null && (!this.parent.getParent().canHandleAction("have moved from", me)))){
+        if (objectsInvolved.size() != ARGS_SIZE
+                || (this.parent.getParent() != null && (!this.parent.getParent().canHandleAction("have moved from", me)))) {
             return false;
         }
 

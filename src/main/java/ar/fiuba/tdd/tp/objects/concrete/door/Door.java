@@ -1,14 +1,9 @@
 package ar.fiuba.tdd.tp.objects.concrete.door;
 
-import ar.fiuba.tdd.tp.abilities.CanBeClosed;
-import ar.fiuba.tdd.tp.abilities.CanBeOpened;
 import ar.fiuba.tdd.tp.abilities.control.OpenCloseControlFunctions;
-import ar.fiuba.tdd.tp.abilities.control.ParentControlFunctions;
-import ar.fiuba.tdd.tp.newactions.open.BeOpened;
+import ar.fiuba.tdd.tp.actions.open.BeOpened;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
-import ar.fiuba.tdd.tp.objects.states.ParentState;
-import ar.fiuba.tdd.tp.objects.strategies.openclose.CanBeOpenedClosedStrategy;
 
 public class Door extends ConcreteGameObjectWithParent implements OpenCloseControlFunctions {
 
