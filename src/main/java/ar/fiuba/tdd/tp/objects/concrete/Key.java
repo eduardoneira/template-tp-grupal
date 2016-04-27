@@ -4,9 +4,6 @@ import ar.fiuba.tdd.tp.abilities.control.ParentControlFunctions;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.strategies.move.CanBeMovedStrategy;
 
-/**
- * Created by Master on 26/04/2016.
- */
 public class Key extends ConcreteGameObject implements GameObjectCanBeMoved, ParentControlFunctions {
     CanBeMovedStrategy beMoved;
 

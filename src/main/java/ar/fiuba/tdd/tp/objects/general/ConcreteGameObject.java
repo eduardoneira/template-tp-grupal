@@ -2,7 +2,7 @@ package ar.fiuba.tdd.tp.objects.general;
 
 import ar.fiuba.tdd.tp.abilities.CanBeLookedAt;
 
-public abstract class ConcreteGameObject implements GameObject, CanBeLookedAt {
+public abstract class ConcreteGameObject implements GameObjectCanBeLookedAt {
 
     private String name;
 
