@@ -15,15 +15,15 @@ public class Unlock extends ActionHandler {
     private static int OBJECT_TO_UNLOCK = 0;
     private static int ARGS_SIZE = 1;
 
-    public Unlock(GameObject instance) {
+    public Unlock(GameObject instance, int key) {
         super(instance);
+        this.key = key;
     }
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-
-        GameObject objectToUnlock = objectsInvolved.get(OBJECT_TO_UNLOCK);
-        return objectToUnlock.handleAction("be unlocked", objectsInvolved);
+        // cabeza, si alguien tiene esta accion puede unlockear, aunque no hay llamada que lo haga explicitamente
+        return "done";
     }
 
     @Override

@@ -1,11 +1,14 @@
 package ar.fiuba.tdd.tp;
 
+import ar.fiuba.tdd.tp.actions.pick.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Box;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.player.Player;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -53,9 +56,10 @@ public class BoxTests {
         assertFalse(box.contains("Key"));
     }
 
-    /*@Test
-    public void playerPicksObjectFromBox() {
+    @Test
+    public void playerPicksObjectFromOpenBox() {
         placeObjectInBox();
+        box.setOpen();
 
         player.addAction(new Pick(player));
         assert(box.contains("key"));
@@ -67,5 +71,5 @@ public class BoxTests {
                 });
         assert (!box.contains("key"));
         assert (player.contains("key"));
-    }*/
+    }
 }

@@ -16,13 +16,17 @@ public class BeOpenedHasLock extends BeOpened {
     private BooleanState locked;
     private int key;
 
-    public BeOpenedHasLock(GameObject instance, BooleanState open, BooleanState locked) {
+    public BeOpenedHasLock(GameObject instance, BooleanState open, BooleanState locked, int key) {
         super(instance, open);
         this.locked = locked;
+        this.key = key;
     }
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
+
+        // si llego aca es que puede deslockearme, aunque nunca llame a una accion que lo haga posta (pq no existe 'unlock' para el usuario)
+        locked.setFalse();
         return super.handleAction(actionName, objectsInvolved);
     }
 

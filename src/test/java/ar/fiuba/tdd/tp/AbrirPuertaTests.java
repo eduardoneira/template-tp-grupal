@@ -2,9 +2,11 @@ package ar.fiuba.tdd.tp;
 
 
 import ar.fiuba.tdd.tp.actions.open.Open;
+import ar.fiuba.tdd.tp.actions.open.Unlock;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.door.Door;
+import ar.fiuba.tdd.tp.objects.concrete.door.LockedDoor;
 import ar.fiuba.tdd.tp.objects.concrete.player.Player;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,6 +19,7 @@ public class AbrirPuertaTests {
     private Player player;
     private Key key;
     private Door door;
+    private LockedDoor lockedDoor;
 
     @Before
     public void initialization() {
@@ -59,20 +62,25 @@ public class AbrirPuertaTests {
         assert (door.isOpen());
     }
 
-    /*@Test
+    @Test
     public void playerOpensLockedDoor() {
-        door = new LockedDoor("door");
-        door.setClosed();
-        door.setLocked();
-        door.setParent(room);
+        int key = 2;
 
-        player = new PlayerCanOpenLocks("player");
-        player.addAction(new Open());
+        lockedDoor = new LockedDoor("door", key);
+        lockedDoor.setClosed();
+        lockedDoor.setLocked();
+        lockedDoor.setParent(room);
+        room.addChild(lockedDoor);
+
+        player = new Player("player");
+        player.addAction(new Open(player));
         player.placeInRoom(room);
 
-        room.addChild(door);
-        assert (door.isClosed());
+        assert (lockedDoor.isClosed());
         player.doAction("open", new ArrayList<String>(){{add("door");}});
-        assert (door.isOpen());
-    }*/
+        assert (lockedDoor.isClosed());
+        player.addAction(new Unlock(player, key));
+        player.doAction("open", new ArrayList<String>(){{add("door");}});
+        assert (lockedDoor.isOpen());
+    }
 }
