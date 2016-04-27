@@ -22,10 +22,11 @@ public class MainTests {
         final Room room = new Room("room");
         player.placeInRoom(room);
         player.addAction(new LookAt());
-        System.out.println(player.doAction("look", new ArrayList<String>() {
+        assertEquals((player.doAction("look", new ArrayList<String>() {
             {
                 add(room.getName());
             }
-        }));
+        })),"room");
     }
+
 }

@@ -1,11 +1,8 @@
 package ar.fiuba.tdd.tp.objects.concrete;
 
-import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedFrom;
-import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedTo;
 import ar.fiuba.tdd.tp.abilities.control.ParentControlFunctions;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
-import ar.fiuba.tdd.tp.objects.strategies.move.CanHaveThingsMovedFromStrategy;
 import ar.fiuba.tdd.tp.objects.strategies.move.CanHaveThingsMovedToOrFromStrategy;
 
 public class Box extends ConcreteGameObject implements GameObjectCanHaveThingsMovedFrom, GameObjectCanHaveThingsMovedTo, ParentControlFunctions, GameObjectCanHaveParent {

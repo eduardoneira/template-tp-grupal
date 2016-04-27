@@ -4,9 +4,6 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- * Created by Master on 20/04/2016.
- */
 class ClientWorker implements Runnable {
     private Socket clientSocket;
     private ServerSocket serverSocket;
@@ -31,7 +28,7 @@ class ClientWorker implements Runnable {
             String inputLine;
             String outputLine;
             inputLine = in.readLine();
-            while (inputLine != null) {
+            while (inputLine != null ) {
                 System.out.println("INPUT LINE " + inputLine);
                 outputLine = game.processComand(inputLine);
                 out.println(outputLine);
