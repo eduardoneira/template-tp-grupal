@@ -1,14 +1,9 @@
-package ar.fiuba.tdd.tp.newactions.talk;
+package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.newactions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
-import ar.fiuba.tdd.tp.objects.states.BooleanState;
-
 import java.util.LinkedList;
 import java.util.List;
-/**
- * Created by fernando on 27/04/16.
- */
+
 public class Talk extends ActionHandler {
     private static int OBJECT_TO_TALK = 0;
     private static int ARGS_SIZE = 1;

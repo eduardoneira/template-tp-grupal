@@ -1,14 +1,10 @@
-package ar.fiuba.tdd.tp.newactions.talk;
+package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.newactions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.concrete.player.Player;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.List;
 
-/**
- * Created by fernando on 27/04/16.
- */
 public class BeTalk extends ActionHandler {
 
     private static int OBJECT_WHO_TALKS = 0;
