@@ -30,7 +30,7 @@ public class Player extends ConcreteGameObjectWithChildren {
                 objectsInvolved.add(children.getChild(parameter));
             } else if (scene.contains(parameter)) {
                 objectsInvolved.add(scene.getChild(parameter));
-            } else if (scene.getName() == parameter) {
+            } else if (scene.getName().equals(parameter)) {
                 objectsInvolved.add(scene);
             }
         }
