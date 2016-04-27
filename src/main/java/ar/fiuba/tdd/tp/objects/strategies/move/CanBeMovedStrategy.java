@@ -3,10 +3,14 @@ package ar.fiuba.tdd.tp.objects.strategies.move;
 import ar.fiuba.tdd.tp.abilities.CanBeMoved;
 import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedFrom;
 import ar.fiuba.tdd.tp.abilities.control.ParentControlFunctions;
+import ar.fiuba.tdd.tp.newactions.ActionHandler;
+import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanBeMoved;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanHaveChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanHaveThingsMovedTo;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
+
+import java.util.List;
 
 public class CanBeMovedStrategy implements CanBeMoved, ParentControlFunctions {
     ParentState parent;
@@ -39,4 +43,6 @@ public class CanBeMovedStrategy implements CanBeMoved, ParentControlFunctions {
     public void setParent(GameObjectCanHaveChildren parent) {
         this.parent.setParent(parent);
     }
+
+
 }
