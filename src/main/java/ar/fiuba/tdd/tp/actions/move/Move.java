@@ -6,9 +6,6 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 import java.util.*;
 import java.util.List;
 
-/**
- * Created by Master on 27/04/2016.
- */
 public class Move extends ActionHandler {
 
     private static int OBJECT_TO_MOVE = 0;
@@ -24,15 +21,14 @@ public class Move extends ActionHandler {
         if (!canHandleAction(actionName, objectsInvolved)) {
             return "invalid command";
         }
-
-        GameObject whereToMove = objectsInvolved.get(WHERE_TO_MOVE);
+        
         List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<GameObject>();
-        objectsInvolvedForObjectToMove.add(this.instance);
-        objectsInvolvedForObjectToMove.add(whereToMove);
-
-        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
         List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
+        objectsInvolvedForObjectToMove.add(this.instance);
         objectsInvolvedForWhereToMove.add(this.instance);
+        GameObject whereToMove = objectsInvolved.get(WHERE_TO_MOVE);
+        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
+        objectsInvolvedForObjectToMove.add(whereToMove);
         objectsInvolvedForWhereToMove.add(objectToMove);
 
         objectToMove.handleAction("be moved", objectsInvolvedForObjectToMove);

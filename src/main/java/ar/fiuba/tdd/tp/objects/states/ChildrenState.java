@@ -5,9 +5,6 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.*;
 
-/**
- * Created by Master on 26/04/2016.
- */
 public class ChildrenState implements ChildrenControlFunctions {
     private Map<String, GameObject> children;
 
@@ -21,13 +18,13 @@ public class ChildrenState implements ChildrenControlFunctions {
     }
 
     @Override
-    public void removeChild(GameObject object) {
-        children.remove(object.getName());
+    public GameObject getChild(String name) {
+        return children.get(name);
     }
 
     @Override
-    public GameObject getChild(String name) {
-        return children.get(name);
+    public void removeChild(GameObject object) {
+        children.remove(object.getName());
     }
 
     @Override
