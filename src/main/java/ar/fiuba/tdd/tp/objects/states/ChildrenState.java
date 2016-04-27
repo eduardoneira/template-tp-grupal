@@ -2,13 +2,9 @@ package ar.fiuba.tdd.tp.objects.states;
 
 import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
-import ar.fiuba.tdd.tp.objects.general.GameObjectCanHaveParent;
 
 import java.util.*;
 
-/**
- * Created by Master on 26/04/2016.
- */
 public class ChildrenState implements ChildrenControlFunctions {
     private Map<String, GameObject> children;
 
@@ -22,17 +18,22 @@ public class ChildrenState implements ChildrenControlFunctions {
     }
 
     @Override
-    public void removeChild(GameObject object) {
-        children.remove(object.getName());
-    }
-
-    @Override
     public GameObject getChild(String name) {
         return children.get(name);
     }
 
     @Override
+    public void removeChild(GameObject object) {
+        children.remove(object.getName());
+    }
+
+    @Override
     public boolean contains(String name) {
         return children.containsKey(name);
+    }
+
+    @Override
+    public List<GameObject> getChildren() {
+        return new ArrayList<GameObject>(children.values());
     }
 }

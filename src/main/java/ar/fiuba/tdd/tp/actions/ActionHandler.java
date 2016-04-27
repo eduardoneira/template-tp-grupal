@@ -1,8 +1,7 @@
-package ar.fiuba.tdd.tp.newactions;
+package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public abstract class ActionHandler {

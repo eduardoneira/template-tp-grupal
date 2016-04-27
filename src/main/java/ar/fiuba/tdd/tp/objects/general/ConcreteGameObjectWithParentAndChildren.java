@@ -5,6 +5,8 @@ import ar.fiuba.tdd.tp.abilities.control.ParentControlFunctions;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 
+import java.util.List;
+
 public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject implements ParentControlFunctions, ChildrenControlFunctions {
 
     protected ChildrenState children;
@@ -22,6 +24,11 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject 
     }
 
     @Override
+    public boolean contains(String name) {
+        return children.contains(name);
+    }
+
+    @Override
     public void removeChild(GameObject child) {
         children.removeChild(child);
     }
@@ -32,8 +39,8 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject 
     }
 
     @Override
-    public boolean contains(String name) {
-        return children.contains(name);
+    public List<GameObject> getChildren() {
+        return children.getChildren();
     }
 
     @Override

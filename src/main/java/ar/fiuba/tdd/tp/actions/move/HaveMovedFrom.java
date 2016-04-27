@@ -1,25 +1,17 @@
-package ar.fiuba.tdd.tp.newactions.move;
+package ar.fiuba.tdd.tp.actions.move;
 
-import ar.fiuba.tdd.tp.newactions.ActionHandler;
+import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
 import java.util.List;
 
-/**
- * Created by Master on 27/04/2016.
- */
 public class HaveMovedFrom extends ActionHandler {
 
     private static int OBJECT_TO_MOVE = 0;
     private static int ARGS_SIZE = 1;
 
     private ChildrenState children;
-
-    public HaveMovedFrom(GameObject instance) {
-        super(instance);
-        children = new ChildrenState();
-    }
 
     public HaveMovedFrom(GameObject instance, ChildrenState children) {
         super(instance);
