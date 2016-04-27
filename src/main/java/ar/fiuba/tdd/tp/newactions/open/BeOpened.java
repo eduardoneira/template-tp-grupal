@@ -16,12 +16,6 @@ public class BeOpened extends ActionHandler {
 
     private BooleanState open;
 
-    public BeOpened(GameObject instance) {
-        super(instance);
-        open = new BooleanState();
-        open.setFalse();
-    }
-
     public BeOpened(GameObject instance, BooleanState open) {
         super(instance);
         this.open = open;

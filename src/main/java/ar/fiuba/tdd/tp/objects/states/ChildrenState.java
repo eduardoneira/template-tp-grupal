@@ -35,4 +35,9 @@ public class ChildrenState implements ChildrenControlFunctions {
     public boolean contains(String name) {
         return children.containsKey(name);
     }
+
+    @Override
+    public List<GameObject> getChildren() {
+        return new ArrayList<GameObject>(children.values());
+    }
 }

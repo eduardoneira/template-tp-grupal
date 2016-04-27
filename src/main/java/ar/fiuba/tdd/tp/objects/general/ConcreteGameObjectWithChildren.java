@@ -3,6 +3,8 @@ package ar.fiuba.tdd.tp.objects.general;
 import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
+import java.util.List;
+
 /**
  * Created by Master on 27/04/2016.
  */
@@ -33,5 +35,10 @@ public class ConcreteGameObjectWithChildren extends ConcreteGameObject implement
     @Override
     public boolean contains(String name) {
         return children.contains(name);
+    }
+
+    @Override
+    public List<GameObject> getChildren() {
+        return children.getChildren();
     }
 }

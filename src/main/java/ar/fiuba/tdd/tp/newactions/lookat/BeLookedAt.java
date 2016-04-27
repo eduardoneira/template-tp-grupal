@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.newactions.move;
+package ar.fiuba.tdd.tp.newactions.lookat;
 
 import ar.fiuba.tdd.tp.newactions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
@@ -9,26 +9,18 @@ import java.util.List;
 /**
  * Created by Master on 27/04/2016.
  */
-public class HaveMovedTo extends ActionHandler {
+public class BeLookedAt extends ActionHandler {
 
-    private static int WHO_MOVES = 0;
-    private static int OBJECT_TO_MOVE = 1;
-    private static int ARGS_SIZE = 2;
+    private static int WHO_LOOKS = 0;
+    private static int ARGS_SIZE = 1;
 
-    ChildrenState children;
-    GameObject instance;
-
-    public HaveMovedTo(GameObject instance, ChildrenState children){
+    public BeLookedAt(GameObject instance) {
         super(instance);
-        this.children = children;
     }
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-
-        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
-        children.addChild(objectToMove);
-        return "done";
+        return instance.getName();
     }
 
     @Override
@@ -38,6 +30,6 @@ public class HaveMovedTo extends ActionHandler {
 
     @Override
     public String getName() {
-        return "have moved to";
+        return "be looked at";
     }
 }
