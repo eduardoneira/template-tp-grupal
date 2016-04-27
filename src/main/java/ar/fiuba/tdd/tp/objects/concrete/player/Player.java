@@ -37,11 +37,13 @@ public class Player extends ConcreteGameObject implements GameObjectCanHaveThing
                     objectsInvolved.add(inventory.getChild(parameter));
                 } else if (scene.contains(parameter)) {
                     objectsInvolved.add(scene.getChild(parameter));
+                } else if (scene.getName() == parameter) {
+                    objectsInvolved.add(scene);
                 }
             }
             return actions.get(actionName).doAction(objectsInvolved);
         } else {
-            return "invalid command";
+            return "player does not have that action";
         }
     }
 

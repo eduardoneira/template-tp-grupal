@@ -5,7 +5,6 @@ import ar.fiuba.tdd.tp.objects.concrete.Box;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.player.Player;
-import ar.fiuba.tdd.tp.objects.general.GameObjectCanHaveChildren;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,10 +16,6 @@ public class BoxTests {
     Player player;
     Box box;
 
-    @Test
-    public void dummy() {
-        assertEquals(0, 0);
-    }
 
     @Before
     public void initialization() {
@@ -34,7 +29,7 @@ public class BoxTests {
     public void placeBoxInRoom() {
         box.setParent(room);
         room.addChild(box);
-        assert(room.contains("box"));
+        assert (room.contains("box"));
         assertEquals(box.getParent().getName(), "room");
     }
 
@@ -44,7 +39,7 @@ public class BoxTests {
         Key key = new Key("key");
         box.haveMovedTo(key);
         key.setParent(box);
-        assert(box.contains("key"));
+        assert (box.contains("key"));
         assertEquals(key.getParent().getName(), "box");
     }
 }
