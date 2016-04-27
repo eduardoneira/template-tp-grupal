@@ -2,48 +2,84 @@ package ar.fiuba.tdd.tp;
 
 import java.io.*;
 import java.net.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Server {
+    //TODO: refactorizar en clases e interfaces
+    private static int FIRSTPORT = 8081;
+    private static Map<String,ServerGameData> gamesData;
+
+    private static String LOADGAME = "load game";
+    private static String CLOSESERVER = "close server";
+
+    private static String INVALIDCOMMAND = "Error : Invalid command";
+    private static String NOTSUCHGAME = "There is no such game. Games Available are :";
+    private static String LOADSUCCESSFUL = "Game loaded and listening on port ";
+    private static String GAMERUNNING = "Can't load game, game is running on port ";
+    private static String CLOSINGSERVER = "Closing Server. Bye";
 
     public static void main(String[] args) throws IOException {
 
-        /*if (args.length != 1) {
-            System.err.println(
-                    "Usage: java Server <port number>");
-            System.exit(1);
-        }
+        int portNumber = FIRSTPORT;
+        boolean serverRunning = true;
 
-        int portNumber = Integer.parseInt(args[0]);*/
-
-        int portNumber = 8081;
-        BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
+        BufferedReader stdIn = init();
         String fromUser;
 
-        while ((fromUser = stdIn.readLine()) != null) {
+        while (serverRunning) {
 
-            // TODO: refactorizar
-            String[] tokens = fromUser.split(" ");
-            if (tokens.length != 3 || !tokens[0].equals("load") || !tokens[1].equals("game")) {
-                System.out.println("Error: Invalid command");
-                continue;
+            fromUser = stdIn.readLine();
+            if (fromUser.toLowerCase().matches(LOADGAME + "(.*)")) {
+                String game = fromUser.replace(LOADGAME + " ","");
+                if (Motor.isValidGame(game)) {
+                    portNumber = openSocketInPort(portNumber,game.toLowerCase());
+                } else {
+                    printGamesAvailable();
+                }
+            } else if (fromUser.toLowerCase().matches(CLOSESERVER)) {
+                closeServer();
+                serverRunning = false;
+            } else {
+                System.out.println(INVALIDCOMMAND);
             }
-
-            ServerSocket serverSocket = null;
-            try {
-                serverSocket = new ServerSocket(portNumber);
-            } catch (IOException e) {
-                System.err.println("Could not listen on port: 4444");
-                System.exit(-1);
-            }
-
-            ClientWorker worker = new ClientWorker(serverSocket);
-            Thread thread = new Thread(worker);
-            thread.start();
-
-            System.out.println(tokens[2] + " loaded and listening on port " + portNumber);
-            ++portNumber;
         }
 
-        //serverSocket.close();
+    }
+
+
+    private static BufferedReader init() throws IOException {
+        gamesData = new HashMap<String,ServerGameData>();
+        for (String game : Motor.GAMESAVAILABLE) {
+            gamesData.put(game.toLowerCase(),new ServerGameData(game));
+        }
+
+        return new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
+    }
+
+    private static int openSocketInPort(int port, String game) throws IOException {
+        ServerGameData data = gamesData.get(game);
+        if (data.isRunning()) {
+            System.out.println(GAMERUNNING.concat(String.valueOf(data.getPort())));
+            return port;
+        } else {
+            ClientWorker worker = new ClientWorker(new ServerSocket(port), data.getName());
+            Thread thread = new Thread(worker);
+            thread.start();
+            data.setPort(port);
+            System.out.println(LOADSUCCESSFUL + String.valueOf(port));
+            return port + 1;
+        }
+    }
+
+    private static void printGamesAvailable() {
+        System.out.println(NOTSUCHGAME);
+        for ( String game : Motor.GAMESAVAILABLE) {
+            System.out.println(game);
+        }
+    }
+
+    private static void closeServer() {
+        System.out.println(CLOSINGSERVER);
     }
 }

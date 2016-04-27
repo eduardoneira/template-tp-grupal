@@ -10,12 +10,14 @@ import java.net.Socket;
 class ClientWorker implements Runnable {
     private Socket clientSocket;
     private ServerSocket serverSocket;
-    private FetchQuest game;
+    private Game game;
 
     //Constructor
-    ClientWorker(ServerSocket server) {
+
+    //TODO: usar gameName
+    ClientWorker(ServerSocket server, String gameName) {
         this.serverSocket = server;
-        game = new FetchQuest();
+        game = Motor.createGame(gameName);
     }
 
     public void run() {
@@ -27,27 +29,24 @@ class ClientWorker implements Runnable {
             out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
             in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
 
-            //System.out.println("Entrando al loop de input/output");
-            String inputLine;
-            String outputLine;
-            inputLine = in.readLine();
-            while (inputLine != null) {
-                System.out.println("INPUT LINE " + inputLine);
-                outputLine = game.processComand(inputLine);
-                out.println(outputLine);
-                out.flush();
-                /// TODO: esto es viejo, deberia cambiar pero deberia estar en algun lado la condicion de victoria
-                if (outputLine.equals("ganaste")) {
-                    break;
-                }
+            String inputLine = "";
+            String outputLine = "";
+
+            while (!outputLine.equals("ganaste")) {
                 inputLine = in.readLine();
+                if (inputLine != null) {
+                    System.out.println("INPUT LINE " + inputLine);
+                    outputLine = game.processComand(inputLine);
+                    out.println(outputLine);
+                    out.flush();
+                }
             }
             out.close();
             in.close();
             clientSocket.close();
 
         } catch (IOException e) {
-            System.err.println("thread failed");
+            System.err.println("Thread failed");
         }
     }
 }
