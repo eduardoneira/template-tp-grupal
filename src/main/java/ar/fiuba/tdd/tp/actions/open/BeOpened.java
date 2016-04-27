@@ -6,9 +6,7 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 import java.util.List;
 
-/**
- * Created by Master on 27/04/2016.
- */
+
 public class BeOpened extends ActionHandler {
 
     private static int OBJECT_WHO_OPENS = 0;
@@ -22,17 +20,17 @@ public class BeOpened extends ActionHandler {
     }
 
     @Override
-    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        open.setTrue();
-        return "done";
-    }
-
-    @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
         if (objectsInvolved.size() != ARGS_SIZE) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
+        open.setTrue();
+        return "done";
     }
 
     @Override

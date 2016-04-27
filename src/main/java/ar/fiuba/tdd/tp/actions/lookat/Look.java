@@ -6,9 +6,6 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Master on 27/04/2016.
- */
 public class Look extends ActionHandler {
 
     private static int OBJECT_TO_LOOK_AT = 0;

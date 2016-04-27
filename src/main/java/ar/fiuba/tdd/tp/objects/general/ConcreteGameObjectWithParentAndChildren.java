@@ -24,6 +24,11 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject 
     }
 
     @Override
+    public boolean contains(String name) {
+        return children.contains(name);
+    }
+
+    @Override
     public void removeChild(GameObject child) {
         children.removeChild(child);
     }
@@ -31,11 +36,6 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject 
     @Override
     public GameObject getChild(String name) {
         return children.getChild(name);
-    }
-
-    @Override
-    public boolean contains(String name) {
-        return children.contains(name);
     }
 
     @Override
