@@ -1,14 +1,12 @@
 package ar.fiuba.tdd.tp.objects.concrete;
 
-import ar.fiuba.tdd.tp.abilities.CanBeMoved;
-import ar.fiuba.tdd.tp.abilities.CanHaveParent;
-import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedFrom;
-import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedTo;
 import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.strategies.move.CanHaveThingsMovedToOrFromStrategy;
 
-public class Room extends ConcreteGameObject implements GameObjectCanHaveThingsMovedTo, GameObjectCanHaveThingsMovedFrom, ChildrenControlFunctions {
+public class Room extends ConcreteGameObject implements GameObjectCanHaveThingsMovedTo,
+                                                        GameObjectCanHaveThingsMovedFrom,
+                                                        ChildrenControlFunctions {
 
     CanHaveThingsMovedToOrFromStrategy moveToOrFromStrategy;
 

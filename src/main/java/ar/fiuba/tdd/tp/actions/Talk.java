@@ -12,7 +12,9 @@ public class Talk implements Action {
     @Override
     public String doAction(List<GameObject> objectsInvolved) {
         // ej: talk to thief
-        if (!(objectsInvolved.size() == 2) || !(objectsInvolved.get(0) instanceof GameObjectCanTalkToOthers) || !(objectsInvolved.get(1) instanceof GameObjectCanBeTalkedTo)) {
+        if (!(objectsInvolved.size() == 2)
+                || !(objectsInvolved.get(0) instanceof GameObjectCanTalkToOthers)
+                || !(objectsInvolved.get(1) instanceof GameObjectCanBeTalkedTo)) {
             return "invalid command";
         }
 

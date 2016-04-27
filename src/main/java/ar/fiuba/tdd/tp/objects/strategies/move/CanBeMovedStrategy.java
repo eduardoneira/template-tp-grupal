@@ -23,7 +23,7 @@ public class CanBeMovedStrategy implements CanBeMoved, ParentControlFunctions {
         if (this.parent != null && !(this.parent instanceof CanHaveThingsMovedFrom)) {
             return "invalid command";
         }
-        if(this.parent != null){
+        if (this.parent != null) {
             ((CanHaveThingsMovedFrom)this.parent).haveMovedFrom(instance);
         } else {
             this.parent = new ParentState();

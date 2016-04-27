@@ -12,7 +12,9 @@ public class Open implements Action {
     @Override
     public String doAction(List<GameObject> objectsInvolved) {
         // ej: open door
-        if (!(objectsInvolved.size() == 2) || !(objectsInvolved.get(0) instanceof GameObjectCanOpen) || !(objectsInvolved.get(1) instanceof GameObjectCanBeOpened)) {
+        if (!(objectsInvolved.size() == 2)
+                || !(objectsInvolved.get(0) instanceof GameObjectCanOpen)
+                || !(objectsInvolved.get(1) instanceof GameObjectCanBeOpened)) {
             return "invalid command";
         }
 
