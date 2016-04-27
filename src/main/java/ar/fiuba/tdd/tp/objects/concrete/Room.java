@@ -1,13 +1,14 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.objects.concrete;
 
 import ar.fiuba.tdd.tp.abilities.CanBeMoved;
 import ar.fiuba.tdd.tp.abilities.CanHaveParent;
 import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedFrom;
 import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedTo;
+import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.strategies.move.CanHaveThingsMovedToOrFromStrategy;
 
-public class Room extends ConcreteGameObject implements GameObjectCanHaveThingsMovedTo, GameObjectCanHaveThingsMovedFrom {
+public class Room extends ConcreteGameObject implements GameObjectCanHaveThingsMovedTo, GameObjectCanHaveThingsMovedFrom, ChildrenControlFunctions {
 
     CanHaveThingsMovedToOrFromStrategy moveToOrFromStrategy;
 
@@ -36,5 +37,15 @@ public class Room extends ConcreteGameObject implements GameObjectCanHaveThingsM
     @Override
     public boolean contains(String name) {
         return moveToOrFromStrategy.contains(name);
+    }
+
+    @Override
+    public void addChild(GameObjectCanHaveParent child) {
+        moveToOrFromStrategy.addChild(child);
+    }
+
+    @Override
+    public void removeChild(GameObjectCanHaveParent child) {
+        moveToOrFromStrategy.removeChild(child);
     }
 }
