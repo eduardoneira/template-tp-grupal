@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.actions.Pick;
+import ar.fiuba.tdd.tp.newactions.pick.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.Stick;
 import ar.fiuba.tdd.tp.objects.concrete.player.Player;
@@ -26,10 +26,12 @@ public class FetchQuestTests {
     @Test
     public void gameTest() {
         System.out.println(stick.getName());
-        System.out.println(room.haveMovedTo(stick));
+        room.addChild(stick);
+        stick.setParent(room);
         assert (room.contains("stick"));
+
         System.out.println(room.lookAt());
-        player.addAction(new Pick());
+        player.addAction(new Pick(player));
         System.out.println(player.doAction("pick",
                 new ArrayList<String>() {
                     {
@@ -41,14 +43,16 @@ public class FetchQuestTests {
 
     @Test
     public void placeObjectInRoom() {
-        room.haveMovedTo(stick);
+        room.addChild(stick);
         assert (room.contains("stick"));
     }
 
     @Test
     public void playerPicksObject() {
-        room.haveMovedTo(stick);
-        player.addAction(new Pick());
+        room.addChild(stick);
+        stick.setParent(room);
+
+        player.addAction(new Pick(player));
         player.doAction("pick",
                 new ArrayList<String>() {
                     {

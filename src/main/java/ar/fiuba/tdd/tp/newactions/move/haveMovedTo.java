@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by Master on 27/04/2016.
  */
-public class haveMovedTo extends ActionHandler {
+public class HaveMovedTo extends ActionHandler {
 
     private static int WHO_MOVES = 0;
     private static int OBJECT_TO_MOVE = 1;
@@ -18,12 +18,12 @@ public class haveMovedTo extends ActionHandler {
     ChildrenState children;
     GameObject instance;
 
-    public haveMovedTo(GameObject instance){
+    public HaveMovedTo(GameObject instance){
         super(instance);
         children = new ChildrenState();
     }
 
-    public haveMovedTo(GameObject instance, ChildrenState children){
+    public HaveMovedTo(GameObject instance, ChildrenState children){
         super(instance);
         this.children = children;
     }

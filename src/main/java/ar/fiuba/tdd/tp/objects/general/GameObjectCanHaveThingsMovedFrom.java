@@ -7,5 +7,5 @@ import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedFrom;
  * Created by Master on 26/04/2016.
  */
 public interface GameObjectCanHaveThingsMovedFrom extends GameObjectCanHaveChildren, GameObject, CanHaveThingsMovedFrom {
-    //String haveMovedFrom(GameObjectCanBeMoved objectToMove);
+    //String HaveMovedFrom(GameObjectCanBeMoved objectToMove);
 }

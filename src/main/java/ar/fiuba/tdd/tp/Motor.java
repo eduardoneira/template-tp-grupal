@@ -12,11 +12,10 @@ public class Motor {
 
     // TODO: Refactor para evitar switch, cuando este la factory posta hay que meterlo ahi y sale
     public static Game createGame(String game) {
-        switch ( game ) {
-            case "Fetch Quest" :
-                return new FetchQuest();
-            default :
-                return new FetchQuest();
+        if ( game.equals("Fetch Quest") ) {
+            return new FetchQuest();
+        } else {
+            return new FetchQuest();
         }
     }
 

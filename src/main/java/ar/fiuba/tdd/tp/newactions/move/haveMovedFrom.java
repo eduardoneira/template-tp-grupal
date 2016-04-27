@@ -9,19 +9,19 @@ import java.util.List;
 /**
  * Created by Master on 27/04/2016.
  */
-public class haveMovedFrom extends ActionHandler {
+public class HaveMovedFrom extends ActionHandler {
 
     private static int OBJECT_TO_MOVE = 0;
     private static int ARGS_SIZE = 1;
 
     private ChildrenState children;
 
-    public haveMovedFrom(GameObject instance){
+    public HaveMovedFrom(GameObject instance){
         super(instance);
         children = new ChildrenState();
     }
 
-    public haveMovedFrom(GameObject instance, ChildrenState children){
+    public HaveMovedFrom(GameObject instance, ChildrenState children){
         super(instance);
         this.children = children;
     }

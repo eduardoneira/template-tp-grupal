@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Master on 27/04/2016.
  */
-public class beMoved extends ActionHandler {
+public class BeMoved extends ActionHandler {
 
     private static int WHO_MOVES = 0;
     private static int WHERE_TO_MOVE = 1;
@@ -18,12 +18,12 @@ public class beMoved extends ActionHandler {
 
     ParentState parent;
 
-    public beMoved(GameObject instance){
+    public BeMoved(GameObject instance){
         super(instance);
         parent = new ParentState();
     }
 
-    public beMoved(GameObject instance, ParentState parent){
+    public BeMoved(GameObject instance, ParentState parent){
         super(instance);
         this.parent = parent;
     }

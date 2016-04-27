@@ -4,5 +4,5 @@ import ar.fiuba.tdd.tp.abilities.CanHaveChildren;
 import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedTo;
 
 public interface GameObjectCanHaveThingsMovedTo extends GameObjectCanHaveChildren, GameObject, CanHaveThingsMovedTo {
-    //String haveMovedTo(GameObjectCanBeMoved objectToMove);
+    //String HaveMovedTo(GameObjectCanBeMoved objectToMove);
 }

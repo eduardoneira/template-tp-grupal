@@ -1,7 +1,6 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.actions.LookAt;
-import ar.fiuba.tdd.tp.actions.Pick;
+import ar.fiuba.tdd.tp.newactions.pick.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Box;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
@@ -40,9 +39,11 @@ public class BoxTests {
     @Test
     public void placeObjectInBox() {
         placeBoxInRoom();
+
         key = new Key("key");
-        box.haveMovedTo(key);
+        box.addChild(key);
         key.setParent(box);
+
         assert (box.contains("key"));
         assertEquals(key.getParent().getName(), "box");
     }
@@ -50,20 +51,24 @@ public class BoxTests {
     @Test
     public void takeObjectFromBox() {
         placeObjectInBox();
-        box.haveMovedFrom(key);
+
+        box.removeChild(key);
         assertFalse(box.contains("Key"));
     }
 
     /*@Test
     public void playerPicksObjectFromBox() {
         placeObjectInBox();
-        player.addAction(new Pick());
-        assert(room.contains("key"));
-        assertEquals(player.doAction("pick",
+
+        player.addAction(new Pick(player));
+        assert(box.contains("key"));
+        player.doAction("pick",
                 new ArrayList<String>() {
                     {
                         add(key.getName());
                     }
-                }), "");
+                });
+        assert (!box.contains("key"));
+        assert (player.contains("key"));
     }*/
 }

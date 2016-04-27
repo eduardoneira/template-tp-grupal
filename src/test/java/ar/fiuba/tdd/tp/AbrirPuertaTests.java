@@ -1,12 +1,11 @@
 package ar.fiuba.tdd.tp;
 
 
-import ar.fiuba.tdd.tp.actions.Open;
+import ar.fiuba.tdd.tp.newactions.open.Open;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.door.Door;
 import ar.fiuba.tdd.tp.objects.concrete.player.Player;
-import ar.fiuba.tdd.tp.objects.concrete.player.PlayerCanOpen;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,8 +33,8 @@ public class AbrirPuertaTests {
         door = new Door("door");
         door.setClosed();
         door.setParent(room);
-
         room.addChild(door);
+
         assert (room.contains("door"));
     }
 
@@ -44,12 +43,12 @@ public class AbrirPuertaTests {
         door = new Door("door");
         door.setClosed();
         door.setParent(room);
+        room.addChild(door);
 
-        player = new PlayerCanOpen("player");
-        player.addAction(new Open());
+        player = new Player("player");
+        player.addAction(new Open(player));
         player.placeInRoom(room);
 
-        room.addChild(door);
         assert (door.isClosed());
         player.doAction("open",
                 new ArrayList<String>() {

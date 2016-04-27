@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp.objects.states;
 
 import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
+import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanHaveParent;
 
 import java.util.*;
@@ -9,24 +10,24 @@ import java.util.*;
  * Created by Master on 26/04/2016.
  */
 public class ChildrenState implements ChildrenControlFunctions {
-    private Map<String, GameObjectCanHaveParent> children;
+    private Map<String, GameObject> children;
 
     public ChildrenState() {
-        children = new HashMap<String, GameObjectCanHaveParent>();
+        children = new HashMap<String, GameObject>();
     }
 
     @Override
-    public void addChild(GameObjectCanHaveParent object) {
+    public void addChild(GameObject object) {
         children.put(object.getName(), object);
     }
 
     @Override
-    public void removeChild(GameObjectCanHaveParent object) {
+    public void removeChild(GameObject object) {
         children.remove(object.getName());
     }
 
     @Override
-    public GameObjectCanHaveParent getChild(String name) {
+    public GameObject getChild(String name) {
         return children.get(name);
     }
 
