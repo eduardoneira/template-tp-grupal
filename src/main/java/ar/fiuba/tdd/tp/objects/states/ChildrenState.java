@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.tp.objects.states;
 
-import ar.fiuba.tdd.tp.abilities.CanHaveChildrenPrivate;
+import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanHaveParent;
 
 import java.util.*;
@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * Created by Master on 26/04/2016.
  */
-public class ChildrenState implements CanHaveChildrenPrivate {
+public class ChildrenState implements ChildrenControlFunctions {
     private Map<String, GameObjectCanHaveParent> children;
 
     public ChildrenState() {
