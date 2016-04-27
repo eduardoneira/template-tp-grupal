@@ -5,7 +5,8 @@ import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 import ar.fiuba.tdd.tp.objects.strategies.move.CanHaveThingsMovedToOrFromStrategy;
 
-public class Box extends ConcreteGameObject implements GameObjectCanHaveThingsMovedFrom, GameObjectCanHaveThingsMovedTo, ParentControlFunctions, GameObjectCanHaveParent {
+public class Box extends ConcreteGameObject implements GameObjectCanHaveThingsMovedFrom, GameObjectCanHaveThingsMovedTo,
+        ParentControlFunctions, GameObjectCanHaveParent {
 
     private CanHaveThingsMovedToOrFromStrategy moveStrategy;
     ParentState parent;
