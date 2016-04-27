@@ -1,9 +1,5 @@
 package ar.fiuba.tdd.tp;
 
-import org.junit.Before;
-
-package ar.fiuba.tdd.tp;
-
 import ar.fiuba.tdd.tp.actions.Open;
 import ar.fiuba.tdd.tp.actions.Pick;
 import org.junit.Before;
@@ -15,7 +11,7 @@ public class AbrirPuertaTests {
 
     private Room room;
     private Player player;
-    private Stick stick;
+    private Key key;
     private Door door;
 
     @Before
@@ -23,7 +19,7 @@ public class AbrirPuertaTests {
         room = new Room("room");
         player = new Player("player");
         player.placeInRoom(room);
-        stick = new Stick("stick");
+        key = new Key("key");
         door = new Door("door");
     }
 
@@ -33,5 +29,11 @@ public class AbrirPuertaTests {
         assert(room.contains("door"));
     }
 
-
+    @Test
+    public void playerOpensDoor() {
+        room.place(door);
+        player.addAction(new Open());
+        player.doAction("open", new ArrayList<String>(){{add("stick");}});
+        //assert(door.isOpen());
+    }
 }

@@ -45,13 +45,5 @@ public class FetchQuestTests {
         player.doAction("pick", new ArrayList<String>(){{add("stick");}});
         assert(player.has("stick"));
     }
-
-    @Test
-    public void playerOpensDoor() {
-        room.place(door);
-        player.addAction(new Open());
-        player.doAction("open", new ArrayList<String>(){{add("stick");}});
-        //assert(door.isOpen());
-    }
 }
 
