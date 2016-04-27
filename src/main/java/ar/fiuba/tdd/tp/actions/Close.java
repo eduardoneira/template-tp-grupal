@@ -12,7 +12,9 @@ public class Close implements Action {
     @Override
     public String doAction(List<GameObject> objectsInvolved) {
         // ej: close door
-        if (!(objectsInvolved.size() == 2) || !(objectsInvolved.get(0) instanceof GameObjectCanCloseThings) || !(objectsInvolved.get(1) instanceof GameObjectCanBeClosed)) {
+        if (!(objectsInvolved.size() == 2)
+                || !(objectsInvolved.get(0) instanceof GameObjectCanCloseThings)
+                || !(objectsInvolved.get(1) instanceof GameObjectCanBeClosed)) {
             return "invalid command";
         }
 

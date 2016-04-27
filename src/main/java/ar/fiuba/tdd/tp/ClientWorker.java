@@ -4,9 +4,6 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- * Created by Master on 20/04/2016.
- */
 class ClientWorker implements Runnable {
     private Socket clientSocket;
     private ServerSocket serverSocket;
@@ -22,24 +19,24 @@ class ClientWorker implements Runnable {
 
     public void run() {
 
-        BufferedReader in = null;
-        PrintWriter out = null;
         try {
             clientSocket = serverSocket.accept();
-            out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
-            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
+            PrintWriter out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
+            BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
 
-            String inputLine = "";
-            String outputLine = "";
-
-            while (!outputLine.equals("ganaste")) {
-                inputLine = in.readLine();
-                if (inputLine != null) {
-                    System.out.println("INPUT LINE " + inputLine);
-                    outputLine = game.processComand(inputLine);
-                    out.println(outputLine);
-                    out.flush();
+            String inputLine;
+            String outputLine;
+            inputLine = in.readLine();
+            while (inputLine != null ) {
+                System.out.println("INPUT LINE " + inputLine);
+                outputLine = game.processComand(inputLine);
+                out.println(outputLine);
+                out.flush();
+                /// TODO: esto es viejo, deberia cambiar pero deberia estar en algun lado la condicion de victoria
+                if (outputLine.equals("ganaste")) {
+                    break;
                 }
+                inputLine = in.readLine();
             }
             out.close();
             in.close();

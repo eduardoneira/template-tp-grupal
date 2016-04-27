@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.objects.concrete;
 
 import ar.fiuba.tdd.tp.abilities.CanBeMoved;
 import ar.fiuba.tdd.tp.abilities.CanHaveChildren;

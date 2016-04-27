@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.tp.objects.strategies.move;
 
-import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
 import ar.fiuba.tdd.tp.abilities.CanHaveThingsMovedFrom;
+import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanBeMoved;
 import ar.fiuba.tdd.tp.objects.general.GameObjectCanHaveParent;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;

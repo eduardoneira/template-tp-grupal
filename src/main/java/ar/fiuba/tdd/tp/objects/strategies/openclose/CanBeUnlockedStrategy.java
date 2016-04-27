@@ -54,6 +54,16 @@ public class CanBeUnlockedStrategy implements CanBeOpened, CanBeClosed, OpenClos
     }
 
     @Override
+    public boolean isOpen() {
+        return openedClosedStrategy.isOpen();
+    }
+
+    @Override
+    public boolean isClosed() {
+        return openedClosedStrategy.isClosed();
+    }
+
+    @Override
     public void setLock(int lock) {
         this.lock = lock;
     }
