@@ -45,6 +45,11 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
     }
 
     @Override
+    public boolean isEmpty() {
+        return children.isEmpty();
+    }
+
+    @Override
     public void setParent(GameObject parent) {
         this.parent.setParent(parent);
     }
