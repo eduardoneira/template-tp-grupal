@@ -1,8 +1,6 @@
 package ar.fiuba.tdd.tp.abilities;
 
-
 import ar.fiuba.tdd.tp.objects.general.GameObject;
-
 import java.util.List;
 
 public interface CanHaveChildren {

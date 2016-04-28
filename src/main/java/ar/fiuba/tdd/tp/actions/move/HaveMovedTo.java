@@ -3,7 +3,6 @@ package ar.fiuba.tdd.tp.actions.move;
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
-
 import java.util.List;
 
 public class HaveMovedTo extends ActionHandler {

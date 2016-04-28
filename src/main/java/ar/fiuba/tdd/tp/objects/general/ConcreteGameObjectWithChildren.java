@@ -2,7 +2,6 @@ package ar.fiuba.tdd.tp.objects.general;
 
 import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
-
 import java.util.List;
 
 public class ConcreteGameObjectWithChildren extends ConcreteGameObject implements ChildrenControlFunctions {

@@ -3,13 +3,9 @@ package ar.fiuba.tdd.tp.actions.move;
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
-
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Master on 27/04/2016.
- */
 public class BeMoved extends ActionHandler {
 
     private static int WHO_MOVES = 0;

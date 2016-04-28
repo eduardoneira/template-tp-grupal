@@ -5,9 +5,6 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.List;
 
-/**
- * Created by Master on 27/04/2016.
- */
 public class BeLookedAt extends ActionHandler {
 
     private static int WHO_LOOKS = 0;

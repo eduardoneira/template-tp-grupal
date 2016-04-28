@@ -2,12 +2,8 @@ package ar.fiuba.tdd.tp.actions.open;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
-
 import java.util.List;
 
-/**
- * Created by Master on 27/04/2016.
- */
 public class Unlock extends ActionHandler {
 
     private int key;

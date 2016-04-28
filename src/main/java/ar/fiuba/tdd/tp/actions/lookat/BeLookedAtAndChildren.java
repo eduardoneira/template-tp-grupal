@@ -5,9 +5,6 @@ import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
 import java.util.List;
 
-/**
- * Created by Master on 27/04/2016.
- */
 public class BeLookedAtAndChildren extends BeLookedAt{
 
     protected ChildrenState children;
