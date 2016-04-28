@@ -31,7 +31,7 @@ public class Cross extends ChangeRoom {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         if (super.handleAction(getName(), objectsInvolved) == "invalid command") {
-            return "invalid command";
+            return "You can't cross, things will be eaten";
         }
         return "crossed";
     }

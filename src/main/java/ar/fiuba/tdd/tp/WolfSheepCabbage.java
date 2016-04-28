@@ -28,6 +28,8 @@ public class WolfSheepCabbage extends Game {
         String northShoreName = "north-shore";
         southShore = new Room(southShoreName);
         northShore = new Room(northShoreName);
+        objects.put(southShoreName, southShore);
+        objects.put(northShoreName, northShore);
         keywords.add(southShoreName);
         keywords.add(northShoreName);
         player.placeInRoom(southShore);
