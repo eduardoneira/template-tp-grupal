@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.actions.talk;
+package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Talk extends ActionHandler {
 
-    private static int OBJECT_TO_TALK = 0;
-    private static int ARGS_SIZE = 1;
+    private int OBJECT_TO_TALK = 0;
+    private int ARGS_SIZE = 1;
 
     public Talk(GameObject instance) {
         super(instance);
@@ -26,10 +26,10 @@ public class Talk extends ActionHandler {
             return "invalid command";
         }
 
-        List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();
-        GameObject objectWhoTalks = this.instance;
         GameObject objectToTalk = objectsInvolved.get(OBJECT_TO_TALK);
+        GameObject objectWhoTalks = this.instance;
 
+        List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();
         objectsInvolvedForObjectToTalk.add(objectWhoTalks);
 
         return objectToTalk.handleAction("be talked to", objectsInvolvedForObjectToTalk);
@@ -49,6 +49,4 @@ public class Talk extends ActionHandler {
 
         return objectToTalk.canHandleAction("be talked to", objectsInvolvedForObjectToTalk);
     }
-
-
 }

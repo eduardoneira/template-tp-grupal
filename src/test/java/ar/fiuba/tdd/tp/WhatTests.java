@@ -1,0 +1,47 @@
+package ar.fiuba.tdd.tp;
+
+import ar.fiuba.tdd.tp.actions.Look;
+import ar.fiuba.tdd.tp.actions.What;
+import ar.fiuba.tdd.tp.objects.concrete.Room;
+import ar.fiuba.tdd.tp.objects.concrete.Stick;
+import ar.fiuba.tdd.tp.objects.concrete.player.Player;
+import ar.fiuba.tdd.tp.objects.concrete.player.PlayerCursedObject;
+import ar.fiuba.tdd.tp.objects.general.GameObject;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
+
+/**
+ * Created by Master on 28/04/2016.
+ */
+public class WhatTests {
+
+    private Room room;
+    private Player player;
+    private Stick stick;
+
+    @Before
+    public void initialization() {
+        room = new Room("room");
+
+        player = new PlayerCursedObject("player");
+        player.placeInRoom(room);
+        player.addAction(new What(player));
+
+        stick = new Stick("stick");
+        stick.setParent(room);
+        room.addChild(stick);
+    }
+
+    @Test
+    public void whatStick() {
+        assertEquals((player.handleAction("what", new ArrayList<GameObject>() {
+            {
+                add(stick);
+            }
+        })).trim(),"it can ");
+    }
+}

@@ -1,8 +1,9 @@
 package ar.fiuba.tdd.tp;
 
 
-import ar.fiuba.tdd.tp.actions.open.Open;
-import ar.fiuba.tdd.tp.actions.open.Unlock;
+import ar.fiuba.tdd.tp.actions.Open;
+import ar.fiuba.tdd.tp.actions.Pick;
+import ar.fiuba.tdd.tp.actions.Unlock;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.door.Door;
@@ -26,10 +27,13 @@ public class AbrirPuertaTests {
     public void initialization() {
         room = new Room("room");
 
-        key = new Key("key");
+        key = new Key("key", 2);
         key.setParent(room);
-
         room.addChild(key);
+
+        player = new Player("player");
+        player.addAction(new Open(player));
+        player.placeInRoom(room);
     }
 
     @Test
@@ -49,10 +53,6 @@ public class AbrirPuertaTests {
         door.setParent(room);
         room.addChild(door);
 
-        player = new Player("player");
-        player.addAction(new Open(player));
-        player.placeInRoom(room);
-
         assert (door.isClosed());
         player.handleAction("open",
                 new ArrayList<GameObject>() {
@@ -65,22 +65,39 @@ public class AbrirPuertaTests {
 
     @Test
     public void playerOpensLockedDoor() {
-        int key = 2;
-
-        lockedDoor = new LockedDoor("door", key);
+        lockedDoor = new LockedDoor("door", 2);
         lockedDoor.setClosed();
         lockedDoor.setLocked();
         lockedDoor.setParent(room);
         room.addChild(lockedDoor);
 
-        player = new Player("player");
-        player.addAction(new Open(player));
-        player.placeInRoom(room);
+        assert (lockedDoor.isClosed());
+        player.handleAction("open", new ArrayList<GameObject>(){{add(lockedDoor);}});
+        assert (lockedDoor.isClosed());
+        player.addAction(new Unlock(player, 2));
+        player.handleAction("open", new ArrayList<GameObject>(){{add(lockedDoor);}});
+        assert (lockedDoor.isOpen());
+    }
+
+    @Test
+    public void playerOpensLockedDoorWithKey() {
+
+        lockedDoor = new LockedDoor("door", 2);
+        lockedDoor.setClosed();
+        lockedDoor.setLocked();
+        lockedDoor.setParent(room);
+        room.addChild(lockedDoor);
 
         assert (lockedDoor.isClosed());
         player.handleAction("open", new ArrayList<GameObject>(){{add(lockedDoor);}});
         assert (lockedDoor.isClosed());
-        player.addAction(new Unlock(player, key));
+        player.addAction(new Pick(player));
+        player.handleAction("pick",
+                new ArrayList<GameObject>() {
+                    {
+                        add(key);
+                    }
+                } );
         player.handleAction("open", new ArrayList<GameObject>(){{add(lockedDoor);}});
         assert (lockedDoor.isOpen());
     }

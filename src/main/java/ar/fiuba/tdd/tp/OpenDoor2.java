@@ -1,27 +1,34 @@
 package ar.fiuba.tdd.tp;
+
 import ar.fiuba.tdd.tp.actions.Open;
 import ar.fiuba.tdd.tp.actions.Pick;
+import ar.fiuba.tdd.tp.objects.concrete.Box;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
-import ar.fiuba.tdd.tp.objects.concrete.door.LockedDoor;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
+import ar.fiuba.tdd.tp.objects.concrete.door.LockedDoor;
 
 /**
  * Created by fernando on 28/04/16.
  */
-public class OpenDoor extends Game {
+public class OpenDoor2 extends Game {
 
     Room room;
-    LockedDoor door;
+    Box box;
     Key key;
+    LockedDoor door;
     String nameRoom = "room";
     String nameKey = "key";
     String nameDoor = "door";
+    String nameBox = "box";
 
-    public OpenDoor() {
-        super("Open Door");
+    public OpenDoor2() {
+
+        super("Open Door 2");
+        box = new Box(nameBox);
         room = new Room(nameRoom);
         key = new Key(nameKey, 1);
         door = new LockedDoor(nameDoor,1);
+        keywords.add(nameKey);
         keywords.add(nameKey);
         keywords.add(nameRoom);
         player.placeInRoom(room);
@@ -29,12 +36,14 @@ public class OpenDoor extends Game {
         Open actionOpen = new Open (player);
         Pick actionPickup = new Pick(player);
         keywords.add(actionPickup.getName());
+        keywords.add(actionOpen.getName());
         player.addAction(actionPickup);
         player.addAction(actionOpen);
 
-        room.addChild(key);
+        box.addChild(key);
+        room.addChild(box);
     }
 
     @Override
-    public boolean checkWinCondition() { return door.isOpen(); }
+    public boolean checkWinCondition() {return door.isOpen();}
 }

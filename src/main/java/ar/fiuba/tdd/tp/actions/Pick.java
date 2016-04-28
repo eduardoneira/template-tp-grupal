@@ -1,7 +1,5 @@
-package ar.fiuba.tdd.tp.actions.pick;
+package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.actions.move.Move;
-import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithChildren;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 

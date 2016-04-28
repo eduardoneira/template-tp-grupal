@@ -1,9 +1,8 @@
-package ar.fiuba.tdd.tp.actions.move;
+package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -11,8 +10,8 @@ import java.util.List;
  */
 public class HaveEverythingStolen extends HaveMovedFrom {
 
-    private static int OBJECT_WHO_STEALS = 0;
-    private static int ARGS_SIZE = 1;
+    private int OBJECT_WHO_STEALS = 0;
+    private int ARGS_SIZE = 1;
 
     public HaveEverythingStolen(GameObject instance, ChildrenState children) {
         super(instance, children);

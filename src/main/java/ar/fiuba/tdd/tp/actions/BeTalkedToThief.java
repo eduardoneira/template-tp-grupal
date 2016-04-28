@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.actions.talk;
+package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 

@@ -1,7 +1,6 @@
 package ar.fiuba.tdd.tp.actions.leave;
 
-import ar.fiuba.tdd.tp.actions.move.Move;
-import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithChildren;
+import ar.fiuba.tdd.tp.actions.Move;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 

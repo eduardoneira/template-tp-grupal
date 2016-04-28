@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.actions.open;
+package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BeOpenedHasLock extends BeOpened {
 
-    private static int OBJECT_THAT_UNLOCKS_ME = 0;
+    private int OBJECT_THAT_UNLOCKS_ME = 0;
 
     private BooleanState locked;
     private int key;

@@ -1,8 +1,10 @@
 package ar.fiuba.tdd.tp.objects.general;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
+import ar.fiuba.tdd.tp.actions.BeAskedWhat;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +15,8 @@ public class ConcreteGameObject implements GameObject {
     public ConcreteGameObject(String name) {
         this.name = name;
         this.actions = new HashMap<String, ActionHandler>();
+
+        addAction(new BeAskedWhat(this));
     }
 
     @Override
@@ -44,5 +48,10 @@ public class ConcreteGameObject implements GameObject {
     @Override
     public void removeAction(String actionName) {
         actions.remove(actionName);
+    }
+
+    @Override
+    public List<ActionHandler> getActions() {
+        return new LinkedList<>(actions.values());
     }
 }

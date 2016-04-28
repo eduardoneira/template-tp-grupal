@@ -1,8 +1,6 @@
 package ar.fiuba.tdd.tp;
 
 
-import ar.fiuba.tdd.tp.actions.move.HaveEverythingStolen;
-import ar.fiuba.tdd.tp.actions.talk.Talk;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.Stick;
 import ar.fiuba.tdd.tp.objects.concrete.Thief;

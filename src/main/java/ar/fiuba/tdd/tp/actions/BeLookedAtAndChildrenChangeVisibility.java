@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.actions.lookat;
+package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
