@@ -1,14 +1,14 @@
 package ar.fiuba.tdd.tp.actions.take;
 
 import ar.fiuba.tdd.tp.actions.pick.Pick;
-import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithChildren;
+import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.List;
 
 public class Take extends Pick {
 
-    public Take(ConcreteGameObjectWithChildren instance) {
+    public Take(ConcreteGameObjectWithParentAndChildren instance) {
         super(instance);
     }
 
