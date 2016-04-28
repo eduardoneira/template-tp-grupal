@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.tp.objects.concrete.player;
 
-import ar.fiuba.tdd.tp.actions.move.HaveMovedTo;
+import ar.fiuba.tdd.tp.actions.HaveMovedTo;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.general.*;
 

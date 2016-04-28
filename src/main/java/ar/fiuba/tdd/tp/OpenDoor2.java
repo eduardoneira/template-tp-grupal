@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.actions.open.Open;
-import ar.fiuba.tdd.tp.actions.pick.Pick;
+import ar.fiuba.tdd.tp.actions.Open;
+import ar.fiuba.tdd.tp.actions.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Box;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
@@ -26,7 +26,7 @@ public class OpenDoor2 extends Game {
         super("Open Door 2");
         box = new Box(nameBox);
         room = new Room(nameRoom);
-        key = new Key(nameKey);
+        key = new Key(nameKey, 1);
         door = new LockedDoor(nameDoor,1);
         keywords.add(nameKey);
         keywords.add(nameKey);

@@ -1,12 +1,9 @@
 package ar.fiuba.tdd.tp;
-import ar.fiuba.tdd.tp.actions.open.Open;
+import ar.fiuba.tdd.tp.actions.Open;
+import ar.fiuba.tdd.tp.actions.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.door.LockedDoor;
-
-import ar.fiuba.tdd.tp.actions.pick.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
-
-import java.util.concurrent.locks.Lock;
 
 /**
  * Created by fernando on 28/04/16.
@@ -23,7 +20,7 @@ public class OpenDoor extends Game {
     public OpenDoor() {
         super("Open Door");
         room = new Room(nameRoom);
-        key = new Key(nameKey);
+        key = new Key(nameKey, 1);
         door = new LockedDoor(nameDoor,1);
         keywords.add(nameKey);
         keywords.add(nameRoom);

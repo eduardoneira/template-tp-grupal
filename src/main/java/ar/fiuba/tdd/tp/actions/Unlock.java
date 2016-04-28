@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.actions.open;
+package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
@@ -9,8 +9,8 @@ public class Unlock extends ActionHandler {
 
     private int key;
 
-    private static int OBJECT_TO_UNLOCK = 0;
-    private static int ARGS_SIZE = 1;
+    private int OBJECT_TO_UNLOCK = 0;
+    private int ARGS_SIZE = 1;
 
     public Unlock(GameObject instance, int key) {
         super(instance);

@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.tp.objects.concrete.player;
 
-import ar.fiuba.tdd.tp.actions.move.HaveEverythingStolen;
-import ar.fiuba.tdd.tp.actions.talk.Talk;
+import ar.fiuba.tdd.tp.actions.HaveEverythingStolen;
+import ar.fiuba.tdd.tp.actions.Talk;
 
 /**
  * Created by Master on 27/04/2016.

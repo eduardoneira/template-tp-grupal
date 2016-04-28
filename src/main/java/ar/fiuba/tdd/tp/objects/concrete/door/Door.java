@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.tp.objects.concrete.door;
 
 import ar.fiuba.tdd.tp.abilities.control.OpenCloseControlFunctions;
-import ar.fiuba.tdd.tp.actions.open.BeOpened;
+import ar.fiuba.tdd.tp.actions.BeOpened;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
