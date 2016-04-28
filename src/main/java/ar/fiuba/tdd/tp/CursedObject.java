@@ -77,12 +77,15 @@ public class CursedObject extends Game {
     public void setUpObjectsAndKeywords() {
 
 
+        keywords.add(door1to2.getName());
+
+        keywords.add(door2to3.getName());
         keywords.add(room1.getName());
         keywords.add(room2.getName());
-        keywords.add(room3.getName());
-        keywords.add(door1to2.getName());
-        keywords.add(door2to3.getName());
+
         keywords.add(thief.getName());
+        keywords.add(room3.getName());
+
         keywords.add(keyObject.getName());
         for ( String actionName : player.getActionNames()) {
             keywords.add(actionName);

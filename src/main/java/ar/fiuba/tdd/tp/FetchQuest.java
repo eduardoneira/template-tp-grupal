@@ -26,12 +26,12 @@ public class FetchQuest extends Game {
 
         Pick actionPickup = new Pick(player);
         player.addAction(actionPickup);
+        keywords.add(actionPickup.getName());
+        keywords.add(room.getName());
 
         Look actionLook = new Look(room);
         player.addAction(actionLook);
 
-        keywords.add(actionPickup.getName());
-        keywords.add(room.getName());
         keywords.add(stick.getName());
         keywords.add(actionLook.getName());
 
