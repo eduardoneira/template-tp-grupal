@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.actions.take;
+package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.actions.Pick;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
