@@ -73,4 +73,21 @@ public class BoxTests {
         assert (!box.contains("key"));
         assert (player.contains("key"));
     }
+
+    @Test
+    public void playerPicksObjectFromClosedBox() {
+        placeObjectInBox();
+        box.setClosed();
+
+        player.addAction(new Pick(player));
+        assert (box.contains("key"));
+        player.handleAction("pick",
+                new ArrayList<GameObject>() {
+                    {
+                        add(key);
+                    }
+                });
+        assert (box.contains("key"));
+        assert (!player.contains("key"));
+    }
 }
