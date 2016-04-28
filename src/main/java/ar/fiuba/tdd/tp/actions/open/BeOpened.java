@@ -3,6 +3,7 @@ package ar.fiuba.tdd.tp.actions.open;
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
+
 import java.util.List;
 
 public class BeOpened extends ActionHandler {

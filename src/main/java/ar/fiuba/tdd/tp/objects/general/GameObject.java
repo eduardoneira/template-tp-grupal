@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp.objects.general;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
+
 import java.util.List;
 
 public interface GameObject {

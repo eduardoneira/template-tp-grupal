@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp.objects.general;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class ConcreteGameObject implements GameObject {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        if(!actions.containsKey(actionName)) {
+        if (!actions.containsKey(actionName)) {
             return "";
         }
         return actions.get(actionName).handleAction(actionName, objectsInvolved);

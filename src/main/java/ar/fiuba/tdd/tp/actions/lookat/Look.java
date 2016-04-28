@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp.actions.lookat;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Look extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if(objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != ARGS_SIZE) {
             return false;
         }
 
@@ -36,7 +37,7 @@ public class Look extends ActionHandler {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        if(!canHandleAction(actionName, objectsInvolved)){
+        if (!canHandleAction(actionName, objectsInvolved)) {
             return "invalid command";
         }
 

@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp.actions.open;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+
 import java.util.List;
 
 public class Unlock extends ActionHandler {
@@ -24,7 +25,7 @@ public class Unlock extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if(objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != ARGS_SIZE) {
             return false;
         }
         return true;

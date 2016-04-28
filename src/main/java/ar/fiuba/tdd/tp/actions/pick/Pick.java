@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp.actions.pick;
 
 import ar.fiuba.tdd.tp.actions.move.Move;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+
 import java.util.List;
 
 public class Pick extends Move {

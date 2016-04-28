@@ -7,7 +7,7 @@ public class LoadGameServerCommandProxy extends AbstractCommandProxy {
     private final String notSuchGame = "There is no such game. Games Available are :";
 
     public LoadGameServerCommandProxy(String name, AbstractCommand command) {
-		super(name, command);
+        super(name, command);
     }
 
     @Override
