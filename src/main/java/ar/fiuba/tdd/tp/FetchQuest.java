@@ -16,7 +16,7 @@ public class FetchQuest extends Game {
     public FetchQuest() {
         super("Fetch Quest");
 
-        Room room = new Room("room");
+        room = new Room("room");
         player.placeInRoom(room);
 
         stick = new Stick("stick");

@@ -29,6 +29,7 @@ public class OpenDoor2 extends Game {
         keywords.add(nameKey);
         keywords.add(nameRoom);
         player.placeInRoom(room);
+        room.addChild(player);
 
         Open actionOpen = new Open(player);
         Pick actionPickup = new Pick(player);

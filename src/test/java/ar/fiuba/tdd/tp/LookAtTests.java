@@ -29,6 +29,7 @@ public class LookAtTests {
         player = new PlayerCursedObject("player");
         player.placeInRoom(room);
         player.addAction(new Look(player));
+        room.addChild(player);
 
         stick = new Stick("stick");
     }

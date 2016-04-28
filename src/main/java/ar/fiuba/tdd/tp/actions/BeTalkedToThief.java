@@ -19,6 +19,6 @@ public class BeTalkedToThief extends BeTalkedTo {
         whoSteals.add(this.instance);
         objectWhoTalks.handleAction("have everything stolen", whoSteals);
 
-        return "Hi!";
+        return "Hi!\nThe thief just stole all your objects!";
     }
 }
