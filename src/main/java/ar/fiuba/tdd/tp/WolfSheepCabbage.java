@@ -1,6 +1,12 @@
 package ar.fiuba.tdd.tp;
 
+import ar.fiuba.tdd.tp.actions.cross.Cross;
+import ar.fiuba.tdd.tp.actions.leave.Leave;
+import ar.fiuba.tdd.tp.actions.take.Take;
+import ar.fiuba.tdd.tp.objects.concrete.Cabbage;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
+import ar.fiuba.tdd.tp.objects.concrete.Sheep;
+import ar.fiuba.tdd.tp.objects.concrete.Wolf;
 
 public class WolfSheepCabbage extends Game {
 
@@ -23,7 +29,6 @@ public class WolfSheepCabbage extends Game {
         keywords.add(southShoreName);
         keywords.add(northShoreName);
         player.placeInRoom(southShore);
-        /*
         Leave leave = new Leave(player);
         Take take = new Take(player);
         Cross cross = new Cross(player);
@@ -42,6 +47,5 @@ public class WolfSheepCabbage extends Game {
         keywords.add(wolfName);
         keywords.add(sheepName);
         keywords.add(cabbageName);
-        */
     }
 }

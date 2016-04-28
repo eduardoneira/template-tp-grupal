@@ -13,7 +13,6 @@ public class HaveMovedTo extends ActionHandler {
     protected static int ARGS_SIZE = 2;
 
     protected ChildrenState children;
-    GameObject instance;
 
     public HaveMovedTo(GameObject instance, ChildrenState children) {
         super(instance);
