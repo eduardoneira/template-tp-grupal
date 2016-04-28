@@ -1,8 +1,5 @@
 package ar.fiuba.tdd.tp;
 
-/**
- * Created by Edu on 4/27/2016.
- */
 public class ServerGameData {
 
     private int port;
@@ -23,7 +20,7 @@ public class ServerGameData {
     }
 
     public boolean isRunning() {
-        return (port == 0) ? false : true;
+        return port != 0;
     }
 
     public String getName() {
