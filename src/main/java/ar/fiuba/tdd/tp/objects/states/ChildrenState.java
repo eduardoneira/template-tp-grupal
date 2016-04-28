@@ -6,6 +6,7 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 import java.util.*;
 
 public class ChildrenState implements ChildrenControlFunctions {
+
     private Map<String, GameObject> children;
 
     public ChildrenState() {
@@ -25,6 +26,11 @@ public class ChildrenState implements ChildrenControlFunctions {
     @Override
     public void removeChild(GameObject object) {
         children.remove(object.getName());
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return children.isEmpty();
     }
 
     @Override
