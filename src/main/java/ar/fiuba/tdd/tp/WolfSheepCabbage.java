@@ -16,14 +16,13 @@ public class WolfSheepCabbage extends Game {
     String wolfName;
     String sheepName;
     String cabbageName;
-    PlayerCrossShores player;
 
     public boolean checkWinCondition() {
         return (northShore.contains(wolfName) && northShore.contains(sheepName) && northShore.contains(cabbageName));
     }
 
     public WolfSheepCabbage() {
-        super("Wolf, Sheep and Cabbage");
+        super("Wolf, Sheep and Cabbage", new PlayerCrossShores("player"));
         String southShoreName = "south-shore";
         String northShoreName = "north-shore";
         southShore = new Room(southShoreName);

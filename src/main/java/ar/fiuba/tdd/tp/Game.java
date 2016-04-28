@@ -12,17 +12,20 @@ public abstract class Game {
     protected Set<String> keywords;
     protected Map<String, GameObject> objects;
 
+    protected final String needHelpRegex = "help(.)*";
+    protected final String help = "You can use this words : ";
+
     public String getName() {
         return name;
     }
 
     public Game(String name) {
+        this(name,new Player("player"));
+    }
+
+    public Game(String name, Player player) {
         this.name = name;
-
-        // TODO: armar factories para los distintos juegos, aca hardcodeo para probar
-
-        String namePlayer = "player";
-        this.player = new Player(namePlayer);
+        this.player = player;
         this.keywords = new HashSet<String>();
         this.objects = new HashMap<>();
     }
@@ -32,6 +35,11 @@ public abstract class Game {
     public String processCommand(String stringCommand) {
 
         System.out.println("SERVER PROCESS " + stringCommand);
+
+        if ( stringCommand.toLowerCase().matches(needHelpRegex)) {
+            return help();
+        }
+
         String[] splitCommand = stringCommand.split(" ");
         List<String> parsedCommand = new LinkedList<String>();
         for (String elem : splitCommand) {
@@ -62,5 +70,13 @@ public abstract class Game {
         } else {
             return result;
         }
+    }
+
+    private String help() {
+        String response = " ";
+        for (String keyword : keywords) {
+            response = response.concat(keyword.concat(", "));
+        }
+        return help.concat(response);
     }
 }

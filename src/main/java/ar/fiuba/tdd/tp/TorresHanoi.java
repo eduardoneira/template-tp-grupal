@@ -1,18 +1,14 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.objects.concrete.Disc;
+import ar.fiuba.tdd.tp.objects.concrete.Pile;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
-import ar.fiuba.tdd.tp.objects.concrete.Tower;
-
-/**
- * Created by fernando on 28/04/16.
- */
 
 public class TorresHanoi extends Game {
     Room room;
-    Tower torre1;
-    Tower torre2;
-    Tower torre3;
+    Pile torre1;
+    Pile torre2;
+    Pile torre3;
     Disc disc1;
     Disc disc2;
     Disc disc3;
@@ -25,10 +21,11 @@ public class TorresHanoi extends Game {
         room = new Room(nameRoom);
         keywords.add(nameRoom);
         player.placeInRoom(room);
+        room.addChild(player);
 
-        torre1 = new Tower("torre1");
-        torre2 = new Tower("torre2");
-        torre3 = new Tower("torre3");
+        torre1 = new Pile("stack1");
+        torre2 = new Pile("stack2");
+        torre3 = new Pile("stack3");
         disc1 = new Disc("disc1",1);
         disc2 = new Disc("disc2",2);
         disc3 = new Disc("disc3",3);
@@ -36,12 +33,26 @@ public class TorresHanoi extends Game {
         torre1.addChild(disc1);
         torre1.addChild(disc2);
         torre1.addChild(disc3);
-
+        keywords.add("disc1");
+        keywords.add("disc2");
+        keywords.add("disc3");
+        keywords.add("stack1");
+        keywords.add("stack2");
+        keywords.add("stack3");
+        objects.put("disc1", disc1);
+        objects.put("disc2", disc2);
+        objects.put("disc3", disc3);
+        objects.put("stack1", torre1);
+        objects.put("stack2", torre2);
+        objects.put("stack3", torre3);
+        disc1.setParent(torre1);
+        disc2.setParent(torre1);
+        disc3.setParent(torre1);
     }
 
     @Override
     public boolean checkWinCondition() {
-        return false;
+        return ((torre1.isEmpty()) && (torre2.isEmpty() || torre3.isEmpty()));
     }
 
 }

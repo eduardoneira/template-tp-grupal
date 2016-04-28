@@ -16,7 +16,7 @@ public class LoadGameServerCommand implements AbstractCommand {
     public void handle(Object[] param) {
         Map<String,ServerGameData> map = Server.getGamesData();
         String gameName = (String) param[0];
-        ServerGameData game = map.get(gameName);
+        ServerGameData game = map.get(gameName.toLowerCase());
         if (game.isRunning()) {
             System.out.println(gameRunning.concat(String.valueOf(game.getPort())));
         } else {
