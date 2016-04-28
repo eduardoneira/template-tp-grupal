@@ -31,20 +31,25 @@ class ClientWorker implements Runnable {
                 outputLine = this.game.processCommand(inputLine);
                 out.println(outputLine);
                 out.flush();
-                /// TODO: esto es viejo, deberia cambiar pero deberia estar en algun lado la condicion de victoria
-                if (outputLine.equals("ganaste")) {
+
+                if (outputLine.toLowerCase().equals("you won the game")) {
                     this.isRunning = false;
                 }
             }
             
             out.close();
             in.close();
-            this.clientSocket.close();
-            this.serverSocket.close();
+            this.closeSockets();
 
         } catch (IOException e) {
             System.err.println("Thread failed");
         }
+    }
+
+    private void closeSockets() throws IOException {
+        this.clientSocket.close();
+        this.serverSocket.close();
+        Server.stopGame(this.game.getName());
     }
 
     public void kill() {

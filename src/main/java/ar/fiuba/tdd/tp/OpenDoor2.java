@@ -33,7 +33,7 @@ public class OpenDoor2 extends Game {
         keywords.add(nameRoom);
         player.placeInRoom(room);
 
-        Open actionOpen = new Open (player);
+        Open actionOpen = new Open(player);
         Pick actionPickup = new Pick(player);
         keywords.add(actionPickup.getName());
         keywords.add(actionOpen.getName());
@@ -45,5 +45,7 @@ public class OpenDoor2 extends Game {
     }
 
     @Override
-    public boolean checkWinCondition() {return door.isOpen();}
+    public boolean checkWinCondition() {
+        return door.isOpen();
+    }
 }

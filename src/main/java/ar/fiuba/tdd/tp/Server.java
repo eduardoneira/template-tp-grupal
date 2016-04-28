@@ -57,6 +57,10 @@ public class Server implements ServerResponses {
         serverRunning = false;
     }
 
+    public static void stopGame(String name) {
+        gamesData.get(name.toLowerCase()).stopGame();
+    }
+
     private static BufferedReader init() throws IOException {
         gamesData = new HashMap<String,ServerGameData>();
         commands = new ArrayList<AbstractCommandProxy>();

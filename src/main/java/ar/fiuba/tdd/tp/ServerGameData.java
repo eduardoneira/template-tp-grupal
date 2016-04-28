@@ -40,6 +40,8 @@ public class ServerGameData {
         if (this.worker != null) {
             this.worker.kill();
         }
+        this.port = 0;
+        this.worker = null;
     }
 
     public String getName() {
