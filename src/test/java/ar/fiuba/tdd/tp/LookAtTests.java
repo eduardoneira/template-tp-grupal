@@ -36,11 +36,11 @@ public class LookAtTests {
     @Test
     public void lookAtEmptyRoomTest() {
 
-        assertEquals((player.doAction("look", new ArrayList<String>() {
+        assertEquals("a room", (player.doAction("look", new ArrayList<String>() {
             {
                 add(room.getName());
             }
-        })),"a room");
+        })));
     }
 
     @Test
@@ -49,11 +49,11 @@ public class LookAtTests {
         room.addChild(stick);
         stick.setParent(room);
 
-        assertEquals((player.handleAction("look", new ArrayList<GameObject>() {
+        assertEquals("there're a stick", (player.handleAction("look", new ArrayList<GameObject>() {
             {
                 add(room);
             }
-        })).trim(),"there're a stick");
+        })).trim());
     }
 
     @Test
@@ -66,17 +66,17 @@ public class LookAtTests {
         room.addChild(box);
         box.setParent(room);
 
-        assertEquals((player.handleAction("look", new ArrayList<GameObject>() {
+        assertEquals("there're a room a box", (player.handleAction("look", new ArrayList<GameObject>() {
             {
                 add(room);
             }
-        })).trim(),"there're a room a box");
+        })).trim());
 
         box.setOpen();
-        assertEquals((player.handleAction("look", new ArrayList<GameObject>() {
+        assertEquals("there're a room a box a stick", (player.handleAction("look", new ArrayList<GameObject>() {
             {
                 add(room);
             }
-        })).trim(),"there're a room a box a stick");
+        })).trim());
     }
 }

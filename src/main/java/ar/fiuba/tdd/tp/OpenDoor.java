@@ -34,6 +34,10 @@ public class OpenDoor extends Game {
         player.addAction(actionOpen);
 
         room.addChild(key);
+
+        objects.put(room.getName(), room);
+        objects.put(door.getName(), door);
+        objects.put(key.getName(), key);
     }
 
     @Override

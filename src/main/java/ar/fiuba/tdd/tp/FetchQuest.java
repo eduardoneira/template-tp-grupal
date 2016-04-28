@@ -2,8 +2,12 @@ package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
+import ar.fiuba.tdd.tp.objects.concrete.Stick;
 
 public class FetchQuest extends Game {
+
+    Room room;
+    Stick stick;
 
     public boolean checkWinCondition() {
         return player.contains("stick");
@@ -11,24 +15,22 @@ public class FetchQuest extends Game {
 
     public FetchQuest() {
         super("Fetch Quest");
-        String nameRoom = "room";
-        String nameStick = "stick";
 
-        Room cuarto = new Room(nameRoom);
+        Room room = new Room("room");
+        player.placeInRoom(room);
 
-        player.placeInRoom(cuarto);
-        keywords.add(nameStick);
+        stick = new Stick("stick");
+        room.addChild(stick);
+        stick.setParent(room);
 
         Pick actionPickup = new Pick(player);
-        //LookAt actionLookaround = new LookAt();
-
-        player.addAction(new Pick(player));
-        //player.addAction(actionLookaround);
+        player.addAction(actionPickup);
 
         keywords.add(actionPickup.getName());
-        keywords.add(nameRoom);
-        keywords.add(nameStick);
+        keywords.add(room.getName());
+        keywords.add(stick.getName());
 
-        //keywords.add(actionLookaround.getName());
+        objects.put(this.room.getName(), this.room);
+        objects.put(stick.getName(), stick);
     }
 }

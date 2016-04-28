@@ -42,6 +42,11 @@ public class OpenDoor2 extends Game {
 
         box.addChild(key);
         room.addChild(box);
+
+        objects.put(box.getName(), box);
+        objects.put(room.getName(), room);
+        objects.put(key.getName(), key);
+        objects.put(door.getName(), door);
     }
 
     @Override

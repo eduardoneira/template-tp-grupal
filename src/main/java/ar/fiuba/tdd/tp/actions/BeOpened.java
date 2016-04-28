@@ -8,8 +8,8 @@ import java.util.List;
 
 public class BeOpened extends ActionHandler {
 
-    private int OBJECT_WHO_OPENS = 0;
-    private int ARGS_SIZE = 1;
+    protected int OBJECT_WHO_OPENS = 0;
+    protected int ARGS_SIZE = 1;
 
     private BooleanState open;
 

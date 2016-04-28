@@ -48,5 +48,4 @@ public class WolfSheepCabbage extends Game {
         keywords.add(sheepName);
         keywords.add(cabbageName);
     }
-
 }
