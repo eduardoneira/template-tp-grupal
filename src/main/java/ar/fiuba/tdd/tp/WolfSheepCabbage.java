@@ -48,5 +48,8 @@ public class WolfSheepCabbage extends Game {
         keywords.add(wolfName);
         keywords.add(sheepName);
         keywords.add(cabbageName);
+        objects.put(wolfName, wolf);
+        objects.put(sheepName, sheep);
+        objects.put(cabbageName, cabbage);
     }
 }
