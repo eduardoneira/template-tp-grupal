@@ -1,9 +1,10 @@
 package ar.fiuba.tdd.tp;
+
 import ar.fiuba.tdd.tp.actions.Open;
 import ar.fiuba.tdd.tp.actions.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
-import ar.fiuba.tdd.tp.objects.concrete.door.LockedDoor;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
+import ar.fiuba.tdd.tp.objects.concrete.door.LockedDoor;
 
 /**
  * Created by fernando on 28/04/16.
@@ -26,7 +27,7 @@ public class OpenDoor extends Game {
         keywords.add(nameRoom);
         player.placeInRoom(room);
 
-        Open actionOpen = new Open (player);
+        Open actionOpen = new Open(player);
         Pick actionPickup = new Pick(player);
         keywords.add(actionPickup.getName());
         player.addAction(actionPickup);
@@ -36,5 +37,7 @@ public class OpenDoor extends Game {
     }
 
     @Override
-    public boolean checkWinCondition() { return door.isOpen(); }
+    public boolean checkWinCondition() {
+        return door.isOpen();
+    }
 }

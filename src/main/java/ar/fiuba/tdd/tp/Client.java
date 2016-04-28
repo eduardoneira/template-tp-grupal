@@ -3,20 +3,9 @@ package ar.fiuba.tdd.tp;
 import java.io.*;
 import java.net.*;
 
-public class Client {
-    //TODO: refactorizar en clases e interfaces
-    private static String HOSTNAME = "localhost";
+public class Client implements ClientResponses{
 
-    private static String CONNECTTOREGEX = "connect to [0-9]+";
-    private static String CONNECTTO = "connect to";
-    private static String EXIT = "exit game";
-    private static String EXITSUCCESSFUL = "Exit " + "successful!";
-    private static String CONNECTIONSUCCESFUL = "Connected!";
-
-    private static String ERRORCONNECTION = "Must connect to a valid port using command 'connect to [port]'";
-    private static String IOERROR = "Couldn't get I/O for the connection";
-
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)  throws IOException {
 
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
         Socket socket = makeConnection(stdIn);
