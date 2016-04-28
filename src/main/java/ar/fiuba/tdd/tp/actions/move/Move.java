@@ -15,7 +15,7 @@ public class Move extends ActionHandler {
     private static int ARGS_SIZE = 2;
     protected ConcreteGameObjectWithParentAndChildren instance;
 
-        public Move(ConcreteGameObjectWithParentAndChildren instance) {
+    public Move(ConcreteGameObjectWithParentAndChildren instance) {
         super(instance);
         this.instance = instance;
     }

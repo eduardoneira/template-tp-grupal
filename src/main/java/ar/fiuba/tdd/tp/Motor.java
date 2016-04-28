@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Motor {
@@ -29,7 +28,7 @@ public class Motor {
     }
 
     public LinkedList<String> getNamesGames() {
-        LinkedList names = new LinkedList<String>();
+        LinkedList<String> names = new LinkedList<String>();
         for ( Game actualGame: games) {
             names.add(actualGame.getName());
         }
