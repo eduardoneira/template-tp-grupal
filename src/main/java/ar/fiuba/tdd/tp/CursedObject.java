@@ -49,6 +49,17 @@ public class CursedObject extends Game {
         room2.addChild(door2to3);
 
         player = new PlayerCursedObject("player");
+        setUpPlayers();
+        keyObject = new CursedKey("key", keyNumber);
+        keyObject.setParent(room1);
+        room1.addChild(keyObject);
+
+        objectsInvolved = new LinkedList<>();
+
+        setUpObjectsAndKeywords();
+    }
+
+    public void setUpPlayers() {
         player.addAction(new Open(player));
         player.addAction(new Move(player));
         player.addAction(new Look(player));
@@ -61,12 +72,10 @@ public class CursedObject extends Game {
         thief = new Thief("thief");
         thief.setParent(room2);
         room2.addChild(thief);
+    }
 
-        keyObject = new CursedKey("key", keyNumber);
-        keyObject.setParent(room1);
-        room1.addChild(keyObject);
+    public void setUpObjectsAndKeywords() {
 
-        objectsInvolved = new LinkedList<>();
 
         keywords.add(room1.getName());
         keywords.add(room2.getName());
@@ -75,7 +84,7 @@ public class CursedObject extends Game {
         keywords.add(door2to3.getName());
         keywords.add(thief.getName());
         keywords.add(keyObject.getName());
-        for( String actionName : player.getActionNames()) {
+        for ( String actionName : player.getActionNames()) {
             keywords.add(actionName);
         }
 
@@ -87,7 +96,6 @@ public class CursedObject extends Game {
         objects.put(thief.getName(), thief);
         objects.put(keyObject.getName(), keyObject);
     }
-
 
     public CursedObject(String name) {
         super(name);

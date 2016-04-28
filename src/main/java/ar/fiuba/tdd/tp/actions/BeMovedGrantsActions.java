@@ -6,9 +6,6 @@ import ar.fiuba.tdd.tp.objects.states.ParentState;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Master on 28/04/2016.
- */
 public class BeMovedGrantsActions extends BeMoved {
 
     protected List<ActionHandler> actionsGranted;
@@ -21,8 +18,8 @@ public class BeMovedGrantsActions extends BeMoved {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         GameObject oldParent = parent.getParent();
-        if(oldParent != null) {
-            for( ActionHandler action : actionsGranted) {
+        if (oldParent != null) {
+            for (ActionHandler action : actionsGranted) {
                 oldParent.removeAction(action.getName());
                 action.instance = this.instance;
             }
@@ -31,7 +28,7 @@ public class BeMovedGrantsActions extends BeMoved {
         String ret = super.handleAction(actionName, objectsInvolved);
 
         GameObject newParent = parent.getParent();
-        for( ActionHandler action : actionsGranted) {
+        for (ActionHandler action : actionsGranted) {
             newParent.addAction(action);
             action.instance = newParent;
         }

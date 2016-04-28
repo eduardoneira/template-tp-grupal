@@ -33,6 +33,10 @@ public class TorresHanoi extends Game {
         torre1.addChild(disc1);
         torre1.addChild(disc2);
         torre1.addChild(disc3);
+
+    }
+
+    public void setUpObjectsAndKeywords() {
         keywords.add("disc1");
         keywords.add("disc2");
         keywords.add("disc3");
