@@ -8,8 +8,8 @@ import java.util.List;
 
 public class BeTalkedTo extends ActionHandler {
 
-    protected int OBJECT_WHO_TALKS = 0;
-    protected int ARGS_SIZE = 1;
+    protected int object_Who_Talks = 0;
+    protected int argsSize = 1;
 
     public BeTalkedTo(GameObject instance) {
         super(instance);
@@ -22,7 +22,7 @@ public class BeTalkedTo extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if (objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != argsSize) {
             return false;
         }
         return true;

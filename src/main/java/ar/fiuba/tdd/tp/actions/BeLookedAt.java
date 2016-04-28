@@ -7,8 +7,8 @@ import java.util.List;
 
 public class BeLookedAt extends ActionHandler {
 
-    private int WHO_LOOKS = 0;
-    private int ARGS_SIZE = 1;
+    private int whoLooks = 0;
+    private int argsSize = 1;
 
     public BeLookedAt(GameObject instance) {
         super(instance);
@@ -21,7 +21,7 @@ public class BeLookedAt extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        return objectsInvolved.size() == ARGS_SIZE;
+        return objectsInvolved.size() == argsSize;
     }
 
     @Override

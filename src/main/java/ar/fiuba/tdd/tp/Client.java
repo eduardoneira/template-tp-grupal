@@ -3,7 +3,7 @@ package ar.fiuba.tdd.tp;
 import java.io.*;
 import java.net.*;
 
-public class Client implements ClientResponses{
+public class Client implements ClientResponses {
 
     public static void main(String[] args)  throws IOException {
 

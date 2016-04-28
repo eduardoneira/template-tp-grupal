@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.actions.take;
+package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.actions.Pick;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
@@ -16,8 +16,8 @@ public class Take extends Pick {
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         if (super.handleAction(getName(), objectsInvolved) == "invalid command") {
             return "The boat is full!";
-        };
-        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
+        }
+        GameObject objectToMove = objectsInvolved.get(object_To_Move);
         return "taken " + objectToMove.getName();
     }
 
