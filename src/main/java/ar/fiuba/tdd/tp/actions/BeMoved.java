@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp.actions;
 
+import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 
@@ -21,7 +22,6 @@ public class BeMoved extends ActionHandler {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-
         GameObject whoMoves = objectsInvolved.get(idWhoMoves);
         GameObject whereToMove = objectsInvolved.get(idWhereToMove);
 

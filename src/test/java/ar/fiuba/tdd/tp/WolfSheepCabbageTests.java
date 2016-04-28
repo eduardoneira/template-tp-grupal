@@ -27,6 +27,7 @@ public class WolfSheepCabbageTests {
         northShore = new Room("north-shore");
         player = new PlayerCrossShores("player");
         player.placeInRoom(southShore);
+        southShore.addChild(player);
         wolf = new Wolf("wolf");
         sheep = new Sheep("sheep");
         cabbage = new Cabbage("cabbage");
@@ -64,7 +65,8 @@ public class WolfSheepCabbageTests {
             }
         }));
         assert (!southShore.contains("sheep"));
-        System.out.println(player.handleAction("change room", new ArrayList<GameObject>() {
+        assert (southShore.contains("player"));
+        System.out.println(player.handleAction("cross", new ArrayList<GameObject>() {
             {
                 add(northShore);
             }
@@ -74,14 +76,15 @@ public class WolfSheepCabbageTests {
     }
 
     public void secondGameTest() {
-        assert (northShore.contains("sheep"));
         System.out.println(player.handleAction("leave", new ArrayList<GameObject>() {
             {
                 add(sheep);
             }
         }));
+        assert (northShore.contains("sheep"));
         assertFalse(player.contains("sheep"));
-        System.out.println(player.handleAction("change room", new ArrayList<GameObject>() {
+        assert (northShore.contains("player"));
+        System.out.println(player.handleAction("cross", new ArrayList<GameObject>() {
             {
                 add(southShore);
             }
@@ -91,7 +94,7 @@ public class WolfSheepCabbageTests {
                 add(wolf);
             }
         }));
-        System.out.println(player.handleAction("change room", new ArrayList<GameObject>() {
+        System.out.println(player.handleAction("cross", new ArrayList<GameObject>() {
             {
                 add(northShore);
             }

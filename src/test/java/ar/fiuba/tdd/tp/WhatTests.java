@@ -42,6 +42,6 @@ public class WhatTests {
                 add(stick);
             }
         }))
-                .trim(),"you can pick look");
+                .trim(),"You can pick look");
     }
 }
