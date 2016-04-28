@@ -3,6 +3,7 @@ package ar.fiuba.tdd.tp;
 import ar.fiuba.tdd.tp.actions.open.Open;
 import ar.fiuba.tdd.tp.actions.pick.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Box;
+import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.door.LockedDoor;
 
@@ -11,8 +12,9 @@ import ar.fiuba.tdd.tp.objects.concrete.door.LockedDoor;
  */
 public class OpenDoor2 extends Game {
 
-    Room cuarto;
+    Room room;
     Box box;
+    Key key;
     LockedDoor door;
     String nameRoom = "room";
     String nameKey = "key";
@@ -23,18 +25,23 @@ public class OpenDoor2 extends Game {
 
         super("Open Door 2");
         box = new Box(nameBox);
-        cuarto = new Room(nameRoom);
+        room = new Room(nameRoom);
+        key = new Key(nameKey);
         door = new LockedDoor(nameDoor,1);
         keywords.add(nameKey);
+        keywords.add(nameKey);
         keywords.add(nameRoom);
-        player.placeInRoom(cuarto);
+        player.placeInRoom(room);
 
         Open actionOpen = new Open (player);
         Pick actionPickup = new Pick(player);
         keywords.add(actionPickup.getName());
+        keywords.add(actionOpen.getName());
         player.addAction(actionPickup);
         player.addAction(actionOpen);
 
+        box.addChild(key);
+        room.addChild(box);
     }
 
     @Override
