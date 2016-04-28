@@ -8,7 +8,7 @@ import java.util.*;
 import java.util.List;
 
 public class ConcreteGameObject implements GameObject {
-    private Map<String, List<ActionHandler> > actions;
+    private Map<String, List<ActionHandler>> actions;
     private String name;
 
     public ConcreteGameObject(String name) {
@@ -30,7 +30,7 @@ public class ConcreteGameObject implements GameObject {
         }
 
         StringBuilder builder = new StringBuilder();
-        for( ActionHandler action : actions.get(actionName)) {
+        for (ActionHandler action : actions.get(actionName)) {
             builder.append(action.handleAction(actionName, objectsInvolved));
         }
         //return actions.get(actionName).handleAction(actionName, objectsInvolved);
@@ -41,7 +41,7 @@ public class ConcreteGameObject implements GameObject {
     public boolean canHandleAction(String actionName, List<GameObject> objectsInvolved) {
         boolean canHandle = true;
         if (actions.containsKey(actionName)) {
-            for( ActionHandler action : actions.get(actionName)) {
+            for (ActionHandler action : actions.get(actionName)) {
                 canHandle &= action.canHandleAction(actionName, objectsInvolved);
             }
             return canHandle;
@@ -52,7 +52,7 @@ public class ConcreteGameObject implements GameObject {
 
     @Override
     public void addAction(ActionHandler action) {
-        if(actions.containsKey(action.getName())) {
+        if (actions.containsKey(action.getName())) {
             actions.get(action.getName()).add(action);
         } else {
             List<ActionHandler> newActions = new LinkedList<>();
@@ -69,8 +69,8 @@ public class ConcreteGameObject implements GameObject {
     @Override
     public List<ActionHandler> getActions() {
         List<ActionHandler> allActions = new LinkedList<>();
-        for(String actionName : actions.keySet()) {
-            for( ActionHandler action : actions.get(actionName)) {
+        for (String actionName : actions.keySet()) {
+            for (ActionHandler action : actions.get(actionName)) {
                 allActions.add(action);
             }
         }
@@ -80,8 +80,8 @@ public class ConcreteGameObject implements GameObject {
     @Override
     public List<String> getActionNames() {
         List<String> allActions = new LinkedList<>();
-        for(String actionName : actions.keySet()) {
-            for( ActionHandler action : actions.get(actionName)) {
+        for (String actionName : actions.keySet()) {
+            for ( ActionHandler action : actions.get(actionName)) {
                 allActions.add(action.getName());
             }
         }

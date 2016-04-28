@@ -15,7 +15,7 @@ public class BeOpenedFailsIfOpenerCursed extends BeOpened {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if(!super.canIHandleAction(objectsInvolved)) {
+        if (!super.canIHandleAction(objectsInvolved)) {
             return false;
         }
         GameObject whoOpens = objectsInvolved.get(idObjectWhoOpens);

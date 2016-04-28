@@ -22,8 +22,8 @@ public class CheckTop extends ActionHandler {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         int diameter = ((Pile) objectsInvolved.get(idObjectToCheck)).getSmallestDiamater();
-        String s = Integer.toString(diameter);
-        return "Size of top from " + objectsInvolved.get(idObjectToCheck).getName() + " is " + s;
+        String diam = Integer.toString(diameter);
+        return "Size of top from " + objectsInvolved.get(idObjectToCheck).getName() + " is " + diam;
     }
 
     @Override
