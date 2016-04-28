@@ -7,7 +7,8 @@ import ar.fiuba.tdd.tp.objects.states.ParentState;
 
 import java.util.List;
 
-public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject implements ParentControlFunctions, ChildrenControlFunctions {
+public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
+        implements ParentControlFunctions, ChildrenControlFunctions {
 
     protected ChildrenState children;
     protected ParentState parent;

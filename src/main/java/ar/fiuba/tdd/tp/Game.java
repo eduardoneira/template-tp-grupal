@@ -37,17 +37,23 @@ public abstract class Game {
             }
         }
         if (parsedCommand.size() > 0) {
-            String command = parsedCommand.get(0);
-            parsedCommand.remove(0);
-
-            String result = player.doAction(command, parsedCommand);
-            if (checkWinCondition()) {
-                return "ganaste";
-            } else {
-                return result;
-            }
+            return process(parsedCommand);
         } else {
             return "invalid command";
+        }
+
+    }
+
+
+    private String process(List<String> parsedCommand) {
+        String command = parsedCommand.get(0);
+        parsedCommand.remove(0);
+
+        String result = player.doAction(command, parsedCommand);
+        if (checkWinCondition()) {
+            return "ganaste";
+        } else {
+            return result;
         }
     }
 
