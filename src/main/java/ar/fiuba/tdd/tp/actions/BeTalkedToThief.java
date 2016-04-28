@@ -18,7 +18,6 @@ public class BeTalkedToThief extends BeTalkedTo {
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
         GameObject objectWhoTalks = objectsInvolved.get(object_Who_Talks);
-
         List<GameObject> whoSteals = new LinkedList<>();
         whoSteals.add(this.instance);
         objectWhoTalks.handleAction("have everything stolen", whoSteals);
