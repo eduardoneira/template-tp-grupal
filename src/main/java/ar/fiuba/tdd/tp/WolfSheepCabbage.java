@@ -42,12 +42,12 @@ public class WolfSheepCabbage extends Game {
         wolfName = "wolf";
         sheepName = "sheep";
         cabbageName = "cabbage";
-        Wolf wolf = new Wolf(wolfName);
-        Sheep sheep = new Sheep(sheepName);
-        Cabbage cabbage = new Cabbage(cabbageName);
         keywords.add(wolfName);
         keywords.add(sheepName);
         keywords.add(cabbageName);
+        Wolf wolf = new Wolf(wolfName);
+        Sheep sheep = new Sheep(sheepName);
+        Cabbage cabbage = new Cabbage(cabbageName);
         objects.put(wolfName, wolf);
         objects.put(sheepName, sheep);
         objects.put(cabbageName, cabbage);

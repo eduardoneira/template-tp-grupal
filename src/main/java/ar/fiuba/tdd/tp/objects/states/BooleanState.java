@@ -1,8 +1,5 @@
 package ar.fiuba.tdd.tp.objects.states;
 
-/**
- * Created by Master on 26/04/2016.
- */
 public class BooleanState {
     private boolean state;
 
