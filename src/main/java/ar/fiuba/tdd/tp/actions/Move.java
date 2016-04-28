@@ -27,7 +27,6 @@ public class Move extends ActionHandler {
         if (!canHandleAction(actionName, objectsInvolved)) {
             return "invalid command";
         }
-
         List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<GameObject>();
         List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
         objectsInvolvedForObjectToMove.add(this.instance);
@@ -58,7 +57,6 @@ public class Move extends ActionHandler {
         List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
         objectsInvolvedForWhereToMove.add(this.instance);
         objectsInvolvedForWhereToMove.add(objectToMove);
-
         return objectToMove.canHandleAction(beMoved, objectsInvolvedForObjectToMove)
                 && whereToMove.canHandleAction(haveMovedTo, objectsInvolvedForWhereToMove);
     }
