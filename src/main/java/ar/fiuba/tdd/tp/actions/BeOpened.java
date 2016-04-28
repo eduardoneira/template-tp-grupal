@@ -8,8 +8,8 @@ import java.util.List;
 
 public class BeOpened extends ActionHandler {
 
-    private int OBJECT_WHO_OPENS = 0;
-    private int ARGS_SIZE = 1;
+    private int objectWhoOpens = 0;
+    private int argsSize = 1;
 
     private BooleanState open;
 
@@ -26,7 +26,7 @@ public class BeOpened extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if (objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != argsSize) {
             return false;
         }
         return true;

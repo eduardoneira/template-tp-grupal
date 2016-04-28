@@ -9,8 +9,8 @@ public class Unlock extends ActionHandler {
 
     private int key;
 
-    private int OBJECT_TO_UNLOCK = 0;
-    private int ARGS_SIZE = 1;
+    private int objectToUnlock = 0;
+    private int argsSize = 1;
 
     public Unlock(GameObject instance, int key) {
         super(instance);
@@ -19,7 +19,7 @@ public class Unlock extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if (objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != argsSize) {
             return false;
         }
         return true;

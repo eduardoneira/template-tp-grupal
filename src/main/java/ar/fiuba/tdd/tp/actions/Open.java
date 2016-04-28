@@ -8,13 +8,13 @@ import java.util.List;
 
 public class Open extends ActionHandler {
 
-    private int OBJECT_TO_OPEN = 0;
-    private int ARGS_SIZE = 1;
-    private String BE_OPENED = "be opened";
+    private int objectToOpen = 0;
+    private int argsSize = 1;
+    private String beOpened = "be opened";
 
     public Open(GameObject instance) {
         super(instance);
-        actionsCaused.add(BE_OPENED);
+        actionsCaused.add(beOpened);
     }
 
     @Override
@@ -24,17 +24,17 @@ public class Open extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if (objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != argsSize) {
             return false;
         }
 
         GameObject objectWhoOpens = this.instance;
         List<GameObject> objectsInvolvedForObjectToOpen = new LinkedList<GameObject>();
-        GameObject objectToOpen = objectsInvolved.get(OBJECT_TO_OPEN);
+        GameObject objectToOpen = objectsInvolved.get(objectToOpen);
 
         objectsInvolvedForObjectToOpen.add(objectWhoOpens);
 
-        return objectToOpen.canHandleAction(BE_OPENED, objectsInvolvedForObjectToOpen);
+        return objectToOpen.canHandleAction(beOpened, objectsInvolvedForObjectToOpen);
     }
 
     @Override
@@ -43,13 +43,13 @@ public class Open extends ActionHandler {
             return "invalid command";
         }
 
-        GameObject objectToOpen = objectsInvolved.get(OBJECT_TO_OPEN);
+        GameObject objectToOpen = objectsInvolved.get(objectToOpen);
         List<GameObject> objectsInvolvedForObjectToOpen = new LinkedList<GameObject>();
         GameObject objectWhoOpens = this.instance;
 
         objectsInvolvedForObjectToOpen.add(objectWhoOpens);
 
-        objectToOpen.handleAction(BE_OPENED, objectsInvolved);
+        objectToOpen.handleAction(beOpened, objectsInvolved);
 
         return "opened " + objectToOpen.getName();
     }

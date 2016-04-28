@@ -8,29 +8,29 @@ import java.util.List;
 
 public class Look extends ActionHandler {
 
-    private int OBJECT_TO_LOOK_AT = 0;
-    private int ARGS_SIZE = 1;
-    private String BE_LOOKED_AT = "be looked at";
+    private int objectToLookAt = 0;
+    private int argsSize = 1;
+    private String beLookedAt = "be looked at";
 
     public Look(GameObject instance) {
         super(instance);
-        actionsCaused.add(BE_LOOKED_AT);
+        actionsCaused.add(beLookedAt);
     }
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if (objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != argsSize) {
             return false;
         }
 
         GameObject whoLooks = this.instance;
-        GameObject objectToLookAt = objectsInvolved.get(OBJECT_TO_LOOK_AT);
+        GameObject objectToLookAt = objectsInvolved.get(objectToLookAt);
         List<GameObject> objectsInvolvedForObjectToLookAt = new LinkedList<GameObject>();
 
 
         objectsInvolvedForObjectToLookAt.add(whoLooks);
 
-        return objectToLookAt.canHandleAction(BE_LOOKED_AT, objectsInvolvedForObjectToLookAt);
+        return objectToLookAt.canHandleAction(beLookedAt, objectsInvolvedForObjectToLookAt);
     }
 
     @Override
@@ -45,14 +45,14 @@ public class Look extends ActionHandler {
         }
 
         GameObject whoLooks = this.instance;
-        GameObject objectToLookAt = objectsInvolved.get(OBJECT_TO_LOOK_AT);
+        GameObject objectToLookAt = objectsInvolved.get(objectToLookAt);
         StringBuilder builder = new StringBuilder();
 
         List<GameObject> objectsInvolvedForObjectToLookAt = new LinkedList<GameObject>();
         objectsInvolvedForObjectToLookAt.add(whoLooks);
 
         builder.append("there're ");
-        builder.append( objectToLookAt.handleAction(BE_LOOKED_AT, objectsInvolvedForObjectToLookAt ));
+        builder.append( objectToLookAt.handleAction(beLookedAt, objectsInvolvedForObjectToLookAt ));
 
         return builder.toString();
     }

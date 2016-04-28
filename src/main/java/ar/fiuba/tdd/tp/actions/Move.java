@@ -8,18 +8,18 @@ import java.util.List;
 
 public class Move extends ActionHandler {
 
-    protected int OBJECT_TO_MOVE = 0;
-    protected int WHERE_TO_MOVE = 1;
-    protected int ARGS_SIZE = 2;
-    private String BE_MOVED = "be moved";
-    private String HAVE_MOVED_TO = "have moved to";
+    protected int objectToMove = 0;
+    protected int whereToMove = 1;
+    protected int argsSize = 2;
+    private String beMoved = "be moved";
+    private String haveMovedTo = "have moved to";
     protected ConcreteGameObjectWithParentAndChildren instance;
 
     public Move(ConcreteGameObjectWithParentAndChildren instance) {
         super(instance);
         this.instance = instance;
-        actionsCaused.add(BE_MOVED);
-        actionsCaused.add(HAVE_MOVED_TO);
+        actionsCaused.add(beMoved);
+        actionsCaused.add(haveMovedTo);
     }
 
     @Override
@@ -32,35 +32,35 @@ public class Move extends ActionHandler {
         List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
         objectsInvolvedForObjectToMove.add(this.instance);
         objectsInvolvedForWhereToMove.add(this.instance);
-        GameObject whereToMove = objectsInvolved.get(WHERE_TO_MOVE);
-        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
+        GameObject whereToMove = objectsInvolved.get(whereToMove);
+        GameObject objectToMove = objectsInvolved.get(objectToMove);
         objectsInvolvedForObjectToMove.add(whereToMove);
         objectsInvolvedForWhereToMove.add(objectToMove);
 
-        objectToMove.handleAction(BE_MOVED, objectsInvolvedForObjectToMove);
-        whereToMove.handleAction(HAVE_MOVED_TO, objectsInvolvedForWhereToMove);
+        objectToMove.handleAction(beMoved, objectsInvolvedForObjectToMove);
+        whereToMove.handleAction(haveMovedTo, objectsInvolvedForWhereToMove);
 
         return "moved " + objectToMove.getName() + " to " + whereToMove.getName();
     }
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if (objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != argsSize) {
             return false;
         }
 
-        GameObject whereToMove = objectsInvolved.get(WHERE_TO_MOVE);
+        GameObject whereToMove = objectsInvolved.get(whereToMove);
         List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<GameObject>();
         objectsInvolvedForObjectToMove.add(this.instance);
         objectsInvolvedForObjectToMove.add(whereToMove);
 
-        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
+        GameObject objectToMove = objectsInvolved.get(objectToMove);
         List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
         objectsInvolvedForWhereToMove.add(this.instance);
         objectsInvolvedForWhereToMove.add(objectToMove);
 
-        return objectToMove.canHandleAction(BE_MOVED, objectsInvolvedForObjectToMove)
-                && whereToMove.canHandleAction(HAVE_MOVED_TO, objectsInvolvedForWhereToMove);
+        return objectToMove.canHandleAction(beMoved, objectsInvolvedForObjectToMove)
+                && whereToMove.canHandleAction(haveMovedTo, objectsInvolvedForWhereToMove);
     }
 
     @Override

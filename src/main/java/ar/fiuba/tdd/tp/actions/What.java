@@ -6,13 +6,11 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Master on 27/04/2016.
- */
+
 public class What extends ActionHandler {
 
-    private int WHO_TO_ASK = 0;
-    private int ARGS_SIZE = 1;
+    private int whoToAsk = 0;
+    private int argsSize = 1;
 
     public What(GameObject instance) {
         super(instance);
@@ -25,7 +23,7 @@ public class What extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if (objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != argsSize) {
             return false;
         }
         return true;
