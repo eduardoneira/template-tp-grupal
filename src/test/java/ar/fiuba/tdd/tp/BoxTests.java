@@ -5,6 +5,7 @@ import ar.fiuba.tdd.tp.objects.concrete.Box;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.player.Player;
+import ar.fiuba.tdd.tp.objects.general.GameObject;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -63,10 +64,10 @@ public class BoxTests {
 
         player.addAction(new Pick(player));
         assert(box.contains("key"));
-        player.doAction("pick",
-                new ArrayList<String>() {
+        player.handleAction("pick",
+                new ArrayList<GameObject>() {
                     {
-                        add(key.getName());
+                        add(key);
                     }
                 });
         assert (!box.contains("key"));

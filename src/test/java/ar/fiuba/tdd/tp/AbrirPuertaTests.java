@@ -8,6 +8,7 @@ import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.door.Door;
 import ar.fiuba.tdd.tp.objects.concrete.door.LockedDoor;
 import ar.fiuba.tdd.tp.objects.concrete.player.Player;
+import ar.fiuba.tdd.tp.objects.general.GameObject;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -53,10 +54,10 @@ public class AbrirPuertaTests {
         player.placeInRoom(room);
 
         assert (door.isClosed());
-        player.doAction("open",
-                new ArrayList<String>() {
+        player.handleAction("open",
+                new ArrayList<GameObject>() {
                     {
-                        add("door");
+                        add(door);
                     }
                 } );
         assert (door.isOpen());
@@ -77,10 +78,10 @@ public class AbrirPuertaTests {
         player.placeInRoom(room);
 
         assert (lockedDoor.isClosed());
-        player.doAction("open", new ArrayList<String>(){{add("door");}});
+        player.handleAction("open", new ArrayList<GameObject>(){{add(lockedDoor);}});
         assert (lockedDoor.isClosed());
         player.addAction(new Unlock(player, key));
-        player.doAction("open", new ArrayList<String>(){{add("door");}});
+        player.handleAction("open", new ArrayList<GameObject>(){{add(lockedDoor);}});
         assert (lockedDoor.isOpen());
     }
 }
