@@ -12,7 +12,8 @@ class ClientWorker implements Runnable {
 
     ClientWorker(ServerSocket server, String gameName) {
         this.serverSocket = server;
-        this.game = Motor.createGame(gameName);
+        Motor motor = new Motor(gameName);
+        this.game = motor.createGame(gameName);
     }
 
     public void run() {

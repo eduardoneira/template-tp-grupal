@@ -60,8 +60,8 @@ public class Server implements ServerResponses {
     private static BufferedReader init() throws IOException {
         gamesData = new HashMap<String,ServerGameData>();
         commands = new ArrayList<AbstractCommandProxy>();
-        
-        for (String game : Motor.GAMESAVAILABLE) {
+        Motor motor = new Motor("");
+        for (String game : motor.getNamesGames()) {
             gamesData.put(game.toLowerCase(),new ServerGameData(game));
         }
         

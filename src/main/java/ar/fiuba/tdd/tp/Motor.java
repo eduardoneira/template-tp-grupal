@@ -1,4 +1,5 @@
 package ar.fiuba.tdd.tp;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Motor {
@@ -16,7 +17,7 @@ public class Motor {
         //games.add( new HanoiTowers() );
         //games.add( new TreasureHunt() );
     }
-    Game getGame(String game){
+    Game createGame(String game){
         for (Game actualGame: games){
             if ( game.equals(actualGame.getName()) ){
                 return actualGame;
@@ -25,16 +26,15 @@ public class Motor {
         return null;
     }
 
-    // TODO: Refactor para evitar switch, cuando este la factory posta hay que meterlo ahi y sale
-    public static Game createGame(String game) {
-        if ( game.equals("Fetch Quest") ) {
-            return new FetchQuest();
-        } else {
-            return new FetchQuest();
+    public LinkedList<String> getNamesGames (){
+        LinkedList names = new LinkedList<String> ();
+        for ( Game actualGame: games) {
+            names.add(actualGame.getName());
         }
+        return names;
     }
 
-    private boolean isValidGame(String possibleGame) {
+    public boolean isValidGame(String possibleGame) {
         for ( Game actualGame: games) {
             if ( possibleGame.toLowerCase().equals(actualGame.getName().toLowerCase())) {
                 return true;

@@ -24,12 +24,13 @@ public class LoadGameServerCommandProxy extends AbstractCommandProxy {
     }
 
     private boolean isValidGame(String gameName) {
-        if (Motor.isValidGame(gameName)) {
+        Motor motor = new Motor(gameName);
+        if (motor.isValidGame(gameName)) {
             return true;
         } else {
             System.out.println(notSuchGame);
-            for ( String game : Motor.GAMESAVAILABLE) {
-                System.out.println(game);
+            for ( String name: motor.getNamesGames()) {
+                System.out.println(name);
             }
             return false;
         }
