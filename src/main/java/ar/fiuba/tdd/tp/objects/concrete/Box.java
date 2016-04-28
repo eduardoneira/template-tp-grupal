@@ -22,6 +22,11 @@ public class Box extends ConcreteGameObjectWithParentAndChildren implements Open
     }
 
     @Override
+    public boolean isOpen() {
+        return open.getValue();
+    }
+
+    @Override
     public void setOpen() {
         open.setTrue();
     }
@@ -29,11 +34,6 @@ public class Box extends ConcreteGameObjectWithParentAndChildren implements Open
     @Override
     public void setClosed() {
         open.setFalse();
-    }
-
-    @Override
-    public boolean isOpen() {
-        return open.getValue();
     }
 
     @Override

@@ -6,9 +6,6 @@ import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
 import java.util.List;
 
-/**
- * Created by Master on 27/04/2016.
- */
 public class HaveMovedFrom extends ActionHandler {
 
     private static int OBJECT_TO_MOVE = 0;

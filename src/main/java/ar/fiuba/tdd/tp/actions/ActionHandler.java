@@ -14,7 +14,7 @@ public abstract class ActionHandler {
     public abstract String handleAction(String actionName, List<GameObject> objectsInvolved);
 
     public boolean canHandleAction(String actionName, List<GameObject> objectsInvolved) {
-        if (!actionName.equals(getName())) {
+        if (!actionName.equals(this.getName())) {
             return false;
         }
         return canIHandleAction(objectsInvolved);
