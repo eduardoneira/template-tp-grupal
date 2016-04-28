@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.actions.lookat;
+package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Look extends ActionHandler {
 
-    private static int OBJECT_TO_LOOK_AT = 0;
-    private static int ARGS_SIZE = 1;
+    private int OBJECT_TO_LOOK_AT = 0;
+    private int ARGS_SIZE = 1;
 
     public Look(GameObject instance) {
         super(instance);

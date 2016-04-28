@@ -1,10 +1,9 @@
 package ar.fiuba.tdd.tp.objects.concrete;
 
 import ar.fiuba.tdd.tp.abilities.control.OpenCloseControlFunctions;
-import ar.fiuba.tdd.tp.actions.lookat.BeLookedAtAndChildrenChangeVisibility;
-import ar.fiuba.tdd.tp.actions.move.HaveMovedFrom;
-import ar.fiuba.tdd.tp.actions.move.HaveMovedFromChangesPermission;
-import ar.fiuba.tdd.tp.actions.move.HaveMovedTo;
+import ar.fiuba.tdd.tp.actions.BeLookedAtAndChildrenChangeVisibility;
+import ar.fiuba.tdd.tp.actions.HaveMovedFromChangesPermission;
+import ar.fiuba.tdd.tp.actions.HaveMovedTo;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 

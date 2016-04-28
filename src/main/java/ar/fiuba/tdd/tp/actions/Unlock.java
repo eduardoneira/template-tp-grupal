@@ -1,27 +1,30 @@
-package ar.fiuba.tdd.tp.actions.talk;
+package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
-import ar.fiuba.tdd.tp.objects.concrete.player.Player;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import java.util.List;
 
-public class BeTalkedTo extends ActionHandler {
+public class Unlock extends ActionHandler {
 
-    protected static int OBJECT_WHO_TALKS = 0;
-    protected static int ARGS_SIZE = 1;
+    private int key;
 
-    public BeTalkedTo(GameObject instance) {
+    private int OBJECT_TO_UNLOCK = 0;
+    private int ARGS_SIZE = 1;
+
+    public Unlock(GameObject instance, int key) {
         super(instance);
+        this.key = key;
     }
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        return "Hi!";
+        // cabeza, si alguien tiene esta accion puede unlockear, aunque no hay llamada que lo haga explicitamente
+        return "done";
     }
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if (objectsInvolved.size() != ARGS_SIZE) {
+        if(objectsInvolved.size() != ARGS_SIZE) {
             return false;
         }
         return true;
@@ -29,6 +32,6 @@ public class BeTalkedTo extends ActionHandler {
 
     @Override
     public String getName() {
-        return "be talked to";
+        return "unlock" + key;
     }
 }

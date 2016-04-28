@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.actions.pick.Pick;
+import ar.fiuba.tdd.tp.actions.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Box;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
@@ -41,7 +41,7 @@ public class BoxTests {
     public void placeObjectInBox() {
         placeBoxInRoom();
 
-        key = new Key("key");
+        key = new Key("key", 2);
         box.addChild(key);
         key.setParent(box);
 

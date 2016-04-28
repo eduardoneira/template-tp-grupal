@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.actions.move;
+package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
@@ -8,16 +8,11 @@ import java.util.List;
 
 public class BeMoved extends ActionHandler {
 
-    private static int WHO_MOVES = 0;
-    private static int WHERE_TO_MOVE = 1;
-    private static int ARGS_SIZE = 2;
+    private int WHO_MOVES = 0;
+    private int WHERE_TO_MOVE = 1;
+    private int ARGS_SIZE = 2;
 
     ParentState parent;
-
-    public BeMoved(GameObject instance) {
-        super(instance);
-        parent = new ParentState();
-    }
 
     public BeMoved(GameObject instance, ParentState parent) {
         super(instance);

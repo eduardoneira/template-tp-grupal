@@ -14,4 +14,6 @@ public interface GameObject {
     void addAction(ActionHandler action);
 
     void removeAction(String actionName);
+
+    List<ActionHandler> getActions();
 }

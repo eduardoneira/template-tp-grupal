@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.actions.move;
+package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
@@ -7,18 +7,17 @@ import java.util.List;
 
 public class HaveMovedTo extends ActionHandler {
 
-    private static int WHO_MOVES = 0;
-    private static int OBJECT_TO_MOVE = 1;
-    private static int ARGS_SIZE = 2;
+    private int WHO_MOVES = 0;
+    private int OBJECT_TO_MOVE = 1;
+    private int ARGS_SIZE = 2;
 
-    ChildrenState children;
-    GameObject instance;
+    protected ChildrenState children;
+    protected GameObject instance;
 
     public HaveMovedTo(GameObject instance, ChildrenState children) {
         super(instance);
         this.children = children;
     }
-
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {

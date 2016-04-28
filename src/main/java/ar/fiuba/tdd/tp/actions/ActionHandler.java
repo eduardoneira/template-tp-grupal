@@ -25,4 +25,6 @@ public abstract class ActionHandler {
     protected abstract  boolean canIHandleAction(List<GameObject> objectsInvolved);
 
     public abstract String getName();
+
+    // utils, tal vez van en otra clase
 }

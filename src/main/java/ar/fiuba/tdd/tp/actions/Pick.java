@@ -1,13 +1,13 @@
-package ar.fiuba.tdd.tp.actions.pick;
+package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.actions.move.Move;
+import ar.fiuba.tdd.tp.actions.Move;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import java.util.List;
 
 public class Pick extends Move {
 
-    private static int OBJECT_TO_MOVE = 0;
-    private static int ARGS_SIZE = 1;
+    private int OBJECT_TO_MOVE = 0;
+    private int ARGS_SIZE = 1;
 
     public Pick(GameObject instance) {
         super(instance);
