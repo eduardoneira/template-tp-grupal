@@ -2,7 +2,7 @@ package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.objects.concrete.Disc;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
-import ar.fiuba.tdd.tp.objects.concrete.Torre;
+import ar.fiuba.tdd.tp.objects.concrete.Tower;
 
 /**
  * Created by fernando on 28/04/16.
@@ -10,9 +10,9 @@ import ar.fiuba.tdd.tp.objects.concrete.Torre;
 
 public class TorresHanoi extends Game {
     Room room;
-    Torre torre1;
-    Torre torre2;
-    Torre torre3;
+    Tower torre1;
+    Tower torre2;
+    Tower torre3;
     Disc disc1;
     Disc disc2;
     Disc disc3;
@@ -26,9 +26,9 @@ public class TorresHanoi extends Game {
         keywords.add(nameRoom);
         player.placeInRoom(room);
 
-        torre1 = new Torre("torre1");
-        torre2 = new Torre("torre2");
-        torre3 = new Torre("torre3");
+        torre1 = new Tower("torre1");
+        torre2 = new Tower("torre2");
+        torre3 = new Tower("torre3");
         disc1 = new Disc("disc1",1);
         disc2 = new Disc("disc2",2);
         disc3 = new Disc("disc3",3);
