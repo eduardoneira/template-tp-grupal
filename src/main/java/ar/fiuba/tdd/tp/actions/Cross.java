@@ -21,32 +21,22 @@ public class Cross extends ChangeRoom {
         boolean sheepInShore = false;
         boolean otherInShore = false;
         for (GameObject child:
-        (((ConcreteGameObjectWithChildren)instance.getParent()).getChildren())) {
-            if (child instanceof Sheep) {
-                sheepInShore = true;
-            }
-            if (child instanceof Cabbage || child instanceof Wolf) {
-                otherInShore = true;
-            }
+                (((ConcreteGameObjectWithChildren)instance.getParent()).getChildren())) {
+            sheepInShore = (sheepInShore || child instanceof Sheep);
+            otherInShore = (otherInShore || (child instanceof Cabbage || child instanceof Wolf));
         }
-        if (sheepInShore && otherInShore) {
-            return false;
-        }
-        return super.canIHandleAction(objectsInvolved);
+        return (!(sheepInShore && otherInShore) && super.canIHandleAction(objectsInvolved));
     }
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        if (!canIHandleAction(objectsInvolved)) {
-            return "invalid command";
-        }
         if (super.handleAction(getName(), objectsInvolved) == "invalid command") {
-            return "invalid command";
+            return "You can't cross, things will be eaten";
         }
         return "crossed";
     }
 
-        @Override
+    @Override
     public String getName() {
         return "cross";
     }
