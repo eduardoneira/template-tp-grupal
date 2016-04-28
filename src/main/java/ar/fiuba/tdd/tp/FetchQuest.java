@@ -4,6 +4,11 @@ import ar.fiuba.tdd.tp.actions.pick.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 
 public class FetchQuest extends Game {
+
+    public boolean checkWinCondition() {
+        return player.contains("stick");
+    }
+
     public FetchQuest() {
         super("Fetch Quest");
         String nameRoom = "room";

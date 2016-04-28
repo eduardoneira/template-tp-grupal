@@ -4,7 +4,7 @@ import ar.fiuba.tdd.tp.objects.concrete.player.Player;
 
 import java.util.*;
 
-public class Game {
+public abstract class Game {
 
     protected Player player;
     protected String name;
@@ -24,6 +24,8 @@ public class Game {
         this.keywords = new HashSet<String>();
     }
 
+    public abstract boolean checkWinCondition();
+
     public String processCommand(String stringCommand) {
 
         System.out.println("SERVER PROCESS " + stringCommand);
@@ -38,7 +40,12 @@ public class Game {
             String command = parsedCommand.get(0);
             parsedCommand.remove(0);
 
-            return player.doAction(command, parsedCommand);
+            String result = player.doAction(command, parsedCommand);
+            if (checkWinCondition()) {
+                return "ganaste";
+            } else {
+                return result;
+            }
         } else {
             return "invalid command";
         }
