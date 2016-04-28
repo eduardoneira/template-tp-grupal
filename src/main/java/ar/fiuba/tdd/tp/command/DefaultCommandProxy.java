@@ -3,7 +3,7 @@ package ar.fiuba.tdd.tp.command;
 public class DefaultCommandProxy extends AbstractCommandProxy {
 
     public DefaultCommandProxy(String name, AbstractCommand command) {
-		super(name, command);
+        super(name, command);
     }
 
     @Override
