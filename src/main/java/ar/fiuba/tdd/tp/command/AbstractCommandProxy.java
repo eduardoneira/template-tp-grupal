@@ -5,7 +5,7 @@ public abstract class AbstractCommandProxy {
     protected AbstractCommand command;
 
     AbstractCommandProxy(String name, AbstractCommand command) {
-		super();
+        super();
         this.name = name;
         this.command = command;
     }

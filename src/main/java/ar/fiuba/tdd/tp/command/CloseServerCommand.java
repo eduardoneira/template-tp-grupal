@@ -12,7 +12,7 @@ public class CloseServerCommand implements AbstractCommand {
 
     @Override
     public void handle(Object[] param) {
-    	Map<String,ServerGameData> map = Server.getGamesData();
+        Map<String,ServerGameData> map = Server.getGamesData();
         for (String key : map.keySet()) {
             map.get(key).stopGame();
         }
