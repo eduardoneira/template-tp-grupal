@@ -17,7 +17,7 @@ public class Take extends Pick {
         if (super.handleAction(getName(), objectsInvolved) == "invalid command") {
             return "The boat is full!";
         }
-        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
+        GameObject objectToMove = objectsInvolved.get(objectToMove);
         return "taken " + objectToMove.getName();
     }
 

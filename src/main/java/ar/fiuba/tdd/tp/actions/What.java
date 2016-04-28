@@ -33,7 +33,7 @@ public class What extends ActionHandler {
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
         // estaria mejor que ni le pregunte, me fijo de mis acciones cuales me puede responder
-        GameObject objectToAsk = objectsInvolved.get(WHO_TO_ASK);
+        GameObject objectToAsk = objectsInvolved.get(whoToAsk);
         StringBuilder builder = new StringBuilder();
         builder.append("You can ");
 
