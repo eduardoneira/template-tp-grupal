@@ -15,7 +15,6 @@ public class Client implements ClientResponses {
 
             try {
                 playGame(out,in,stdIn);
-
                 socket.close();
                 System.out.println(EXITSUCCESSFUL);
             } catch (IOException e) {
