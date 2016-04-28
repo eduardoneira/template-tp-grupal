@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.tp.actions.move;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
+import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithChildren;
+import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.*;
@@ -11,9 +13,11 @@ public class Move extends ActionHandler {
     private static int OBJECT_TO_MOVE = 0;
     private static int WHERE_TO_MOVE = 1;
     private static int ARGS_SIZE = 2;
+    protected ConcreteGameObjectWithParentAndChildren instance;
 
-    public Move(GameObject instance) {
+        public Move(ConcreteGameObjectWithParentAndChildren instance) {
         super(instance);
+        this.instance = instance;
     }
 
     @Override

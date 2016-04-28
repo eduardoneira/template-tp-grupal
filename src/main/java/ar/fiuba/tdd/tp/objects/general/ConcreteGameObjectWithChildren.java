@@ -25,6 +25,11 @@ public class ConcreteGameObjectWithChildren extends ConcreteGameObject implement
     }
 
     @Override
+    public boolean isEmpty() {
+        return children.isEmpty();
+    }
+
+    @Override
     public GameObject getChild(String name) {
         return children.getChild(name);
     }

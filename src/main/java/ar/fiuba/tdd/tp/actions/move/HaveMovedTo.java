@@ -8,11 +8,11 @@ import java.util.List;
 
 public class HaveMovedTo extends ActionHandler {
 
-    private static int WHO_MOVES = 0;
-    private static int OBJECT_TO_MOVE = 1;
-    private static int ARGS_SIZE = 2;
+    protected static int WHO_MOVES = 0;
+    protected static int OBJECT_TO_MOVE = 1;
+    protected static int ARGS_SIZE = 2;
 
-    ChildrenState children;
+    protected ChildrenState children;
     GameObject instance;
 
     public HaveMovedTo(GameObject instance, ChildrenState children) {

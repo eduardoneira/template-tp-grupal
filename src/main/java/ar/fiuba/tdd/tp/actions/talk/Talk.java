@@ -16,15 +16,20 @@ public class Talk extends ActionHandler {
     }
 
     @Override
+    public String getName() {
+        return "talk";
+    }
+
+    @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         if (!canHandleAction(actionName, objectsInvolved)) {
             return "invalid command";
         }
 
-        GameObject objectToTalk = objectsInvolved.get(OBJECT_TO_TALK);
-        GameObject objectWhoTalks = this.instance;
-
         List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();
+        GameObject objectWhoTalks = this.instance;
+        GameObject objectToTalk = objectsInvolved.get(OBJECT_TO_TALK);
+
         objectsInvolvedForObjectToTalk.add(objectWhoTalks);
 
         return objectToTalk.handleAction("be talked to", objectsInvolvedForObjectToTalk);
@@ -45,8 +50,5 @@ public class Talk extends ActionHandler {
         return objectToTalk.canHandleAction("be talked to", objectsInvolvedForObjectToTalk);
     }
 
-    @Override
-    public String getName() {
-        return "talk";
-    }
+
 }

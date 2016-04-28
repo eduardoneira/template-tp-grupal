@@ -19,17 +19,17 @@ public class BeOpened extends ActionHandler {
     }
 
     @Override
+    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
+        open.setTrue();
+        return "done";
+    }
+
+    @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
         if (objectsInvolved.size() != ARGS_SIZE) {
             return false;
         }
         return true;
-    }
-
-    @Override
-    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        open.setTrue();
-        return "done";
     }
 
     @Override

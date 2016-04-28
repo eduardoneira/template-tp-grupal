@@ -6,7 +6,7 @@ import ar.fiuba.tdd.tp.objects.general.*;
 
 import java.util.*;
 
-public class Player extends ConcreteGameObjectWithChildren {
+public class Player extends ConcreteGameObjectWithParentAndChildren {
 
     private Room scene;
 
