@@ -21,9 +21,10 @@ public class OpenDoor2 extends Game {
     public OpenDoor2() {
 
         super("Open Door 2");
-        box = new Box(nameBox);
         room = new Room(nameRoom);
         key = new Key(nameKey, 1);
+        box = new Box(nameBox);
+
         door = new LockedDoor(nameDoor,1);
         keywords.add(nameKey);
         keywords.add(nameRoom);
@@ -39,13 +40,12 @@ public class OpenDoor2 extends Game {
 
         box.addChild(key);
         room.addChild(box);
-
+        objects.put(box.getName(), box);
+        objects.put(room.getName(), room);
         addObjects();
     }
 
     public void addObjects() {
-        objects.put(box.getName(), box);
-        objects.put(room.getName(), room);
         objects.put(key.getName(), key);
         objects.put(door.getName(), door);
     }

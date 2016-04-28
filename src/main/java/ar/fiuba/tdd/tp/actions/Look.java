@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Look extends ActionHandler {
 
+    private String beLookedAt = "be looked at";
     private int idObjectToLookAt = 0;
     private int argsSize = 1;
-    private String beLookedAt = "be looked at";
 
     public Look(GameObject instance) {
         super(instance);

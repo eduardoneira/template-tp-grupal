@@ -6,9 +6,12 @@ public class PlayerCrossShores extends Player {
 
     public PlayerCrossShores(String name) {
         super(name);
-        addAction(new HaveMovedFrom(this, children));
+        init();
+    }
+    private void init(){
         addAction(new Cross(this, parent));
         addAction(new Leave(this));
         addAction(new Take(this));
+        addAction(new HaveMovedFrom(this, children));
     }
 }

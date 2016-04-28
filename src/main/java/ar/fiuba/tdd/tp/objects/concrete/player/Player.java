@@ -11,10 +11,10 @@ public class Player extends ConcreteGameObjectWithParentAndChildren {
 
     public Player(String name) {
         super(name);
+        addAction(new Look(this));
         addAction(new BeMoved(this, parent));
         addAction(new HaveMovedTo(this, children));
         addAction(new What(this));
-        addAction(new Look(this));
     }
 
     public void placeInRoom(Room room) {

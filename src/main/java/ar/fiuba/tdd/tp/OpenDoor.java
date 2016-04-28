@@ -21,20 +21,18 @@ public class OpenDoor extends Game {
         key = new Key(nameKey, 1);
         door = new LockedDoor(nameDoor,1);
         keywords.add(nameKey);
+        Pick actionPickup = new Pick(player);
         keywords.add(nameRoom);
         player.placeInRoom(room);
         room.addChild(player);
-
         Open actionOpen = new Open(player);
-        Pick actionPickup = new Pick(player);
         keywords.add(actionPickup.getName());
         player.addAction(actionPickup);
         player.addAction(actionOpen);
-
-        room.addChild(key);
-
         objects.put(room.getName(), room);
         objects.put(door.getName(), door);
+        room.addChild(key);
+
         objects.put(key.getName(), key);
     }
 

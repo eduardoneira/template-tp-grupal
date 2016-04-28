@@ -79,12 +79,13 @@ public class ConcreteGameObject implements GameObject {
 
     @Override
     public List<String> getActionNames() {
+
         List<String> allActions = new LinkedList<>();
-        for(String actionName : actions.keySet()) {
-            for( ActionHandler action : actions.get(actionName)) {
-                allActions.add(action.getName());
-            }
+
+        for( ActionHandler action : getActions()) {
+            allActions.add(action.getName());
         }
+
         return allActions;
     }
 }
