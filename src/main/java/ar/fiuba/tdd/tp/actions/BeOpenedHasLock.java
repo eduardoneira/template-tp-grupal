@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,11 +29,11 @@ public class BeOpenedHasLock extends BeOpened {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if(!super.canIHandleAction(objectsInvolved)) {
+        if (!super.canIHandleAction(objectsInvolved)) {
             return false;
         }
 
-        if(locked.getValue()) {
+        if (locked.getValue()) {
             GameObject objectThatUnlocksMe = objectsInvolved.get(OBJECT_THAT_UNLOCKS_ME);
 
             List<GameObject> objectsInvolvedForUnlocker = new LinkedList<GameObject>();

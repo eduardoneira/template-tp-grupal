@@ -1,33 +1,35 @@
-package ar.fiuba.tdd.tp.actions;
+package ar.fiuba.tdd.tp.actions.leave;
 
+import ar.fiuba.tdd.tp.actions.Move;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.List;
 
-public class Pick extends Move {
+public class Leave extends Move {
 
-    private int OBJECT_TO_MOVE = 0;
-    private int ARGS_SIZE = 1;
+    private static int OBJECT_TO_MOVE = 0;
+    private static int ARGS_SIZE = 1;
 
-    public Pick(ConcreteGameObjectWithParentAndChildren instance) {
+    public Leave(ConcreteGameObjectWithParentAndChildren instance) {
         super(instance);
     }
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
-        GameObject whereToMove = this.instance;
+        GameObject whereToMove = this.instance.getParent();
         objectsInvolved.add(whereToMove);
 
         super.handleAction(getName(), objectsInvolved);
 
         GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
-        return "picked " + objectToMove.getName();
+        return "left " + objectToMove.getName();
     }
 
     @Override
     public String getName() {
-        return "pick";
+        return "leave";
     }
+
 }

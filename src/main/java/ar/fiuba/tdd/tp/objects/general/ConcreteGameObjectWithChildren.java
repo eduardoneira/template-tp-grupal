@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp.objects.general;
 
 import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
+
 import java.util.List;
 
 public class ConcreteGameObjectWithChildren extends ConcreteGameObject implements ChildrenControlFunctions {
@@ -21,6 +22,11 @@ public class ConcreteGameObjectWithChildren extends ConcreteGameObject implement
     @Override
     public void removeChild(GameObject child) {
         children.removeChild(child);
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return children.isEmpty();
     }
 
     @Override

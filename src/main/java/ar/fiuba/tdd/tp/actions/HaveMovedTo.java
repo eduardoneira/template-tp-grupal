@@ -3,16 +3,16 @@ package ar.fiuba.tdd.tp.actions;
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
+
 import java.util.List;
 
 public class HaveMovedTo extends ActionHandler {
 
-    private int WHO_MOVES = 0;
-    private int OBJECT_TO_MOVE = 1;
-    private int ARGS_SIZE = 2;
 
     protected ChildrenState children;
-    protected GameObject instance;
+    protected static int WHO_MOVES = 0;
+    protected static int OBJECT_TO_MOVE = 1;
+    protected static int ARGS_SIZE = 2;
 
     public HaveMovedTo(GameObject instance, ChildrenState children) {
         super(instance);

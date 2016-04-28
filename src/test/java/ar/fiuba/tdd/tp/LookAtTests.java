@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-public class MainTests {
+public class LookAtTests {
 
     private Room room;
     private Player player;
@@ -28,14 +28,13 @@ public class MainTests {
 
         player = new PlayerCursedObject("player");
         player.placeInRoom(room);
+        player.addAction(new Look(player));
 
         stick = new Stick("stick");
     }
 
     @Test
     public void lookAtEmptyRoomTest() {
-
-        player.addAction(new Look(player));
 
         assertEquals((player.doAction("look", new ArrayList<String>() {
             {
@@ -79,19 +78,5 @@ public class MainTests {
                 add(room);
             }
         })).trim(),"there're a room a box a stick");
-    }
-
-    @Test
-    public void whatStick() {
-        room.addChild(stick);
-        stick.setParent(room);
-
-        player.addAction(new What(player));
-
-        assertEquals((player.handleAction("what", new ArrayList<GameObject>() {
-            {
-                add(stick);
-            }
-        })).trim(),"it can ");
     }
 }

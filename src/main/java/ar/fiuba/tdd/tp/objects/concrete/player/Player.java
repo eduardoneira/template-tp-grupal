@@ -3,9 +3,10 @@ package ar.fiuba.tdd.tp.objects.concrete.player;
 import ar.fiuba.tdd.tp.actions.HaveMovedTo;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.general.*;
+
 import java.util.*;
 
-public class Player extends ConcreteGameObjectWithChildren {
+public class Player extends ConcreteGameObjectWithParentAndChildren {
 
     private Room scene;
 

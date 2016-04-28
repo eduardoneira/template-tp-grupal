@@ -25,6 +25,16 @@ public class What extends ActionHandler {
         List<GameObject> whoAsks = new LinkedList<>();
         whoAsks.add(this.instance);
         return objectToAsk.handleAction("be asked what", whoAsks);
+
+        // estaria mejor que ni le pregunte, me fijo de mis acciones cuales me puede responder
+        /*StringBuilder builder = new StringBuilder();
+        builder.append("You can ");
+
+        for(ActionHandler action : this.instance.getActions()) {
+            if()
+                builder.append(action.getName());
+            builder.append(" ");
+        }*/
     }
 
     @Override

@@ -22,7 +22,7 @@ public class HaveEverythingStolen extends HaveMovedFrom {
 
         GameObject thief = objectsInvolved.get(OBJECT_WHO_STEALS);
 
-        for(GameObject child : children.getChildren() ) {
+        for (GameObject child : children.getChildren() ) {
             children.removeChild(child);
         }
 

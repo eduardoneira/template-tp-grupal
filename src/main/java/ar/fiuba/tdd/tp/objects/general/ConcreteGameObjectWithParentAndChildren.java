@@ -4,9 +4,11 @@ import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
 import ar.fiuba.tdd.tp.abilities.control.ParentControlFunctions;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
+
 import java.util.List;
 
-public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject implements ParentControlFunctions, ChildrenControlFunctions {
+public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
+        implements ParentControlFunctions, ChildrenControlFunctions {
 
     protected ChildrenState children;
     protected ParentState parent;
@@ -40,6 +42,11 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject 
     @Override
     public List<GameObject> getChildren() {
         return children.getChildren();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return children.isEmpty();
     }
 
     @Override

@@ -8,7 +8,6 @@ public abstract class ActionHandler {
 
     protected GameObject instance;
 
-
     public ActionHandler(GameObject instance) {
         this.instance = instance;
     }
