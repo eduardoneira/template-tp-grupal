@@ -1,10 +1,12 @@
-package ar.fiuba.tdd.tp.actions;
+package ar.fiuba.tdd.tp.actions.talk;
 
+import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Talk extends ActionHandler {
+
     private static int OBJECT_TO_TALK = 0;
     private static int ARGS_SIZE = 1;
 
@@ -24,11 +26,7 @@ public class Talk extends ActionHandler {
         List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();
         objectsInvolvedForObjectToTalk.add(objectWhoTalks);
 
-        objectToTalk.handleAction("be talk", objectsInvolved);
-
-        return "opened " + objectToTalk.getName();
-
-
+        return objectToTalk.handleAction("be talked to", objectsInvolvedForObjectToTalk);
     }
 
     @Override
@@ -43,7 +41,7 @@ public class Talk extends ActionHandler {
         List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();
         objectsInvolvedForObjectToTalk.add(objectWhoTalk);
 
-        return objectToTalk.canHandleAction("be talk", objectsInvolvedForObjectToTalk);
+        return objectToTalk.canHandleAction("be talked to", objectsInvolvedForObjectToTalk);
     }
 
     @Override
