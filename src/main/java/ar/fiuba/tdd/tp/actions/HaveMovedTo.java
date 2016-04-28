@@ -14,8 +14,6 @@ public class HaveMovedTo extends ActionHandler {
     protected static int OBJECT_TO_MOVE = 1;
     protected static int ARGS_SIZE = 2;
 
-    protected ChildrenState children;
-
     public HaveMovedTo(GameObject instance, ChildrenState children) {
         super(instance);
         this.children = children;
