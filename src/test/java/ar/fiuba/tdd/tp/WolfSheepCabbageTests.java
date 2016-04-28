@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static org.junit.Assert.*;
+
 public class WolfSheepCabbageTests {
 
     private Room southShore;
@@ -71,7 +73,7 @@ public class WolfSheepCabbageTests {
             }
         }));
         System.out.println(player.currentRoom().getName());
-        //assert (player.currentRoom().getName() == "north-shore");
+        assertEquals("north-shore", player.currentRoom().getName());
 
     }
 }

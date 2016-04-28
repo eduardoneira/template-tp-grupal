@@ -36,9 +36,9 @@ public class LookAtTests {
     @Test
     public void lookAtEmptyRoomTest() {
 
-        assertEquals("a room", (player.doAction("look", new ArrayList<String>() {
+        assertEquals("a room", (player.handleAction("look", new ArrayList<GameObject>() {
             {
-                add(room.getName());
+                add(room);
             }
         })));
     }
