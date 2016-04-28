@@ -21,6 +21,9 @@ public class ConcreteGameObject implements GameObject {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
+        if(!actions.containsKey(actionName)) {
+            return "";
+        }
         return actions.get(actionName).handleAction(actionName, objectsInvolved);
     }
 

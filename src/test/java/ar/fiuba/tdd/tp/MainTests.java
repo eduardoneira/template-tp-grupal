@@ -5,6 +5,7 @@ import ar.fiuba.tdd.tp.objects.concrete.Box;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.Stick;
 import ar.fiuba.tdd.tp.objects.concrete.player.Player;
+import ar.fiuba.tdd.tp.objects.general.GameObject;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -47,9 +48,9 @@ public class MainTests {
         player.placeInRoom(room);
         player.addAction(new Look(player));
 
-        assertEquals((player.doAction("look", new ArrayList<String>() {
+        assertEquals((player.handleAction("look", new ArrayList<GameObject>() {
             {
-                add(room.getName());
+                add(room);
             }
         })).trim(),"there're a stick");
     }
@@ -70,16 +71,16 @@ public class MainTests {
 
         player.placeInRoom(room);
         player.addAction(new Look(player));
-        assertEquals((player.doAction("look", new ArrayList<String>() {
+        assertEquals((player.handleAction("look", new ArrayList<GameObject>() {
             {
-                add(room.getName());
+                add(room);
             }
         })).trim(),"there're a room a box");
 
         box.setOpen();
-        assertEquals((player.doAction("look", new ArrayList<String>() {
+        assertEquals((player.handleAction("look", new ArrayList<GameObject>() {
             {
-                add(room.getName());
+                add(room);
             }
         })).trim(),"there're a room a box a stick");
     }
