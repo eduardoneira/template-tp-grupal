@@ -42,9 +42,9 @@ public class Open extends ActionHandler {
         }
 
         GameObject objectToOpen = objectsInvolved.get(OBJECT_TO_OPEN);
+        List<GameObject> objectsInvolvedForObjectToOpen = new LinkedList<GameObject>();
         GameObject objectWhoOpens = this.instance;
 
-        List<GameObject> objectsInvolvedForObjectToOpen = new LinkedList<GameObject>();
         objectsInvolvedForObjectToOpen.add(objectWhoOpens);
 
         objectToOpen.handleAction("be opened", objectsInvolved);

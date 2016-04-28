@@ -21,10 +21,11 @@ public class Look extends ActionHandler {
             return false;
         }
 
-        GameObject objectToLookAt = objectsInvolved.get(OBJECT_TO_LOOK_AT);
         GameObject whoLooks = this.instance;
-
+        GameObject objectToLookAt = objectsInvolved.get(OBJECT_TO_LOOK_AT);
         List<GameObject> objectsInvolvedForObjectToLookAt = new LinkedList<GameObject>();
+
+
         objectsInvolvedForObjectToLookAt.add(whoLooks);
 
         return objectToLookAt.canHandleAction("be looked at", objectsInvolvedForObjectToLookAt);
