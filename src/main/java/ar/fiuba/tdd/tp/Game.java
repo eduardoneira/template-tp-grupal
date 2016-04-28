@@ -24,7 +24,7 @@ public class Game {
         this.keywords = new HashSet<String>();
     }
 
-    public String processComand(String stringCommand) {
+    public String processCommand(String stringCommand) {
 
         System.out.println("SERVER PROCESS " + stringCommand);
         String[] splitCommand = stringCommand.split(" ");

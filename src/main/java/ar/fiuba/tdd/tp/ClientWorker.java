@@ -29,7 +29,7 @@ class ClientWorker implements Runnable {
             inputLine = in.readLine();
             while (inputLine != null ) {
                 System.out.println("INPUT LINE " + inputLine);
-                outputLine = game.processComand(inputLine);
+                outputLine = game.processCommand(inputLine);
                 out.println(outputLine);
                 out.flush();
                 /// TODO: esto es viejo, deberia cambiar pero deberia estar en algun lado la condicion de victoria
