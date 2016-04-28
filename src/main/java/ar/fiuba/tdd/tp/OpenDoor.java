@@ -6,9 +6,6 @@ import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.door.LockedDoor;
 
-/**
- * Created by fernando on 28/04/16.
- */
 public class OpenDoor extends Game {
 
     Room room;

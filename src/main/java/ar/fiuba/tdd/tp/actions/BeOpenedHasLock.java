@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BeOpenedHasLock extends BeOpened {
 
-    private int object_That_Unlocks_Me = 0;
+    private int idObjectThatUnlocksMe = 0;
 
     private BooleanState locked;
     private int key;
@@ -34,7 +34,7 @@ public class BeOpenedHasLock extends BeOpened {
         }
 
         if (locked.getValue()) {
-            GameObject objectThatUnlocksMe = objectsInvolved.get(object_That_Unlocks_Me);
+            GameObject objectThatUnlocksMe = objectsInvolved.get(idObjectThatUnlocksMe);
 
             List<GameObject> objectsInvolvedForUnlocker = new LinkedList<GameObject>();
             objectsInvolvedForUnlocker.add(this.instance);

@@ -21,7 +21,7 @@ public class Pick extends Move {
             return "invalid command";
         }
 
-        GameObject objectToMove = objectsInvolved.get(object_To_Move);
+        GameObject objectToMove = objectsInvolved.get(idObjectToMove);
         return "picked " + objectToMove.getName();
     }
 

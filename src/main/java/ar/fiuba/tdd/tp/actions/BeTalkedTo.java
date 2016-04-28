@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.concrete.player.Player;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
@@ -8,7 +7,7 @@ import java.util.List;
 
 public class BeTalkedTo extends ActionHandler {
 
-    protected int object_Who_Talks = 0;
+    protected int idObjectWhoTalks = 0;
     protected int argsSize = 1;
 
     public BeTalkedTo(GameObject instance) {

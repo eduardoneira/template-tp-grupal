@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp.actions;
 
+import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 
@@ -10,7 +11,7 @@ public class BeMovedAddsActionToMover extends BeMoved {
 
     private ActionHandler actionToAdd;
 
-    public BeMovedAddsActionToMover(GameObject instance, ParentState parent, ActionHandler actionToAdd) {
+    public BeMovedAddsActionToMover(ConcreteGameObjectWithParent instance, ParentState parent, ActionHandler actionToAdd) {
         super(instance, parent);
         this.actionToAdd = actionToAdd;
     }

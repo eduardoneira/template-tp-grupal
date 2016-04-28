@@ -1,8 +1,5 @@
 package ar.fiuba.tdd.tp;
 
-/**
- * Created by Edu on 4/28/2016.
- */
 public interface ClientResponses {
     final String HOSTNAME = "localhost";
 

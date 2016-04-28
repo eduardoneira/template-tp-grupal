@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 
@@ -9,8 +8,8 @@ import java.util.List;
 
 public class BeMoved extends ActionHandler {
 
-    private int who_Moves = 0;
-    private int where_To_Move = 1;
+    private int idWhoMoves = 0;
+    private int idWhereToMove = 1;
     private int argsSize = 2;
 
     ParentState parent;
@@ -23,8 +22,8 @@ public class BeMoved extends ActionHandler {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
-        GameObject whoMoves = objectsInvolved.get(who_Moves);
-        GameObject whereToMove = objectsInvolved.get(where_To_Move);
+        GameObject whoMoves = objectsInvolved.get(idWhoMoves);
+        GameObject whereToMove = objectsInvolved.get(idWhereToMove);
 
         List<GameObject> me = new LinkedList<GameObject>();
         me.add(this.instance);

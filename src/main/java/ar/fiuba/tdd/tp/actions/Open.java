@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.LinkedList;
@@ -8,7 +7,7 @@ import java.util.List;
 
 public class Open extends ActionHandler {
 
-    private int object_To_Open = 0;
+    private int idObjectToOpen = 0;
     private int argsSize = 1;
     private String beOpened = "be opened";
 
@@ -30,7 +29,7 @@ public class Open extends ActionHandler {
 
         GameObject objectWhoOpens = this.instance;
         List<GameObject> objectsInvolvedForObjectToOpen = new LinkedList<GameObject>();
-        GameObject objectToOpen = objectsInvolved.get(object_To_Open);
+        GameObject objectToOpen = objectsInvolved.get(idObjectToOpen);
 
         objectsInvolvedForObjectToOpen.add(objectWhoOpens);
 
@@ -43,7 +42,7 @@ public class Open extends ActionHandler {
             return "invalid command";
         }
 
-        GameObject objectToOpen = objectsInvolved.get(object_To_Open);
+        GameObject objectToOpen = objectsInvolved.get(idObjectToOpen);
         List<GameObject> objectsInvolvedForObjectToOpen = new LinkedList<GameObject>();
         GameObject objectWhoOpens = this.instance;
 

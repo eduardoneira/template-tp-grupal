@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.actions.Cross;
+import ar.fiuba.tdd.tp.actions.ChangeRoom;
 import ar.fiuba.tdd.tp.actions.Leave;
 import ar.fiuba.tdd.tp.actions.Take;
 import ar.fiuba.tdd.tp.objects.concrete.Cabbage;
@@ -33,7 +33,7 @@ public class WolfSheepCabbage extends Game {
         player.placeInRoom(southShore);
         keywords.add(new Leave(null).getName());
         keywords.add(new Take(null).getName());
-        keywords.add(new Cross(null, null).getName());
+        keywords.add(new ChangeRoom(null, null).getName());
         createMore();
     }
 

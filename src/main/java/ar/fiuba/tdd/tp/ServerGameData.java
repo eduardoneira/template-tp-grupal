@@ -3,9 +3,6 @@ package ar.fiuba.tdd.tp;
 import java.io.IOException;
 import java.net.ServerSocket;
 
-/**
- * Created by Edu on 4/27/2016.
- */
 public class ServerGameData {
     private static int nextFreePort = 8081;
 

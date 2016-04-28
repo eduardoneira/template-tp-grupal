@@ -34,7 +34,7 @@ public class LadronTests {
     }
 
     @Test
-    public void TalkToThiefStickInRoom() {
+    public void talkToThiefStickInRoom() {
         stick.setParent(room);
         room.addChild(stick);
 
@@ -52,7 +52,7 @@ public class LadronTests {
     }
 
     @Test
-    public void TalkToThiefStickOnPlayer() {
+    public void talkToThiefStickOnPlayer() {
         stick.setParent(player);
         player.addChild(stick);
 

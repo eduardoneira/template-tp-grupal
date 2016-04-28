@@ -1,8 +1,5 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.actions.Cross;
-import ar.fiuba.tdd.tp.actions.Leave;
-import ar.fiuba.tdd.tp.actions.Take;
 import ar.fiuba.tdd.tp.objects.concrete.*;
 import ar.fiuba.tdd.tp.objects.concrete.player.PlayerCrossShores;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
@@ -42,38 +39,70 @@ public class WolfSheepCabbageTests {
     }
 
     @Test
-    public void gameTest(){
+    public void gameTest() {
         assert (southShore.contains("wolf"));
-        System.out.println(player.handleAction("take", new ArrayList<GameObject>(){
+        System.out.println(player.handleAction("take", new ArrayList<GameObject>() {
             {
                 add(wolf);
             }
         }));
-        assert(!southShore.contains("wolf"));
-        System.out.println(player.handleAction("take", new ArrayList<GameObject>(){
+        assert (!southShore.contains("wolf"));
+        System.out.println(player.handleAction("take", new ArrayList<GameObject>() {
             {
                 add(sheep);
             }
         }));
-        System.out.println(player.handleAction("leave", new ArrayList<GameObject>(){
+        System.out.println(player.handleAction("leave", new ArrayList<GameObject>() {
             {
                 add(wolf);
             }
         }));
-        assert(southShore.contains("wolf"));
-        System.out.println(player.handleAction("take", new ArrayList<GameObject>(){
+        assert (southShore.contains("wolf"));
+        System.out.println(player.handleAction("take", new ArrayList<GameObject>() {
             {
                 add(sheep);
             }
         }));
-        assert(!southShore.contains("sheep"));
-        System.out.println(player.handleAction("cross", new ArrayList<GameObject>(){
+        assert (!southShore.contains("sheep"));
+        System.out.println(player.handleAction("change room", new ArrayList<GameObject>() {
             {
                 add(northShore);
             }
         }));
-        System.out.println(player.currentRoom().getName());
-        assertEquals("north-shore", player.currentRoom().getName());
+        assertEquals("north-shore", player.getParent().getName());
+        secondGameTest();
+    }
 
+    public void secondGameTest() {
+        assert (northShore.contains("sheep"));
+        System.out.println(player.handleAction("leave", new ArrayList<GameObject>() {
+            {
+                add(sheep);
+            }
+        }));
+        assertFalse(player.contains("sheep"));
+        System.out.println(player.handleAction("change room", new ArrayList<GameObject>() {
+            {
+                add(southShore);
+            }
+        }));
+        System.out.println(player.handleAction("take", new ArrayList<GameObject>() {
+            {
+                add(wolf);
+            }
+        }));
+        System.out.println(player.handleAction("change room", new ArrayList<GameObject>() {
+            {
+                add(northShore);
+            }
+        }));
+        System.out.println(player.handleAction("leave", new ArrayList<GameObject>() {
+            {
+                add(wolf);
+            }
+        }));
+        assert (northShore.contains("wolf"));
+        assert (northShore.contains("sheep"));
+        assert (southShore.contains("cabbage"));
     }
 }

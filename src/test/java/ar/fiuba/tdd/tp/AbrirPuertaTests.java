@@ -59,7 +59,8 @@ public class AbrirPuertaTests {
                     {
                         add(door);
                     }
-                } );
+                }
+        );
         assert (door.isOpen());
     }
 
@@ -72,10 +73,18 @@ public class AbrirPuertaTests {
         room.addChild(lockedDoor);
 
         assert (lockedDoor.isClosed());
-        player.handleAction("open", new ArrayList<GameObject>(){{add(lockedDoor);}});
+        player.handleAction("open", new ArrayList<GameObject>() {
+            {
+                add(lockedDoor);
+            }
+        });
         assert (lockedDoor.isClosed());
         player.addAction(new Unlock(player, 2));
-        player.handleAction("open", new ArrayList<GameObject>(){{add(lockedDoor);}});
+        player.handleAction("open", new ArrayList<GameObject>() {
+            {
+                add(lockedDoor);
+            }
+        });
         assert (lockedDoor.isOpen());
     }
 
@@ -89,7 +98,11 @@ public class AbrirPuertaTests {
         room.addChild(lockedDoor);
 
         assert (lockedDoor.isClosed());
-        player.handleAction("open", new ArrayList<GameObject>(){{add(lockedDoor);}});
+        player.handleAction("open", new ArrayList<GameObject>(){
+            {
+                add(lockedDoor);
+            }
+        });
         assert (lockedDoor.isClosed());
         player.addAction(new Pick(player));
         player.handleAction("pick",
@@ -97,8 +110,13 @@ public class AbrirPuertaTests {
                     {
                         add(key);
                     }
-                } );
-        player.handleAction("open", new ArrayList<GameObject>(){{add(lockedDoor);}});
+                }
+        );
+        player.handleAction("open", new ArrayList<GameObject>(){
+            {
+                add(lockedDoor);
+            }
+        });
         assert (lockedDoor.isOpen());
     }
 }

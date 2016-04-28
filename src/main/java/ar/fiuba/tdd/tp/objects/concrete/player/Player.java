@@ -7,8 +7,6 @@ import ar.fiuba.tdd.tp.objects.general.*;
 
 public class Player extends ConcreteGameObjectWithParentAndChildren {
 
-    private Room scene;
-
     public Player(String name) {
         super(name);
         addAction(new BeMoved(this, parent));
@@ -17,10 +15,5 @@ public class Player extends ConcreteGameObjectWithParentAndChildren {
 
     public void placeInRoom(Room room) {
         this.setParent(room);
-        this.scene = room;
-    }
-
-    public Room currentRoom() {
-        return this.scene;
     }
 }

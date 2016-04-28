@@ -1,15 +1,12 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
-import java.util.LinkedList;
 import java.util.List;
-
 
 public class What extends ActionHandler {
 
-    private int who_To_Ask = 0;
+    private int idWhoToAsk = 0;
     private int argsSize = 1;
 
     public What(GameObject instance) {
@@ -33,7 +30,7 @@ public class What extends ActionHandler {
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
         // estaria mejor que ni le pregunte, me fijo de mis acciones cuales me puede responder
-        GameObject objectToAsk = objectsInvolved.get(who_To_Ask);
+        GameObject objectToAsk = objectsInvolved.get(idWhoToAsk);
         StringBuilder builder = new StringBuilder();
         builder.append("You can ");
 

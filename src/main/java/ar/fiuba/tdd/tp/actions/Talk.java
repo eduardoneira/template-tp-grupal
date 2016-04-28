@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.LinkedList;
@@ -8,7 +7,7 @@ import java.util.List;
 
 public class Talk extends ActionHandler {
 
-    private int object_To_Talk = 0;
+    private int idObjectToTalk = 0;
     private int argsSize = 1;
     private String beTalkedTo = "be talked to";
 
@@ -28,7 +27,7 @@ public class Talk extends ActionHandler {
             return "invalid command";
         }
 
-        GameObject objectToTalk = objectsInvolved.get(object_To_Talk);
+        GameObject objectToTalk = objectsInvolved.get(idObjectToTalk);
         GameObject objectWhoTalks = this.instance;
 
         List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();
@@ -43,7 +42,7 @@ public class Talk extends ActionHandler {
             return false;
         }
 
-        GameObject objectToTalk = objectsInvolved.get(object_To_Talk);
+        GameObject objectToTalk = objectsInvolved.get(idObjectToTalk);
         GameObject objectWhoTalk = this.instance;
 
         List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();

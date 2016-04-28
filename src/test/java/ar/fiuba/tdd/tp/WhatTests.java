@@ -14,9 +14,6 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Master on 28/04/2016.
- */
 public class WhatTests {
 
     private Room room;
@@ -44,6 +41,7 @@ public class WhatTests {
             {
                 add(stick);
             }
-        })).trim(),"you can pick look");
+        }))
+                .trim(),"you can pick look");
     }
 }

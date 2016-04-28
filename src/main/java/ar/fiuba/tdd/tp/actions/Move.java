@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Move extends ActionHandler {
 
-    protected int object_To_Move = 0;
-    protected int where_To_Move = 1;
+    protected int idObjectToMove = 0;
+    protected int idWhereToMove = 1;
     protected int argsSize = 2;
     private String beMoved = "be moved";
     private String haveMovedTo = "have moved to";
@@ -32,8 +32,8 @@ public class Move extends ActionHandler {
         List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
         objectsInvolvedForObjectToMove.add(this.instance);
         objectsInvolvedForWhereToMove.add(this.instance);
-        GameObject whereToMove = objectsInvolved.get(where_To_Move);
-        GameObject objectToMove = objectsInvolved.get(object_To_Move);
+        GameObject whereToMove = objectsInvolved.get(idWhereToMove);
+        GameObject objectToMove = objectsInvolved.get(idObjectToMove);
         objectsInvolvedForObjectToMove.add(whereToMove);
         objectsInvolvedForWhereToMove.add(objectToMove);
 
@@ -49,12 +49,12 @@ public class Move extends ActionHandler {
             return false;
         }
 
-        GameObject whereToMove = objectsInvolved.get(where_To_Move);
+        GameObject whereToMove = objectsInvolved.get(idWhereToMove);
         List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<GameObject>();
         objectsInvolvedForObjectToMove.add(this.instance);
         objectsInvolvedForObjectToMove.add(whereToMove);
 
-        GameObject objectToMove = objectsInvolved.get(object_To_Move);
+        GameObject objectToMove = objectsInvolved.get(idObjectToMove);
         List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
         objectsInvolvedForWhereToMove.add(this.instance);
         objectsInvolvedForWhereToMove.add(objectToMove);

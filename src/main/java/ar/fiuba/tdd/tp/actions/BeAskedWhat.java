@@ -4,9 +4,6 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.List;
 
-/**
- * Created by Master on 28/04/2016.
- */
 public class BeAskedWhat extends ActionHandler {
 
     private int whoAsks = 0;

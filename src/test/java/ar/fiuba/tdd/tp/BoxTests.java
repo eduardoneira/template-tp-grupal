@@ -63,7 +63,7 @@ public class BoxTests {
         box.setOpen();
 
         player.addAction(new Pick(player));
-        assert(box.contains("key"));
+        assert (box.contains("key"));
         player.handleAction("pick",
                 new ArrayList<GameObject>() {
                     {

@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.LinkedList;
@@ -8,7 +7,7 @@ import java.util.List;
 
 public class Look extends ActionHandler {
 
-    private int object_To_Look_At = 0;
+    private int idObjectToLookAt = 0;
     private int argsSize = 1;
     private String beLookedAt = "be looked at";
 
@@ -24,7 +23,7 @@ public class Look extends ActionHandler {
         }
 
         GameObject whoLooks = this.instance;
-        GameObject objectToLookAt = objectsInvolved.get(object_To_Look_At);
+        GameObject objectToLookAt = objectsInvolved.get(idObjectToLookAt);
         List<GameObject> objectsInvolvedForObjectToLookAt = new LinkedList<GameObject>();
 
 
@@ -45,7 +44,7 @@ public class Look extends ActionHandler {
         }
 
         GameObject whoLooks = this.instance;
-        GameObject objectToLookAt = objectsInvolved.get(object_To_Look_At);
+        GameObject objectToLookAt = objectsInvolved.get(idObjectToLookAt);
         StringBuilder builder = new StringBuilder();
 
         List<GameObject> objectsInvolvedForObjectToLookAt = new LinkedList<GameObject>();

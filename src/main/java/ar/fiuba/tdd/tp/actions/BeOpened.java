@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
@@ -8,8 +7,8 @@ import java.util.List;
 
 public class BeOpened extends ActionHandler {
 
-    protected int OBJECT_WHO_OPENS = 0;
-    protected int ARGS_SIZE = 1;
+    protected int idObjectWhoOpens = 0;
+    protected int argsSize = 1;
 
     private BooleanState open;
 
@@ -26,7 +25,7 @@ public class BeOpened extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if (objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != argsSize) {
             return false;
         }
         return true;

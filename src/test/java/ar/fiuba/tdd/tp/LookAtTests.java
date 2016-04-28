@@ -53,7 +53,8 @@ public class LookAtTests {
             {
                 add(room);
             }
-        })).trim());
+        }))
+                .trim());
     }
 
     @Test
@@ -70,13 +71,15 @@ public class LookAtTests {
             {
                 add(room);
             }
-        })).trim());
+        }))
+                .trim());
 
         box.setOpen();
         assertEquals("there're a room a box a stick", (player.handleAction("look", new ArrayList<GameObject>() {
             {
                 add(room);
             }
-        })).trim());
+        }))
+                .trim());
     }
 }
