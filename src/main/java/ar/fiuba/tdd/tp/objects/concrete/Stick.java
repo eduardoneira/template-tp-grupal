@@ -8,7 +8,6 @@ public class Stick extends ConcreteGameObjectWithParent {
 
     public Stick(String name) {
         super(name);
-
         addAction(new BeMoved(this, parent));
         addAction(new BeLookedAt(this));
     }

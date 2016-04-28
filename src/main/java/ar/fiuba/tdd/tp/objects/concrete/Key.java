@@ -7,7 +7,6 @@ public class Key extends ConcreteGameObjectWithParent {
 
     public Key(String name) {
         super(name);
-
         addAction(new BeMoved(this, parent));
     }
 }

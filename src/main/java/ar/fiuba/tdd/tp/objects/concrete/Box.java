@@ -13,7 +13,6 @@ public class Box extends ConcreteGameObjectWithParentAndChildren implements Open
 
     public Box(String name) {
         super(name);
-
         open = new BooleanState();
         open.setFalse();
         addAction(new HaveMovedFrom(this, children));

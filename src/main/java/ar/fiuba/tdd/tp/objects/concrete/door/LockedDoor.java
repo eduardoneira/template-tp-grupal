@@ -4,11 +4,6 @@ import ar.fiuba.tdd.tp.abilities.control.LockControlFunctions;
 import ar.fiuba.tdd.tp.actions.open.BeOpenedHasLock;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
-import java.util.Random;
-
-/**
- * Created by Master on 27/04/2016.
- */
 public class LockedDoor extends Door implements LockControlFunctions {
 
     protected BooleanState locked;

@@ -2,7 +2,6 @@ package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.concrete.player.Player;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
-
 import java.util.List;
 
 public class BeTalk extends ActionHandler {
