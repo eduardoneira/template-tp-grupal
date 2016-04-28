@@ -31,81 +31,79 @@ public class WolfSheepCabbageTests {
         wolf = new Wolf("wolf");
         sheep = new Sheep("sheep");
         cabbage = new Cabbage("cabbage");
-        southShore.addChild(wolf);
-        southShore.addChild(sheep);
-        southShore.addChild(cabbage);
         wolf.setParent(southShore);
         sheep.setParent(southShore);
         cabbage.setParent(southShore);
+        southShore.addChild(wolf);
+        southShore.addChild(sheep);
+        southShore.addChild(cabbage);
+    }
+
+    public String cross(Room room) {
+        return player.handleAction("cross", new ArrayList<GameObject>() {
+            {
+                add(room);
+            }
+        });
+    }
+
+    public String take(GameObject object) {
+        return player.handleAction("take", new ArrayList<GameObject>() {
+            {
+                add(object);
+            }
+        });
+    }
+
+    public String leave(GameObject object) {
+        return player.handleAction("leave", new ArrayList<GameObject>() {
+            {
+                add(object);
+            }
+        });
     }
 
     @Test
     public void gameTest() {
         assert (southShore.contains("wolf"));
-        System.out.println(player.handleAction("take", new ArrayList<GameObject>() {
-            {
-                add(wolf);
-            }
-        }));
+        take(wolf);
         assert (!southShore.contains("wolf"));
-        System.out.println(player.handleAction("take", new ArrayList<GameObject>() {
-            {
-                add(sheep);
-            }
-        }));
-        System.out.println(player.handleAction("leave", new ArrayList<GameObject>() {
-            {
-                add(wolf);
-            }
-        }));
+        assertEquals("The boat is full!", take(sheep));
+        leave(wolf);
         assert (southShore.contains("wolf"));
-        System.out.println(player.handleAction("take", new ArrayList<GameObject>() {
-            {
-                add(sheep);
-            }
-        }));
+        take(sheep);
         assert (!southShore.contains("sheep"));
         assert (southShore.contains("player"));
-        System.out.println(player.handleAction("cross", new ArrayList<GameObject>() {
-            {
-                add(northShore);
-            }
-        }));
+        cross(northShore);
         assertEquals("north-shore", player.getParent().getName());
         secondGameTest();
     }
 
     public void secondGameTest() {
-        System.out.println(player.handleAction("leave", new ArrayList<GameObject>() {
-            {
-                add(sheep);
-            }
-        }));
+        leave(sheep);
         assert (northShore.contains("sheep"));
         assertFalse(player.contains("sheep"));
         assert (northShore.contains("player"));
-        System.out.println(player.handleAction("cross", new ArrayList<GameObject>() {
-            {
-                add(southShore);
-            }
-        }));
-        System.out.println(player.handleAction("take", new ArrayList<GameObject>() {
-            {
-                add(wolf);
-            }
-        }));
-        System.out.println(player.handleAction("cross", new ArrayList<GameObject>() {
-            {
-                add(northShore);
-            }
-        }));
-        System.out.println(player.handleAction("leave", new ArrayList<GameObject>() {
-            {
-                add(wolf);
-            }
-        }));
+        cross(southShore);
+        take(wolf);
+        cross(northShore);
+        leave(wolf);
         assert (northShore.contains("wolf"));
         assert (northShore.contains("sheep"));
         assert (southShore.contains("cabbage"));
+        take(sheep);
+        cross(southShore);
+        leave(sheep);
+        take(cabbage);
+        cross(northShore);
+        leave(cabbage);
+        cross(southShore);
+        take(sheep);
+        cross(northShore);
+        System.out.println(leave(sheep));
+        assert (northShore.contains("sheep"));
+        assert (northShore.contains("wolf"));
+        assert (northShore.contains("cabbage"));
+        assert (southShore.isEmpty());
     }
 }
