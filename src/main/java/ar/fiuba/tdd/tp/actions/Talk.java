@@ -10,9 +10,11 @@ public class Talk extends ActionHandler {
 
     private int OBJECT_TO_TALK = 0;
     private int ARGS_SIZE = 1;
+    private String BE_TALKED_TO = "be talked to";
 
     public Talk(GameObject instance) {
         super(instance);
+        actionsCaused.add(BE_TALKED_TO);
     }
 
     @Override
@@ -32,7 +34,7 @@ public class Talk extends ActionHandler {
         List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();
         objectsInvolvedForObjectToTalk.add(objectWhoTalks);
 
-        return objectToTalk.handleAction("be talked to", objectsInvolvedForObjectToTalk);
+        return objectToTalk.handleAction(BE_TALKED_TO, objectsInvolvedForObjectToTalk);
     }
 
     @Override
@@ -47,6 +49,6 @@ public class Talk extends ActionHandler {
         List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();
         objectsInvolvedForObjectToTalk.add(objectWhoTalk);
 
-        return objectToTalk.canHandleAction("be talked to", objectsInvolvedForObjectToTalk);
+        return objectToTalk.canHandleAction(BE_TALKED_TO, objectsInvolvedForObjectToTalk);
     }
 }

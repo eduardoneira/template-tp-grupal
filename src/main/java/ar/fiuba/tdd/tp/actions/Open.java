@@ -10,9 +10,11 @@ public class Open extends ActionHandler {
 
     private int OBJECT_TO_OPEN = 0;
     private int ARGS_SIZE = 1;
+    private String BE_OPENED = "be opened";
 
     public Open(GameObject instance) {
         super(instance);
+        actionsCaused.add(BE_OPENED);
     }
 
     @Override
@@ -32,7 +34,7 @@ public class Open extends ActionHandler {
 
         objectsInvolvedForObjectToOpen.add(objectWhoOpens);
 
-        return objectToOpen.canHandleAction("be opened", objectsInvolvedForObjectToOpen);
+        return objectToOpen.canHandleAction(BE_OPENED, objectsInvolvedForObjectToOpen);
     }
 
     @Override
@@ -47,7 +49,7 @@ public class Open extends ActionHandler {
 
         objectsInvolvedForObjectToOpen.add(objectWhoOpens);
 
-        objectToOpen.handleAction("be opened", objectsInvolved);
+        objectToOpen.handleAction(BE_OPENED, objectsInvolved);
 
         return "opened " + objectToOpen.getName();
     }

@@ -2,14 +2,17 @@ package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public abstract class ActionHandler {
 
     protected GameObject instance;
+    protected List<String> actionsCaused;
 
     public ActionHandler(GameObject instance) {
         this.instance = instance;
+        actionsCaused = new LinkedList<>();
     }
 
     public abstract String handleAction(String actionName, List<GameObject> objectsInvolved);
@@ -25,5 +28,11 @@ public abstract class ActionHandler {
 
     public abstract String getName();
 
-    // utils, tal vez van en otra clase
+    // para what
+    public boolean causes(String actionName) {
+        if (actionsCaused.contains(actionName)) {
+            return true;
+        }
+        return false;
+    }
 }

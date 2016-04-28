@@ -10,9 +10,11 @@ public class Look extends ActionHandler {
 
     private int OBJECT_TO_LOOK_AT = 0;
     private int ARGS_SIZE = 1;
+    private String BE_LOOKED_AT = "be looked at";
 
     public Look(GameObject instance) {
         super(instance);
+        actionsCaused.add(BE_LOOKED_AT);
     }
 
     @Override
@@ -28,7 +30,7 @@ public class Look extends ActionHandler {
 
         objectsInvolvedForObjectToLookAt.add(whoLooks);
 
-        return objectToLookAt.canHandleAction("be looked at", objectsInvolvedForObjectToLookAt);
+        return objectToLookAt.canHandleAction(BE_LOOKED_AT, objectsInvolvedForObjectToLookAt);
     }
 
     @Override
@@ -50,7 +52,7 @@ public class Look extends ActionHandler {
         objectsInvolvedForObjectToLookAt.add(whoLooks);
 
         builder.append("there're ");
-        builder.append( objectToLookAt.handleAction("be looked at", objectsInvolvedForObjectToLookAt ));
+        builder.append( objectToLookAt.handleAction(BE_LOOKED_AT, objectsInvolvedForObjectToLookAt ));
 
         return builder.toString();
     }

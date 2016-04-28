@@ -19,22 +19,8 @@ public class What extends ActionHandler {
     }
 
     @Override
-    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-
-        GameObject objectToAsk = objectsInvolved.get(WHO_TO_ASK);
-        List<GameObject> whoAsks = new LinkedList<>();
-        whoAsks.add(this.instance);
-        return objectToAsk.handleAction("be asked what", whoAsks);
-
-        // estaria mejor que ni le pregunte, me fijo de mis acciones cuales me puede responder
-        /*StringBuilder builder = new StringBuilder();
-        builder.append("You can ");
-
-        for(ActionHandler action : this.instance.getActions()) {
-            if()
-                builder.append(action.getName());
-            builder.append(" ");
-        }*/
+    public String getName() {
+        return "what";
     }
 
     @Override
@@ -46,7 +32,27 @@ public class What extends ActionHandler {
     }
 
     @Override
-    public String getName() {
-        return "what";
+    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
+
+        // estaria mejor que ni le pregunte, me fijo de mis acciones cuales me puede responder
+        GameObject objectToAsk = objectsInvolved.get(WHO_TO_ASK);
+        StringBuilder builder = new StringBuilder();
+        builder.append("You can ");
+
+        for (ActionHandler myAction : this.instance.getActions()) {
+            for (ActionHandler hisAction : objectToAsk.getActions()) {
+                if (myAction.causes(hisAction.getName())) {
+                    builder.append(myAction.getName());
+                    builder.append(" ");
+                }
+            }
+        }
+
+        return builder.toString();
+
+        /*GameObject objectToAsk = objectsInvolved.get(WHO_TO_ASK);
+        List<GameObject> whoAsks = new LinkedList<>();
+        whoAsks.add(this.instance);
+        return objectToAsk.handleAction("be asked what", whoAsks);*/
     }
 }

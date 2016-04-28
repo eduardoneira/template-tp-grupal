@@ -1,11 +1,11 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.Look;
+import ar.fiuba.tdd.tp.actions.Pick;
 import ar.fiuba.tdd.tp.actions.What;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.Stick;
 import ar.fiuba.tdd.tp.objects.concrete.player.Player;
-import ar.fiuba.tdd.tp.objects.concrete.player.PlayerCursedObject;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,9 +27,11 @@ public class WhatTests {
     public void initialization() {
         room = new Room("room");
 
-        player = new PlayerCursedObject("player");
+        player = new Player("player");
         player.placeInRoom(room);
         player.addAction(new What(player));
+        player.addAction(new Pick(player));
+        player.addAction(new Look(player));
 
         stick = new Stick("stick");
         stick.setParent(room);
@@ -42,6 +44,6 @@ public class WhatTests {
             {
                 add(stick);
             }
-        })).trim(),"it can ");
+        })).trim(),"you can pick look");
     }
 }

@@ -13,11 +13,15 @@ public class Move extends ActionHandler {
     private int OBJECT_TO_MOVE = 0;
     private int WHERE_TO_MOVE = 1;
     private int ARGS_SIZE = 2;
+    private String BE_MOVED = "be moved";
+    private String HAVE_MOVED_TO = "have moved to";
     protected ConcreteGameObjectWithParentAndChildren instance;
 
     public Move(ConcreteGameObjectWithParentAndChildren instance) {
         super(instance);
         this.instance = instance;
+        actionsCaused.add(BE_MOVED);
+        actionsCaused.add(HAVE_MOVED_TO);
     }
 
     @Override
@@ -35,8 +39,8 @@ public class Move extends ActionHandler {
         objectsInvolvedForObjectToMove.add(whereToMove);
         objectsInvolvedForWhereToMove.add(objectToMove);
 
-        objectToMove.handleAction("be moved", objectsInvolvedForObjectToMove);
-        whereToMove.handleAction("have moved to", objectsInvolvedForWhereToMove);
+        objectToMove.handleAction(BE_MOVED, objectsInvolvedForObjectToMove);
+        whereToMove.handleAction(HAVE_MOVED_TO, objectsInvolvedForWhereToMove);
 
         return "moved " + objectToMove.getName() + " to " + whereToMove.getName();
     }
@@ -57,8 +61,8 @@ public class Move extends ActionHandler {
         objectsInvolvedForWhereToMove.add(this.instance);
         objectsInvolvedForWhereToMove.add(objectToMove);
 
-        return objectToMove.canHandleAction("be moved", objectsInvolvedForObjectToMove)
-                && whereToMove.canHandleAction("have moved to", objectsInvolvedForWhereToMove);
+        return objectToMove.canHandleAction(BE_MOVED, objectsInvolvedForObjectToMove)
+                && whereToMove.canHandleAction(HAVE_MOVED_TO, objectsInvolvedForWhereToMove);
     }
 
     @Override
