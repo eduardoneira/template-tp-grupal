@@ -17,8 +17,8 @@ public class BeAskedWhat extends ActionHandler {
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("You can ");
-        for (ActionHandler action : instance.getActions()) {
-            stringBuilder.append(action.getName());
+        for (String action : instance.getActionNames()) {
+            stringBuilder.append(action);
             stringBuilder.append(" ");
         }
         return stringBuilder.toString();

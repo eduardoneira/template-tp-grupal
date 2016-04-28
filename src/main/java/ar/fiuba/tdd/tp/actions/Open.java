@@ -48,7 +48,7 @@ public class Open extends ActionHandler {
 
         objectsInvolvedForObjectToOpen.add(objectWhoOpens);
 
-        objectToOpen.handleAction(beOpened, objectsInvolved);
+        objectToOpen.handleAction(beOpened, objectsInvolvedForObjectToOpen);
 
         return "opened " + objectToOpen.getName();
     }
