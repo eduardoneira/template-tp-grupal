@@ -5,13 +5,10 @@ import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
 import java.util.List;
 
-/**
- * Created by Master on 27/04/2016.
- */
 public class HaveEverythingStolen extends HaveMovedFrom {
 
-    private int OBJECT_WHO_STEALS = 0;
-    private int ARGS_SIZE = 1;
+    private int objectWhoSteals = 0;
+    private int argsSize = 1;
 
     public HaveEverythingStolen(GameObject instance, ChildrenState children) {
         super(instance, children);
@@ -20,7 +17,7 @@ public class HaveEverythingStolen extends HaveMovedFrom {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
-        GameObject thief = objectsInvolved.get(OBJECT_WHO_STEALS);
+        GameObject thief = objectsInvolved.get(objectWhoSteals);
 
         for (GameObject child : children.getChildren() ) {
             children.removeChild(child);
@@ -32,7 +29,7 @@ public class HaveEverythingStolen extends HaveMovedFrom {
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
 
-        return objectsInvolved.size() == ARGS_SIZE;
+        return objectsInvolved.size() == argsSize;
     }
 
     @Override

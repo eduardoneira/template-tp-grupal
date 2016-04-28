@@ -22,7 +22,7 @@ public class Leave extends Move {
             return "invalid command";
         }
 
-        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
+        GameObject objectToMove = objectsInvolved.get(object_To_Move);
         return "left " + objectToMove.getName();
     }
 

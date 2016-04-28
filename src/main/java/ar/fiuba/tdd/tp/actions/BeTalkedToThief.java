@@ -17,7 +17,7 @@ public class BeTalkedToThief extends BeTalkedTo {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
-        GameObject objectWhoTalks = objectsInvolved.get(OBJECT_WHO_TALKS);
+        GameObject objectWhoTalks = objectsInvolved.get(object_Who_Talks);
 
         List<GameObject> whoSteals = new LinkedList<>();
         whoSteals.add(this.instance);

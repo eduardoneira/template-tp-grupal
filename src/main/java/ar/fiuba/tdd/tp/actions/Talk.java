@@ -8,13 +8,13 @@ import java.util.List;
 
 public class Talk extends ActionHandler {
 
-    private int OBJECT_TO_TALK = 0;
-    private int ARGS_SIZE = 1;
-    private String BE_TALKED_TO = "be talked to";
+    private int object_To_Talk = 0;
+    private int argsSize = 1;
+    private String beTalkedTo = "be talked to";
 
     public Talk(GameObject instance) {
         super(instance);
-        actionsCaused.add(BE_TALKED_TO);
+        actionsCaused.add(beTalkedTo);
     }
 
     @Override
@@ -28,27 +28,27 @@ public class Talk extends ActionHandler {
             return "invalid command";
         }
 
-        GameObject objectToTalk = objectsInvolved.get(OBJECT_TO_TALK);
+        GameObject objectToTalk = objectsInvolved.get(object_To_Talk);
         GameObject objectWhoTalks = this.instance;
 
         List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();
         objectsInvolvedForObjectToTalk.add(objectWhoTalks);
 
-        return objectToTalk.handleAction(BE_TALKED_TO, objectsInvolvedForObjectToTalk);
+        return objectToTalk.handleAction(beTalkedTo, objectsInvolvedForObjectToTalk);
     }
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if (objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != argsSize) {
             return false;
         }
 
-        GameObject objectToTalk = objectsInvolved.get(OBJECT_TO_TALK);
+        GameObject objectToTalk = objectsInvolved.get(object_To_Talk);
         GameObject objectWhoTalk = this.instance;
 
         List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();
         objectsInvolvedForObjectToTalk.add(objectWhoTalk);
 
-        return objectToTalk.canHandleAction(BE_TALKED_TO, objectsInvolvedForObjectToTalk);
+        return objectToTalk.canHandleAction(beTalkedTo, objectsInvolvedForObjectToTalk);
     }
 }

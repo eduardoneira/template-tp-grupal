@@ -8,8 +8,8 @@ import java.util.List;
 
 public class HaveMovedFrom extends ActionHandler {
 
-    private int OBJECT_TO_MOVE = 0;
-    private int ARGS_SIZE = 1;
+    private int object_To_Move = 0;
+    private int argsSize = 1;
 
     protected ChildrenState children;
 
@@ -20,7 +20,7 @@ public class HaveMovedFrom extends ActionHandler {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
+        GameObject objectToMove = objectsInvolved.get(object_To_Move);
         children.removeChild(objectToMove);
         return "done";
     }
@@ -28,8 +28,8 @@ public class HaveMovedFrom extends ActionHandler {
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
 
-        GameObject objectToMove = objectsInvolved.get(OBJECT_TO_MOVE);
-        return objectsInvolved.size() == ARGS_SIZE && children.contains(objectToMove.getName());
+        GameObject objectToMove = objectsInvolved.get(object_To_Move);
+        return objectsInvolved.size() == argsSize && children.contains(objectToMove.getName());
     }
 
     @Override

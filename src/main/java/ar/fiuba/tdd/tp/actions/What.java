@@ -6,13 +6,11 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Master on 27/04/2016.
- */
+
 public class What extends ActionHandler {
 
-    private int WHO_TO_ASK = 0;
-    private int ARGS_SIZE = 1;
+    private int who_To_Ask = 0;
+    private int argsSize = 1;
 
     public What(GameObject instance) {
         super(instance);
@@ -25,7 +23,7 @@ public class What extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if (objectsInvolved.size() != ARGS_SIZE) {
+        if (objectsInvolved.size() != argsSize) {
             return false;
         }
         return true;
@@ -35,7 +33,7 @@ public class What extends ActionHandler {
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
         // estaria mejor que ni le pregunte, me fijo de mis acciones cuales me puede responder
-        GameObject objectToAsk = objectsInvolved.get(WHO_TO_ASK);
+        GameObject objectToAsk = objectsInvolved.get(who_To_Ask);
         StringBuilder builder = new StringBuilder();
         builder.append("You can ");
 

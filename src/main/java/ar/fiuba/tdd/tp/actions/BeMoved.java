@@ -9,9 +9,9 @@ import java.util.List;
 
 public class BeMoved extends ActionHandler {
 
-    private int WHO_MOVES = 0;
-    private int WHERE_TO_MOVE = 1;
-    private int ARGS_SIZE = 2;
+    private int who_Moves = 0;
+    private int where_To_Move = 1;
+    private int argsSize = 2;
 
     ParentState parent;
 
@@ -23,8 +23,8 @@ public class BeMoved extends ActionHandler {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
-        GameObject whoMoves = objectsInvolved.get(WHO_MOVES);
-        GameObject whereToMove = objectsInvolved.get(WHERE_TO_MOVE);
+        GameObject whoMoves = objectsInvolved.get(who_Moves);
+        GameObject whereToMove = objectsInvolved.get(where_To_Move);
 
         List<GameObject> me = new LinkedList<GameObject>();
         me.add(this.instance);
@@ -45,7 +45,7 @@ public class BeMoved extends ActionHandler {
         me.add(this.instance);
 
         // tal vez pasarle quien mueve
-        if (objectsInvolved.size() != ARGS_SIZE
+        if (objectsInvolved.size() != argsSize
                 || (this.parent.getParent() != null && (!this.parent.getParent().canHandleAction("have moved from", me)))) {
             return false;
         }
