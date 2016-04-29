@@ -8,13 +8,13 @@ import java.util.Map;
 
 
 public class CloseServerCommand implements AbstractCommand {
-    private final String closingServer = "Closing Server. Bye";
+    private String closingServer = "Closing Server. Bye";
 
     @Override
     public void handle(Object[] param) {
         Map<String,ServerGameData> map = Server.getGamesData();
-        for (String key : map.keySet()) {
-            map.get(key).stopGame();
+        for (Map.Entry<String,ServerGameData> key : map.entrySet()) {
+            key.getValue().stopGame();
         }
         Server.setGamesData(map);
         Server.stopServer();

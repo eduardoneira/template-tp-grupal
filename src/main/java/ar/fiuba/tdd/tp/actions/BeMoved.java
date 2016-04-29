@@ -9,7 +9,6 @@ import java.util.List;
 
 public class BeMoved extends ActionHandler {
 
-    private int idWhoMoves = 0;
     private int idWhereToMove = 1;
     private int argsSize = 2;
 
@@ -22,7 +21,6 @@ public class BeMoved extends ActionHandler {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        GameObject whoMoves = objectsInvolved.get(idWhoMoves);
         GameObject whereToMove = objectsInvolved.get(idWhereToMove);
 
         List<GameObject> me = new LinkedList<GameObject>();

@@ -1,8 +1,11 @@
 package ar.fiuba.tdd.tp;
 
+import ar.fiuba.tdd.tp.actions.CheckTop;
+import ar.fiuba.tdd.tp.actions.MoveTop;
 import ar.fiuba.tdd.tp.objects.concrete.Disc;
 import ar.fiuba.tdd.tp.objects.concrete.Pile;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
+import javafx.scene.shape.MoveTo;
 
 public class TorresHanoi extends Game {
     Room room;
@@ -16,11 +19,13 @@ public class TorresHanoi extends Game {
     String nameRoom;
 
     public TorresHanoi() {
-        super("torres hanoi");
+        super("Hanoi Towers");
         nameRoom = "room";
         room = new Room(nameRoom);
         keywords.add(nameRoom);
         player.placeInRoom(room);
+        player.addAction(new MoveTop(player));
+        player.addAction(new CheckTop(player));
         room.addChild(player);
 
         torre1 = new Pile("stack1");
@@ -33,6 +38,7 @@ public class TorresHanoi extends Game {
         torre1.addChild(disc1);
         torre1.addChild(disc2);
         torre1.addChild(disc3);
+        setUpObjectsAndKeywords();
 
     }
 
@@ -52,6 +58,7 @@ public class TorresHanoi extends Game {
         disc1.setParent(torre1);
         disc2.setParent(torre1);
         disc3.setParent(torre1);
+        addActionToKeywords();
     }
 
     @Override

@@ -28,21 +28,21 @@ public class Client implements ClientResponses {
     private static Socket makeConnection(BufferedReader in) throws IOException {
 
         Socket socket = null;
-        String input = in.readLine().toLowerCase();
+        String input = in.readLine();
         boolean connected = false;
         while ( !connected) {
-            if (input.matches(CONNECTTOREGEX)) {
+            if (input.toLowerCase().matches(CONNECTTOREGEX)) {
                 try {
-                    socket = new Socket(HOSTNAME, Integer.valueOf(input.replace(CONNECTTO.concat(" "),"")));
+                    socket = new Socket(HOSTNAME, Integer.parseInt(input.toLowerCase().replace(CONNECTTO.concat(" "),"")));
                     System.out.println(CONNECTIONSUCCESFUL);
                     connected = true;
-                } catch (Exception e) {
+                } catch (IOException e) {
                     System.out.println(ERRORCONNECTION);
-                    input = in.readLine().toLowerCase();
+                    input = in.readLine();
                 }
             } else {
                 System.out.println(ERRORCONNECTION);
-                input = in.readLine().toLowerCase();
+                input = in.readLine();
             }
         }
         return socket;
@@ -50,9 +50,12 @@ public class Client implements ClientResponses {
 
     private static void playGame(PrintWriter out, BufferedReader in, BufferedReader stdIn) throws IOException {
         String fromServer;
-        String fromUser = stdIn.readLine();
+        String fromUser = "";
+        if (stdIn != null) {
+            fromUser = stdIn.readLine();
+        }
 
-        while (!fromUser.equals(EXIT)) {
+        while (!EXIT.equals(fromUser)) {
             System.out.println("Client: " + fromUser);
             out.println(fromUser);
             out.flush();

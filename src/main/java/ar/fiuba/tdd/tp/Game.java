@@ -12,8 +12,8 @@ public abstract class Game {
     protected Set<String> keywords;
     protected Map<String, GameObject> objects;
 
-    protected final String needHelpRegex = "help(.)*";
-    protected final String help = "You can use this words : ";
+    protected  String needHelpRegex = "help(.)*";
+    protected  String help = "You can use this words : ";
 
     public String getName() {
         return name;
@@ -32,6 +32,14 @@ public abstract class Game {
 
     public abstract boolean checkWinCondition();
 
+    private String preProcess(List<String> parsedCommand) {
+        if (parsedCommand.size() > 0) {
+            return process(parsedCommand);
+        } else {
+            return "invalid command";
+        }
+    }
+
     public String processCommand(String stringCommand) {
 
         System.out.println("SERVER PROCESS " + stringCommand);
@@ -47,11 +55,8 @@ public abstract class Game {
                 parsedCommand.add(elem);
             }
         }
-        if (parsedCommand.size() > 0) {
-            return process(parsedCommand);
-        } else {
-            return "invalid command";
-        }
+
+        return preProcess(parsedCommand);
 
     }
 
@@ -78,5 +83,11 @@ public abstract class Game {
             response = response.concat(keyword.concat(", "));
         }
         return help.concat(response);
+    }
+
+    void addActionToKeywords() {
+        for (String actionName : player.getActionNames()) {
+            keywords.add(actionName);
+        }
     }
 }

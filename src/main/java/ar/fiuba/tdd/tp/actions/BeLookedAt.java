@@ -6,7 +6,6 @@ import java.util.List;
 
 public class BeLookedAt extends ActionHandler {
 
-    private int whoLooks = 0;
     private int argsSize = 1;
 
     public BeLookedAt(GameObject instance) {

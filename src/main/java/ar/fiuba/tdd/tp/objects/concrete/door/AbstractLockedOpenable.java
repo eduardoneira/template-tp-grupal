@@ -17,7 +17,7 @@ public abstract class AbstractLockedOpenable extends AbstractOpenable implements
         locked = new BooleanState();
         this.key = key;
 
-        addAction(new BeOpenedHasLock(this, open, locked, key));
+        addAction(new BeOpenedHasLock(this, open, locked, this.key));
     }
 
     @Override

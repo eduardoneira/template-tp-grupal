@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
@@ -11,7 +10,6 @@ import java.util.List;
 public class ChangeRoom extends Move {
 
     private int idWhereTo = 0;
-    private int argsSize = 1;
 
     public ChangeRoom(ConcreteGameObjectWithParentAndChildren instance, ParentState parent) {
         super(instance);

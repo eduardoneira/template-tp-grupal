@@ -8,7 +8,8 @@ public class PlayerCrossShores extends Player {
         super(name);
         init();
     }
-    private void init(){
+
+    private void init() {
         addAction(new Cross(this, parent));
         addAction(new Leave(this));
         addAction(new Take(this));

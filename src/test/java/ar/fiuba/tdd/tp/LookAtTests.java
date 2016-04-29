@@ -28,7 +28,6 @@ public class LookAtTests {
 
         player = new PlayerCursedObject("player");
         player.placeInRoom(room);
-        player.addAction(new Look(player));
         room.addChild(player);
 
         stick = new Stick("stick");
@@ -37,11 +36,12 @@ public class LookAtTests {
     @Test
     public void lookAtEmptyRoomTest() {
 
-        assertEquals("a room", (player.handleAction("look", new ArrayList<GameObject>() {
+        assertEquals("there're room", (player.handleAction("look", new ArrayList<GameObject>() {
             {
                 add(room);
             }
-        })));
+        }))
+                .trim());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class LookAtTests {
         room.addChild(stick);
         stick.setParent(room);
 
-        assertEquals("there're a stick", (player.handleAction("look", new ArrayList<GameObject>() {
+        assertEquals("there're room stick", (player.handleAction("look", new ArrayList<GameObject>() {
             {
                 add(room);
             }
@@ -68,7 +68,7 @@ public class LookAtTests {
         room.addChild(box);
         box.setParent(room);
 
-        assertEquals("there're a room a box", (player.handleAction("look", new ArrayList<GameObject>() {
+        assertEquals("there're room a box", (player.handleAction("look", new ArrayList<GameObject>() {
             {
                 add(room);
             }
@@ -76,7 +76,7 @@ public class LookAtTests {
                 .trim());
 
         box.setOpen();
-        assertEquals("there're a room a box a stick", (player.handleAction("look", new ArrayList<GameObject>() {
+        assertEquals("there're room a box stick", (player.handleAction("look", new ArrayList<GameObject>() {
             {
                 add(room);
             }

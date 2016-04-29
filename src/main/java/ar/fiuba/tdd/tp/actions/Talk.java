@@ -44,7 +44,7 @@ public class Talk extends ActionHandler {
         return objectToTalk.handleAction(beTalkedTo, objectsInvolvedForObjectToTalk);
     }
 
-    private boolean conversating(GameObject objectToTalk,GameObject objectWhoTalk ){
+    private boolean conversating(GameObject objectWhoTalk, GameObject objectToTalk ) {
         List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();
         objectsInvolvedForObjectToTalk.add(objectWhoTalk);
 

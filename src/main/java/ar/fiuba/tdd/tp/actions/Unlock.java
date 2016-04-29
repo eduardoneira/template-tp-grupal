@@ -8,7 +8,6 @@ public class Unlock extends ActionHandler {
 
     private int key;
 
-    private int objectToUnlock = 0;
     private int argsSize = 1;
 
     public Unlock(GameObject instance, int key) {

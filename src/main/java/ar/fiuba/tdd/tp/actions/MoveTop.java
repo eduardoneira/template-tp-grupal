@@ -37,7 +37,7 @@ public class MoveTop extends Move {
 
     @Override
     public String getName() {
-        return "move top";
+        return "moveTop";
     }
 
 }

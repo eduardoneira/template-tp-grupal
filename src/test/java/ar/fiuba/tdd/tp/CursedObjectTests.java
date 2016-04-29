@@ -52,6 +52,16 @@ public class CursedObjectTests {
         door2to3.setParent(room2);
         room2.addChild(door2to3);
 
+        addActionsAndThief();
+
+        keyObject = new CursedKey("key", keyNumber);
+        keyObject.setParent(room1);
+        room1.addChild(keyObject);
+
+        objectsInvolved = new LinkedList<>();
+    }
+
+    public void addActionsAndThief() {
         player = new PlayerCursedObject("player");
         player.addAction(new Open(player));
         player.addAction(new Move(player));
@@ -66,11 +76,6 @@ public class CursedObjectTests {
         thief.setParent(room2);
         room2.addChild(thief);
 
-        keyObject = new CursedKey("key", keyNumber);
-        keyObject.setParent(room1);
-        room1.addChild(keyObject);
-
-        objectsInvolved = new LinkedList<>();
     }
 
     @Test

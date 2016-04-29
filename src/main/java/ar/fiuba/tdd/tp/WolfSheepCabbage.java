@@ -52,5 +52,6 @@ public class WolfSheepCabbage extends Game {
         objects.put(wolfName, wolf);
         objects.put(sheepName, sheep);
         objects.put(cabbageName, cabbage);
+        addActionToKeywords();
     }
 }

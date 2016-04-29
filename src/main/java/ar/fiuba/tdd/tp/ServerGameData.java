@@ -23,9 +23,13 @@ public class ServerGameData {
 
     public void startGame() throws IOException {
         this.port = nextFreePort;
-        this.worker = new ClientWorker(new ServerSocket(this.port), this.name);
+        this.worker = new ClientWorker(new ServerSocket(nextFreePort), this.name);
         Thread thread = new Thread(worker);
         thread.start();
+
+    }
+
+    public static void increasePort() {
         nextFreePort += 1;
     }
 

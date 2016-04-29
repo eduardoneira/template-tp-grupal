@@ -13,11 +13,9 @@ public class Move extends ActionHandler {
     protected int argsSize = 2;
     private String beMoved = "be moved";
     private String haveMovedTo = "have moved to";
-    protected ConcreteGameObjectWithParentAndChildren instance;
 
     public Move(ConcreteGameObjectWithParentAndChildren instance) {
         super(instance);
-        this.instance = instance;
         actionsCaused.add(beMoved);
         actionsCaused.add(haveMovedTo);
     }

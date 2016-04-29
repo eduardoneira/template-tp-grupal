@@ -4,7 +4,7 @@ import ar.fiuba.tdd.tp.Motor;
 
 public class LoadGameServerCommandProxy extends AbstractCommandProxy {
 
-    private final String notSuchGame = "There is no such game. Games Available are :";
+    private String notSuchGame = "There is no such game. Games Available are :";
 
     public LoadGameServerCommandProxy(String name, AbstractCommand command) {
         super(name, command);

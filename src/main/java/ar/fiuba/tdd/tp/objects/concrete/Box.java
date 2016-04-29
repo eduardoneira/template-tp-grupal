@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp.objects.concrete;
 
 import ar.fiuba.tdd.tp.abilities.control.OpenCloseControlFunctions;
 import ar.fiuba.tdd.tp.actions.BeLookedAtAndChildrenChangeVisibility;
+import ar.fiuba.tdd.tp.actions.BeOpened;
 import ar.fiuba.tdd.tp.actions.HaveMovedFromChangesPermission;
 import ar.fiuba.tdd.tp.actions.HaveMovedTo;
 import ar.fiuba.tdd.tp.objects.general.*;
@@ -18,6 +19,7 @@ public class Box extends ConcreteGameObjectWithParentAndChildren implements Open
         addAction(new HaveMovedFromChangesPermission(this, children, open));
         addAction(new HaveMovedTo(this, children));
         addAction(new BeLookedAtAndChildrenChangeVisibility(this, children, open));
+        addAction(new BeOpened(this, open));
     }
 
     @Override

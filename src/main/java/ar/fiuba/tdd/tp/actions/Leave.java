@@ -14,7 +14,7 @@ public class Leave extends Move {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
-        GameObject whereToMove = this.instance.getParent();
+        GameObject whereToMove = ((ConcreteGameObjectWithParentAndChildren)this.instance).getParent();
         objectsInvolved.add(whereToMove);
 
         if (super.handleAction(getName(), objectsInvolved) == "invalid command") {

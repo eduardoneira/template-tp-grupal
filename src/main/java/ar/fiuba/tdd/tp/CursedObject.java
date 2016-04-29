@@ -30,7 +30,7 @@ public class CursedObject extends Game {
 
     private Player player;
     private Thief thief;
-    private List<GameObject> objectsInvolved;
+    //private List<GameObject> objectsInvolved;
 
     private void initialization() {
         room1 = new Room("room1");
@@ -54,7 +54,7 @@ public class CursedObject extends Game {
         keyObject.setParent(room1);
         room1.addChild(keyObject);
 
-        objectsInvolved = new LinkedList<>();
+        //objectsInvolved = new LinkedList<>();
 
         setUpObjectsAndKeywords();
     }
@@ -87,21 +87,22 @@ public class CursedObject extends Game {
         keywords.add(room3.getName());
 
         keywords.add(keyObject.getName());
-        for ( String actionName : player.getActionNames()) {
-            keywords.add(actionName);
-        }
+
 
         objects.put(room1.getName(), room1);
-        objects.put(room2.getName(), room2);
-        objects.put(room3.getName(), room3);
         objects.put(door1to2.getName(), door1to2);
-        objects.put(door2to3.getName(), door2to3);
+
+        objects.put(room2.getName(), room2);
         objects.put(thief.getName(), thief);
+        addActionToKeywords();
+        objects.put(room3.getName(), room3);
+        objects.put(door2to3.getName(), door2to3);
         objects.put(keyObject.getName(), keyObject);
     }
 
-    public CursedObject(String name) {
-        super(name);
+    public CursedObject() {
+        super("Cursed Object");
+        initialization();
     }
 
     @Override

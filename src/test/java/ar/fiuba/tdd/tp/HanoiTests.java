@@ -27,7 +27,7 @@ public class HanoiTests {
     private Disc disc3;
 
     public String checkTop(Pile pile) {
-        return player.handleAction("check top", new ArrayList<GameObject>() {
+        return player.handleAction("checkTop", new ArrayList<GameObject>() {
             {
                 add(pile);
             }
@@ -35,7 +35,7 @@ public class HanoiTests {
     }
 
     public String moveTop(Pile first, Pile second) {
-        return player.handleAction("move top", new ArrayList<GameObject>() {
+        return player.handleAction("moveTop", new ArrayList<GameObject>() {
             {
                 add(first);
                 add(second);
@@ -51,6 +51,12 @@ public class HanoiTests {
         pile1 = new Pile("Stack1");
         pile2 = new Pile("Stack2");
         pile3 = new Pile("Stack3");
+        setGame();
+        player.addAction(new CheckTop(player));
+        player.addAction(new MoveTop(player));
+    }
+
+    public void setGame() {
         pile1.setParent(room);
         pile2.setParent(room);
         pile2.setParent(room);
@@ -66,8 +72,6 @@ public class HanoiTests {
         pile1.addChild(disc1);
         pile1.addChild(disc2);
         pile1.addChild(disc3);
-        player.addAction(new CheckTop(player));
-        player.addAction(new MoveTop(player));
     }
 
     @Test

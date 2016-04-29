@@ -26,9 +26,7 @@ public class WhatTests {
 
         player = new Player("player");
         player.placeInRoom(room);
-        player.addAction(new What(player));
         player.addAction(new Pick(player));
-        player.addAction(new Look(player));
 
         stick = new Stick("stick");
         stick.setParent(room);

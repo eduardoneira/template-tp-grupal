@@ -10,7 +10,7 @@ class ClientWorker implements Runnable {
     private Game game;
     private volatile boolean isRunning = false;
 
-    private final String win  = "ganaste";
+    private String win  = "ganaste";
 
     ClientWorker(ServerSocket server, String gameName) {
         this.serverSocket = server;
@@ -34,7 +34,7 @@ class ClientWorker implements Runnable {
                 out.println(outputLine);
                 out.flush();
 
-                if (outputLine.toLowerCase().equals(win)) {
+                if (outputLine.equalsIgnoreCase(win)) {
                     this.isRunning = false;
                 }
             }

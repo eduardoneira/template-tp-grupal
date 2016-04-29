@@ -25,17 +25,17 @@ public class FetchQuest extends Game {
         stick.setParent(room);
 
         Pick actionPickup = new Pick(player);
+
         player.addAction(actionPickup);
         keywords.add(actionPickup.getName());
         keywords.add(room.getName());
 
         Look actionLook = new Look(room);
-        player.addAction(actionLook);
-
         keywords.add(stick.getName());
         keywords.add(actionLook.getName());
 
         objects.put(room.getName(), this.room);
         objects.put(stick.getName(), stick);
+        addActionToKeywords();
     }
 }

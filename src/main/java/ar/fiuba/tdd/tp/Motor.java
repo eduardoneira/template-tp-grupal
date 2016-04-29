@@ -10,11 +10,11 @@ public class Motor {
 
         games = new LinkedList<Game>();
         games.add( new FetchQuest() );
-        //games.add( new OpenDoor() );
-        //games.add( new OpenDoor2() );
-        //games.add( new CursedObject() );
+        games.add( new OpenDoor() );
+        games.add( new OpenDoor2() );
+        games.add( new CursedObject());
         games.add( new WolfSheepCabbage() );
-        //games.add( new HanoiTowers() );
+        games.add( new TorresHanoi() );
         //games.add( new TreasureHunt() );
     }
 

@@ -21,7 +21,7 @@ public class Cross extends ChangeRoom {
         boolean sheepInShore = false;
         boolean otherInShore = false;
         for (GameObject child:
-                (((ConcreteGameObjectWithChildren)instance.getParent()).getChildren())) {
+                (((ConcreteGameObjectWithChildren)((ConcreteGameObjectWithParentAndChildren)instance).getParent()).getChildren())) {
             sheepInShore = (sheepInShore || child instanceof Sheep);
             otherInShore = (otherInShore || (child instanceof Cabbage || child instanceof Wolf));
         }

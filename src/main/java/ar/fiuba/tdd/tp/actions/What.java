@@ -26,14 +26,7 @@ public class What extends ActionHandler {
         return true;
     }
 
-    @Override
-    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-
-        // estaria mejor que ni le pregunte, me fijo de mis acciones cuales me puede responder
-        GameObject objectToAsk = objectsInvolved.get(idWhoToAsk);
-        StringBuilder builder = new StringBuilder();
-        builder.append("You can ");
-
+    public void checkActions(GameObject objectToAsk, StringBuilder builder) {
         for (ActionHandler myAction : this.instance.getActions()) {
             for (ActionHandler hisAction : objectToAsk.getActions()) {
                 if (myAction.causes(hisAction.getName())) {
@@ -42,6 +35,19 @@ public class What extends ActionHandler {
                 }
             }
         }
+
+    }
+
+    @Override
+    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
+        if (!canIHandleAction(objectsInvolved)) {
+            return "invalid command";
+        }
+        // estaria mejor que ni le pregunte, me fijo de mis acciones cuales me puede responder
+        GameObject objectToAsk = objectsInvolved.get(idWhoToAsk);
+        StringBuilder builder = new StringBuilder();
+        builder.append("You can ");
+        checkActions(objectToAsk, builder);
 
         return builder.toString();
 

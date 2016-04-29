@@ -9,9 +9,9 @@ import java.util.Map;
 
 public class LoadGameServerCommand implements AbstractCommand {
 
-    private final String loadSuccessful = "Game loaded and listening on port ";
-    private final String gameRunning = "Can't load game, game is running on port ";
-    private final String exception = "Can't start game due to exception";
+    private  String loadSuccessful = "Game loaded and listening on port ";
+    private  String gameRunning = "Can't load game, game is running on port ";
+    private  String exception = "Can't start game due to exception";
 
     public void handle(Object[] param) {
         Map<String,ServerGameData> map = Server.getGamesData();
@@ -23,6 +23,7 @@ public class LoadGameServerCommand implements AbstractCommand {
             try {
                 game.startGame();
                 Server.setGamesData(map);
+                ServerGameData.increasePort();
                 System.out.println(loadSuccessful.concat(String.valueOf(game.getPort())));
             } catch (IOException e) {
                 System.out.println(exception);

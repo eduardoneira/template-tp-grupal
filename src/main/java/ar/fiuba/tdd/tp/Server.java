@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Server implements ServerResponses {
-    //TODO: refactorizar en clases e interfaces
+
     private static Map<String,ServerGameData> gamesData;
     private static List<AbstractCommandProxy> commands;
     private static boolean serverRunning;

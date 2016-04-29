@@ -16,7 +16,7 @@ public class CheckTop extends ActionHandler {
 
     @Override
     public String getName() {
-        return "check top";
+        return "checkTop";
     }
 
     @Override

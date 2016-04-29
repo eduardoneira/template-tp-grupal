@@ -6,7 +6,6 @@ import java.util.List;
 
 public class BeAskedWhat extends ActionHandler {
 
-    private int whoAsks = 0;
     private int argsSize = 1;
 
     public BeAskedWhat(GameObject instance) {
