@@ -6,9 +6,9 @@ import ar.fiuba.tdd.tp.objects.general.*;
 
 public class Stick extends ConcreteGameObjectWithParent {
 
-    public Stick(String name) {
-        super(name);
-        addAction(new BeMoved(this, parent));
+    public Stick(String name, GameObject parent) {
+        super(name, parent);
+        addAction(new BeMoved(this, this.parent));
         addAction(new BeLookedAt(this));
     }
 }

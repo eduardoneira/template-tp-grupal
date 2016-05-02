@@ -22,39 +22,34 @@ public class OpenDoor2 extends Game {
 
         super("Open Door 2");
         room = new Room(nameRoom);
-        key = new Key(nameKey, 1);
-        box = new Box(nameBox);
+        box = new Box(nameBox, room);
+        key = new Key(nameKey, box, 1);
         box.setClosed();
-
-        door = new LockedDoor(nameDoor,1);
-        door.setLocked();
-        door.setClosed();
+        door = new LockedDoor(nameDoor, room, 1);
+        room.addChild(door);
         keywords.add(nameKey);
         keywords.add(nameRoom);
         player.placeInRoom(room);
-
-
         Open actionOpen = new Open(player);
         keywords.add(actionOpen.getName());
         Pick actionPickup = new Pick(player);
         keywords.add(actionPickup.getName());
         player.addAction(actionPickup);
-
         player.addAction(actionOpen);
         addObjects();
         addActionToKeywords();
     }
 
     public void addObjects() {
+        door.setLocked();
+        door.setClosed();
         room.addChild(player);
         box.addChild(key);
         room.addChild(box);
-        keywords.add(box.getName());
-        keywords.add(door.getName());
-        box.setParent(room);
-        key.setParent(box);
         objects.put(box.getName(), box);
         objects.put(room.getName(), room);
+        keywords.add(box.getName());
+        keywords.add(door.getName());
         objects.put(key.getName(), key);
         objects.put(door.getName(), door);
     }

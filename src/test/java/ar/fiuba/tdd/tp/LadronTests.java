@@ -23,13 +23,11 @@ public class LadronTests {
     public void initialization() {
         room = new Room("room");
 
-        player = new PlayerCursedObject("player");
-        player.placeInRoom(room);
+        player = new PlayerCursedObject("player", room);
 
-        stick = new Stick("stick");
+        stick = new Stick("stick", room);
 
-        thief = new Thief("thief");
-        thief.setParent(room);
+        thief = new Thief("thief", room);
         room.addChild(thief);
     }
 

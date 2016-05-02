@@ -26,11 +26,9 @@ public class LookAtTests {
     public void initialization() {
         room = new Room("room");
 
-        player = new PlayerCursedObject("player");
-        player.placeInRoom(room);
+        player = new PlayerCursedObject("player", room);
         room.addChild(player);
 
-        stick = new Stick("stick");
     }
 
     @Test
@@ -47,8 +45,8 @@ public class LookAtTests {
     @Test
     public void lookAtRoomWithStickTest() {
 
+        stick = new Stick("stick", room);
         room.addChild(stick);
-        stick.setParent(room);
 
         assertEquals("there're room stick", (player.handleAction("look", new ArrayList<GameObject>() {
             {
@@ -61,12 +59,12 @@ public class LookAtTests {
     @Test
     public void lookAtRoomWithBoxChangingVisibilityTest() {
 
-        Box box = new Box("a box");
+
+        Box box = new Box("a box", room);
+        stick = new Stick("stick", box);
         box.addChild(stick);
-        stick.setParent(box);
 
         room.addChild(box);
-        box.setParent(room);
 
         assertEquals("there're room a box", (player.handleAction("look", new ArrayList<GameObject>() {
             {

@@ -20,7 +20,7 @@ public abstract class Game {
     }
 
     public Game(String name) {
-        this(name,new Player("player"));
+        this(name, new Player("player", null));
     }
 
     public Game(String name, Player player) {

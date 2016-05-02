@@ -19,9 +19,8 @@ public class FetchQuestTests {
     @Before
     public void initialization() {
         room = new Room("room");
-        player = new Player("player");
-        player.placeInRoom(room);
-        stick = new Stick("stick");
+        player = new Player("player", room);
+        stick = new Stick("stick", room);
     }
 
     @Test

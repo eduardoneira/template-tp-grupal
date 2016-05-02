@@ -27,18 +27,17 @@ public class AbrirPuertaTests {
     public void initialization() {
         room = new Room("room");
 
-        key = new Key("key", 2);
+        key = new Key("key", room, 2);
         key.setParent(room);
         room.addChild(key);
 
-        player = new Player("player");
+        player = new Player("player", room);
         player.addAction(new Open(player));
-        player.placeInRoom(room);
     }
 
     @Test
     public void placeDoorInRoom() {
-        door = new Door("door");
+        door = new Door("door", room);
         door.setClosed();
         door.setParent(room);
         room.addChild(door);
@@ -48,7 +47,7 @@ public class AbrirPuertaTests {
 
     @Test
     public void playerOpensDoor() {
-        door = new Door("door");
+        door = new Door("door", room);
         door.setClosed();
         door.setParent(room);
         room.addChild(door);
@@ -66,10 +65,9 @@ public class AbrirPuertaTests {
 
     @Test
     public void playerOpensLockedDoor() {
-        lockedDoor = new LockedDoor("door", 2);
+        lockedDoor = new LockedDoor("door", room, 2);
         lockedDoor.setClosed();
         lockedDoor.setLocked();
-        lockedDoor.setParent(room);
         room.addChild(lockedDoor);
 
         assert (lockedDoor.isClosed());
@@ -91,10 +89,9 @@ public class AbrirPuertaTests {
     @Test
     public void playerOpensLockedDoorWithKey() {
 
-        lockedDoor = new LockedDoor("door", 2);
+        lockedDoor = new LockedDoor("door", room, 2);
         lockedDoor.setClosed();
         lockedDoor.setLocked();
-        lockedDoor.setParent(room);
         room.addChild(lockedDoor);
 
         assert (lockedDoor.isClosed());

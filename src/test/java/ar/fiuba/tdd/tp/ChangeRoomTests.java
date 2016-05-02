@@ -32,20 +32,17 @@ public class ChangeRoomTests {
         room1 = new Room("room1");
         room2 = new Room("room2");
 
-        door1 = new LinkingDoor("door1", room2);
+        door1 = new LinkingDoor("door1", room1, room2);
         door1.setClosed();
-        door1.setParent(room1);
         room1.addChild(door1);
 
-        door2 = new LinkingDoor("door2", room1);
+        door2 = new LinkingDoor("door2", room2, room1);
         door2.setClosed();
-        door2.setParent(room2);
         room2.addChild(door2);
 
-        player = new Player("player");
+        player = new Player("player", room1);
         player.addAction(new Open(player));
         player.addAction(new Move(player));
-        player.placeInRoom(room1);
         room1.addChild(player);
     }
 

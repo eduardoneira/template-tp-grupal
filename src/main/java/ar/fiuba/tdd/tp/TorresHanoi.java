@@ -28,12 +28,12 @@ public class TorresHanoi extends Game {
         player.addAction(new CheckTop(player));
         room.addChild(player);
 
-        torre1 = new Pile("stack1");
-        torre2 = new Pile("stack2");
-        torre3 = new Pile("stack3");
-        disc1 = new Disc("disc1",1);
-        disc2 = new Disc("disc2",2);
-        disc3 = new Disc("disc3",3);
+        torre1 = new Pile("stack1", room);
+        torre2 = new Pile("stack2", room);
+        torre3 = new Pile("stack3", room);
+        disc1 = new Disc("disc1", torre1, 1);
+        disc2 = new Disc("disc2", torre1, 2);
+        disc3 = new Disc("disc3", torre1, 3);
 
         torre1.addChild(disc1);
         torre1.addChild(disc2);
@@ -55,9 +55,6 @@ public class TorresHanoi extends Game {
         objects.put("stack1", torre1);
         objects.put("stack2", torre2);
         objects.put("stack3", torre3);
-        disc1.setParent(torre1);
-        disc2.setParent(torre1);
-        disc3.setParent(torre1);
         addActionToKeywords();
     }
 

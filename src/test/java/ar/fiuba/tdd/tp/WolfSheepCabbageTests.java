@@ -25,15 +25,11 @@ public class WolfSheepCabbageTests {
     public void initialization() {
         southShore = new Room("south-shore");
         northShore = new Room("north-shore");
-        player = new PlayerCrossShores("player");
-        player.placeInRoom(southShore);
+        player = new PlayerCrossShores("player", southShore);
         southShore.addChild(player);
-        wolf = new Wolf("wolf");
-        sheep = new Sheep("sheep");
-        cabbage = new Cabbage("cabbage");
-        wolf.setParent(southShore);
-        sheep.setParent(southShore);
-        cabbage.setParent(southShore);
+        wolf = new Wolf("wolf", southShore);
+        sheep = new Sheep("sheep", southShore);
+        cabbage = new Cabbage("cabbage", southShore);
         southShore.addChild(wolf);
         southShore.addChild(sheep);
         southShore.addChild(cabbage);

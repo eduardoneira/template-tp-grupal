@@ -4,15 +4,12 @@ import ar.fiuba.tdd.tp.actions.BeOpenedMovesOpenerToOtherRoom;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 
-/**
- * Created by Master on 28/04/2016.
- */
 public class LinkingLockedDoor extends LockedDoor {
 
     protected ParentState nextRoom;
 
-    public LinkingLockedDoor(String name, int key, GameObject nextRoom) {
-        super(name, key);
+    public LinkingLockedDoor(String name, GameObject parent, int key, GameObject nextRoom) {
+        super(name, parent, key);
 
         this.nextRoom = new ParentState();
         this.nextRoom.setParent(nextRoom);

@@ -13,10 +13,11 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
     protected ChildrenState children;
     protected ParentState parent;
 
-    public ConcreteGameObjectWithParentAndChildren(String name) {
+    public ConcreteGameObjectWithParentAndChildren(String name, GameObject parent) {
         super(name);
-        children = new ChildrenState();
-        parent = new ParentState();
+        this.children = new ChildrenState();
+        this.parent = new ParentState();
+        setParent(parent);
     }
 
     @Override

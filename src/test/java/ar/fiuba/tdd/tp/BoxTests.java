@@ -24,14 +24,12 @@ public class BoxTests {
     @Before
     public void initialization() {
         room = new Room("room");
-        player = new Player("player");
-        box = new Box("box");
-        player.placeInRoom(room);
+        player = new Player("player", room);
+        box = new Box("box", room);
     }
 
     @Test
     public void placeBoxInRoom() {
-        box.setParent(room);
         room.addChild(box);
         assert (room.contains("box"));
         assertEquals(box.getParent().getName(), "room");
@@ -41,7 +39,7 @@ public class BoxTests {
     public void placeObjectInBox() {
         placeBoxInRoom();
 
-        key = new Key("key", 2);
+        key = new Key("key", box, 2);
         box.addChild(key);
         key.setParent(box);
 

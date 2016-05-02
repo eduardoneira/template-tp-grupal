@@ -24,12 +24,10 @@ public class WhatTests {
     public void initialization() {
         room = new Room("room");
 
-        player = new Player("player");
-        player.placeInRoom(room);
+        player = new Player("player", room);
         player.addAction(new Pick(player));
 
-        stick = new Stick("stick");
-        stick.setParent(room);
+        stick = new Stick("stick", room);
         room.addChild(stick);
     }
 

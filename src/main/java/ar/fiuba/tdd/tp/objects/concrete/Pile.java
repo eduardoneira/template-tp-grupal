@@ -12,8 +12,8 @@ import java.util.List;
 
 public class Pile extends ConcreteGameObjectWithParentAndChildren {
 
-    public Pile(String name) {
-        super(name);
+    public Pile(String name, GameObject parent) {
+        super(name, parent);
         addAction(new MoveTop(this));
         addAction(new HaveMovedFrom(this, children));
         addAction(new HaveMovedTo(this, children));

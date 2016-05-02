@@ -7,9 +7,10 @@ public class ConcreteGameObjectWithParent extends ConcreteGameObject implements 
 
     protected ParentState parent;
 
-    public ConcreteGameObjectWithParent(String name) {
+    public ConcreteGameObjectWithParent(String name, GameObject parent) {
         super(name);
-        parent = new ParentState();
+        this.parent = new ParentState();
+        setParent(parent);
     }
 
     @Override

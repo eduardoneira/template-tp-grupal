@@ -41,39 +41,34 @@ public class CursedObjectTests {
         room2 = new Room("room2");
         room3 = new Room("room3");
 
-        door1to2 = new LinkingLockedDoor("door1to2", keyNumber, room2);
+        door1to2 = new LinkingLockedDoor("door1to2", room1, keyNumber, room2);
         door1to2.setClosed();
         door1to2.setLocked();
-        door1to2.setParent(room1);
         room1.addChild(door1to2);
 
-        door2to3 = new AntiCurseLinkingDoor("door2to3", room3);
+        door2to3 = new AntiCurseLinkingDoor("door2to3", room2, room3);
         door2to3.setClosed();
-        door2to3.setParent(room2);
         room2.addChild(door2to3);
 
         addActionsAndThief();
 
-        keyObject = new CursedKey("key", keyNumber);
-        keyObject.setParent(room1);
+        keyObject = new CursedKey("key", room1, keyNumber);
         room1.addChild(keyObject);
 
         objectsInvolved = new LinkedList<>();
     }
 
     public void addActionsAndThief() {
-        player = new PlayerCursedObject("player");
+        player = new PlayerCursedObject("player", room1);
         player.addAction(new Open(player));
         player.addAction(new Move(player));
         player.addAction(new Look(player));
         player.addAction(new What(player));
         player.addAction(new Pick(player));
         player.addAction(new Talk(player));
-        player.placeInRoom(room1);
         room1.addChild(player);
 
-        thief = new Thief("thief");
-        thief.setParent(room2);
+        thief = new Thief("thief", room2);
         room2.addChild(thief);
 
     }

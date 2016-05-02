@@ -22,7 +22,7 @@ public class WolfSheepCabbage extends Game {
     }
 
     public WolfSheepCabbage() {
-        super("Wolf, Sheep and Cabbage", new PlayerCrossShores("player"));
+        super("Wolf, Sheep and Cabbage", new PlayerCrossShores("player", null));
         String southShoreName = "south-shore";
         String northShoreName = "north-shore";
         southShore = new Room(southShoreName);
@@ -46,9 +46,9 @@ public class WolfSheepCabbage extends Game {
         keywords.add(wolfName);
         keywords.add(sheepName);
         keywords.add(cabbageName);
-        Wolf wolf = new Wolf(wolfName);
-        Sheep sheep = new Sheep(sheepName);
-        Cabbage cabbage = new Cabbage(cabbageName);
+        Wolf wolf = new Wolf(wolfName, southShore);
+        Sheep sheep = new Sheep(sheepName, southShore);
+        Cabbage cabbage = new Cabbage(cabbageName, southShore);
         objects.put(wolfName, wolf);
         objects.put(sheepName, sheep);
         objects.put(cabbageName, cabbage);

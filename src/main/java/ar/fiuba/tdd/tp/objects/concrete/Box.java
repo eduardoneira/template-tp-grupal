@@ -12,8 +12,8 @@ public class Box extends ConcreteGameObjectWithParentAndChildren implements Open
 
     protected BooleanState open;
 
-    public Box(String name) {
-        super(name);
+    public Box(String name, GameObject parent) {
+        super(name, parent);
         open = new BooleanState();
         open.setFalse();
         addAction(new HaveMovedFromChangesPermission(this, children, open));

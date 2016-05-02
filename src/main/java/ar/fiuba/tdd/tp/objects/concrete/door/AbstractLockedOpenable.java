@@ -2,18 +2,16 @@ package ar.fiuba.tdd.tp.objects.concrete.door;
 
 import ar.fiuba.tdd.tp.abilities.control.LockControlFunctions;
 import ar.fiuba.tdd.tp.actions.BeOpenedHasLock;
+import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
-/**
- * Created by Master on 28/04/2016.
- */
 public abstract class AbstractLockedOpenable extends AbstractOpenable implements LockControlFunctions {
 
     protected BooleanState locked;
     protected int key;
 
-    public AbstractLockedOpenable(String name, int key) {
-        super(name);
+    public AbstractLockedOpenable(String name, GameObject parent, int key) {
+        super(name, parent);
         locked = new BooleanState();
         this.key = key;
 

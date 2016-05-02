@@ -23,10 +23,9 @@ public class CrossTests {
 
     @Before
     public void initialization() {
-        player = new PlayerCrossShores("player");
         firstRoom = new Room("first room");
         secondRoom = new Room("second room");
-        player.placeInRoom(firstRoom);
+        player = new PlayerCrossShores("player", firstRoom);
         firstRoom.addChild(player);
     }
 
@@ -46,12 +45,10 @@ public class CrossTests {
 
     @Test
     public void playerCantCrossTest() {
-        Sheep sheep = new Sheep("sheep");
-        Cabbage cabbage = new Cabbage("cabbage");
+        Sheep sheep = new Sheep("sheep", firstRoom);
+        Cabbage cabbage = new Cabbage("cabbage", secondRoom);
         firstRoom.addChild(sheep);
         firstRoom.addChild(cabbage);
-        sheep.setParent(firstRoom);
-        cabbage.setParent(firstRoom);
         assert (firstRoom.contains("sheep"));
         assert (firstRoom.contains("cabbage"));
         assertEquals("You can't cross, things will be eaten", (player.handleAction("cross", new ArrayList<GameObject>() {

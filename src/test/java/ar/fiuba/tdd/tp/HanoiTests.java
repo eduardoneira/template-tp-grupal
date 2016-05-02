@@ -46,11 +46,10 @@ public class HanoiTests {
     @Before
     public void initialization() {
         room = new Room("room");
-        player = new Player("player");
-        player.placeInRoom(room);
-        pile1 = new Pile("Stack1");
-        pile2 = new Pile("Stack2");
-        pile3 = new Pile("Stack3");
+        player = new Player("player", room);
+        pile1 = new Pile("Stack1", room);
+        pile2 = new Pile("Stack2", room);
+        pile3 = new Pile("Stack3", room);
         setGame();
         player.addAction(new CheckTop(player));
         player.addAction(new MoveTop(player));
@@ -63,12 +62,9 @@ public class HanoiTests {
         room.addChild(pile1);
         room.addChild(pile2);
         room.addChild(pile3);
-        disc1 = new Disc("disc1",1);
-        disc2 = new Disc("disc2",2);
-        disc3 = new Disc("disc3",3);
-        disc1.setParent(pile1);
-        disc2.setParent(pile1);
-        disc3.setParent(pile1);
+        disc1 = new Disc("disc1", pile1, 1);
+        disc2 = new Disc("disc2", pile1, 2);
+        disc3 = new Disc("disc3", pile1, 3);
         pile1.addChild(disc1);
         pile1.addChild(disc2);
         pile1.addChild(disc3);

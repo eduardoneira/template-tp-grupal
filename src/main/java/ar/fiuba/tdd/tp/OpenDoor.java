@@ -18,8 +18,8 @@ public class OpenDoor extends Game {
     public OpenDoor() {
         super("Open Door");
         room = new Room(nameRoom);
-        key = new Key(nameKey, 1);
-        door = new LockedDoor(nameDoor,1);
+        key = new Key(nameKey, room, 1);
+        door = new LockedDoor(nameDoor, room, 1);
         door.setClosed();
         door.setLocked();
         keywords.add(nameKey);
@@ -41,7 +41,6 @@ public class OpenDoor extends Game {
         objects.put(room.getName(), room);
         objects.put(door.getName(), door);
         room.addChild(door);
-        door.setParent(room);
         room.addChild(key);
 
         objects.put(key.getName(), key);
