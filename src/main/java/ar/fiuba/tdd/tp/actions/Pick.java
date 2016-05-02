@@ -17,17 +17,14 @@ public class Pick extends Move {
         GameObject whereToMove = this.instance;
         objectsInvolved.add(whereToMove);
 
-        if (super.handleAction(getName(), objectsInvolved) == "invalid command") {
-            return "invalid command";
+        StringBuilder response = new StringBuilder();
+        if (!canHandleAction(actionName, objectsInvolved, response)) {
+            return response.toString();
         }
 
+        super.handleAction(getName(), objectsInvolved);
         GameObject objectToMove = objectsInvolved.get(idObjectToMove);
         return "picked " + objectToMove.getName();
-    }
-
-    @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        return super.canIHandleAction(objectsInvolved);
     }
 
     @Override

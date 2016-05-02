@@ -18,5 +18,7 @@ public class Key extends ConcreteGameObjectWithParent {
         actionsGranted = new LinkedList<>();
         actionsGranted.add(new Unlock(this, this.key));
         addAction(new BeMovedGrantsActions(this, this.parent, actionsGranted));
+        addAction(new BeAskedWhat(this));
+        addAction(new BeLookedAt(this));
     }
 }

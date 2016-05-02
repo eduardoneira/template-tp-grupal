@@ -18,8 +18,12 @@ public class BeLookedAt extends ActionHandler {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        return objectsInvolved.size() == argsSize;
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
+        setResponseError(objectsInvolved, response);
+        if (objectsInvolved.size() != argsSize) {
+            return false;
+        }
+        return true;
     }
 
     @Override

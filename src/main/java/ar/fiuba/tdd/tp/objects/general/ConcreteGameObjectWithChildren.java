@@ -24,6 +24,10 @@ public class ConcreteGameObjectWithChildren extends ConcreteGameObject implement
         children.removeChild(child);
     }
 
+    public ChildrenState getChildrenState() {
+        return children;
+    }
+
     @Override
     public boolean isEmpty() {
         return children.isEmpty();

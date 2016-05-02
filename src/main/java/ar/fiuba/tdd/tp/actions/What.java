@@ -2,7 +2,9 @@ package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class What extends ActionHandler {
 
@@ -19,41 +21,45 @@ public class What extends ActionHandler {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         if (objectsInvolved.size() != argsSize) {
+            setResponseError(objectsInvolved, response);
             return false;
         }
         return true;
     }
 
+    private void setToResponse(Set<String> actionNoDuplicates, StringBuilder builder) {
+        for (String actionName : actionNoDuplicates) {
+            builder.append(actionName);
+            builder.append(" ");
+        }
+    }
+
     public void checkActions(GameObject objectToAsk, StringBuilder builder) {
+        Set<String> actionNoDuplicates = new HashSet<>();
         for (ActionHandler myAction : this.instance.getActions()) {
             for (ActionHandler hisAction : objectToAsk.getActions()) {
                 if (myAction.causes(hisAction.getName())) {
-                    builder.append(myAction.getName());
-                    builder.append(" ");
+                    actionNoDuplicates.add(myAction.getName());
                 }
             }
         }
 
+        setToResponse(actionNoDuplicates, builder);
     }
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        if (!canIHandleAction(objectsInvolved)) {
-            return "invalid command";
+        StringBuilder response = new StringBuilder();
+        if (!canHandleAction(actionName, objectsInvolved, response)) {
+            return response.toString();
         }
-        // estaria mejor que ni le pregunte, me fijo de mis acciones cuales me puede responder
+
         GameObject objectToAsk = objectsInvolved.get(idWhoToAsk);
-        StringBuilder builder = new StringBuilder();
-        builder.append("You can ");
-        checkActions(objectToAsk, builder);
+        response.append("You can ");
+        checkActions(objectToAsk, response);
 
-        return builder.toString();
-
-        /*GameObject objectToAsk = objectsInvolved.get(WHO_TO_ASK);
-        List<GameObject> whoAsks = new LinkedList<>();
-        whoAsks.add(this.instance);
-        return objectToAsk.handleAction("be asked what", whoAsks);*/
+        return response.toString();
     }
 }

@@ -35,9 +35,13 @@ public class HaveEverythingStolen extends HaveMovedFrom {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
 
-        return objectsInvolved.size() == argsSize;
+        if (!(objectsInvolved.size() == argsSize)) {
+            setResponseError(objectsInvolved, response);
+            return false;
+        }
+        return true;
     }
 
     @Override

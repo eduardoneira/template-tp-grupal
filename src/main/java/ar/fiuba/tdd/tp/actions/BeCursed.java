@@ -18,7 +18,7 @@ public class BeCursed extends ActionHandler {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         return true;
     }
 

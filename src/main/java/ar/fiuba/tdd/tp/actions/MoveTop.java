@@ -23,16 +23,18 @@ public class MoveTop extends Move {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         if (!(objectsInvolved.get(idObjectToMove) instanceof Disc) || !(objectsInvolved.get(idWhereToMove) instanceof Pile)) {
+            setResponseError(objectsInvolved, response);
             return false;
         }
         int diameter = ((Disc) objectsInvolved.get(idObjectToMove)).getDiameter();
         int smallest = ((Pile) objectsInvolved.get(idWhereToMove)).getSmallestDiamater();
         if (diameter >= smallest) {
+            setResponseError(objectsInvolved, response);
             return false;
         }
-        return super.canIHandleAction(objectsInvolved);
+        return super.canIHandleAction(objectsInvolved, response);
     }
 
     @Override

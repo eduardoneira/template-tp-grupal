@@ -38,6 +38,10 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
         return children.getChild(name);
     }
 
+    public ChildrenState getChildrenState() {
+        return children;
+    }
+
     @Override
     public List<GameObject> getChildren() {
         return children.getChildren();

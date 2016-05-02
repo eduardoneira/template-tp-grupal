@@ -22,8 +22,9 @@ public class Open extends ActionHandler {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         if (objectsInvolved.size() != argsSize) {
+            setResponseError(objectsInvolved, response);
             return false;
         }
 
@@ -33,13 +34,14 @@ public class Open extends ActionHandler {
 
         objectsInvolvedForObjectToOpen.add(objectWhoOpens);
 
-        return objectToOpen.canHandleAction(beOpened, objectsInvolvedForObjectToOpen);
+        return objectToOpen.canHandleAction(beOpened, objectsInvolvedForObjectToOpen, response);
     }
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        if (!canHandleAction(actionName, objectsInvolved)) {
-            return "invalid command";
+        StringBuilder response = new StringBuilder();
+        if (!canHandleAction(actionName, objectsInvolved, response)) {
+            return response.toString();
         }
 
         GameObject objectToOpen = objectsInvolved.get(idObjectToOpen);

@@ -28,8 +28,8 @@ public class BeOpenedHasLock extends BeOpened {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if (!super.canIHandleAction(objectsInvolved)) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
+        if (!super.canIHandleAction(objectsInvolved, response)) {
             return false;
         }
 
@@ -39,7 +39,7 @@ public class BeOpenedHasLock extends BeOpened {
             List<GameObject> objectsInvolvedForUnlocker = new LinkedList<GameObject>();
             objectsInvolvedForUnlocker.add(this.instance);
 
-            return objectThatUnlocksMe.canHandleAction("unlock" + key, objectsInvolvedForUnlocker);
+            return objectThatUnlocksMe.canHandleAction("unlock" + key, objectsInvolvedForUnlocker, response);
         }
 
         return true;

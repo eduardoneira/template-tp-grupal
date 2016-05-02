@@ -29,12 +29,12 @@ public class ChangeRoom extends Move {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         GameObject whereToCross = objectsInvolved.get(idWhereTo);
         List<GameObject> objectsInvolvedForObjectToCross = new LinkedList<GameObject>();
         objectsInvolvedForObjectToCross.add(this.instance);
         objectsInvolvedForObjectToCross.add(whereToCross);
-        return super.canIHandleAction(objectsInvolvedForObjectToCross);
+        return super.canIHandleAction(objectsInvolvedForObjectToCross, response);
     }
 
     @Override

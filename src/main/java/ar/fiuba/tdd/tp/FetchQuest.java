@@ -10,30 +10,31 @@ public class FetchQuest extends Game {
     Room room;
     Stick stick;
 
-    public boolean checkWinCondition() {
-        return player.contains("stick");
-    }
+    @SuppressWarnings("CPD-START")
 
     public FetchQuest() {
         super("Fetch Quest");
 
         room = new Room("room");
         player.placeInRoom(room);
-
-        stick = new Stick("stick", room);
-
-        Pick actionPickup = new Pick(player);
-
-        player.addAction(actionPickup);
-        keywords.add(actionPickup.getName());
+        room.addChild(player);
+        objects.put(room.getName(), this.room);
         keywords.add(room.getName());
 
-        Look actionLook = new Look(room);
-        keywords.add(stick.getName());
-        keywords.add(actionLook.getName());
-
-        objects.put(room.getName(), this.room);
+        stick = new Stick("stick", room);
+        room.addChild(stick);
+        stick.setParent(room);
         objects.put(stick.getName(), stick);
-        addActionToKeywords();
+        keywords.add(stick.getName());
+
+        Pick actionPickup = new Pick(player);
+        player.addAction(actionPickup);
+        keywords.add(actionPickup.getName());
+    }
+
+    @SuppressWarnings("CPD-END")
+
+    public boolean checkWinCondition() {
+        return player.contains("stick");
     }
 }

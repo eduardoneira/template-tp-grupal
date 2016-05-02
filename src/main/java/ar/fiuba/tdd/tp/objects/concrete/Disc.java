@@ -15,6 +15,7 @@ public class Disc extends ConcreteGameObjectWithParent {
         //addAction(new BeMovedAddsActionToMover(this, parent, new Move(this)));
         addAction(new BeLookedAt(this));
         addAction(new BeMoved(this, this.parent));
+        addAction(new BeAskedWhat(this));
     }
 
     public int getDiameter() {

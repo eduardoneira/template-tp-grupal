@@ -24,7 +24,7 @@ public class BeOpened extends ActionHandler {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         if (objectsInvolved.size() != argsSize) {
             return false;
         }

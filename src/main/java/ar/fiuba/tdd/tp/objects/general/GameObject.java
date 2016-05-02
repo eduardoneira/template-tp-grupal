@@ -11,7 +11,7 @@ public interface GameObject {
 
     String handleAction(String actionName, List<GameObject> objectsInvolved);
 
-    boolean canHandleAction(String actionName, List<GameObject> objectsInvolved);
+    boolean canHandleAction(String actionName, List<GameObject> objectsInvolved, StringBuilder response);
 
     void addAction(ActionHandler action);
 

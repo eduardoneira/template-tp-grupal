@@ -29,6 +29,10 @@ public abstract class Game {
         this.player = player;
         this.keywords = new HashSet<>();
         this.objects = new HashMap<>();
+
+        // hardcodeo
+        this.keywords.add("look");
+        this.keywords.add("what");
     }
 
     public abstract boolean checkWinCondition();
@@ -68,6 +72,13 @@ public abstract class Game {
         List<GameObject> objectsInvolved = parsedCommand.stream().map(name -> objects.get(name))
                 .collect(Collectors.toCollection(LinkedList::new));
 
+        /*List<GameObject> objectsInvolved = new LinkedList<>();
+        for (String name : parsedCommand) {
+            if (objects.containsKey(name)) {
+                objectsInvolved.add(objects.get(name));
+            }
+        }*/
+
         String result = player.handleAction(command, objectsInvolved);
         if (checkWinCondition()) {
             return "ganaste";
@@ -82,9 +93,5 @@ public abstract class Game {
             response = response.concat(keyword.concat(", "));
         }
         return help.concat(response);
-    }
-
-    void addActionToKeywords() {
-        keywords.addAll(player.getActionNames().stream().collect(Collectors.toList()));
     }
 }

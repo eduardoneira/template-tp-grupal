@@ -26,8 +26,8 @@ public class Take extends Pick {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        return (super.canIHandleAction(objectsInvolved) && ((ConcreteGameObjectWithParentAndChildren)instance).isEmpty());
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
+        return (super.canIHandleAction(objectsInvolved, response) && ((ConcreteGameObjectWithParentAndChildren)instance).isEmpty());
     }
 
 }

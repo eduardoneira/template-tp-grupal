@@ -38,13 +38,13 @@ public class BeMoved extends ActionHandler {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         List<GameObject> me = new LinkedList<GameObject>();
         me.add(this.instance);
 
         // tal vez pasarle quien mueve
         if (objectsInvolved.size() != argsSize
-                || (this.parent.getParent() != null && (!this.parent.getParent().canHandleAction("have moved from", me)))) {
+                || (this.parent.getParent() != null && (!this.parent.getParent().canHandleAction("have moved from", me, response)))) {
             return false;
         }
 

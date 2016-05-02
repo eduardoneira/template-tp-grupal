@@ -1,6 +1,8 @@
 package ar.fiuba.tdd.tp.objects.concrete.door;
 
 import ar.fiuba.tdd.tp.abilities.control.OpenCloseControlFunctions;
+import ar.fiuba.tdd.tp.actions.BeAskedWhat;
+import ar.fiuba.tdd.tp.actions.BeLookedAt;
 import ar.fiuba.tdd.tp.actions.BeOpened;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObject;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParent;
@@ -17,6 +19,8 @@ public abstract class AbstractOpenable extends ConcreteGameObjectWithParent impl
         open = new BooleanState();
 
         addAction(new BeOpened(this, open));
+        addAction(new BeAskedWhat(this));
+        addAction(new BeLookedAt(this));
     }
 
     @Override

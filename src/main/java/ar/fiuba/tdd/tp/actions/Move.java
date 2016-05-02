@@ -14,17 +14,19 @@ public class Move extends ActionHandler {
     private String beMoved = "be moved";
     private String haveMovedTo = "have moved to";
 
-    public Move(ConcreteGameObjectWithParentAndChildren instance) {
+    public Move(GameObject instance) {
         super(instance);
         actionsCaused.add(beMoved);
-        actionsCaused.add(haveMovedTo);
+        //actionsCaused.add(haveMovedTo);
     }
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        if (!canHandleAction(actionName, objectsInvolved)) {
-            return "invalid command";
+        StringBuilder response = new StringBuilder();
+        if (!canHandleAction(actionName, objectsInvolved, response)) {
+            return response.toString();
         }
+
         List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<GameObject>();
         List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
         objectsInvolvedForObjectToMove.add(this.instance);
@@ -41,7 +43,7 @@ public class Move extends ActionHandler {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         if (objectsInvolved.size() != argsSize) {
             return false;
         }
@@ -55,8 +57,8 @@ public class Move extends ActionHandler {
         List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
         objectsInvolvedForWhereToMove.add(this.instance);
         objectsInvolvedForWhereToMove.add(objectToMove);
-        return objectToMove.canHandleAction(beMoved, objectsInvolvedForObjectToMove)
-                && whereToMove.canHandleAction(haveMovedTo, objectsInvolvedForWhereToMove);
+        return objectToMove.canHandleAction(beMoved, objectsInvolvedForObjectToMove, response)
+                && whereToMove.canHandleAction(haveMovedTo, objectsInvolvedForWhereToMove, response);
     }
 
     @Override

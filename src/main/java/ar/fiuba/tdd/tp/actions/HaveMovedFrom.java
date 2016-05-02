@@ -8,8 +8,8 @@ import java.util.List;
 
 public class HaveMovedFrom extends ActionHandler {
 
-    private int idObjectToMove = 0;
-    private int argsSize = 1;
+    protected int idObjectToMove = 0;
+    protected int argsSize = 1;
 
     protected ChildrenState children;
 
@@ -20,10 +20,14 @@ public class HaveMovedFrom extends ActionHandler {
 
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
 
         GameObject objectToMove = objectsInvolved.get(idObjectToMove);
-        return objectsInvolved.size() == argsSize && children.contains(objectToMove.getName());
+        if (!(objectsInvolved.size() == argsSize && children.contains(objectToMove.getName()))) {
+            setResponseError(objectsInvolved, response);
+            return false;
+        }
+        return true;
     }
 
     @Override

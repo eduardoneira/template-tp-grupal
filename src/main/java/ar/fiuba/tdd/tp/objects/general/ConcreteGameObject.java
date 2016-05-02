@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp.objects.general;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.actions.BeAskedWhat;
+import ar.fiuba.tdd.tp.actions.BeLookedAt;
 
 import java.awt.*;
 import java.util.*;
@@ -14,8 +15,6 @@ public class ConcreteGameObject implements GameObject {
     public ConcreteGameObject(String name) {
         this.name = name;
         this.actions = new HashMap<String, List<ActionHandler>>();
-
-        addAction(new BeAskedWhat(this));
     }
 
     @Override
@@ -23,10 +22,18 @@ public class ConcreteGameObject implements GameObject {
         return name;
     }
 
+    private String commandNotFoundResponse(String actionName) {
+        StringBuilder response = new StringBuilder();
+        response.append(getName());
+        response.append(" has no command ");
+        response.append(actionName);
+        return response.toString();
+    }
+
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         if (!actions.containsKey(actionName)) {
-            return "";
+            return commandNotFoundResponse(actionName);
         }
 
         StringBuilder builder = new StringBuilder();
@@ -38,14 +45,15 @@ public class ConcreteGameObject implements GameObject {
     }
 
     @Override
-    public boolean canHandleAction(String actionName, List<GameObject> objectsInvolved) {
+    public boolean canHandleAction(String actionName, List<GameObject> objectsInvolved, StringBuilder response) {
         boolean canHandle = true;
         if (actions.containsKey(actionName)) {
             for (ActionHandler action : actions.get(actionName)) {
-                canHandle &= action.canHandleAction(actionName, objectsInvolved);
+                canHandle &= action.canHandleAction(actionName, objectsInvolved, response);
             }
             return canHandle;
         } else {
+            response.append(commandNotFoundResponse(actionName));
             return false;
         }
     }

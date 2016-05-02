@@ -17,8 +17,9 @@ public class Look extends ActionHandler {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         if (objectsInvolved.size() != argsSize) {
+            setResponseError(objectsInvolved, response);
             return false;
         }
 
@@ -29,7 +30,7 @@ public class Look extends ActionHandler {
 
         objectsInvolvedForObjectToLookAt.add(whoLooks);
 
-        return objectToLookAt.canHandleAction(beLookedAt, objectsInvolvedForObjectToLookAt);
+        return objectToLookAt.canHandleAction(beLookedAt, objectsInvolvedForObjectToLookAt, response);
     }
 
     @Override
@@ -40,8 +41,9 @@ public class Look extends ActionHandler {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         try {
-            if (!canHandleAction(actionName, objectsInvolved)) {
-                return "invalid command";
+            StringBuilder response = new StringBuilder();
+            if (!canHandleAction(actionName, objectsInvolved, response)) {
+                return response.toString();
             }
 
             GameObject whoLooks = this.instance;

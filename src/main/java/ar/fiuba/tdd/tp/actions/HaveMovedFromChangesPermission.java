@@ -16,8 +16,18 @@ public class HaveMovedFromChangesPermission extends HaveMovedFrom {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
 
-        return super.canIHandleAction(objectsInvolved) && canTakeFrom.getValue();
+        if (!super.canIHandleAction(objectsInvolved, response)) {
+            return false;
+        }
+
+        if (!canTakeFrom.getValue()) {
+            response.append(objectsInvolved.get(idObjectToMove).getName());
+            response.append(" can't be accesed");
+            return false;
+        }
+
+        return true;
     }
 }

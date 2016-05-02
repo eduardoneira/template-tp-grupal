@@ -51,21 +51,23 @@ public class Client implements ClientResponses {
     private static void playGame(PrintWriter out, BufferedReader in, BufferedReader stdIn) throws IOException {
         String fromServer;
         String fromUser = "";
-        if (stdIn != null) {
-            fromUser = stdIn.readLine();
-        }
 
         while (!EXIT.equals(fromUser)) {
+            fromUser = stdIn.readLine();
             System.out.println("Client: " + fromUser);
             out.println(fromUser);
             out.flush();
 
-            fromServer = in.readLine();
+            try {
+                fromServer = in.readLine();
+            } catch (IOException e) {
+                System.out.println("Connection to server ended");
+                break;
+            }
+
             if (fromServer != null) {
                 System.out.println("Server: " + fromServer);
             }
-            fromUser = stdIn.readLine();
         }
     }
-
 }

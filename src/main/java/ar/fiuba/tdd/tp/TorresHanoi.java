@@ -55,7 +55,9 @@ public class TorresHanoi extends Game {
         objects.put("stack1", torre1);
         objects.put("stack2", torre2);
         objects.put("stack3", torre3);
-        addActionToKeywords();
+        disc1.setParent(torre1);
+        disc2.setParent(torre1);
+        disc3.setParent(torre1);
     }
 
     @Override

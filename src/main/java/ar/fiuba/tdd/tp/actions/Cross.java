@@ -17,7 +17,7 @@ public class Cross extends ChangeRoom {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         boolean sheepInShore = false;
         boolean otherInShore = false;
         for (GameObject child:
@@ -25,7 +25,7 @@ public class Cross extends ChangeRoom {
             sheepInShore = (sheepInShore || child instanceof Sheep);
             otherInShore = (otherInShore || (child instanceof Cabbage || child instanceof Wolf));
         }
-        return (!(sheepInShore && otherInShore) && super.canIHandleAction(objectsInvolved));
+        return (!(sheepInShore && otherInShore) && super.canIHandleAction(objectsInvolved, response));
     }
 
     @Override

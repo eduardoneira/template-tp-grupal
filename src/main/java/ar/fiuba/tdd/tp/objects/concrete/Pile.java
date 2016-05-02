@@ -1,9 +1,7 @@
 package ar.fiuba.tdd.tp.objects.concrete;
 
 
-import ar.fiuba.tdd.tp.actions.HaveMovedFrom;
-import ar.fiuba.tdd.tp.actions.HaveMovedTo;
-import ar.fiuba.tdd.tp.actions.MoveTop;
+import ar.fiuba.tdd.tp.actions.*;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
@@ -18,6 +16,8 @@ public class Pile extends ConcreteGameObjectWithParentAndChildren {
         addAction(new MoveTop(this));
         addAction(new HaveMovedFrom(this, children));
         addAction(new HaveMovedTo(this, children));
+        addAction(new BeAskedWhat(this));
+        addAction(new BeLookedAt(this));
     }
 
     public int getSmallestDiamater() {
@@ -43,7 +43,4 @@ public class Pile extends ConcreteGameObjectWithParentAndChildren {
         }
         return smallestDisc;
     }
-
-
-
 }

@@ -14,11 +14,16 @@ public class BeOpenedFailsIfOpenerCursed extends BeOpened {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        if (!super.canIHandleAction(objectsInvolved)) {
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
+        if (!super.canIHandleAction(objectsInvolved, response)) {
             return false;
         }
         GameObject whoOpens = objectsInvolved.get(idObjectWhoOpens);
-        return !whoOpens.getActionNames().contains("be cursed");
+        if (whoOpens.getActionNames().contains("be cursed")) {
+            response.append(this.instance.getName());
+            response.append(" can't be opened while holding the cursed item");
+            return false;
+        }
+        return true;
     }
 }

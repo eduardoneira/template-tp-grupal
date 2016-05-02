@@ -19,8 +19,12 @@ public class HaveMovedTo extends ActionHandler {
     }
 
     @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
-        return objectsInvolved.size() == argsSize;
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
+        if (!(objectsInvolved.size() == argsSize)) {
+            setResponseError(objectsInvolved, response);
+            return false;
+        }
+        return true;
     }
 
     @Override
