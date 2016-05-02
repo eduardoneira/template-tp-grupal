@@ -28,7 +28,6 @@ public class AbrirPuertaTests {
         room = new Room("room");
 
         key = new Key("key", room, 2);
-        key.setParent(room);
         room.addChild(key);
 
         player = new Player("player", room);
@@ -39,7 +38,6 @@ public class AbrirPuertaTests {
     public void placeDoorInRoom() {
         door = new Door("door", room);
         door.setClosed();
-        door.setParent(room);
         room.addChild(door);
 
         assert (room.contains("door"));
@@ -49,7 +47,6 @@ public class AbrirPuertaTests {
     public void playerOpensDoor() {
         door = new Door("door", room);
         door.setClosed();
-        door.setParent(room);
         room.addChild(door);
 
         assert (door.isClosed());

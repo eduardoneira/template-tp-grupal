@@ -25,7 +25,7 @@ public class LadronTests {
 
         player = new PlayerCursedObject("player", room);
 
-        stick = new Stick("stick", room);
+        stick = new Stick("stick", player);
 
         thief = new Thief("thief", room);
         room.addChild(thief);
@@ -33,7 +33,6 @@ public class LadronTests {
 
     @Test
     public void talkToThiefStickInRoom() {
-        stick.setParent(room);
         room.addChild(stick);
 
         assert (room.contains("stick"));
@@ -51,7 +50,6 @@ public class LadronTests {
 
     @Test
     public void talkToThiefStickOnPlayer() {
-        stick.setParent(player);
         player.addChild(stick);
 
         assert (player.contains("stick"));

@@ -21,7 +21,6 @@ public class FetchQuest extends Game {
         player.placeInRoom(room);
 
         stick = new Stick("stick", room);
-        stick.setParent(room);
 
         Pick actionPickup = new Pick(player);
 

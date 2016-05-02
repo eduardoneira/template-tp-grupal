@@ -23,12 +23,12 @@ public class BeMoved extends ActionHandler {
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         GameObject whereToMove = objectsInvolved.get(idWhereToMove);
 
-        List<GameObject> me = new LinkedList<GameObject>();
+        List<GameObject> me = new LinkedList<>();
         me.add(this.instance);
 
         // me borro del padre
         if (this.parent.getParent() != null) {
-            this.parent.getParent().handleAction("have moved from", new LinkedList<GameObject>(me));
+            this.parent.getParent().handleAction("have moved from", new LinkedList<>(me));
         }
 
         // me guardo nuevo padre

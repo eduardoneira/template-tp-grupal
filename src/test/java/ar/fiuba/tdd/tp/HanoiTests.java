@@ -56,9 +56,6 @@ public class HanoiTests {
     }
 
     public void setGame() {
-        pile1.setParent(room);
-        pile2.setParent(room);
-        pile2.setParent(room);
         room.addChild(pile1);
         room.addChild(pile2);
         room.addChild(pile3);
