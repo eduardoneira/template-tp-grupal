@@ -2,10 +2,11 @@ package ar.fiuba.tdd.tp.objects.concrete.player;
 
 import ar.fiuba.tdd.tp.actions.*;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 
 public class PlayerCrossShores extends Player {
 
-    public PlayerCrossShores(String name, GameObject parent) {
+    public PlayerCrossShores(String name, GameObjectWithChildren parent) {
         super(name, parent);
         init();
     }

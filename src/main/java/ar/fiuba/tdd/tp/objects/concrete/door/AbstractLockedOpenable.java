@@ -3,6 +3,7 @@ package ar.fiuba.tdd.tp.objects.concrete.door;
 import ar.fiuba.tdd.tp.abilities.control.LockControlFunctions;
 import ar.fiuba.tdd.tp.actions.BeOpenedHasLock;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 public abstract class AbstractLockedOpenable extends AbstractOpenable implements LockControlFunctions {
@@ -10,7 +11,7 @@ public abstract class AbstractLockedOpenable extends AbstractOpenable implements
     protected BooleanState locked;
     protected int key;
 
-    public AbstractLockedOpenable(String name, GameObject parent, int key) {
+    public AbstractLockedOpenable(String name, GameObjectWithChildren parent, int key) {
         super(name, parent);
         locked = new BooleanState();
         this.key = key;

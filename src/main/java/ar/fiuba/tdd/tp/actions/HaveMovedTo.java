@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class HaveMovedTo extends ActionHandler {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
-        GameObject objectToMove = objectsInvolved.get(idObjectToMove);
+        GameObjectWithParent objectToMove = (GameObjectWithParent) objectsInvolved.get(idObjectToMove);
         children.addChild(objectToMove);
         return "done";
     }

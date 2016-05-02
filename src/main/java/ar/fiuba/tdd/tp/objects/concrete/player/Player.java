@@ -9,7 +9,7 @@ import ar.fiuba.tdd.tp.objects.general.*;
 
 public class Player extends ConcreteGameObjectWithParentAndChildren {
 
-    public Player(String name, GameObject parent) {
+    public Player(String name, GameObjectWithChildren parent) {
         super(name, parent);
         addAction(new Look(this));
         addAction(new BeMoved(this, this.parent));

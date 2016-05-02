@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
 import java.util.List;
@@ -17,12 +18,6 @@ public class HaveMovedFrom extends ActionHandler {
         this.children = children;
     }
 
-    @Override
-    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        GameObject objectToMove = objectsInvolved.get(idObjectToMove);
-        children.removeChild(objectToMove);
-        return "done";
-    }
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved) {
@@ -35,4 +30,13 @@ public class HaveMovedFrom extends ActionHandler {
     public String getName() {
         return "have moved from";
     }
+
+
+    @Override
+    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
+        GameObjectWithParent objectToMove = (GameObjectWithParent) objectsInvolved.get(idObjectToMove);
+        children.removeChild(objectToMove);
+        return "done";
+    }
+
 }

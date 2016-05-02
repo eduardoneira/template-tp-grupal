@@ -2,29 +2,30 @@ package ar.fiuba.tdd.tp.objects.states;
 
 import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
 
 import java.util.*;
 
 public class ChildrenState implements ChildrenControlFunctions {
 
-    private Map<String, GameObject> children;
+    private Map<String, GameObjectWithParent> children;
 
     public ChildrenState() {
-        children = new HashMap<String, GameObject>();
+        children = new HashMap<>();
     }
 
     @Override
-    public void addChild(GameObject object) {
+    public void addChild(GameObjectWithParent object) {
         children.put(object.getName(), object);
     }
 
     @Override
-    public GameObject getChild(String name) {
+    public GameObjectWithParent getChild(String name) {
         return children.get(name);
     }
 
     @Override
-    public void removeChild(GameObject object) {
+    public void removeChild(GameObjectWithParent object) {
         children.remove(object.getName());
     }
 

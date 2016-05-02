@@ -2,13 +2,14 @@ package ar.fiuba.tdd.tp.objects.concrete.door;
 
 import ar.fiuba.tdd.tp.actions.BeOpenedMovesOpenerToOtherRoom;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 
 public class LinkingDoor extends Door {
 
     protected ParentState nextRoom;
 
-    public LinkingDoor(String name, GameObject parent, GameObject nextRoom) {
+    public LinkingDoor(String name, GameObjectWithChildren parent, GameObjectWithChildren nextRoom) {
         super(name, parent);
 
         this.nextRoom = new ParentState();

@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 
 import java.util.LinkedList;
@@ -21,7 +22,7 @@ public class BeMoved extends ActionHandler {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        GameObject whereToMove = objectsInvolved.get(idWhereToMove);
+        GameObjectWithChildren whereToMove = (GameObjectWithChildren) objectsInvolved.get(idWhereToMove);
 
         List<GameObject> me = new LinkedList<>();
         me.add(this.instance);

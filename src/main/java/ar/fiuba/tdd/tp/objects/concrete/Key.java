@@ -11,7 +11,7 @@ public class Key extends ConcreteGameObjectWithParent {
     protected int key;
     protected List<ActionHandler> actionsGranted;
 
-    public Key(String name, GameObject parent, int key) {
+    public Key(String name, GameObjectWithChildren parent, int key) {
         super(name, parent);
         this.key = key;
         //addAction(new ActionAddsActionToSomeone(this, new BeMoved(this, parent), new Unlock(this, key)));

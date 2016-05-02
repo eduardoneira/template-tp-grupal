@@ -5,7 +5,7 @@ import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
 import java.util.List;
 
-public class ConcreteGameObjectWithChildren extends ConcreteGameObject implements ChildrenControlFunctions {
+public class ConcreteGameObjectWithChildren extends ConcreteGameObject implements ChildrenControlFunctions, GameObjectWithChildren {
 
     protected ChildrenState children;
 
@@ -15,12 +15,12 @@ public class ConcreteGameObjectWithChildren extends ConcreteGameObject implement
     }
 
     @Override
-    public void addChild(GameObject child) {
+    public void addChild(GameObjectWithParent child) {
         children.addChild(child);
     }
 
     @Override
-    public void removeChild(GameObject child) {
+    public void removeChild(GameObjectWithParent child) {
         children.removeChild(child);
     }
 

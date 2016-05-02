@@ -5,13 +5,14 @@ import ar.fiuba.tdd.tp.actions.BeOpened;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObject;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 public abstract class AbstractOpenable extends ConcreteGameObjectWithParent implements OpenCloseControlFunctions{
 
     protected BooleanState open;
 
-    public AbstractOpenable(String name, GameObject parent) {
+    public AbstractOpenable(String name, GameObjectWithChildren parent) {
         super(name, parent);
         open = new BooleanState();
 

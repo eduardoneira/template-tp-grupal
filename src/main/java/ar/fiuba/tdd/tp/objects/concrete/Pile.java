@@ -6,13 +6,14 @@ import ar.fiuba.tdd.tp.actions.HaveMovedTo;
 import ar.fiuba.tdd.tp.actions.MoveTop;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Pile extends ConcreteGameObjectWithParentAndChildren {
 
-    public Pile(String name, GameObject parent) {
+    public Pile(String name, GameObjectWithChildren parent) {
         super(name, parent);
         addAction(new MoveTop(this));
         addAction(new HaveMovedFrom(this, children));

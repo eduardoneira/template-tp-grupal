@@ -4,6 +4,7 @@ import ar.fiuba.tdd.tp.objects.concrete.player.Player;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public abstract class Game {
 
@@ -26,7 +27,7 @@ public abstract class Game {
     public Game(String name, Player player) {
         this.name = name;
         this.player = player;
-        this.keywords = new HashSet<String>();
+        this.keywords = new HashSet<>();
         this.objects = new HashMap<>();
     }
 
@@ -64,10 +65,8 @@ public abstract class Game {
         String command = parsedCommand.get(0);
         parsedCommand.remove(0);
 
-        List<GameObject> objectsInvolved = new LinkedList<>();
-        for (String name : parsedCommand) {
-            objectsInvolved.add(objects.get(name));
-        }
+        List<GameObject> objectsInvolved = parsedCommand.stream().map(name -> objects.get(name))
+                .collect(Collectors.toCollection(LinkedList::new));
 
         String result = player.handleAction(command, objectsInvolved);
         if (checkWinCondition()) {
@@ -86,8 +85,6 @@ public abstract class Game {
     }
 
     void addActionToKeywords() {
-        for (String actionName : player.getActionNames()) {
-            keywords.add(actionName);
-        }
+        keywords.addAll(player.getActionNames().stream().collect(Collectors.toList()));
     }
 }

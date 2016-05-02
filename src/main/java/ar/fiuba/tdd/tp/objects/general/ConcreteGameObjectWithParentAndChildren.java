@@ -1,19 +1,17 @@
 package ar.fiuba.tdd.tp.objects.general;
 
-import ar.fiuba.tdd.tp.abilities.control.ChildrenControlFunctions;
-import ar.fiuba.tdd.tp.abilities.control.ParentControlFunctions;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 
 import java.util.List;
 
 public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
-        implements ParentControlFunctions, ChildrenControlFunctions {
+        implements GameObjectWithChildren, GameObjectWithParent {
 
     protected ChildrenState children;
     protected ParentState parent;
 
-    public ConcreteGameObjectWithParentAndChildren(String name, GameObject parent) {
+    public ConcreteGameObjectWithParentAndChildren(String name, GameObjectWithChildren parent) {
         super(name);
         this.children = new ChildrenState();
         this.parent = new ParentState();
@@ -21,7 +19,7 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
     }
 
     @Override
-    public void addChild(GameObject child) {
+    public void addChild(GameObjectWithParent child) {
         children.addChild(child);
     }
 
@@ -31,12 +29,12 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
     }
 
     @Override
-    public void removeChild(GameObject child) {
+    public void removeChild(GameObjectWithParent child) {
         children.removeChild(child);
     }
 
     @Override
-    public GameObject getChild(String name) {
+    public GameObjectWithParent getChild(String name) {
         return children.getChild(name);
     }
 
@@ -51,12 +49,12 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
     }
 
     @Override
-    public void setParent(GameObject parent) {
+    public void setParent(GameObjectWithChildren parent) {
         this.parent.setParent(parent);
     }
 
     @Override
-    public GameObject getParent() {
+    public GameObjectWithChildren getParent() {
         return this.parent.getParent();
     }
 }
