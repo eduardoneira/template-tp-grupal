@@ -17,10 +17,11 @@ public class Leave extends Move {
         GameObject whereToMove = ((ConcreteGameObjectWithParentAndChildren)this.instance).getParent();
         objectsInvolved.add(whereToMove);
 
-        if (super.handleAction(getName(), objectsInvolved) == "invalid command") {
-            return "invalid command";
+        StringBuilder response = new StringBuilder();
+        if (!canHandleAction(actionName, objectsInvolved, response)) {
+            return response.toString();
         }
-
+        super.handleAction(getName(), objectsInvolved);
         GameObject objectToMove = objectsInvolved.get(idObjectToMove);
         return "left " + objectToMove.getName();
     }
@@ -29,5 +30,4 @@ public class Leave extends Move {
     public String getName() {
         return "leave";
     }
-
 }

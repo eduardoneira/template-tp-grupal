@@ -23,10 +23,10 @@ public class BeLookedAtAndChildren extends BeLookedAt {
 
         StringBuilder builder = new StringBuilder();
         builder.append(super.handleAction(actionName, objectsInvolved));
-        builder.append(" ");
+        //builder.append(" ");
         for (GameObject child : children.getChildren()) {
-            builder.append(child.handleAction(actionName, objectsInvolved));
             builder.append(" ");
+            builder.append(child.handleAction(actionName, objectsInvolved));
         }
         return builder.toString();
     }

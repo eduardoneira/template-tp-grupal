@@ -48,6 +48,14 @@ public class BeMoved extends ActionHandler {
             return false;
         }
 
+        GameObjectWithChildren whereToMove = (GameObjectWithChildren) objectsInvolved.get(idWhereToMove);
+        if (this.parent.getParent() != null && this.parent.getParent().equals(whereToMove)) {
+            response.append(this.instance.getName());
+            response.append(" is already in ");
+            response.append(whereToMove.getName());
+            return false;
+        }
+
         return true;
     }
 

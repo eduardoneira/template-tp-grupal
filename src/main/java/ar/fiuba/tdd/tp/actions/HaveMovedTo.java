@@ -24,6 +24,11 @@ public class HaveMovedTo extends ActionHandler {
             setResponseError(objectsInvolved, response);
             return false;
         }
+        if (!children.canAddChild()) {
+            response.append(this.instance.getName());
+            response.append(" is full");
+            return false;
+        }
         return true;
     }
 

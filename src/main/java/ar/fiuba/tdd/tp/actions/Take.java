@@ -5,7 +5,7 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.List;
 
-public class Take extends Pick {
+public class Take extends Move {
 
     public Take(ConcreteGameObjectWithParentAndChildren instance) {
         super(instance);
@@ -13,21 +13,24 @@ public class Take extends Pick {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        if (super.handleAction(getName(), objectsInvolved) == "invalid command") {
-            return "The boat is full!";
+
+        convertToMove(objectsInvolved);
+        StringBuilder response = new StringBuilder();
+        if (!canHandleAction(actionName, objectsInvolved, response)) {
+            return response.toString();
         }
+        super.handleAction(getName(), objectsInvolved);
         GameObject objectToMove = objectsInvolved.get(idObjectToMove);
         return "took " + objectToMove.getName();
+    }
+
+    private void convertToMove(List<GameObject> objectsInvolved) {
+        GameObject whereToMove = this.instance;
+        objectsInvolved.add(whereToMove);
     }
 
     @Override
     public String getName() {
         return "take";
     }
-
-    @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        return (super.canIHandleAction(objectsInvolved, response) && ((ConcreteGameObjectWithParentAndChildren)instance).isEmpty());
-    }
-
 }

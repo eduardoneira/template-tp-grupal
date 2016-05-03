@@ -13,7 +13,7 @@ public class Motor {
         games.add( new OpenDoor() );
         games.add( new OpenDoor2() );
         games.add( new CursedObject());
-        //games.add( new WolfSheepCabbage() );
+        games.add( new WolfSheepCabbage() );
         //games.add( new TorresHanoi() );
         //games.add( new TreasureHunt() );
     }

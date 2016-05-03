@@ -20,7 +20,7 @@ public class BeLookedAtAndChildrenChangeVisibility extends BeLookedAt {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
-        if (!childrenVisible.getValue()) {
+        if (!childrenVisible.isTrue()) {
             return super.handleAction(actionName, objectsInvolved);
         } else {
             return lookWhenChildrenVisible.handleAction(actionName, objectsInvolved);

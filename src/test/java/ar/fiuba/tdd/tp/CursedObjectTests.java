@@ -2,13 +2,11 @@ package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.*;
 import ar.fiuba.tdd.tp.objects.concrete.CursedKey;
+import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.Thief;
 import ar.fiuba.tdd.tp.objects.concrete.door.AntiCurseLinkingDoor;
-import ar.fiuba.tdd.tp.objects.concrete.door.LinkingDoor;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingLockedDoor;
-import ar.fiuba.tdd.tp.objects.concrete.player.Player;
-import ar.fiuba.tdd.tp.objects.concrete.player.PlayerCursedObject;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -59,13 +57,13 @@ public class CursedObjectTests {
     }
 
     public void addActionsAndThief() {
-        player = new PlayerCursedObject("player", room1);
+        player = new Player("player", room1);
         player.addAction(new Open(player));
         player.addAction(new Move(player));
-        player.addAction(new Look(player));
-        player.addAction(new What(player));
         player.addAction(new Pick(player));
         player.addAction(new Talk(player));
+        player.addAction(new HaveEverythingStolen(player, player.getChildrenState()));
+        player.addAction(new HaveMovedFrom(player, player.getChildrenState()));
         room1.addChild(player);
 
         thief = new Thief("thief", room2);

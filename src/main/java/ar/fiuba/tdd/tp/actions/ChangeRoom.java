@@ -11,30 +11,24 @@ public class ChangeRoom extends Move {
 
     private int idWhereTo = 0;
 
-    public ChangeRoom(ConcreteGameObjectWithParentAndChildren instance, ParentState parent) {
+    public ChangeRoom(ConcreteGameObjectWithParentAndChildren instance) {
         super(instance);
     }
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         GameObject whereToCross = objectsInvolved.get(idWhereTo);
-        List<GameObject> objectsInvolvedForObjectToCross = new LinkedList<GameObject>();
-        objectsInvolvedForObjectToCross.add(this.instance);
-        objectsInvolvedForObjectToCross.add(whereToCross);
-        String res = super.handleAction(getName(), objectsInvolvedForObjectToCross);
-        if (res == "invalid command") {
-            return "invalid command";
-        }
-        return "changed room";
-    }
+        objectsInvolved.clear();
+        objectsInvolved.add(this.instance);
+        objectsInvolved.add(whereToCross);
 
-    @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        GameObject whereToCross = objectsInvolved.get(idWhereTo);
-        List<GameObject> objectsInvolvedForObjectToCross = new LinkedList<GameObject>();
-        objectsInvolvedForObjectToCross.add(this.instance);
-        objectsInvolvedForObjectToCross.add(whereToCross);
-        return super.canIHandleAction(objectsInvolvedForObjectToCross, response);
+        StringBuilder response = new StringBuilder();
+        if (!canHandleAction(actionName, objectsInvolved, response)) {
+            return response.toString();
+        }
+
+        super.handleAction(getName(), objectsInvolved);
+        return "changed room to " + whereToCross.getName();
     }
 
     @Override

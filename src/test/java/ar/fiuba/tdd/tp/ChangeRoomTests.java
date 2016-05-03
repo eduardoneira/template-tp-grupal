@@ -1,14 +1,11 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.actions.ChangeRoom;
 import ar.fiuba.tdd.tp.actions.Move;
 import ar.fiuba.tdd.tp.actions.Open;
-import ar.fiuba.tdd.tp.objects.concrete.Key;
+import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.door.Door;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingDoor;
-import ar.fiuba.tdd.tp.objects.concrete.door.LockedDoor;
-import ar.fiuba.tdd.tp.objects.concrete.player.Player;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import org.junit.Before;
 import org.junit.Test;

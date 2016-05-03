@@ -22,7 +22,7 @@ public class HaveMovedFromChangesPermission extends HaveMovedFrom {
             return false;
         }
 
-        if (!canTakeFrom.getValue()) {
+        if (!canTakeFrom.isTrue()) {
             response.append(objectsInvolved.get(idObjectToMove).getName());
             response.append(" can't be accesed");
             return false;

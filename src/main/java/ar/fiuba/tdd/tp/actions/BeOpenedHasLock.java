@@ -33,7 +33,7 @@ public class BeOpenedHasLock extends BeOpened {
             return false;
         }
 
-        if (locked.getValue()) {
+        if (locked.isTrue()) {
             GameObject objectThatUnlocksMe = objectsInvolved.get(idObjectThatUnlocksMe);
 
             List<GameObject> objectsInvolvedForUnlocker = new LinkedList<GameObject>();

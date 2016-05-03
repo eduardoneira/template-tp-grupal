@@ -8,7 +8,7 @@ import java.util.*;
 
 public class ChildrenState implements ChildrenControlFunctions {
 
-    private Map<String, GameObjectWithParent> children;
+    protected Map<String, GameObjectWithParent> children;
 
     public ChildrenState() {
         children = new HashMap<>();
@@ -32,6 +32,11 @@ public class ChildrenState implements ChildrenControlFunctions {
     @Override
     public boolean isEmpty() {
         return children.isEmpty();
+    }
+
+    @Override
+    public boolean canAddChild() {
+        return true;
     }
 
     @Override

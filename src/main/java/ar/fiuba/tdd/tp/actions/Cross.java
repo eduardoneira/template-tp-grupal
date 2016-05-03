@@ -12,11 +12,11 @@ import java.util.List;
 public class Cross extends ChangeRoom {
 
 
-    public Cross(ConcreteGameObjectWithParentAndChildren instance, ParentState parent) {
-        super(instance, parent);
+    public Cross(ConcreteGameObjectWithParentAndChildren instance) {
+        super(instance);
     }
 
-    @Override
+    /*@Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         boolean sheepInShore = false;
         boolean otherInShore = false;
@@ -34,7 +34,7 @@ public class Cross extends ChangeRoom {
             return "You can't cross, things will be eaten";
         }
         return "crossed";
-    }
+    }*/
 
     @Override
     public String getName() {

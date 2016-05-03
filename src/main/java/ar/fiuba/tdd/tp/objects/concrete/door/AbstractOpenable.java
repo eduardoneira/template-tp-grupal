@@ -4,9 +4,7 @@ import ar.fiuba.tdd.tp.abilities.control.OpenCloseControlFunctions;
 import ar.fiuba.tdd.tp.actions.BeAskedWhat;
 import ar.fiuba.tdd.tp.actions.BeLookedAt;
 import ar.fiuba.tdd.tp.actions.BeOpened;
-import ar.fiuba.tdd.tp.objects.general.ConcreteGameObject;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParent;
-import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
@@ -35,11 +33,11 @@ public abstract class AbstractOpenable extends ConcreteGameObjectWithParent impl
 
     @Override
     public boolean isOpen() {
-        return open.getValue();
+        return open.isTrue();
     }
 
     @Override
     public boolean isClosed() {
-        return !open.getValue();
+        return !open.isTrue();
     }
 }

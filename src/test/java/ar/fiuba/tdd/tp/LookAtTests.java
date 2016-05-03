@@ -1,13 +1,9 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.actions.Look;
-import ar.fiuba.tdd.tp.actions.What;
 import ar.fiuba.tdd.tp.objects.concrete.Box;
+import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.Stick;
-import ar.fiuba.tdd.tp.objects.concrete.Thief;
-import ar.fiuba.tdd.tp.objects.concrete.player.Player;
-import ar.fiuba.tdd.tp.objects.concrete.player.PlayerCursedObject;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +22,7 @@ public class LookAtTests {
     public void initialization() {
         room = new Room("room");
 
-        player = new PlayerCursedObject("player", room);
+        player = new Player("player", room);
         room.addChild(player);
 
     }
@@ -34,7 +30,7 @@ public class LookAtTests {
     @Test
     public void lookAtEmptyRoomTest() {
 
-        assertEquals("there're room", (player.handleAction("look", new ArrayList<GameObject>() {
+        assertEquals("there're room player", (player.handleAction("look", new ArrayList<GameObject>() {
             {
                 add(room);
             }
@@ -48,7 +44,7 @@ public class LookAtTests {
         stick = new Stick("stick", room);
         room.addChild(stick);
 
-        assertEquals("there're room stick", (player.handleAction("look", new ArrayList<GameObject>() {
+        assertEquals("there're room stick player", (player.handleAction("look", new ArrayList<GameObject>() {
             {
                 add(room);
             }
@@ -66,7 +62,7 @@ public class LookAtTests {
 
         room.addChild(box);
 
-        assertEquals("there're room a box", (player.handleAction("look", new ArrayList<GameObject>() {
+        assertEquals("there're room a box player", (player.handleAction("look", new ArrayList<GameObject>() {
             {
                 add(room);
             }
@@ -74,7 +70,7 @@ public class LookAtTests {
                 .trim());
 
         box.setOpen();
-        assertEquals("there're room a box stick", (player.handleAction("look", new ArrayList<GameObject>() {
+        assertEquals("there're room a box stick player", (player.handleAction("look", new ArrayList<GameObject>() {
             {
                 add(room);
             }

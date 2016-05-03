@@ -14,17 +14,19 @@ public class Pick extends Move {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
-        GameObject whereToMove = this.instance;
-        objectsInvolved.add(whereToMove);
-
+        convertToMove(objectsInvolved);
         StringBuilder response = new StringBuilder();
         if (!canHandleAction(actionName, objectsInvolved, response)) {
             return response.toString();
         }
-
         super.handleAction(getName(), objectsInvolved);
         GameObject objectToMove = objectsInvolved.get(idObjectToMove);
         return "picked " + objectToMove.getName();
+    }
+
+    private void convertToMove(List<GameObject> objectsInvolved) {
+        GameObject whereToMove = this.instance;
+        objectsInvolved.add(whereToMove);
     }
 
     @Override

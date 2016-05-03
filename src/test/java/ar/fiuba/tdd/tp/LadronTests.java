@@ -1,11 +1,11 @@
 package ar.fiuba.tdd.tp;
 
 
+import ar.fiuba.tdd.tp.actions.*;
+import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.Stick;
 import ar.fiuba.tdd.tp.objects.concrete.Thief;
-import ar.fiuba.tdd.tp.objects.concrete.player.Player;
-import ar.fiuba.tdd.tp.objects.concrete.player.PlayerCursedObject;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +23,14 @@ public class LadronTests {
     public void initialization() {
         room = new Room("room");
 
-        player = new PlayerCursedObject("player", room);
+        player = new Player("player", room);
+        player.addAction(new Open(player));
+        player.addAction(new Move(player));
+        player.addAction(new Pick(player));
+        player.addAction(new Talk(player));
+        player.addAction(new HaveEverythingStolen(player, player.getChildrenState()));
+        player.addAction(new HaveMovedFrom(player, player.getChildrenState()));
+        room.addChild(player);
 
         stick = new Stick("stick", player);
 

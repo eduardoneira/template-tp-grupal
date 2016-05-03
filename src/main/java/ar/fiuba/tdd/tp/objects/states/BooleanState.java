@@ -19,7 +19,11 @@ public class BooleanState {
         state = false;
     }
 
-    public boolean getValue() {
-        return state;
+    public boolean isTrue() {
+        return (state == true);
+    }
+
+    public boolean isFalse() {
+        return (state == false);
     }
 }

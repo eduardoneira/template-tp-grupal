@@ -12,4 +12,6 @@ public interface ChildrenControlFunctions extends CanHaveChildren {
     void removeChild(GameObjectWithParent child);
 
     boolean isEmpty();
+
+    boolean canAddChild();
 }

@@ -1,8 +1,12 @@
 package ar.fiuba.tdd.tp;
 
+import ar.fiuba.tdd.tp.actions.Cross;
+import ar.fiuba.tdd.tp.actions.HaveMovedFrom;
+import ar.fiuba.tdd.tp.actions.Leave;
+import ar.fiuba.tdd.tp.actions.Take;
 import ar.fiuba.tdd.tp.objects.concrete.*;
-import ar.fiuba.tdd.tp.objects.concrete.player.PlayerCrossShores;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+import ar.fiuba.tdd.tp.objects.states.ChildrenStateLimitedSize;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,13 +23,19 @@ public class WolfSheepCabbageTests {
     private Sheep sheep;
     private Cabbage cabbage;
 
-    private PlayerCrossShores player;
+    private Player player;
 
     @Before
     public void initialization() {
         southShore = new Room("south-shore");
         northShore = new Room("north-shore");
-        player = new PlayerCrossShores("player", southShore);
+
+        player = new Player("player", southShore, new ChildrenStateLimitedSize(1));
+        player.addAction(new Cross(player));
+        player.addAction(new Leave(player));
+        player.addAction(new Take(player));
+        player.addAction(new HaveMovedFrom(player, player.getChildrenState()));
+
         southShore.addChild(player);
         wolf = new Wolf("wolf", southShore);
         sheep = new Sheep("sheep", southShore);
@@ -64,7 +74,8 @@ public class WolfSheepCabbageTests {
         assert (southShore.contains("wolf"));
         take(wolf);
         assert (!southShore.contains("wolf"));
-        assertEquals("The boat is full!", take(sheep));
+        take(sheep);
+        assert (!player.contains("sheep"));
         leave(wolf);
         assert (southShore.contains("wolf"));
         take(sheep);

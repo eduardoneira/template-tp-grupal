@@ -10,8 +10,12 @@ public class ConcreteGameObjectWithChildren extends ConcreteGameObject implement
     protected ChildrenState children;
 
     public ConcreteGameObjectWithChildren(String name) {
+        this(name, new ChildrenState());
+    }
+
+    public ConcreteGameObjectWithChildren(String name, ChildrenState children) {
         super(name);
-        this.children = new ChildrenState();
+        this.children = children;
     }
 
     @Override
@@ -31,6 +35,11 @@ public class ConcreteGameObjectWithChildren extends ConcreteGameObject implement
     @Override
     public boolean isEmpty() {
         return children.isEmpty();
+    }
+
+    @Override
+    public boolean canAddChild() {
+        return children.canAddChild();
     }
 
     @Override

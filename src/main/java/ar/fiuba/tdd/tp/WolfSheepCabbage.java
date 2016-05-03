@@ -1,56 +1,127 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.actions.ChangeRoom;
-import ar.fiuba.tdd.tp.actions.Leave;
-import ar.fiuba.tdd.tp.actions.Take;
+import ar.fiuba.tdd.tp.actions.*;
 import ar.fiuba.tdd.tp.objects.concrete.Cabbage;
+import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.Sheep;
 import ar.fiuba.tdd.tp.objects.concrete.Wolf;
-import ar.fiuba.tdd.tp.objects.concrete.player.PlayerCrossShores;
+import ar.fiuba.tdd.tp.objects.states.BooleanState;
+import ar.fiuba.tdd.tp.objects.states.ChildrenStateLimitedSize;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WolfSheepCabbage extends Game {
 
     Room southShore;
     Room northShore;
-    String wolfName;
-    String sheepName;
-    String cabbageName;
+    Wolf wolf;
+    Sheep sheep;
+    Cabbage cabbage;
+
+    BooleanState sheepNotWithCabbage;
+    BooleanState wolfNotWithSheep;
 
     public boolean checkWinCondition() {
-        return (northShore.contains(wolfName) && northShore.contains(sheepName) && northShore.contains(cabbageName));
+        // TODO: cambiar esto a una forma general para todos los juegos donde se pueden definir "REGLAS" o "CONDICIONES" que se actualizan
+        // TODO: en cada turno y cambian el comportamiento de los objetos del juego
+        actualizarSheepWithCabbage();
+        actualizarWolfWithSheep();
+
+        return (northShore.contains(wolf.getName()) && northShore.contains(sheep.getName()) && northShore.contains(cabbage.getName()));
+    }
+
+    // TODO: mismo que antes
+    private void actualizarSheepWithCabbage() {
+        if (sheep.getParent().equals(cabbage.getParent())) {
+            sheepNotWithCabbage.setFalse();
+        } else {
+            sheepNotWithCabbage.setTrue();
+        }
+    }
+
+    private void actualizarWolfWithSheep() {
+        if (wolf.getParent().equals(sheep.getParent())) {
+            wolfNotWithSheep.setFalse();
+        } else {
+            wolfNotWithSheep.setTrue();
+        }
     }
 
     public WolfSheepCabbage() {
-        super("Wolf, Sheep and Cabbage", new PlayerCrossShores("player", null));
-        String southShoreName = "south-shore";
-        String northShoreName = "north-shore";
-        southShore = new Room(southShoreName);
-        northShore = new Room(northShoreName);
-        objects.put(southShoreName, southShore);
-        objects.put(northShoreName, northShore);
-        keywords.add(southShoreName);
-        keywords.add(northShoreName);
-        player.placeInRoom(southShore);
-        keywords.add(new Leave(null).getName());
-        keywords.add(new Take(null).getName());
-        keywords.add(new ChangeRoom(null, null).getName());
-        createMore();
+        super("Wolf, Sheep and Cabbage");
+
+        createShores();
+
+        createWolf();
+
+        createSheep();
+
+        createCabbage();
+
+        createPlayer();
     }
 
-    //negrada para evitar el ncss de checkstyle
-    private void createMore() {
-        wolfName = "wolf";
-        sheepName = "sheep";
-        cabbageName = "cabbage";
+    private void createShores() {
+        String southShoreName = "south-shore";
+        southShore = new Room(southShoreName);
+        keywords.add(southShoreName);
+        objects.put(southShoreName, southShore);
+
+        String northShoreName = "north-shore";
+        northShore = new Room(northShoreName);
+        keywords.add(northShoreName);
+        objects.put(northShoreName, northShore);
+    }
+
+    private void createPlayer() {
+        player = new Player("player", southShore, new ChildrenStateLimitedSize(1));
+
+        ActionHandler leaveAction = new Leave(player);
+        player.addAction(leaveAction);
+        keywords.add(leaveAction.getName());
+
+        ActionHandler takeAction = new Take(player);
+        player.addAction(takeAction);
+        keywords.add(takeAction.getName());
+
+        ActionHandler haveMovedFromAction = new HaveMovedFrom(player, player.getChildrenState());
+        player.addAction(haveMovedFromAction);
+
+        sheepNotWithCabbage = new BooleanState();
+        actualizarSheepWithCabbage();
+        wolfNotWithSheep = new BooleanState();
+        actualizarWolfWithSheep();
+        List<BooleanState> conditions = new ArrayList<>();
+        conditions.add(sheepNotWithCabbage);
+        conditions.add(wolfNotWithSheep);
+        ActionHandler crossAction = new ConditionalActionHandler(player, new Cross(player), conditions);
+        player.addAction(crossAction);
+        keywords.add(crossAction.getName());
+    }
+
+    private void createWolf() {
+        String wolfName = "wolf";
+        wolf = new Wolf(wolfName, southShore);
+        southShore.addChild(wolf);
         keywords.add(wolfName);
-        keywords.add(sheepName);
-        keywords.add(cabbageName);
-        Wolf wolf = new Wolf(wolfName, southShore);
-        Sheep sheep = new Sheep(sheepName, southShore);
-        Cabbage cabbage = new Cabbage(cabbageName, southShore);
         objects.put(wolfName, wolf);
+    }
+
+    private void createSheep() {
+        String sheepName = "sheep";
+        sheep = new Sheep(sheepName, southShore);
+        southShore.addChild(sheep);
+        keywords.add(sheepName);
         objects.put(sheepName, sheep);
+    }
+
+    private void createCabbage() {
+        String cabbageName = "cabbage";
+        cabbage = new Cabbage(cabbageName, southShore);
+        southShore.addChild(cabbage);
+        keywords.add(cabbageName);
         objects.put(cabbageName, cabbage);
     }
 }
