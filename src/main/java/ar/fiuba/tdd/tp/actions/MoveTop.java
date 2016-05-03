@@ -31,7 +31,7 @@ public class MoveTop extends Move {
         int diameter = ((Disc) objectsInvolved.get(idObjectToMove)).getDiameter();
         int smallest = ((Pile) objectsInvolved.get(idWhereToMove)).getSmallestDiamater();
         if (diameter >= smallest) {
-            setResponseError(objectsInvolved, response);
+            response.append("You can only put a disc on top of a bigger one");
             return false;
         }
         return super.canIHandleAction(objectsInvolved, response);
@@ -41,5 +41,4 @@ public class MoveTop extends Move {
     public String getName() {
         return "moveTop";
     }
-
 }

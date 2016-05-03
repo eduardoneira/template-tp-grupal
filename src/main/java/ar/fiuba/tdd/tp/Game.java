@@ -14,7 +14,7 @@ public abstract class Game {
     protected Map<String, GameObject> objects;
 
     protected  String needHelpRegex = "help(.)*";
-    protected  String help = "You can use this words : ";
+    protected  String help = "You can use this keywords (all other words will be ignored) : ";
 
     public String getName() {
         return name;
@@ -69,13 +69,21 @@ public abstract class Game {
         String command = parsedCommand.get(0);
         parsedCommand.remove(0);
 
+        /*if (!commands.contains(command)) {
+            return "invalid command: " + command;
+        }*/
+
         List<GameObject> objectsInvolved = parsedCommand.stream().map(name -> objects.get(name))
                 .collect(Collectors.toCollection(LinkedList::new));
 
         /*List<GameObject> objectsInvolved = new LinkedList<>();
         for (String name : parsedCommand) {
-            if (objects.containsKey(name)) {
-                objectsInvolved.add(objects.get(name));
+            if (player.getParent().getName().equals(name)) {
+                objectsInvolved.add(player.getParent());
+            } else if (player.getParent().containsInHierarchy(name)) {
+                objectsInvolved.add(player.getParent().getChildFromHirerarchy(name));
+            } else {
+                return "there is no visible object called '" + name + "'";
             }
         }*/
 

@@ -40,25 +40,21 @@ public class Look extends ActionHandler {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        try {
-            StringBuilder response = new StringBuilder();
-            if (!canHandleAction(actionName, objectsInvolved, response)) {
-                return response.toString();
-            }
-
-            GameObject whoLooks = this.instance;
-            GameObject objectToLookAt = objectsInvolved.get(idObjectToLookAt);
-            StringBuilder builder = new StringBuilder();
-
-            List<GameObject> objectsInvolvedForObjectToLookAt = new LinkedList<GameObject>();
-            objectsInvolvedForObjectToLookAt.add(whoLooks);
-
-            builder.append("there're ");
-            builder.append(objectToLookAt.handleAction(beLookedAt, objectsInvolvedForObjectToLookAt));
-
-            return builder.toString();
-        } catch (Exception e) {
-            return "can't look it";
+        StringBuilder response = new StringBuilder();
+        if (!canHandleAction(actionName, objectsInvolved, response)) {
+            return response.toString();
         }
+
+        GameObject whoLooks = this.instance;
+        GameObject objectToLookAt = objectsInvolved.get(idObjectToLookAt);
+        StringBuilder builder = new StringBuilder();
+
+        List<GameObject> objectsInvolvedForObjectToLookAt = new LinkedList<GameObject>();
+        objectsInvolvedForObjectToLookAt.add(whoLooks);
+
+        builder.append("there're ");
+        builder.append(objectToLookAt.handleAction(beLookedAt, objectsInvolvedForObjectToLookAt));
+
+        return builder.toString();
     }
 }
