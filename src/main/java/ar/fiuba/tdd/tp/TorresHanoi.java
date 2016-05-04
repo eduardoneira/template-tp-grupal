@@ -87,4 +87,9 @@ public class TorresHanoi extends Game {
         return ((torre1.isEmpty()) && (torre2.isEmpty() || torre3.isEmpty()));
     }
 
+    @Override
+    public boolean checkLooseCondition() {
+        return false;
+    }
+
 }

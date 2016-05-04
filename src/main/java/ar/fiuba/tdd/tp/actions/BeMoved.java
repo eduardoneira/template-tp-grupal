@@ -34,7 +34,7 @@ public class BeMoved extends ActionHandler {
 
         // me guardo nuevo padre
         this.parent.setParent(whereToMove);
-        return "done";
+        return "";
     }
 
     @Override

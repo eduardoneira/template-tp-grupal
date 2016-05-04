@@ -72,4 +72,9 @@ public class OpenDoor extends Game {
     public boolean checkWinCondition() {
         return door.isOpen();
     }
+
+    @Override
+    public boolean checkLooseCondition() {
+        return false;
+    }
 }

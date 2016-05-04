@@ -50,8 +50,10 @@ public class Open extends ActionHandler {
 
         objectsInvolvedForObjectToOpen.add(objectWhoOpens);
 
-        objectToOpen.handleAction(beOpened, objectsInvolvedForObjectToOpen);
-
-        return "opened " + objectToOpen.getName();
+        String ret = objectToOpen.handleAction(beOpened, objectsInvolvedForObjectToOpen);
+        if (ret.equals("")) {
+            return "opened " + objectToOpen.getName();
+        }
+        return "opened " + objectToOpen.getName() + ". " + ret;
     }
 }

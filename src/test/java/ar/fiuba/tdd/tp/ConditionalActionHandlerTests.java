@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
-import ar.fiuba.tdd.tp.actions.ConditionalActionHandler;
+import ar.fiuba.tdd.tp.actions.ConditionalActionHandlerFails;
 import ar.fiuba.tdd.tp.actions.Pick;
 import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
@@ -43,7 +43,7 @@ public class ConditionalActionHandlerTests {
         cond2 = new BooleanState();
         conds.add(cond2);
 
-        ActionHandler conditionalPick = new ConditionalActionHandler(player, new Pick(player), conds);
+        ActionHandler conditionalPick = new ConditionalActionHandlerFails(player, new Pick(player), conds);
         player.addAction(conditionalPick);
 
         objectsInvolved = new LinkedList<>();

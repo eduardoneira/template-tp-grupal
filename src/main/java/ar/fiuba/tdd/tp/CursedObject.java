@@ -115,4 +115,9 @@ public class CursedObject extends Game {
     public boolean checkWinCondition() {
         return room3.contains("player");
     }
+
+    @Override
+    public boolean checkLooseCondition() {
+        return false;
+    }
 }

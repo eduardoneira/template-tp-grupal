@@ -21,6 +21,26 @@ public class Move extends ActionHandler {
     }
 
     @Override
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
+        if (objectsInvolved.size() != argsSize) {
+            setResponseError(objectsInvolved, response);
+            return false;
+        }
+
+        GameObject whereToMove = objectsInvolved.get(idWhereToMove);
+        List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<GameObject>();
+        objectsInvolvedForObjectToMove.add(this.instance);
+        objectsInvolvedForObjectToMove.add(whereToMove);
+
+        GameObject objectToMove = objectsInvolved.get(idObjectToMove);
+        List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
+        objectsInvolvedForWhereToMove.add(this.instance);
+        objectsInvolvedForWhereToMove.add(objectToMove);
+        return objectToMove.canHandleAction(beMoved, objectsInvolvedForObjectToMove, response)
+                && whereToMove.canHandleAction(haveMovedTo, objectsInvolvedForWhereToMove, response);
+    }
+
+    @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         StringBuilder response = new StringBuilder();
         if (!canHandleAction(actionName, objectsInvolved, response)) {
@@ -40,26 +60,6 @@ public class Move extends ActionHandler {
         whereToMove.handleAction(haveMovedTo, objectsInvolvedForWhereToMove);
 
         return "moved " + objectToMove.getName() + " to " + whereToMove.getName();
-    }
-
-    @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        if (objectsInvolved.size() != argsSize) {
-            setResponseError(objectsInvolved, response);
-            return false;
-        }
-
-        GameObject whereToMove = objectsInvolved.get(idWhereToMove);
-        List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<GameObject>();
-        objectsInvolvedForObjectToMove.add(this.instance);
-        objectsInvolvedForObjectToMove.add(whereToMove);
-
-        GameObject objectToMove = objectsInvolved.get(idObjectToMove);
-        List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
-        objectsInvolvedForWhereToMove.add(this.instance);
-        objectsInvolvedForWhereToMove.add(objectToMove);
-        return objectToMove.canHandleAction(beMoved, objectsInvolvedForObjectToMove, response)
-                && whereToMove.canHandleAction(haveMovedTo, objectsInvolvedForWhereToMove, response);
     }
 
     @Override

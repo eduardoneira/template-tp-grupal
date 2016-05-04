@@ -32,6 +32,11 @@ public class WolfSheepCabbage extends Game {
         return (northShore.contains(wolf.getName()) && northShore.contains(sheep.getName()) && northShore.contains(cabbage.getName()));
     }
 
+    @Override
+    public boolean checkLooseCondition() {
+        return false;
+    }
+
     // TODO: mismo que antes
     private void actualizarSheepWithCabbage() {
         if (sheep.getParent().equals(cabbage.getParent())) {
@@ -96,7 +101,7 @@ public class WolfSheepCabbage extends Game {
         List<BooleanState> conditions = new ArrayList<>();
         conditions.add(sheepNotWithCabbage);
         conditions.add(wolfNotWithSheep);
-        ActionHandler crossAction = new ConditionalActionHandler(player, new Cross(player), conditions);
+        ActionHandler crossAction = new ConditionalActionHandlerFails(player, new Cross(player), conditions);
         player.addAction(crossAction);
         keywords.add(crossAction.getName());
     }

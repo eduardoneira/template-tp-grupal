@@ -9,10 +9,16 @@ import java.util.List;
 public class BeMovedGrantsActions extends BeMoved {
 
     protected List<ActionHandler> actionsGranted;
+    String resultString;
 
     public BeMovedGrantsActions(GameObject instance, ParentState parent, List<ActionHandler> actionsGranted) {
+        this(instance, parent, actionsGranted, "");
+    }
+
+    public BeMovedGrantsActions(GameObject instance, ParentState parent, List<ActionHandler> actionsGranted, String resultString) {
         super(instance, parent);
         this.actionsGranted = actionsGranted;
+        this.resultString = resultString;
     }
 
     @Override
@@ -33,6 +39,6 @@ public class BeMovedGrantsActions extends BeMoved {
             action.instance = newParent;
         }
 
-        return ret;
+        return ret + resultString;
     }
 }

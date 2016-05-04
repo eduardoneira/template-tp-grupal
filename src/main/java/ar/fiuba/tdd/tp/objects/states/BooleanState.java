@@ -26,4 +26,8 @@ public class BooleanState {
     public boolean isFalse() {
         return (state == false);
     }
+
+    public void setValue(boolean value) {
+        this.state = value;
+    }
 }

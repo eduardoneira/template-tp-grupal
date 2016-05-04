@@ -20,7 +20,7 @@ public class BeOpened extends ActionHandler {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         open.setTrue();
-        return "done";
+        return "";
     }
 
     @Override

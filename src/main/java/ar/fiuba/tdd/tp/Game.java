@@ -13,8 +13,10 @@ public abstract class Game {
     protected Set<String> keywords;
     protected Map<String, GameObject> objects;
 
-    protected  String needHelpRegex = "help(.)*";
-    protected  String help = "You can use this keywords (all other words will be ignored) : ";
+    protected String needHelpRegex = "help(.)*";
+    protected String help = "You can use this keywords (all other words will be ignored) : ";
+    protected String win = ". You won the game!";
+    protected String loose = ". You lost!";
 
     public String getName() {
         return name;
@@ -36,6 +38,8 @@ public abstract class Game {
     }
 
     public abstract boolean checkWinCondition();
+
+    public abstract boolean checkLooseCondition();
 
     private String preProcess(List<String> parsedCommand) {
         if (parsedCommand.size() > 0) {
@@ -89,7 +93,9 @@ public abstract class Game {
 
         String result = player.handleAction(command, objectsInvolved);
         if (checkWinCondition()) {
-            return "ganaste";
+            return result + win;
+        } else if (checkLooseCondition()) {
+            return result + loose;
         } else {
             return result;
         }

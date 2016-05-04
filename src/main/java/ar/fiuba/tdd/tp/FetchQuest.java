@@ -36,4 +36,9 @@ public class FetchQuest extends Game {
     public boolean checkWinCondition() {
         return player.contains("stick");
     }
+
+    @Override
+    public boolean checkLooseCondition() {
+        return false;
+    }
 }

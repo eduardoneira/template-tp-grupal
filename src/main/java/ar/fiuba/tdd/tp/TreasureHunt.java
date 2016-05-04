@@ -4,6 +4,7 @@ import ar.fiuba.tdd.tp.actions.*;
 import ar.fiuba.tdd.tp.objects.concrete.*;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingDoor;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingLockedDoor;
+import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.objects.states.ChildrenStateLimitedSize;
 
 /**
@@ -24,6 +25,7 @@ public class TreasureHunt extends Game {
     private LinkingLockedDoor door2to5;
     private Chest chestIn2;
     private Box boxInChestIn2;
+    private Antidote antidoteIn2;
 
     private Room room3;
     private LinkingLockedDoor door3to2;
@@ -33,19 +35,27 @@ public class TreasureHunt extends Game {
     private Room room4;
     private LinkingLockedDoor door4to2;
     private Chest chest1In4;
+    private Poison poisonIn4;
     private Chest chest2In4;
     private Treasure treasureInChest2In4;
 
     private Room room5;
+    private Antidote antidoteIn5;
     private LinkingLockedDoor door5to2;
     private Chest chest1In5;
     private Key keyTo4;
     private Chest chest2In5;
+    private Poison poisonIn5;
+
+    private BooleanState killedByPoison;
+    private BooleanState poisoned;
 
     public TreasureHunt() {
         super("Treasure Hunt");
 
         createRooms();
+
+        initBooleans();
 
         populateRoom1();
 
@@ -80,6 +90,13 @@ public class TreasureHunt extends Game {
         room5 = new Room("room5");
         keywords.add(room5.getName());
         objects.put(room5.getName(), room5);
+    }
+
+    private void initBooleans() {
+        killedByPoison = new BooleanState();
+        killedByPoison.setFalse();
+        poisoned = new BooleanState();
+        poisoned.setFalse();
     }
 
     private void populateRoom1() {
@@ -134,6 +151,11 @@ public class TreasureHunt extends Game {
         chestIn2.addChild(boxInChestIn2);
         keywords.add(boxInChestIn2.getName());
         objects.put(boxInChestIn2.getName(), boxInChestIn2);
+
+        antidoteIn2 = new Antidote("antidoteIn2", boxInChestIn2, poisoned);
+        boxInChestIn2.addChild(antidoteIn2);
+        keywords.add(antidoteIn2.getName());
+        objects.put(antidoteIn2.getName(), antidoteIn2);
     }
 
     private void populateRoom3() {
@@ -156,6 +178,12 @@ public class TreasureHunt extends Game {
     }
 
     private void populateRoom4() {
+        populateRoom4a();
+
+        populateRoom4b();
+    }
+
+    private void populateRoom4a() {
         // room4
 
         door4to2 = new LinkingLockedDoor("door4to2", room4, 4, room2);
@@ -168,6 +196,13 @@ public class TreasureHunt extends Game {
         keywords.add(chest1In4.getName());
         objects.put(chest1In4.getName(), chest1In4);
 
+        poisonIn4 = new Poison("poisonIn4", chest1In4, killedByPoison, poisoned);
+        chest1In4.addChild(poisonIn4);
+        keywords.add(poisonIn4.getName());
+        objects.put(poisonIn4.getName(), poisonIn4);
+    }
+
+    private void populateRoom4b() {
         chest2In4 = new Chest("chest2In4", room4);
         room4.addChild(chest2In4);
         keywords.add(chest2In4.getName());
@@ -180,6 +215,12 @@ public class TreasureHunt extends Game {
     }
 
     private void populateRoom5() {
+        populateRoom5a();
+
+        populateRoom5b();
+    }
+
+    private void populateRoom5a() {
         // room 5
 
         door5to2 = new LinkingLockedDoor("door5to2", room5, 5, room2);
@@ -187,11 +228,18 @@ public class TreasureHunt extends Game {
         keywords.add(door5to2.getName());
         objects.put(door5to2.getName(), door5to2);
 
+        antidoteIn5 = new Antidote("antidoteIn5", room5, poisoned);
+        room5.addChild(antidoteIn5);
+        keywords.add(antidoteIn5.getName());
+        objects.put(antidoteIn5.getName(), antidoteIn5);
+
         chest1In5 = new Chest("chest1In5", room5);
         room5.addChild(chest1In5);
         keywords.add(chest1In5.getName());
         objects.put(chest1In5.getName(), chest1In5);
+    }
 
+    private void populateRoom5b() {
         keyTo4 = new Key("keyTo4", chest1In5, 4);
         chest1In5.addChild(keyTo4);
         keywords.add(keyTo4.getName());
@@ -201,6 +249,11 @@ public class TreasureHunt extends Game {
         room5.addChild(chest2In5);
         keywords.add(chest2In5.getName());
         objects.put(chest2In5.getName(), chest2In5);
+
+        poisonIn5 = new Poison("poisonIn5", chest2In5, killedByPoison, poisoned);
+        chest2In5.addChild(poisonIn5);
+        keywords.add(poisonIn5.getName());
+        objects.put(poisonIn5.getName(), poisonIn5);
     }
 
     private void createPlayer() {
@@ -228,5 +281,10 @@ public class TreasureHunt extends Game {
     @Override
     public boolean checkWinCondition() {
         return player.contains(treasureInChest2In4.getName()) && room1.contains(player.getName());
+    }
+
+    @Override
+    public boolean checkLooseCondition() {
+        return killedByPoison.isTrue();
     }
 }

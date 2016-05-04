@@ -8,12 +8,12 @@ import java.util.List;
 /**
  * Created by Master on 03/05/2016.
  */
-public class ConditionalActionHandler extends ActionHandler {
+public class ConditionalActionHandlerFails extends ActionHandler {
 
     protected List<BooleanState> conditions;
     protected ActionHandler action;
 
-    public ConditionalActionHandler(GameObject instance, ActionHandler action, List<BooleanState> conditions) {
+    public ConditionalActionHandlerFails(GameObject instance, ActionHandler action, List<BooleanState> conditions) {
         super(instance);
         this.action = action;
         this.conditions = conditions;

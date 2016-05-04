@@ -43,7 +43,7 @@ public class CrossTests {
         conditions.add(sheepSeparateFromCabbage);
 
         player = new Player("player", firstRoom, new ChildrenStateLimitedSize(1));
-        player.addAction(new ConditionalActionHandler(player, new Cross(player), conditions));
+        player.addAction(new ConditionalActionHandlerFails(player, new Cross(player), conditions));
         player.addAction(new Leave(player));
         player.addAction(new Take(player));
         player.addAction(new HaveMovedFrom(player, player.getChildrenState()));
