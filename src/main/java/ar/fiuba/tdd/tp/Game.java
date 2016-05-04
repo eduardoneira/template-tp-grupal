@@ -77,8 +77,10 @@ public abstract class Game {
             return "invalid command: " + command;
         }*/
 
-        List<GameObject> objectsInvolved = parsedCommand.stream().map(name -> objects.get(name))
-                .collect(Collectors.toCollection(LinkedList::new));
+        /*List<GameObject> objectsInvolved = parsedCommand.stream().map(name -> objects.get(name))
+                .collect(Collectors.toCollection(LinkedList::new));*/
+
+        List<GameObject> objectsInvolved = parseObjectsFromCommand(parsedCommand);
 
         /*List<GameObject> objectsInvolved = new LinkedList<>();
         for (String name : parsedCommand) {
@@ -99,6 +101,16 @@ public abstract class Game {
         } else {
             return result;
         }
+    }
+
+    private List<GameObject> parseObjectsFromCommand(List<String> parsedCommand) {
+        List<GameObject> objectsInvolved = new ArrayList<>();
+        for (String name : parsedCommand) {
+            if (objects.containsKey(name)) {
+                objectsInvolved.add(objects.get(name));
+            }
+        }
+        return objectsInvolved;
     }
 
     private String help() {

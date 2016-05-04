@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class BeCursed extends ActionHandler {
     public BeCursed(GameObject instance) {
-        super(instance);
+        super(instance, 0);
     }
 
     @Override

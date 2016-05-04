@@ -14,6 +14,10 @@ public class TreasureHunt extends Game {
 
     @SuppressWarnings("CPD-START")
 
+    private BooleanState door2to3state;
+    private BooleanState door2to4state;
+    private BooleanState door2to5state;
+
     private Room room1;
     private LinkingDoor door1to2;
     private Key keyTo3;
@@ -97,6 +101,13 @@ public class TreasureHunt extends Game {
         killedByPoison.setFalse();
         poisoned = new BooleanState();
         poisoned.setFalse();
+
+        door2to3state = new BooleanState();
+        door2to3state.setTrue();
+        door2to4state = new BooleanState();
+        door2to4state.setTrue();
+        door2to5state = new BooleanState();
+        door2to5state.setTrue();
     }
 
     private void populateRoom1() {
@@ -125,19 +136,19 @@ public class TreasureHunt extends Game {
         keywords.add(door2to1.getName());
         objects.put(door2to1.getName(), door2to1);
 
-        door2to3 = new LinkingLockedDoor("door2to3", room2, 3, room3);
+        door2to3 = new LinkingLockedDoor("door2to3", room2, 3, room3, door2to3state);
         room2.addChild(door2to3);
         keywords.add(door2to3.getName());
         objects.put(door2to3.getName(), door2to3);
 
-        door2to4 = new LinkingLockedDoor("door2to4", room2, 4, room4);
+        door2to4 = new LinkingLockedDoor("door2to4", room2, 4, room4, door2to4state);
         room2.addChild(door2to4);
         keywords.add(door2to4.getName());
         objects.put(door2to4.getName(), door2to4);
     }
 
     private void populateRoom2b() {
-        door2to5 = new LinkingLockedDoor("door2to5", room2, 5, room5);
+        door2to5 = new LinkingLockedDoor("door2to5", room2, 5, room5, door2to5state);
         room2.addChild(door2to5);
         keywords.add(door2to5.getName());
         objects.put(door2to5.getName(), door2to5);
@@ -161,7 +172,7 @@ public class TreasureHunt extends Game {
     private void populateRoom3() {
         // room3
 
-        door3to2 = new LinkingLockedDoor("door3to2", room3, 3, room2);
+        door3to2 = new LinkingLockedDoor("door3to2", room3, 3, room2, door2to3state);
         room3.addChild(door3to2);
         keywords.add(door3to2.getName());
         objects.put(door3to2.getName(), door3to2);
@@ -186,7 +197,7 @@ public class TreasureHunt extends Game {
     private void populateRoom4a() {
         // room4
 
-        door4to2 = new LinkingLockedDoor("door4to2", room4, 4, room2);
+        door4to2 = new LinkingLockedDoor("door4to2", room4, 4, room2, door2to4state);
         room4.addChild(door4to2);
         keywords.add(door4to2.getName());
         objects.put(door4to2.getName(), door4to2);
@@ -223,7 +234,7 @@ public class TreasureHunt extends Game {
     private void populateRoom5a() {
         // room 5
 
-        door5to2 = new LinkingLockedDoor("door5to2", room5, 5, room2);
+        door5to2 = new LinkingLockedDoor("door5to2", room5, 5, room2, door2to5state);
         room5.addChild(door5to2);
         keywords.add(door5to2.getName());
         objects.put(door5to2.getName(), door5to2);
@@ -269,6 +280,10 @@ public class TreasureHunt extends Game {
         ActionHandler openAction = new Open(player);
         player.addAction(openAction);
         keywords.add(openAction.getName());
+
+        ActionHandler useAction = new Use(player);
+        player.addAction(useAction);
+        keywords.add(useAction.getName());
 
         player.addAction(new HaveMovedFrom(player, player.getChildrenState()));
         ActionHandler leaveAction = new Leave(player);

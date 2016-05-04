@@ -5,28 +5,16 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.List;
 
-public class Take extends Move {
+public class Take extends Pick {
 
     public Take(ConcreteGameObjectWithParentAndChildren instance) {
         super(instance);
     }
 
     @Override
-    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-
-        convertToMove(objectsInvolved);
-        StringBuilder response = new StringBuilder();
-        if (!canHandleAction(actionName, objectsInvolved, response)) {
-            return response.toString();
-        }
-        super.handleAction(getName(), objectsInvolved);
+    protected String successMessage(List<GameObject> objectsInvolved) {
         GameObject objectToMove = objectsInvolved.get(idObjectToMove);
         return "took " + objectToMove.getName();
-    }
-
-    private void convertToMove(List<GameObject> objectsInvolved) {
-        GameObject whereToMove = this.instance;
-        objectsInvolved.add(whereToMove);
     }
 
     @Override

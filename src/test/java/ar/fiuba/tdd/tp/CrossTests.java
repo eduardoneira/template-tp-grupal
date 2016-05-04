@@ -68,18 +68,18 @@ public class CrossTests {
         assert (firstRoom.contains("sheep"));
         assert (firstRoom.contains("cabbage"));
         assert (firstRoom.contains("player"));
-        player.handleAction("take", new ArrayList<GameObject>() {
+        System.out.println(player.handleAction("take", new ArrayList<GameObject>() {
             {
                 add(sheep);
             }
-        });
+        }));
         assert (player.contains("sheep"));
         sheepSeparateFromCabbage.setTrue();
-        player.handleAction("cross", new ArrayList<GameObject>() {
+        System.out.println(player.handleAction("cross", new ArrayList<GameObject>() {
             {
                 add(secondRoom);
             }
-        });
+        }));
         assert (secondRoom.contains("player"));
     }
 }

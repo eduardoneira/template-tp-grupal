@@ -14,20 +14,39 @@ public class MoveTop extends Move {
         super(instance);
     }
 
-    @Override
+    /*@Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         List<GameObject> objectsInvolvedToMove = new ArrayList<GameObject>();
         objectsInvolvedToMove.add(((Pile) objectsInvolved.get(idObjectToMove)).getTopDisc());
         objectsInvolvedToMove.add(objectsInvolved.get(idWhereToMove));
         return super.handleAction(actionName, objectsInvolvedToMove);
-    }
+    }*/
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
+
+        GameObject topDisc = ((Pile) objectsInvolved.get(idObjectToMove)).getTopDisc();
+
+        if (topDisc == null) {
+            response.append(objectsInvolved.get(idObjectToMove).getName());
+            response.append(" has no discs");
+            return false;
+        }
+
+        GameObject pileToMoveTo = objectsInvolved.get(idWhereToMove);
+        objectsInvolved.clear();
+        objectsInvolved.add(topDisc);
+        objectsInvolved.add(pileToMoveTo);
+
         if (!(objectsInvolved.get(idObjectToMove) instanceof Disc) || !(objectsInvolved.get(idWhereToMove) instanceof Pile)) {
             setResponseError(objectsInvolved, response);
             return false;
         }
+
+        return checkDiameters(objectsInvolved, response);
+    }
+
+    private boolean checkDiameters(List<GameObject> objectsInvolved, StringBuilder response) {
         int diameter = ((Disc) objectsInvolved.get(idObjectToMove)).getDiameter();
         int smallest = ((Pile) objectsInvolved.get(idWhereToMove)).getSmallestDiamater();
         if (diameter >= smallest) {

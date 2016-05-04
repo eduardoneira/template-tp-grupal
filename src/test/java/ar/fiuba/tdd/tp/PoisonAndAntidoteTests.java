@@ -3,6 +3,7 @@ package ar.fiuba.tdd.tp;
 import ar.fiuba.tdd.tp.actions.Leave;
 import ar.fiuba.tdd.tp.actions.Open;
 import ar.fiuba.tdd.tp.actions.Pick;
+import ar.fiuba.tdd.tp.actions.Use;
 import ar.fiuba.tdd.tp.objects.concrete.*;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingDoor;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
@@ -43,6 +44,7 @@ public class PoisonAndAntidoteTests {
         player = new Player("player", room1);
         player.addAction(new Pick(player));
         player.addAction(new Open(player));
+        player.addAction(new Use(player));
         room1.addChild(player);
 
         box = new Box("box", room1);
@@ -110,6 +112,10 @@ public class PoisonAndAntidoteTests {
         objectsInvolved.add(antidote);
         player.handleAction("pick", objectsInvolved);
         objectsInvolved.clear();
+        // uso antidoto
+        objectsInvolved.add(antidote);
+        player.handleAction("use", objectsInvolved);
+        objectsInvolved.clear();
         assert (poisoned.isFalse());
         // me puedo ir sin morir
         objectsInvolved.add(doorTo2);
@@ -132,6 +138,10 @@ public class PoisonAndAntidoteTests {
         // agarro antidoto
         objectsInvolved.add(antidote);
         player.handleAction("pick", objectsInvolved);
+        objectsInvolved.clear();
+        // uso antidoto
+        objectsInvolved.add(antidote);
+        player.handleAction("use", objectsInvolved);
         objectsInvolved.clear();
         assert (poisoned.isFalse());
         // abro la caja2
@@ -161,6 +171,10 @@ public class PoisonAndAntidoteTests {
         objectsInvolved.add(antidote);
         player.handleAction("pick", objectsInvolved);
         objectsInvolved.clear();
+        // uso antidoto
+        objectsInvolved.add(antidote);
+        player.handleAction("use", objectsInvolved);
+        objectsInvolved.clear();
         assert (poisoned.isFalse());
         // abro la caja2
         objectsInvolved.add(box2);
@@ -170,6 +184,10 @@ public class PoisonAndAntidoteTests {
         // agarro antidoto
         objectsInvolved.add(antidote2);
         player.handleAction("pick", objectsInvolved);
+        objectsInvolved.clear();
+        // uso antidoto
+        objectsInvolved.add(antidote2);
+        player.handleAction("use", objectsInvolved);
         objectsInvolved.clear();
         assert (poisoned.isFalse());
         // me puedo ir sin morir

@@ -8,22 +8,26 @@ import java.util.List;
 public class Leave extends Move {
 
     public Leave(ConcreteGameObjectWithParentAndChildren instance) {
-        super(instance);
+        super(instance, 1);
     }
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
-        GameObject whereToMove = ((ConcreteGameObjectWithParentAndChildren)this.instance).getParent();
-        objectsInvolved.add(whereToMove);
+        return super.handleAction(getName(), objectsInvolved);
+    }
 
-        StringBuilder response = new StringBuilder();
-        if (!canHandleAction(actionName, objectsInvolved, response)) {
-            return response.toString();
-        }
-        super.handleAction(getName(), objectsInvolved);
+    @Override
+    protected String successMessage(List<GameObject> objectsInvolved) {
         GameObject objectToMove = objectsInvolved.get(idObjectToMove);
         return "left " + objectToMove.getName();
+    }
+
+    @Override
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
+        GameObject whereToMove = ((ConcreteGameObjectWithParentAndChildren)this.instance).getParent();
+        objectsInvolved.add(whereToMove);
+        return super.canIHandleAction(objectsInvolved, response);
     }
 
     @Override

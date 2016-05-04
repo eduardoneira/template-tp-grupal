@@ -8,25 +8,30 @@ import java.util.List;
 public class Pick extends Move {
 
     public Pick(ConcreteGameObjectWithParentAndChildren instance) {
-        super(instance);
+        super(instance, 1);
     }
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
 
-        convertToMove(objectsInvolved);
-        StringBuilder response = new StringBuilder();
-        if (!canHandleAction(actionName, objectsInvolved, response)) {
-            return response.toString();
-        }
-        super.handleAction(getName(), objectsInvolved);
-        GameObject objectToMove = objectsInvolved.get(idObjectToMove);
-        return "picked " + objectToMove.getName();
+        return super.handleAction(getName(), objectsInvolved);
     }
 
     private void convertToMove(List<GameObject> objectsInvolved) {
         GameObject whereToMove = this.instance;
         objectsInvolved.add(whereToMove);
+    }
+
+    @Override
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
+        convertToMove(objectsInvolved);
+        return super.canIHandleAction(objectsInvolved, response);
+    }
+
+    @Override
+    protected String successMessage(List<GameObject> objectsInvolved) {
+        GameObject objectToMove = objectsInvolved.get(idObjectToMove);
+        return "picked " + objectToMove.getName();
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.List;
 public class HaveEverythingStolen extends HaveMovedFrom {
 
     private int objectWhoSteals = 0;
-    private int argsSize = 1;
+    //private int argsSize = 1;
 
     public HaveEverythingStolen(GameObject instance, ChildrenState children) {
         super(instance, children);
@@ -31,16 +31,16 @@ public class HaveEverythingStolen extends HaveMovedFrom {
             thief.handleAction("move", listForMover);
         }
 
-        return "done";
+        return "You lost all your items!";
     }
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
 
-        if (!(objectsInvolved.size() == argsSize)) {
+        /*if (!(objectsInvolved.size() == argsSize)) {
             setResponseError(objectsInvolved, response);
             return false;
-        }
+        }*/
         return true;
     }
 

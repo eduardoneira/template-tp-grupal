@@ -38,7 +38,9 @@ public class ConcreteGameObject implements GameObject {
 
         StringBuilder builder = new StringBuilder();
         for (ActionHandler action : actions.get(actionName)) {
-            builder.append(action.handleAction(actionName, objectsInvolved));
+            if (action.canHandleAction(actionName, objectsInvolved, builder)) {
+                builder.append(action.handleAction(actionName, objectsInvolved));
+            }
         }
         //return actions.get(actionName).handleAction(actionName, objectsInvolved);
         return builder.toString();

@@ -9,12 +9,12 @@ import java.util.List;
 public class HaveMovedFrom extends ActionHandler {
 
     protected int idObjectToMove = 0;
-    protected int argsSize = 1;
+    //protected int argsSize = 1;
 
     protected ChildrenState children;
 
     public HaveMovedFrom(GameObject instance, ChildrenState children) {
-        super(instance);
+        super(instance, 1);
         this.children = children;
     }
 
@@ -23,8 +23,10 @@ public class HaveMovedFrom extends ActionHandler {
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
 
         GameObject objectToMove = objectsInvolved.get(idObjectToMove);
-        if (!(objectsInvolved.size() == argsSize && children.contains(objectToMove.getName()))) {
-            setResponseError(objectsInvolved, response);
+        if (!children.contains(objectToMove.getName())) {
+            response.append(this.instance.getName());
+            response.append(" does not contain ");
+            response.append(objectToMove.getName());
             return false;
         }
         return true;
@@ -40,7 +42,7 @@ public class HaveMovedFrom extends ActionHandler {
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         GameObjectWithParent objectToMove = (GameObjectWithParent) objectsInvolved.get(idObjectToMove);
         children.removeChild(objectToMove);
-        return "done";
+        return "";
     }
 
 }

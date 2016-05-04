@@ -5,12 +5,9 @@ import ar.fiuba.tdd.tp.actions.BeLookedAt;
 import ar.fiuba.tdd.tp.actions.BeMoved;
 import ar.fiuba.tdd.tp.objects.general.*;
 
-public class Stick extends ConcreteGameObjectWithParent {
+public class Stick extends GeneralMovableObject {
 
     public Stick(String name, GameObjectWithChildren parent) {
         super(name, parent);
-        addAction(new BeMoved(this, this.parent));
-        addAction(new BeLookedAt(this));
-        addAction(new BeAskedWhat(this));
     }
 }

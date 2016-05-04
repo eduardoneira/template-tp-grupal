@@ -6,10 +6,10 @@ import java.util.List;
 
 public class BeAskedWhat extends ActionHandler {
 
-    private int argsSize = 1;
+    //private int argsSize = 1;
 
     public BeAskedWhat(GameObject instance) {
-        super(instance);
+        super(instance, 1);
     }
 
     @Override
@@ -25,10 +25,10 @@ public class BeAskedWhat extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        if (objectsInvolved.size() != argsSize) {
+        /*if (objectsInvolved.size() != argsSize) {
             setResponseError(objectsInvolved, response);
             return false;
-        }
+        }*/
         return true;
     }
 

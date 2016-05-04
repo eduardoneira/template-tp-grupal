@@ -29,9 +29,9 @@ public class BeOpenedHasLock extends BeOpened {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        if (!super.canIHandleAction(objectsInvolved, response)) {
+        /*if (!super.canIHandleAction(objectsInvolved, response)) {
             return false;
-        }
+        }*/
 
         if (locked.isTrue()) {
             GameObject objectThatUnlocksMe = objectsInvolved.get(idObjectThatUnlocksMe);

@@ -8,11 +8,11 @@ import java.util.List;
 public class Open extends ActionHandler {
 
     private int idObjectToOpen = 0;
-    private int argsSize = 1;
+    //private int argsSize = 1;
     private String beOpened = "be opened";
 
     public Open(GameObject instance) {
-        super(instance);
+        super(instance, 1);
         actionsCaused.add(beOpened);
     }
 
@@ -23,10 +23,10 @@ public class Open extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        if (objectsInvolved.size() != argsSize) {
+        /*if (objectsInvolved.size() != argsSize) {
             setResponseError(objectsInvolved, response);
             return false;
-        }
+        }*/
 
         GameObject objectWhoOpens = this.instance;
         List<GameObject> objectsInvolvedForObjectToOpen = new LinkedList<GameObject>();
@@ -39,10 +39,10 @@ public class Open extends ActionHandler {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        StringBuilder response = new StringBuilder();
+        /*StringBuilder response = new StringBuilder();
         if (!canHandleAction(actionName, objectsInvolved, response)) {
             return response.toString();
-        }
+        }*/
 
         GameObject objectToOpen = objectsInvolved.get(idObjectToOpen);
         List<GameObject> objectsInvolvedForObjectToOpen = new LinkedList<GameObject>();

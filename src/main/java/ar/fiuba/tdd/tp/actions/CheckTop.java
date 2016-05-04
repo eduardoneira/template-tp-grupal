@@ -8,10 +8,10 @@ import java.util.List;
 public class CheckTop extends ActionHandler {
 
     private int idObjectToCheck = 0;
-    private int argsSize = 1;
+    //private int argsSize = 1;
 
     public CheckTop(GameObject instance) {
-        super(instance);
+        super(instance, 1);
     }
 
     @Override
@@ -28,10 +28,10 @@ public class CheckTop extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        if (objectsInvolved.size() != argsSize) {
+        /*if (objectsInvolved.size() != argsSize) {
             setResponseError(objectsInvolved, response);
             return false;
-        }
+        }*/
         GameObject objectToCheck = objectsInvolved.get(idObjectToCheck);
         if (!(objectToCheck instanceof Pile)) {
             setResponseError(objectsInvolved, response);

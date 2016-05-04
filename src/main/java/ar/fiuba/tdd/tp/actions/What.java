@@ -9,10 +9,10 @@ import java.util.Set;
 public class What extends ActionHandler {
 
     private int idWhoToAsk = 0;
-    private int argsSize = 1;
+    //private int argsSize = 1;
 
     public What(GameObject instance) {
-        super(instance);
+        super(instance, 1);
     }
 
     @Override
@@ -52,9 +52,9 @@ public class What extends ActionHandler {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         StringBuilder response = new StringBuilder();
-        if (!canHandleAction(actionName, objectsInvolved, response)) {
+        /*if (!canHandleAction(actionName, objectsInvolved, response)) {
             return response.toString();
-        }
+        }*/
 
         GameObject objectToAsk = objectsInvolved.get(idWhoToAsk);
         response.append("You can ");

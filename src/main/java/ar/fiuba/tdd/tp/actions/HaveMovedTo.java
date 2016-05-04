@@ -11,19 +11,19 @@ public class HaveMovedTo extends ActionHandler {
 
     protected ChildrenState children;
     protected int idObjectToMove = 1;
-    protected int argsSize = 2;
+    //protected int argsSize = 2;
 
     public HaveMovedTo(GameObject instance, ChildrenState children) {
-        super(instance);
+        super(instance, 2);
         this.children = children;
     }
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        if (!(objectsInvolved.size() == argsSize)) {
+        /*if (!(objectsInvolved.size() == argsSize)) {
             setResponseError(objectsInvolved, response);
             return false;
-        }
+        }*/
         if (!children.canAddChild()) {
             response.append(this.instance.getName());
             response.append(" is full");
@@ -37,7 +37,7 @@ public class HaveMovedTo extends ActionHandler {
 
         GameObjectWithParent objectToMove = (GameObjectWithParent) objectsInvolved.get(idObjectToMove);
         children.addChild(objectToMove);
-        return "done";
+        return "";
     }
 
     @Override

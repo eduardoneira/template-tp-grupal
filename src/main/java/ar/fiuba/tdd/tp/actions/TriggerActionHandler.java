@@ -12,14 +12,21 @@ public class TriggerActionHandler extends ActionHandler {
 
     protected List<BooleanState> triggerables;
     protected List<Boolean> triggeredValues;
-    protected ActionHandler action; // podria ser un string con el nombre, porque es lo unico que se usa
+    protected ActionHandler action;
+    protected String retMessage;
 
     public TriggerActionHandler(GameObject instance, ActionHandler action,
                                 List<BooleanState> triggerables, List<Boolean> triggeredValues) {
-        super(instance);
+        this(instance, action, triggerables, triggeredValues, "");
+    }
+
+    public TriggerActionHandler(GameObject instance, ActionHandler action,
+                                List<BooleanState> triggerables, List<Boolean> triggeredValues, String retMessage) {
+        super(instance, action.argsSize);
         this.action = action;
         this.triggerables = triggerables;
         this.triggeredValues = triggeredValues;
+        this.retMessage = retMessage;
     }
 
     @Override
@@ -28,7 +35,7 @@ public class TriggerActionHandler extends ActionHandler {
             (triggerables.get(i)).setValue(triggeredValues.get(i).booleanValue());
         }
         //return "triggered booleans";
-        return "";
+        return retMessage;
     }
 
     @Override

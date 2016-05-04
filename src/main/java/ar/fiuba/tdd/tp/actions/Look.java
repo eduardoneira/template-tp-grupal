@@ -9,19 +9,19 @@ public class Look extends ActionHandler {
 
     private String beLookedAt = "be looked at";
     private int idObjectToLookAt = 0;
-    private int argsSize = 1;
+    //private int argsSize = 1;
 
     public Look(GameObject instance) {
-        super(instance);
+        super(instance, 1);
         actionsCaused.add(beLookedAt);
     }
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        if (objectsInvolved.size() != argsSize) {
+        /*if (objectsInvolved.size() != argsSize) {
             setResponseError(objectsInvolved, response);
             return false;
-        }
+        }*/
 
         GameObject whoLooks = this.instance;
         GameObject objectToLookAt = objectsInvolved.get(idObjectToLookAt);
@@ -40,10 +40,10 @@ public class Look extends ActionHandler {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        StringBuilder response = new StringBuilder();
+        /*StringBuilder response = new StringBuilder();
         if (!canHandleAction(actionName, objectsInvolved, response)) {
             return response.toString();
-        }
+        }*/
 
         GameObject whoLooks = this.instance;
         GameObject objectToLookAt = objectsInvolved.get(idObjectToLookAt);

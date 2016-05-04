@@ -7,12 +7,9 @@ import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 
-public class Cabbage extends ConcreteGameObjectWithParent {
+public class Cabbage extends GeneralMovableObject {
 
     public Cabbage(String name, GameObjectWithChildren parent) {
         super(name, parent);
-        addAction(new BeLookedAt(this));
-        addAction(new BeMoved(this, this.parent));
-        addAction(new BeAskedWhat(this));
     }
 }

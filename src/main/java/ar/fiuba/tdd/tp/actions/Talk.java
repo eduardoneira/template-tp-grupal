@@ -8,7 +8,7 @@ import java.util.List;
 public class Talk extends ActionHandler {
 
     private int idObjectToTalk = 0;
-    private int argsSize = 1;
+    //private int argsSize = 1;
     private String beTalkedTo = "be talked to";
 
     @Override
@@ -32,16 +32,16 @@ public class Talk extends ActionHandler {
     }
 
     public Talk(GameObject instance) {
-        super(instance);
+        super(instance, 1);
         actionsCaused.add(beTalkedTo);
     }
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        StringBuilder response = new StringBuilder();
+        /*StringBuilder response = new StringBuilder();
         if (!canHandleAction(actionName, objectsInvolved, response)) {
             return response.toString();
-        }
+        }*/
 
         GameObject objectToTalk = objectsInvolved.get(idObjectToTalk);
         GameObject objectWhoTalks = this.instance;

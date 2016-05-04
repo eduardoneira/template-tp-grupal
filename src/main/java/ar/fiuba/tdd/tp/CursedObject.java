@@ -6,6 +6,7 @@ import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.Thief;
 import ar.fiuba.tdd.tp.objects.concrete.door.AntiCurseLinkingDoor;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingLockedDoor;
+import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 public class CursedObject extends Game {
 
@@ -51,7 +52,7 @@ public class CursedObject extends Game {
     }
 
     private void createDoors() {
-        door1to2 = new LinkingLockedDoor("door1to2", room1, keyNumber, room2);
+        door1to2 = new LinkingLockedDoor("door1to2", room1, keyNumber, room2, new BooleanState());
         door1to2.setClosed();
         door1to2.setLocked();
         room1.addChild(door1to2);

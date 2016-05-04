@@ -10,22 +10,28 @@ public class Move extends ActionHandler {
 
     protected int idObjectToMove = 0;
     protected int idWhereToMove = 1;
-    protected int argsSize = 2;
+    //protected int argsSize = 2;
     private String beMoved = "be moved";
     private String haveMovedTo = "have moved to";
 
     public Move(GameObject instance) {
-        super(instance);
+        super(instance, 2);
+        actionsCaused.add(beMoved);
+        //actionsCaused.add(haveMovedTo);
+    }
+
+    public Move(GameObject instance, int argsSize) {
+        super(instance, argsSize);
         actionsCaused.add(beMoved);
         //actionsCaused.add(haveMovedTo);
     }
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        if (objectsInvolved.size() != argsSize) {
+        /*if (objectsInvolved.size() != argsSize) {
             setResponseError(objectsInvolved, response);
             return false;
-        }
+        }*/
 
         GameObject whereToMove = objectsInvolved.get(idWhereToMove);
         List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<GameObject>();
@@ -42,10 +48,10 @@ public class Move extends ActionHandler {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        StringBuilder response = new StringBuilder();
+        /*StringBuilder response = new StringBuilder();
         if (!canHandleAction(actionName, objectsInvolved, response)) {
             return response.toString();
-        }
+        }*/
 
         List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<GameObject>();
         List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
@@ -56,9 +62,16 @@ public class Move extends ActionHandler {
         objectsInvolvedForObjectToMove.add(whereToMove);
         objectsInvolvedForWhereToMove.add(objectToMove);
 
-        objectToMove.handleAction(beMoved, objectsInvolvedForObjectToMove);
-        whereToMove.handleAction(haveMovedTo, objectsInvolvedForWhereToMove);
+        String retFromToMove = objectToMove.handleAction(beMoved, objectsInvolvedForObjectToMove);
+        String retFromWhereToMove = whereToMove.handleAction(haveMovedTo, objectsInvolvedForWhereToMove);
 
+        return concatSentences(successMessage(objectsInvolved), retFromToMove, retFromWhereToMove);
+        //return successMessage(objectsInvolved) + retFromToMove + retFromWhereToMove;
+    }
+
+    protected String successMessage(List<GameObject> objectsInvolved) {
+        GameObject whereToMove = objectsInvolved.get(idWhereToMove);
+        GameObject objectToMove = objectsInvolved.get(idObjectToMove);
         return "moved " + objectToMove.getName() + " to " + whereToMove.getName();
     }
 

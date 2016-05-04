@@ -7,28 +7,24 @@ import java.util.List;
 public class BeTalkedTo extends ActionHandler {
 
     protected int idObjectWhoTalks = 0;
-    protected int argsSize = 1;
+    //protected int argsSize = 1;
 
     public BeTalkedTo(GameObject instance) {
-        super(instance);
-    }
-
-    @Override
-    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        return "Hi!";
-    }
-
-    @Override
-    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        if (objectsInvolved.size() != argsSize) {
-            setResponseError(objectsInvolved, response);
-            return false;
-        }
-        return true;
+        super(instance, 1);
     }
 
     @Override
     public String getName() {
         return "be talked to";
+    }
+
+    @Override
+    protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
+        return true;
+    }
+
+    @Override
+    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
+        return "Hi!";
     }
 }

@@ -15,9 +15,9 @@ public class BeOpenedFailsIfOpenerCursed extends BeOpened {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        if (!super.canIHandleAction(objectsInvolved, response)) {
+        /*if (!super.canIHandleAction(objectsInvolved, response)) {
             return false;
-        }
+        }*/
         GameObject whoOpens = objectsInvolved.get(idObjectWhoOpens);
         if (whoOpens.getActionNames().contains("be cursed")) {
             response.append(this.instance.getName());

@@ -11,12 +11,12 @@ import java.util.List;
 public class BeMoved extends ActionHandler {
 
     private int idWhereToMove = 1;
-    private int argsSize = 2;
+    //private int argsSize = 2;
 
     ParentState parent;
 
     public BeMoved(GameObject instance, ParentState parent) {
-        super(instance);
+        super(instance, 2);
         this.parent = parent;
     }
 
@@ -43,8 +43,8 @@ public class BeMoved extends ActionHandler {
         me.add(this.instance);
 
         // tal vez pasarle quien mueve
-        if (objectsInvolved.size() != argsSize
-                || (this.parent.getParent() != null && (!this.parent.getParent().canHandleAction("have moved from", me, response)))) {
+        if (/*objectsInvolved.size() != argsSize
+                || */(this.parent.getParent() != null && (!this.parent.getParent().canHandleAction("have moved from", me, response)))) {
             return false;
         }
 

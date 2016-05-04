@@ -25,14 +25,14 @@ public class BeOpenedMovesOpenerToOtherRoom extends BeOpened {
         involved.add(room.getParent());
         this.instance.handleAction("move", involved);
 
-        return "Entered " + room.getParent().getName() + ".";
+        return "Entered " + room.getParent().getName();
     }
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        if (!super.canIHandleAction(objectsInvolved, response)) {
+        /*if (!super.canIHandleAction(objectsInvolved, response)) {
             return false;
-        }
+        }*/
 
         GameObject whoOpens = objectsInvolved.get(idObjectWhoOpens);
         List<GameObject> involved = new LinkedList<>();

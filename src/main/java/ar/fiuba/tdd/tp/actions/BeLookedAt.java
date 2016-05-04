@@ -6,10 +6,10 @@ import java.util.List;
 
 public class BeLookedAt extends ActionHandler {
 
-    private int argsSize = 1;
+    //private int argsSize = 1;
 
     public BeLookedAt(GameObject instance) {
-        super(instance);
+        super(instance, 1);
     }
 
     @Override
@@ -19,10 +19,10 @@ public class BeLookedAt extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        setResponseError(objectsInvolved, response);
+        /*setResponseError(objectsInvolved, response);
         if (objectsInvolved.size() != argsSize) {
             return false;
-        }
+        }*/
         return true;
     }
 
