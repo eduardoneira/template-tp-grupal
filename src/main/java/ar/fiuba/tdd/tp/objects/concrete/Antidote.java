@@ -1,9 +1,6 @@
 package ar.fiuba.tdd.tp.objects.concrete;
 
-import ar.fiuba.tdd.tp.actions.BeAskedWhat;
-import ar.fiuba.tdd.tp.actions.BeLookedAt;
-import ar.fiuba.tdd.tp.actions.BeMoved;
-import ar.fiuba.tdd.tp.actions.TriggerActionHandler;
+import ar.fiuba.tdd.tp.actions.*;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
@@ -27,10 +24,12 @@ public class Antidote extends ConcreteGameObjectWithParent {
         addAction(new BeAskedWhat(this));
 
         List<BooleanState> triggers = new ArrayList<>();
-        triggers.add(poisoned);
+        triggers.add(this.poisoned);
         List<Boolean> triggeredValues = new ArrayList<>();
         triggeredValues.add(false);
 
-        addAction(new TriggerActionHandler(this, new BeMoved(null, null), triggers, triggeredValues));
+        BeUsed usedAction = new BeUsed(this, this.parent, 1);
+        addAction(new TriggerActionHandler(this, usedAction, triggers, triggeredValues, "All your ailments are healed!"));
+        addAction(usedAction);
     }
 }
