@@ -70,4 +70,14 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
     public GameObjectWithChildren getParent() {
         return this.parent.getParent();
     }
+
+    @Override
+    public boolean containsInHierarchy(String name) {
+        return children.containsInHierarchy(name);
+    }
+
+    @Override
+    public GameObject getChildFromHierarchy(String name) {
+        return children.getChildFromHierarchy(name);
+    }
 }

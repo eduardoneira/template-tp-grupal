@@ -20,4 +20,9 @@ public interface GameObject {
     List<ActionHandler> getActions();
 
     List<String> getActionNames();
+
+    // para control
+    boolean containsInHierarchy(String name);
+
+    GameObject getChildFromHierarchy(String name);
 }

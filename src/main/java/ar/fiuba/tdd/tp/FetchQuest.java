@@ -18,17 +18,16 @@ public class FetchQuest extends Game {
         player.placeInRoom(room);
         room.addChild(player);
         objects.put(room.getName(), this.room);
-        keywords.add(room.getName());
 
         stick = new Stick("stick", room);
         room.addChild(stick);
         stick.setParent(room);
         objects.put(stick.getName(), stick);
-        keywords.add(stick.getName());
 
         Pick actionPickup = new Pick(player);
         player.addAction(actionPickup);
-        keywords.add(actionPickup.getName());
+
+        commands.add(actionPickup.getName());
     }
 
     @SuppressWarnings("CPD-END")

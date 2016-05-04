@@ -31,7 +31,6 @@ public class OpenDoor extends Game {
 
     private void createRoom() {
         room = new Room(nameRoom);
-        keywords.add(nameRoom);
         objects.put(room.getName(), room);
     }
 
@@ -39,7 +38,6 @@ public class OpenDoor extends Game {
         door = new LockedDoor(nameDoor, room, 1);
         door.setClosed();
         door.setLocked();
-        keywords.add(door.getName());
         objects.put(door.getName(), door);
         room.addChild(door);
         door.setParent(room);
@@ -49,7 +47,6 @@ public class OpenDoor extends Game {
         key = new Key(nameKey, room, 1);
         room.addChild(key);
         key.setParent(room);
-        keywords.add(nameKey);
         objects.put(key.getName(), key);
     }
 
@@ -59,11 +56,11 @@ public class OpenDoor extends Game {
 
         Open actionOpen = new Open(player);
         player.addAction(actionOpen);
-        keywords.add(actionOpen.getName());
+        commands.add(actionOpen.getName());
 
         Pick actionPickup = new Pick(player);
         player.addAction(actionPickup);
-        keywords.add(actionPickup.getName());
+        commands.add(actionPickup.getName());
     }
 
     @SuppressWarnings("CPD-END")

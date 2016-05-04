@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
-public class ConcreteGameObject implements GameObject {
+public abstract class ConcreteGameObject implements GameObject {
     private Map<String, List<ActionHandler>> actions;
     private String name;
 

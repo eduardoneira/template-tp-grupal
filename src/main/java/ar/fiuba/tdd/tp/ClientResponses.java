@@ -7,7 +7,7 @@ public interface ClientResponses {
     final String CONNECTTO = "connect to";
     final String EXIT = "exit game";
     final String EXITSUCCESSFUL = "Exit " + "successful!";
-    final String CONNECTIONSUCCESFUL = "Connected!";
+    final String CONNECTIONSUCCESFUL = "Connected! Use command 'help' if you don't know what to do";
 
     final String ERRORCONNECTION = "Must connect to a valid port using command 'connect to [port]'";
     final String IOERROR = "Couldn't get I/O for the connection";

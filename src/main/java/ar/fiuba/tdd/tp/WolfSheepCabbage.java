@@ -71,12 +71,10 @@ public class WolfSheepCabbage extends Game {
     private void createShores() {
         String southShoreName = "south-shore";
         southShore = new Room(southShoreName);
-        keywords.add(southShoreName);
         objects.put(southShoreName, southShore);
 
         String northShoreName = "north-shore";
         northShore = new Room(northShoreName);
-        keywords.add(northShoreName);
         objects.put(northShoreName, northShore);
     }
 
@@ -85,11 +83,11 @@ public class WolfSheepCabbage extends Game {
 
         ActionHandler leaveAction = new Leave(player);
         player.addAction(leaveAction);
-        keywords.add(leaveAction.getName());
+        commands.add(leaveAction.getName());
 
         ActionHandler takeAction = new Take(player);
         player.addAction(takeAction);
-        keywords.add(takeAction.getName());
+        commands.add(takeAction.getName());
 
         ActionHandler haveMovedFromAction = new HaveMovedFrom(player, player.getChildrenState());
         player.addAction(haveMovedFromAction);
@@ -103,14 +101,13 @@ public class WolfSheepCabbage extends Game {
         conditions.add(wolfNotWithSheep);
         ActionHandler crossAction = new ConditionalActionHandlerFails(player, new Cross(player), conditions);
         player.addAction(crossAction);
-        keywords.add(crossAction.getName());
+        commands.add(crossAction.getName());
     }
 
     private void createWolf() {
         String wolfName = "wolf";
         wolf = new Wolf(wolfName, southShore);
         southShore.addChild(wolf);
-        keywords.add(wolfName);
         objects.put(wolfName, wolf);
     }
 
@@ -118,7 +115,6 @@ public class WolfSheepCabbage extends Game {
         String sheepName = "sheep";
         sheep = new Sheep(sheepName, southShore);
         southShore.addChild(sheep);
-        keywords.add(sheepName);
         objects.put(sheepName, sheep);
     }
 
@@ -126,7 +122,6 @@ public class WolfSheepCabbage extends Game {
         String cabbageName = "cabbage";
         cabbage = new Cabbage(cabbageName, southShore);
         southShore.addChild(cabbage);
-        keywords.add(cabbageName);
         objects.put(cabbageName, cabbage);
     }
 }

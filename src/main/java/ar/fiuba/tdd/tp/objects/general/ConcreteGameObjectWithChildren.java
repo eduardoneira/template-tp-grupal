@@ -56,4 +56,14 @@ public class ConcreteGameObjectWithChildren extends ConcreteGameObject implement
     public List<GameObject> getChildren() {
         return children.getChildren();
     }
+
+    @Override
+    public boolean containsInHierarchy(String name) {
+        return children.containsInHierarchy(name);
+    }
+
+    @Override
+    public GameObject getChildFromHierarchy(String name) {
+        return children.getChildFromHierarchy(name);
+    }
 }

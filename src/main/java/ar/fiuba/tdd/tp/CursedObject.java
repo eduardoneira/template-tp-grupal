@@ -40,15 +40,11 @@ public class CursedObject extends Game {
     private void createRooms() {
         room1 = new Room("room1");
         objects.put(room1.getName(), room1);
-        keywords.add(room1.getName());
 
         room2 = new Room("room2");
         objects.put(room2.getName(), room2);
-        keywords.add(room2.getName());
-
         room3 = new Room("room3");
         objects.put(room3.getName(), room3);
-        keywords.add(room3.getName());
     }
 
     private void createDoors() {
@@ -57,13 +53,11 @@ public class CursedObject extends Game {
         door1to2.setLocked();
         room1.addChild(door1to2);
         objects.put(door1to2.getName(), door1to2);
-        keywords.add(door1to2.getName());
 
         door2to3 = new AntiCurseLinkingDoor("door2to3", room2, room3);
         door2to3.setClosed();
         room2.addChild(door2to3);
         objects.put(door2to3.getName(), door2to3);
-        keywords.add(door2to3.getName());
     }
 
     private void createKey() {
@@ -71,7 +65,6 @@ public class CursedObject extends Game {
         keyObject.setParent(room1);
         room1.addChild(keyObject);
         objects.put(keyObject.getName(), keyObject);
-        keywords.add(keyObject.getName());
     }
 
     private void createPlayer() {
@@ -80,7 +73,7 @@ public class CursedObject extends Game {
 
         Open openAction = new Open(player);
         player.addAction(openAction);
-        keywords.add(openAction.getName());
+        commands.add(openAction.getName());
 
         HaveEverythingStolen moveAction = new HaveEverythingStolen(player, player.getChildrenState());
         player.addAction(moveAction);
@@ -90,11 +83,11 @@ public class CursedObject extends Game {
 
         Pick pickAction = new Pick(player);
         player.addAction(pickAction);
-        keywords.add(pickAction.getName());
+        commands.add(pickAction.getName());
 
         Talk talkAction = new Talk(player);
         player.addAction(talkAction);
-        keywords.add(talkAction.getName());
+        commands.add(talkAction.getName());
     }
 
     private void createThief() {
@@ -102,7 +95,6 @@ public class CursedObject extends Game {
         thief.setParent(room2);
         room2.addChild(thief);
         objects.put(thief.getName(), thief);
-        keywords.add(thief.getName());
     }
 
     @SuppressWarnings("CPD-END")

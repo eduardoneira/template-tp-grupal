@@ -8,7 +8,11 @@ public interface CanHaveChildren {
 
     GameObject getChild(String name);
 
+    GameObject getChildFromHierarchy(String name);
+
     boolean contains(String name);
+
+    boolean containsInHierarchy(String name);
 
     List<GameObject> getChildren();
 }

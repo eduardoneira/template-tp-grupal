@@ -4,17 +4,15 @@ import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public abstract class Game {
 
     protected Player player;
     protected String name;
-    protected Set<String> keywords;
+    protected Set<String> commands;
     protected Map<String, GameObject> objects;
 
     protected String needHelpRegex = "help(.)*";
-    protected String help = "You can use this keywords (all other words will be ignored) : ";
     protected String win = ". You won the game!";
     protected String loose = ". You lost!";
 
@@ -29,12 +27,12 @@ public abstract class Game {
     public Game(String name, Player player) {
         this.name = name;
         this.player = player;
-        this.keywords = new HashSet<>();
         this.objects = new HashMap<>();
+        this.commands = new HashSet<>();
 
         // hardcodeo
-        this.keywords.add("look");
-        this.keywords.add("what");
+        this.commands.add("look");
+        this.commands.add("what");
     }
 
     public abstract boolean checkWinCondition();
@@ -60,7 +58,7 @@ public abstract class Game {
         String[] splitCommand = stringCommand.split(" ");
         List<String> parsedCommand = new LinkedList<String>();
         for (String elem : splitCommand) {
-            if (keywords.contains(elem)) {
+            if (commands.contains(elem) || objects.keySet().contains(elem)) {
                 parsedCommand.add(elem);
             }
         }
@@ -73,26 +71,20 @@ public abstract class Game {
         String command = parsedCommand.get(0);
         parsedCommand.remove(0);
 
-        /*if (!commands.contains(command)) {
+        if (!commands.contains(command)) {
             return "invalid command: " + command;
-        }*/
-
-        /*List<GameObject> objectsInvolved = parsedCommand.stream().map(name -> objects.get(name))
-                .collect(Collectors.toCollection(LinkedList::new));*/
+        }
 
         List<GameObject> objectsInvolved = parseObjectsFromCommand(parsedCommand);
+        // si alguna vez hay comandos que no reciben argumentos, hay que sacar esto
+        if (objectsInvolved.size() == 0) {
+            return "you didn't input any visible object names";
+        }
 
-        /*List<GameObject> objectsInvolved = new LinkedList<>();
-        for (String name : parsedCommand) {
-            if (player.getParent().getName().equals(name)) {
-                objectsInvolved.add(player.getParent());
-            } else if (player.getParent().containsInHierarchy(name)) {
-                objectsInvolved.add(player.getParent().getChildFromHirerarchy(name));
-            } else {
-                return "there is no visible object called '" + name + "'";
-            }
-        }*/
+        return handleProcessedCommand(command, objectsInvolved);
+    }
 
+    private String handleProcessedCommand(String command, List<GameObject> objectsInvolved) {
         String result = player.handleAction(command, objectsInvolved);
         if (checkWinCondition()) {
             return result + win;
@@ -104,20 +96,30 @@ public abstract class Game {
     }
 
     private List<GameObject> parseObjectsFromCommand(List<String> parsedCommand) {
-        List<GameObject> objectsInvolved = new ArrayList<>();
+        List<GameObject> objectsInvolved = new LinkedList<>();
         for (String name : parsedCommand) {
-            if (objects.containsKey(name)) {
-                objectsInvolved.add(objects.get(name));
+            if (player.getParent().getName().equals(name)) {
+                objectsInvolved.add(player.getParent());
+            } else if (player.getParent().containsInHierarchy(name)) {
+                objectsInvolved.add(player.getParent().getChildFromHierarchy(name));
             }
         }
         return objectsInvolved;
     }
 
     private String help() {
-        String response = " ";
-        for (String keyword : keywords) {
-            response = response.concat(keyword.concat(", "));
+        String response = "You can use the following commands: ";
+        for (String command : commands) {
+            response = response.concat(command);
+            response = response.concat(", ");
         }
-        return help.concat(response);
+        response = response.concat("On the following visible objects: ");
+        for (String object : objects.keySet()) {
+            if (player.getParent().getName().equals(object) || player.getParent().containsInHierarchy(object)) {
+                response = response.concat(object);
+                response = response.concat(", ");
+            }
+        }
+        return response;
     }
 }

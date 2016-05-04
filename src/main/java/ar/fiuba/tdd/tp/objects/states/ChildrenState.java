@@ -25,6 +25,21 @@ public class ChildrenState implements ChildrenControlFunctions {
     }
 
     @Override
+    public GameObject getChildFromHierarchy(String name) {
+        if (contains(name)) {
+            return getChild(name);
+        }
+
+        for (GameObjectWithParent object : children.values()) {
+            if (object.containsInHierarchy(name)) {
+                return object.getChildFromHierarchy(name);
+            }
+        }
+
+        return null;
+    }
+
+    @Override
     public void removeChild(GameObjectWithParent object) {
         children.remove(object.getName());
     }
@@ -42,6 +57,21 @@ public class ChildrenState implements ChildrenControlFunctions {
     @Override
     public boolean contains(String name) {
         return children.containsKey(name);
+    }
+
+    @Override
+    public boolean containsInHierarchy(String name) {
+        if (contains(name)) {
+            return true;
+        }
+
+        for (GameObjectWithParent object : children.values()) {
+            if (object.containsInHierarchy(name)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
