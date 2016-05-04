@@ -14,8 +14,12 @@ public abstract class AbstractLockedOpenable extends AbstractOpenable implements
     protected int key;
 
     public AbstractLockedOpenable(String name, GameObjectWithChildren parent, int key) {
+        this(name, parent, key, new BooleanState());
+    }
+
+    public AbstractLockedOpenable(String name, GameObjectWithChildren parent, int key, BooleanState locked) {
         super(name, parent);
-        locked = new BooleanState();
+        this.locked = locked;
         this.key = key;
 
         addAction(new BeOpenedHasLock(this, open, locked, this.key));
