@@ -25,8 +25,12 @@ public class MoveTop extends Move {
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
 
-        GameObject topDisc = ((Pile) objectsInvolved.get(idObjectToMove)).getTopDisc();
+        if (!(objectsInvolved.get(idObjectToMove) instanceof Pile) || !(objectsInvolved.get(idWhereToMove) instanceof Pile)) {
+            setResponseError(objectsInvolved, response);
+            return false;
+        }
 
+        GameObject topDisc = ((Pile) objectsInvolved.get(idObjectToMove)).getTopDisc();
         if (topDisc == null) {
             response.append(objectsInvolved.get(idObjectToMove).getName());
             response.append(" has no discs");
@@ -37,11 +41,6 @@ public class MoveTop extends Move {
         objectsInvolved.clear();
         objectsInvolved.add(topDisc);
         objectsInvolved.add(pileToMoveTo);
-
-        if (!(objectsInvolved.get(idObjectToMove) instanceof Disc) || !(objectsInvolved.get(idWhereToMove) instanceof Pile)) {
-            setResponseError(objectsInvolved, response);
-            return false;
-        }
 
         return checkDiameters(objectsInvolved, response);
     }

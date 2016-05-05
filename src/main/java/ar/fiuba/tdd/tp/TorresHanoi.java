@@ -55,13 +55,15 @@ public class TorresHanoi extends Game {
     private void createStacks() {
         torre1 = new Pile("stack1", room);
         objects.put("stack1", torre1);
+        room.addChild(torre1);
 
         torre2 = new Pile("stack2", room);
         objects.put("stack2", torre2);
-
+        room.addChild(torre2);
 
         torre3 = new Pile("stack3", room);
         objects.put("stack3", torre3);
+        room.addChild(torre3);
     }
 
     private void createDiscs() {
