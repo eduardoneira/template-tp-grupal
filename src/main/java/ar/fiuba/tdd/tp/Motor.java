@@ -7,7 +7,7 @@ public class Motor {
 
     private LinkedList<Game> games;
 
-    public Motor(String game) {
+    public Motor() {
 
         games = new LinkedList<>();
         games.add( new FetchQuest() );
@@ -29,8 +29,7 @@ public class Motor {
     }
 
     public LinkedList<String> getNamesGames() {
-        LinkedList<String> names = games.stream().map(Game::getName).collect(Collectors.toCollection(LinkedList::new));
-        return names;
+        return games.stream().map(Game::getName).collect(Collectors.toCollection(LinkedList::new));
     }
 
     public boolean isValidGame(String possibleGame) {

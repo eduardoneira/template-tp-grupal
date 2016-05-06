@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BeOpened extends ActionHandler {
 
-    protected int idObjectWhoOpens = 0;
+    protected static final int idObjectWhoOpens = 0;
     //protected int argsSize = 1;
 
     private BooleanState open;

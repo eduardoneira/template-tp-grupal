@@ -24,7 +24,7 @@ public class LoadGameServerCommandProxy extends AbstractCommandProxy {
     }
 
     private boolean isValidGame(String gameName) {
-        Motor motor = new Motor(gameName);
+        Motor motor = new Motor();
         if (motor.isValidGame(gameName)) {
             return true;
         } else {

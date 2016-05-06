@@ -21,10 +21,9 @@ public abstract class ConcreteGameObject implements GameObject {
     }
 
     private String commandNotFoundResponse(String actionName) {
-        String response = getName()
+        return getName()
                 + " has no command "
                 + actionName;
-        return response;
     }
 
     @Override
@@ -81,9 +80,8 @@ public abstract class ConcreteGameObject implements GameObject {
 
     @Override
     public List<String> getActionNames() {
-        List<String> allActions = getActions().stream().map(ActionHandler::getName)
-                .collect(Collectors.toCollection(LinkedList::new));
 
-        return allActions;
+        return getActions().stream().map(ActionHandler::getName)
+                .collect(Collectors.toCollection(LinkedList::new));
     }
 }

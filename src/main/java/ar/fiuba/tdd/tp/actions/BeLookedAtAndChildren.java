@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BeLookedAtAndChildren extends BeLookedAt {
 
-    protected ChildrenState children;
+    protected final ChildrenState children;
 
     public BeLookedAtAndChildren(GameObject instance, ChildrenState children) {
         super(instance);
