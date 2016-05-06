@@ -3,7 +3,6 @@ package ar.fiuba.tdd.tp.actions;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class BeMovedGrantsActions extends BeMoved {

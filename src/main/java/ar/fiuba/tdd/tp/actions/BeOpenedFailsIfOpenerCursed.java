@@ -5,9 +5,6 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 import java.util.List;
 
-/**
- * Created by Master on 28/04/2016.
- */
 public class BeOpenedFailsIfOpenerCursed extends BeOpened {
     public BeOpenedFailsIfOpenerCursed(GameObject instance, BooleanState open) {
         super(instance, open);

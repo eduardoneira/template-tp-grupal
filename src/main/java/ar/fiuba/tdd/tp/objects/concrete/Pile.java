@@ -6,9 +6,6 @@ import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Pile extends ConcreteGameObjectWithParentAndChildren {
 
     public Pile(String name, GameObjectWithChildren parent) {

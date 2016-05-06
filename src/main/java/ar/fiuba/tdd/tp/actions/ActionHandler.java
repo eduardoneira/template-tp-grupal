@@ -2,7 +2,6 @@ package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -62,10 +61,7 @@ public abstract class ActionHandler {
 
     // para what
     public boolean causes(String actionName) {
-        if (actionsCaused.contains(actionName)) {
-            return true;
-        }
-        return false;
+        return actionsCaused.contains(actionName);
     }
 
     protected String concatSentences(String... sentences) {

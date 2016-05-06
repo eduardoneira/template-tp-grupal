@@ -1,14 +1,11 @@
 package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
-import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 
 import java.util.List;
 
-/**
- * Created by Master on 04/05/2016.
- */
+
 public class BeUsed extends ActionHandler {
 
     private int idObjectWhoUses;

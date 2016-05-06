@@ -76,6 +76,6 @@ public class ChildrenState implements ChildrenControlFunctions {
 
     @Override
     public List<GameObject> getChildren() {
-        return new ArrayList<GameObject>(children.values());
+        return new ArrayList<>(children.values());
     }
 }

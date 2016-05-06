@@ -5,9 +5,6 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 import java.util.List;
 
-/**
- * Created by Master on 03/05/2016.
- */
 public class TriggerActionHandler extends ActionHandler {
 
     protected List<BooleanState> triggerables;
@@ -32,7 +29,7 @@ public class TriggerActionHandler extends ActionHandler {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         for (int i = 0; i < triggerables.size(); ++i) {
-            (triggerables.get(i)).setValue(triggeredValues.get(i).booleanValue());
+            (triggerables.get(i)).setValue(triggeredValues.get(i));
         }
         //return "triggered booleans";
         return retMessage;

@@ -29,7 +29,7 @@ public class Open extends ActionHandler {
         }*/
 
         GameObject objectWhoOpens = this.instance;
-        List<GameObject> objectsInvolvedForObjectToOpen = new LinkedList<GameObject>();
+        List<GameObject> objectsInvolvedForObjectToOpen = new LinkedList<>();
         GameObject objectToOpen = objectsInvolved.get(idObjectToOpen);
 
         objectsInvolvedForObjectToOpen.add(objectWhoOpens);
@@ -45,7 +45,7 @@ public class Open extends ActionHandler {
         }*/
 
         GameObject objectToOpen = objectsInvolved.get(idObjectToOpen);
-        List<GameObject> objectsInvolvedForObjectToOpen = new LinkedList<GameObject>();
+        List<GameObject> objectsInvolvedForObjectToOpen = new LinkedList<>();
         GameObject objectWhoOpens = this.instance;
 
         objectsInvolvedForObjectToOpen.add(objectWhoOpens);

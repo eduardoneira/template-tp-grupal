@@ -13,7 +13,7 @@ public class LoadGameServerCommandProxy extends AbstractCommandProxy {
     @Override
     public boolean handle(String name) {
         if (canHandle(name)) {
-            String gameName = ((String) name).replace(this.name + " ", "");
+            String gameName = name.replace(this.name + " ", "");
             if (isValidGame(gameName)) {
                 Object [] parametros = {gameName};
                 command.handle(parametros);
@@ -29,9 +29,7 @@ public class LoadGameServerCommandProxy extends AbstractCommandProxy {
             return true;
         } else {
             System.out.println(notSuchGame);
-            for ( String name: motor.getNamesGames()) {
-                System.out.println(name);
-            }
+            motor.getNamesGames().forEach(System.out::println);
             return false;
         }
     }

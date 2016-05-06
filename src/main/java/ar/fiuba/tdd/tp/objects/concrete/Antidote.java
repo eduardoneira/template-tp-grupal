@@ -8,9 +8,6 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Master on 03/05/2016.
- */
 public class Antidote extends ConcreteGameObjectWithParent {
 
     BooleanState poisoned;

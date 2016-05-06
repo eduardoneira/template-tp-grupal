@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.*;
@@ -34,12 +33,12 @@ public class Move extends ActionHandler {
         }*/
 
         GameObject whereToMove = objectsInvolved.get(idWhereToMove);
-        List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<GameObject>();
+        List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<>();
         objectsInvolvedForObjectToMove.add(this.instance);
         objectsInvolvedForObjectToMove.add(whereToMove);
 
         GameObject objectToMove = objectsInvolved.get(idObjectToMove);
-        List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
+        List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<>();
         objectsInvolvedForWhereToMove.add(this.instance);
         objectsInvolvedForWhereToMove.add(objectToMove);
         return objectToMove.canHandleAction(beMoved, objectsInvolvedForObjectToMove, response)
@@ -53,8 +52,8 @@ public class Move extends ActionHandler {
             return response.toString();
         }*/
 
-        List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<GameObject>();
-        List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<GameObject>();
+        List<GameObject> objectsInvolvedForObjectToMove = new LinkedList<>();
+        List<GameObject> objectsInvolvedForWhereToMove = new LinkedList<>();
         objectsInvolvedForObjectToMove.add(this.instance);
         objectsInvolvedForWhereToMove.add(this.instance);
         GameObject whereToMove = objectsInvolved.get(idWhereToMove);

@@ -15,9 +15,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Master on 03/05/2016.
- */
 public class ConditionalActionHandlerTests {
 
     Room room;

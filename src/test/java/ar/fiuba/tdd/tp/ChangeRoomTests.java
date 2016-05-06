@@ -13,9 +13,6 @@ import org.junit.Test;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by Master on 28/04/2016.
- */
 public class ChangeRoomTests {
 
     private Room room1;

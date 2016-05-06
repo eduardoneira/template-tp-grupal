@@ -1,7 +1,6 @@
 package ar.fiuba.tdd.tp.objects.concrete;
 
 import ar.fiuba.tdd.tp.actions.*;
-import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 

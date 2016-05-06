@@ -20,11 +20,11 @@ public class BooleanState {
     }
 
     public boolean isTrue() {
-        return (state == true);
+        return state;
     }
 
     public boolean isFalse() {
-        return (state == false);
+        return !state;
     }
 
     public void setValue(boolean value) {

@@ -1,14 +1,10 @@
 package ar.fiuba.tdd.tp.actions;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
-import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Master on 04/05/2016.
- */
 public class Use extends ActionHandler {
 
     private int idObjectToUse = 0;

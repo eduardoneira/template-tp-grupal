@@ -25,7 +25,7 @@ public class Look extends ActionHandler {
 
         GameObject whoLooks = this.instance;
         GameObject objectToLookAt = objectsInvolved.get(idObjectToLookAt);
-        List<GameObject> objectsInvolvedForObjectToLookAt = new LinkedList<GameObject>();
+        List<GameObject> objectsInvolvedForObjectToLookAt = new LinkedList<>();
 
 
         objectsInvolvedForObjectToLookAt.add(whoLooks);
@@ -49,7 +49,7 @@ public class Look extends ActionHandler {
         GameObject objectToLookAt = objectsInvolved.get(idObjectToLookAt);
         StringBuilder builder = new StringBuilder();
 
-        List<GameObject> objectsInvolvedForObjectToLookAt = new LinkedList<GameObject>();
+        List<GameObject> objectsInvolvedForObjectToLookAt = new LinkedList<>();
         objectsInvolvedForObjectToLookAt.add(whoLooks);
 
         builder.append("there're ");

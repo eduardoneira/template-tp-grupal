@@ -7,9 +7,6 @@ import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
-/**
- * Created by Master on 03/05/2016.
- */
 public class Container extends ConcreteGameObjectWithParentAndChildren implements OpenCloseControlFunctions {
 
     protected BooleanState open;

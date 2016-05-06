@@ -5,7 +5,6 @@ import ar.fiuba.tdd.tp.objects.concrete.Pile;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MoveTop extends Move {

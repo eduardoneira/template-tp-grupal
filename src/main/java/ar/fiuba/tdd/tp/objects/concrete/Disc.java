@@ -2,7 +2,6 @@ package ar.fiuba.tdd.tp.objects.concrete;
 
 import ar.fiuba.tdd.tp.actions.*;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParent;
-import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 
 public class Disc extends ConcreteGameObjectWithParent {

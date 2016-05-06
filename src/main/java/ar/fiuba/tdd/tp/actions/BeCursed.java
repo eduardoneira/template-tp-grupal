@@ -4,9 +4,6 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.List;
 
-/**
- * Created by Master on 28/04/2016.
- */
 public class BeCursed extends ActionHandler {
     public BeCursed(GameObject instance) {
         super(instance, 0);

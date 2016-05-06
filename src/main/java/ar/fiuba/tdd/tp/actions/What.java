@@ -5,6 +5,7 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class What extends ActionHandler {
 
@@ -39,11 +40,9 @@ public class What extends ActionHandler {
     public void checkActions(GameObject objectToAsk, StringBuilder builder) {
         Set<String> actionNoDuplicates = new HashSet<>();
         for (ActionHandler myAction : this.instance.getActions()) {
-            for (ActionHandler hisAction : objectToAsk.getActions()) {
-                if (myAction.causes(hisAction.getName())) {
-                    actionNoDuplicates.add(myAction.getName());
-                }
-            }
+            actionNoDuplicates.addAll(objectToAsk.getActions().stream()
+                    .filter(hisAction -> myAction.causes(hisAction.getName()))
+                    .map(hisAction -> myAction.getName()).collect(Collectors.toList()));
         }
 
         setToResponse(actionNoDuplicates, builder);

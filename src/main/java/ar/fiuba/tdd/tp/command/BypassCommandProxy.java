@@ -1,8 +1,5 @@
 package ar.fiuba.tdd.tp.command;
 
-/**
- * Created by eduu on 27/04/16.
- */
 public class BypassCommandProxy extends AbstractCommandProxy {
 
 

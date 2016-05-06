@@ -1,12 +1,6 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.objects.concrete.Cabbage;
-import ar.fiuba.tdd.tp.objects.concrete.Sheep;
-import ar.fiuba.tdd.tp.objects.concrete.Wolf;
 import ar.fiuba.tdd.tp.objects.general.*;
-import ar.fiuba.tdd.tp.objects.states.ParentState;
-
-import java.util.List;
 
 
 public class Cross extends ChangeRoom {

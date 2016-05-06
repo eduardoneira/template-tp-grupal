@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Motor {
 
@@ -8,7 +9,7 @@ public class Motor {
 
     public Motor(String game) {
 
-        games = new LinkedList<Game>();
+        games = new LinkedList<>();
         games.add( new FetchQuest() );
         games.add( new OpenDoor() );
         games.add( new OpenDoor2() );
@@ -28,10 +29,7 @@ public class Motor {
     }
 
     public LinkedList<String> getNamesGames() {
-        LinkedList<String> names = new LinkedList<String>();
-        for ( Game actualGame: games) {
-            names.add(actualGame.getName());
-        }
+        LinkedList<String> names = games.stream().map(Game::getName).collect(Collectors.toCollection(LinkedList::new));
         return names;
     }
 

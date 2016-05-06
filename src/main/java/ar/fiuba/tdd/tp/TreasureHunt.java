@@ -7,9 +7,7 @@ import ar.fiuba.tdd.tp.objects.concrete.door.LinkingLockedDoor;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.objects.states.ChildrenStateLimitedSize;
 
-/**
- * Created by Master on 03/05/2016.
- */
+
 public class TreasureHunt extends Game {
 
     @SuppressWarnings("CPD-START")

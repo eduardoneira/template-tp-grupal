@@ -1,12 +1,10 @@
 package ar.fiuba.tdd.tp.objects.general;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
-import ar.fiuba.tdd.tp.actions.BeAskedWhat;
-import ar.fiuba.tdd.tp.actions.BeLookedAt;
 
-import java.awt.*;
 import java.util.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class ConcreteGameObject implements GameObject {
     private Map<String, List<ActionHandler>> actions;
@@ -14,7 +12,7 @@ public abstract class ConcreteGameObject implements GameObject {
 
     public ConcreteGameObject(String name) {
         this.name = name;
-        this.actions = new HashMap<String, List<ActionHandler>>();
+        this.actions = new HashMap<>();
     }
 
     @Override
@@ -23,11 +21,10 @@ public abstract class ConcreteGameObject implements GameObject {
     }
 
     private String commandNotFoundResponse(String actionName) {
-        StringBuilder response = new StringBuilder();
-        response.append(getName());
-        response.append(" has no command ");
-        response.append(actionName);
-        return response.toString();
+        String response = getName()
+                + " has no command "
+                + actionName;
+        return response;
     }
 
     @Override
@@ -37,11 +34,8 @@ public abstract class ConcreteGameObject implements GameObject {
         }
 
         StringBuilder builder = new StringBuilder();
-        for (ActionHandler action : actions.get(actionName)) {
-            if (action.canHandleAction(actionName, objectsInvolved, builder)) {
-                builder.append(action.handleAction(actionName, objectsInvolved));
-            }
-        }
+        actions.get(actionName).stream().filter(action -> action.canHandleAction(actionName, objectsInvolved, builder))
+                .forEach(action -> builder.append(action.handleAction(actionName, objectsInvolved)));
         //return actions.get(actionName).handleAction(actionName, objectsInvolved);
         return builder.toString();
     }
@@ -80,20 +74,15 @@ public abstract class ConcreteGameObject implements GameObject {
     public List<ActionHandler> getActions() {
         List<ActionHandler> allActions = new LinkedList<>();
         for (String actionName : actions.keySet()) {
-            for (ActionHandler action : actions.get(actionName)) {
-                allActions.add(action);
-            }
+            allActions.addAll(actions.get(actionName).stream().collect(Collectors.toList()));
         }
         return allActions;
     }
 
     @Override
     public List<String> getActionNames() {
-        List<String> allActions = new LinkedList<>();
-
-        for ( ActionHandler action : getActions()) {
-            allActions.add(action.getName());
-        }
+        List<String> allActions = getActions().stream().map(ActionHandler::getName)
+                .collect(Collectors.toCollection(LinkedList::new));
 
         return allActions;
     }

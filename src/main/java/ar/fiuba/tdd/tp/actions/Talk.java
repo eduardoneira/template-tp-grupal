@@ -13,10 +13,7 @@ public class Talk extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        if (objectsInvolved.size() != argsSize) {
-            return false;
-        }
-        return conversating(this.instance,objectsInvolved.get(idObjectToTalk), response);
+        return objectsInvolved.size() == argsSize && conversating(this.instance, objectsInvolved.get(idObjectToTalk), response);
     }
 
     @Override
@@ -25,7 +22,7 @@ public class Talk extends ActionHandler {
     }
 
     private boolean conversating(GameObject objectWhoTalk, GameObject objectToTalk, StringBuilder response) {
-        List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();
+        List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<>();
         objectsInvolvedForObjectToTalk.add(objectWhoTalk);
 
         return objectToTalk.canHandleAction(beTalkedTo, objectsInvolvedForObjectToTalk, response);
@@ -46,7 +43,7 @@ public class Talk extends ActionHandler {
         GameObject objectToTalk = objectsInvolved.get(idObjectToTalk);
         GameObject objectWhoTalks = this.instance;
 
-        List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<GameObject>();
+        List<GameObject> objectsInvolvedForObjectToTalk = new LinkedList<>();
         objectsInvolvedForObjectToTalk.add(objectWhoTalks);
 
         return objectToTalk.handleAction(beTalkedTo, objectsInvolvedForObjectToTalk);

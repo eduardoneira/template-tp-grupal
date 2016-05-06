@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
@@ -39,7 +38,7 @@ public class BeMoved extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        List<GameObject> me = new LinkedList<GameObject>();
+        List<GameObject> me = new LinkedList<>();
         me.add(this.instance);
 
         // tal vez pasarle quien mueve

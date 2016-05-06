@@ -5,9 +5,6 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 import java.util.List;
 
-/**
- * Created by Master on 03/05/2016.
- */
 public class ConditionalActionHandlerFails extends ActionHandler {
 
     protected List<BooleanState> conditions;
@@ -43,10 +40,7 @@ public class ConditionalActionHandlerFails extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        if (!checkConditions(response)) {
-            return false;
-        }
-        return action.canIHandleAction(objectsInvolved, response);
+        return checkConditions(response) && action.canIHandleAction(objectsInvolved, response);
     }
 
     @Override

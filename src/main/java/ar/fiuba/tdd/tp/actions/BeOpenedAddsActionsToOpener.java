@@ -5,9 +5,6 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 import java.util.List;
 
-/**
- * Created by Master on 03/05/2016.
- */
 public class BeOpenedAddsActionsToOpener extends BeOpened {
 
     protected List<ActionHandler> actionsGranted;

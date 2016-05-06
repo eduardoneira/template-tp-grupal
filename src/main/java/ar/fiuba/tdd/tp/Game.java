@@ -57,7 +57,7 @@ public abstract class Game {
         }
 
         String[] splitCommand = stringCommand.split(" ");
-        List<String> parsedCommand = new LinkedList<String>();
+        List<String> parsedCommand = new LinkedList<>();
         for (String elem : splitCommand) {
             if (commands.contains(elem) || objects.keySet().contains(elem)) {
                 parsedCommand.add(elem);
