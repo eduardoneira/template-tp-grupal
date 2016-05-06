@@ -10,8 +10,8 @@ import java.util.List;
 
 public class Poison extends ConcreteGameObjectWithParent {
 
-    BooleanState poisonKills;
-    BooleanState poisoned;
+    final BooleanState poisonKills;
+    final BooleanState poisoned;
 
     public Poison(String name, GameObjectWithChildren parent, BooleanState poisonKills, BooleanState poisoned) {
         super(name, parent);

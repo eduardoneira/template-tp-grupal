@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ConcreteGameObjectWithChildren extends ConcreteGameObject implements ChildrenControlFunctions, GameObjectWithChildren {
 
-    protected ChildrenState children;
+    protected final ChildrenState children;
 
     public ConcreteGameObjectWithChildren(String name) {
         this(name, new ChildrenState());

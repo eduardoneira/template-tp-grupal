@@ -13,7 +13,7 @@ public class CursedObject extends Game {
     private Room room1;
     private LinkingLockedDoor door1to2;
     private CursedKey keyObject;
-    int keyNumber = 2;
+    private static final int keyNumber = 2;
 
     private Room room2;
     private AntiCurseLinkingDoor door2to3;

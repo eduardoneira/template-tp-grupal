@@ -1,8 +1,8 @@
 package ar.fiuba.tdd.tp.command;
 
 public abstract class AbstractCommandProxy {
-    protected String name;
-    protected AbstractCommand command;
+    protected final String name;
+    protected final AbstractCommand command;
 
     AbstractCommandProxy(String name, AbstractCommand command) {
         super();

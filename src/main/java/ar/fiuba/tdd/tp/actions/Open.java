@@ -7,18 +7,18 @@ import java.util.List;
 
 public class Open extends ActionHandler {
 
-    private int idObjectToOpen = 0;
+    private static final int idObjectToOpen = 0;
     //private int argsSize = 1;
-    private String beOpened = "be opened";
-
-    public Open(GameObject instance) {
-        super(instance, 1);
-        actionsCaused.add(beOpened);
-    }
+    private static final String beOpened = "be opened";
 
     @Override
     public String getName() {
         return "open";
+    }
+
+    public Open(GameObject instance) {
+        super(instance, 1);
+        actionsCaused.add(beOpened);
     }
 
     @Override

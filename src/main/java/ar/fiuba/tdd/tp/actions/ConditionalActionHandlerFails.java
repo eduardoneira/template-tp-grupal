@@ -7,8 +7,8 @@ import java.util.List;
 
 public class ConditionalActionHandlerFails extends ActionHandler {
 
-    protected List<BooleanState> conditions;
-    protected ActionHandler action;
+    protected final List<BooleanState> conditions;
+    protected final ActionHandler action;
 
     public ConditionalActionHandlerFails(GameObject instance, ActionHandler action, List<BooleanState> conditions) {
         super(instance, action.argsSize);

@@ -9,9 +9,9 @@ import java.util.List;
 public class BeUsed extends ActionHandler {
 
     private int idObjectWhoUses;
-    private int maxAmountOfUses;
+    private final int maxAmountOfUses;
     private int currentAmountOfUses;
-    private ParentState holder;
+    private final ParentState holder;
 
     public BeUsed(GameObject instance, ParentState holder, int maxAmountOfUses) {
         super(instance, 1);

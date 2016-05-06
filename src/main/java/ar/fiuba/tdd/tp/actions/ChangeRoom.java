@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ChangeRoom extends Move {
 
-    private int idWhereTo = 0;
+    private static final int idWhereTo = 0;
 
     public ChangeRoom(ConcreteGameObjectWithParentAndChildren instance) {
         super(instance, 1);

@@ -8,8 +8,8 @@ import java.util.List;
 public abstract class ActionHandler {
 
     protected GameObject instance;
-    protected List<String> actionsCaused;
-    protected int argsSize;
+    protected final List<String> actionsCaused;
+    protected final int argsSize;
 
     public ActionHandler(GameObject instance, int argsSize) {
         this.instance = instance;

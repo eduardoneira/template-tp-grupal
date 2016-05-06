@@ -8,7 +8,7 @@ import java.util.List;
 
 public class HaveEverythingStolen extends HaveMovedFrom {
 
-    private int objectWhoSteals = 0;
+    private static final int objectWhoSteals = 0;
     //private int argsSize = 1;
 
     public HaveEverythingStolen(GameObject instance, ChildrenState children) {

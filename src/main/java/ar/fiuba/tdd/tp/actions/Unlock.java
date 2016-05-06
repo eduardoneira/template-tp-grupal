@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Unlock extends ActionHandler {
 
-    private int key;
+    private final int key;
 
     //private int argsSize = 1;
 

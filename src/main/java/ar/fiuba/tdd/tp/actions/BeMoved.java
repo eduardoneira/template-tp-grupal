@@ -9,10 +9,10 @@ import java.util.List;
 
 public class BeMoved extends ActionHandler {
 
-    private int idWhereToMove = 1;
+    private static final int idWhereToMove = 1;
     //private int argsSize = 2;
 
-    ParentState parent;
+    final ParentState parent;
 
     public BeMoved(GameObject instance, ParentState parent) {
         super(instance, 2);

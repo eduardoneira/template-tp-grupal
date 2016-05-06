@@ -7,10 +7,10 @@ import java.util.List;
 
 public class TriggerActionHandler extends ActionHandler {
 
-    protected List<BooleanState> triggerables;
-    protected List<Boolean> triggeredValues;
-    protected ActionHandler action;
-    protected String retMessage;
+    protected final List<BooleanState> triggerables;
+    protected final List<Boolean> triggeredValues;
+    protected final ActionHandler action;
+    protected final String retMessage;
 
     public TriggerActionHandler(GameObject instance, ActionHandler action,
                                 List<BooleanState> triggerables, List<Boolean> triggeredValues) {

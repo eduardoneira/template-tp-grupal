@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class What extends ActionHandler {
 
-    private int idWhoToAsk = 0;
+    private static final int idWhoToAsk = 0;
     //private int argsSize = 1;
 
     public What(GameObject instance) {

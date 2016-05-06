@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CheckTop extends ActionHandler {
 
-    private int idObjectToCheck = 0;
+    private static final int idObjectToCheck = 0;
     //private int argsSize = 1;
 
     public CheckTop(GameObject instance) {

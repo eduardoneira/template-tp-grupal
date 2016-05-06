@@ -8,10 +8,10 @@ import java.util.List;
 
 public class BeOpenedHasLock extends BeOpened {
 
-    private int idObjectThatUnlocksMe = 0;
+    private static final int idObjectThatUnlocksMe = 0;
 
-    private BooleanState locked;
-    private int key;
+    private final BooleanState locked;
+    private final int key;
 
     public BeOpenedHasLock(GameObject instance, BooleanState open, BooleanState locked, int key) {
         super(instance, open);

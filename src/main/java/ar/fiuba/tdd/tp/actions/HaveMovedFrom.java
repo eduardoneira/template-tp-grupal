@@ -8,10 +8,10 @@ import java.util.List;
 
 public class HaveMovedFrom extends ActionHandler {
 
-    protected int idObjectToMove = 0;
+    protected static final int idObjectToMove = 0;
     //protected int argsSize = 1;
 
-    protected ChildrenState children;
+    protected final ChildrenState children;
 
     public HaveMovedFrom(GameObject instance, ChildrenState children) {
         super(instance, 1);

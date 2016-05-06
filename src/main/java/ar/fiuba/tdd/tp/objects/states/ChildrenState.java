@@ -8,7 +8,7 @@ import java.util.*;
 
 public class ChildrenState implements ChildrenControlFunctions {
 
-    protected Map<String, GameObjectWithParent> children;
+    protected final Map<String, GameObjectWithParent> children;
 
     public ChildrenState() {
         children = new HashMap<>();

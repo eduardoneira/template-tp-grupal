@@ -7,11 +7,11 @@ import java.util.List;
 
 public class Move extends ActionHandler {
 
-    protected int idObjectToMove = 0;
-    protected int idWhereToMove = 1;
+    protected static final int idObjectToMove = 0;
+    protected static final int idWhereToMove = 1;
     //protected int argsSize = 2;
-    private String beMoved = "be moved";
-    private String haveMovedTo = "have moved to";
+    private static final String beMoved = "be moved";
+    private static final String haveMovedTo = "have moved to";
 
     public Move(GameObject instance) {
         super(instance, 2);

@@ -7,7 +7,7 @@ import ar.fiuba.tdd.tp.objects.states.ParentState;
 
 public class LinkingDoor extends Door {
 
-    protected ParentState nextRoom;
+    protected final ParentState nextRoom;
 
     public LinkingDoor(String name, GameObjectWithChildren parent, GameObjectWithChildren nextRoom) {
         super(name, parent);

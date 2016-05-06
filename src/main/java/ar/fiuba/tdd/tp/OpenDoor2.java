@@ -9,14 +9,14 @@ import ar.fiuba.tdd.tp.objects.concrete.door.LockedDoor;
 
 public class OpenDoor2 extends Game {
 
-    Room room;
-    Box box;
-    Key key;
-    LockedDoor door;
-    String nameRoom = "room";
-    String nameKey = "key";
-    String nameDoor = "door";
-    String nameBox = "box";
+    private Room room;
+    private Box box;
+    private Key key;
+    private LockedDoor door;
+    private String nameRoom = "room";
+    private String nameKey = "key";
+    private String nameDoor = "door";
+    private String nameBox = "box";
 
     @SuppressWarnings("CPD-START")
 

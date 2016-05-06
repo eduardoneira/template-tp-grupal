@@ -8,7 +8,7 @@ import java.util.Map;
 
 
 public class CloseServerCommand implements AbstractCommand {
-    private String closingServer = "Closing Server. Bye";
+    private static final String closingServer = "Closing Server. Bye";
 
     @Override
     public void handle(Object[] param) {

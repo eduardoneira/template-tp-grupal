@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class Motor {
 
-    private LinkedList<Game> games;
+    private final LinkedList<Game> games;
 
     public Motor() {
 

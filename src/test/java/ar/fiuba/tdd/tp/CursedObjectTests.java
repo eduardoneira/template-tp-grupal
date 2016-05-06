@@ -20,7 +20,7 @@ public class CursedObjectTests {
     private Room room1;
     private LinkingLockedDoor door1to2;
     private CursedKey keyObject;
-    int keyNumber = 2;
+    final int keyNumber = 2;
 
     private Room room2;
     private AntiCurseLinkingDoor door2to3;

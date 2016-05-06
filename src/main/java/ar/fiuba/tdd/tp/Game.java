@@ -9,13 +9,13 @@ import java.util.*;
 public abstract class Game {
 
     protected Player player;
-    protected String name;
-    protected Set<String> commands;
-    protected Map<String, GameObject> objects;
+    protected final String name;
+    protected final Set<String> commands;
+    protected final Map<String, GameObject> objects;
 
-    protected String needHelpRegex = "help(.)*";
-    protected String win = ". You won the game!";
-    protected String loose = ". You lost!";
+    protected static final String needHelpRegex = "help(.)*";
+    protected static final String win = ". You won the game!";
+    protected static final String loose = ". You lost!";
 
     public String getName() {
         return name;

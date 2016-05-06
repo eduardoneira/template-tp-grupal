@@ -8,7 +8,7 @@ import ar.fiuba.tdd.tp.objects.states.ParentState;
 
 public class LinkingLockedDoor extends AbstractLockedOpenable {
 
-    protected ParentState nextRoom;
+    protected final ParentState nextRoom;
 
     public LinkingLockedDoor(String name, GameObjectWithChildren parent, int key, GameObjectWithChildren nextRoom, BooleanState locked) {
         super(name, parent, key, locked);

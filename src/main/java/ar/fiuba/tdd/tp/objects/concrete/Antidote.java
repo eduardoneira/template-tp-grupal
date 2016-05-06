@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Antidote extends ConcreteGameObjectWithParent {
 
-    BooleanState poisoned;
+    final BooleanState poisoned;
 
     public Antidote(String name, GameObjectWithChildren parent, BooleanState poisoned) {
         super(name, parent);

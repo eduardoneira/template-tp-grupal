@@ -7,8 +7,8 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 public abstract class AbstractLockedOpenable extends AbstractOpenable implements LockControlFunctions {
 
-    protected BooleanState locked;
-    protected int key;
+    protected final BooleanState locked;
+    protected final int key;
 
     public AbstractLockedOpenable(String name, GameObjectWithChildren parent, int key) {
         this(name, parent, key, new BooleanState());

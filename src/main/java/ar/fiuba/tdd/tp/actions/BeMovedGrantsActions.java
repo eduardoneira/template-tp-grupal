@@ -7,8 +7,8 @@ import java.util.List;
 
 public class BeMovedGrantsActions extends BeMoved {
 
-    protected List<ActionHandler> actionsGranted;
-    String resultString;
+    protected final List<ActionHandler> actionsGranted;
+    final String resultString;
 
     public BeMovedGrantsActions(GameObject instance, ParentState parent, List<ActionHandler> actionsGranted) {
         this(instance, parent, actionsGranted, "");

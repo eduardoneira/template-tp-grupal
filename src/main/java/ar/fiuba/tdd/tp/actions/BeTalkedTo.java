@@ -6,7 +6,7 @@ import java.util.List;
 
 public class BeTalkedTo extends ActionHandler {
 
-    protected int idObjectWhoTalks = 0;
+    protected static final int idObjectWhoTalks = 0;
     //protected int argsSize = 1;
 
     public BeTalkedTo(GameObject instance) {

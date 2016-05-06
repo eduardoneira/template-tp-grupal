@@ -2,7 +2,7 @@ package ar.fiuba.tdd.tp.objects.states;
 
 public class ChildrenStateLimitedSize extends ChildrenState {
 
-    protected int maxSize;
+    protected final int maxSize;
 
     public ChildrenStateLimitedSize(int maxSize) {
         super();

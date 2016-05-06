@@ -10,7 +10,7 @@ public class BeOpened extends ActionHandler {
     protected static final int idObjectWhoOpens = 0;
     //protected int argsSize = 1;
 
-    private BooleanState open;
+    private final BooleanState open;
 
     public BeOpened(GameObject instance, BooleanState open) {
         super(instance, 1);

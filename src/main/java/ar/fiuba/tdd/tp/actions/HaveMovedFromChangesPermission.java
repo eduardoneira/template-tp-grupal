@@ -8,7 +8,7 @@ import java.util.List;
 
 public class HaveMovedFromChangesPermission extends HaveMovedFrom {
 
-    protected BooleanState canTakeFrom;
+    protected final BooleanState canTakeFrom;
 
     public HaveMovedFromChangesPermission(GameObject instance, ChildrenState children, BooleanState canTakeFrom) {
         super(instance, children);

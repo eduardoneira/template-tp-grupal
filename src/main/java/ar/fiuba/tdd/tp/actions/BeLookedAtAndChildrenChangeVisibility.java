@@ -8,8 +8,8 @@ import java.util.List;
 
 public class BeLookedAtAndChildrenChangeVisibility extends BeLookedAt {
 
-    protected BooleanState childrenVisible;
-    protected BeLookedAtAndChildren lookWhenChildrenVisible;
+    protected final BooleanState childrenVisible;
+    protected final BeLookedAtAndChildren lookWhenChildrenVisible;
 
     public BeLookedAtAndChildrenChangeVisibility(GameObject instance, ChildrenState children, BooleanState visible) {
         super(instance);

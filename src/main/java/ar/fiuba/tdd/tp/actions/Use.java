@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Use extends ActionHandler {
 
-    private int idObjectToUse = 0;
-    private String beUsed = "be used";
+    private static final int idObjectToUse = 0;
+    private static final String beUsed = "be used";
     //GameObjectWithChildren myInstance;
 
     public Use(GameObject/*WithChildren*/ instance) {
@@ -22,6 +22,7 @@ public class Use extends ActionHandler {
         return "use";
     }
 
+
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         GameObject objectToUse = objectsInvolved.get(idObjectToUse);
@@ -32,6 +33,8 @@ public class Use extends ActionHandler {
         String myRet = "used " + objectToUse.getName();
         return concatSentences(myRet, usedRet);
     }
+
+
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
@@ -49,4 +52,6 @@ public class Use extends ActionHandler {
         listForObjectToUse.add(this.instance);
         return objectToUse.canHandleAction("be used", listForObjectToUse, response);
     }
+
+
 }

@@ -7,8 +7,8 @@ import java.util.List;
 
 public class BeOpenedAddsActionsToOpener extends BeOpened {
 
-    protected List<ActionHandler> actionsGranted;
-    protected String addToResponse;
+    protected final List<ActionHandler> actionsGranted;
+    protected final String addToResponse;
 
     public BeOpenedAddsActionsToOpener(GameObject instance, List<ActionHandler> actionsGranted, String addToResponse) {
         super(instance, new BooleanState()); // medio feo, pero bueno

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class BeOpenedMovesOpenerToOtherRoom extends BeOpened {
 
-    ParentState room;
+    final ParentState room;
 
     public BeOpenedMovesOpenerToOtherRoom(GameObject instance, BooleanState state, ParentState room) {
         super(instance, state);

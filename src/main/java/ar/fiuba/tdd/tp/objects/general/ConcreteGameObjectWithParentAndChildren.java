@@ -8,8 +8,8 @@ import java.util.List;
 public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
         implements GameObjectWithChildren, GameObjectWithParent {
 
-    protected ChildrenState children;
-    protected ParentState parent;
+    protected final ChildrenState children;
+    protected final ParentState parent;
 
     public ConcreteGameObjectWithParentAndChildren(String name, GameObjectWithChildren parent) {
         this(name, parent, new ChildrenState());

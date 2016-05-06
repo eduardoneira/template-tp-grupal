@@ -7,9 +7,9 @@ import java.util.List;
 
 public class Talk extends ActionHandler {
 
-    private int idObjectToTalk = 0;
+    private static final int idObjectToTalk = 0;
     //private int argsSize = 1;
-    private String beTalkedTo = "be talked to";
+    private static final String beTalkedTo = "be talked to";
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {

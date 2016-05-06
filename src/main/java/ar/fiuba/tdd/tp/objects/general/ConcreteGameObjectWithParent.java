@@ -4,7 +4,7 @@ import ar.fiuba.tdd.tp.objects.states.ParentState;
 
 public class ConcreteGameObjectWithParent extends ConcreteGameObject implements GameObjectWithParent {
 
-    protected ParentState parent;
+    protected final ParentState parent;
 
     public ConcreteGameObjectWithParent(String name, GameObjectWithChildren parent) {
         super(name);

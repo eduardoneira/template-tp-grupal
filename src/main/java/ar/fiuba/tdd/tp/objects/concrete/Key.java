@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Key extends ConcreteGameObjectWithParent {
 
-    protected int key;
-    protected List<ActionHandler> actionsGranted;
+    protected final int key;
+    protected final List<ActionHandler> actionsGranted;
 
     public Key(String name, GameObjectWithChildren parent, int key) {
         super(name, parent);

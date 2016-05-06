@@ -6,7 +6,7 @@ import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 
 public class Disc extends ConcreteGameObjectWithParent {
 
-    int diameter;
+    final int diameter;
 
     public Disc(String name, GameObjectWithChildren parent, int diameter) {
         super(name, parent);

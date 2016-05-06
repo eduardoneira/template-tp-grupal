@@ -9,7 +9,7 @@ import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
 public class Container extends ConcreteGameObjectWithParentAndChildren implements OpenCloseControlFunctions {
 
-    protected BooleanState open;
+    protected final BooleanState open;
 
     public Container(String name, GameObjectWithChildren parent) {
         this(name, parent, new ChildrenState());

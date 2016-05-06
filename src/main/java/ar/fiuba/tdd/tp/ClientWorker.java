@@ -6,12 +6,12 @@ import java.net.Socket;
 
 class ClientWorker implements Runnable {
     private Socket clientSocket;
-    private ServerSocket serverSocket;
-    private Game game;
+    private final ServerSocket serverSocket;
+    private final Game game;
     private volatile boolean isRunning = false;
 
-    private String win = ". You won the game!";
-    private String loose = ". You lost!";
+    private static final String win = ". You won the game!";
+    private static final String loose = ". You lost!";
 
     ClientWorker(ServerSocket server, String gameName) {
         this.serverSocket = server;

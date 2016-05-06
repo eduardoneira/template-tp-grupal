@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class ConcreteGameObject implements GameObject {
-    private Map<String, List<ActionHandler>> actions;
-    private String name;
+    private final Map<String, List<ActionHandler>> actions;
+    private final String name;
 
     public ConcreteGameObject(String name) {
         this.name = name;
