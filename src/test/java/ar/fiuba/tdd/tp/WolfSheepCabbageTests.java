@@ -36,13 +36,10 @@ public class WolfSheepCabbageTests {
         player.addAction(new Take(player));
         player.addAction(new HaveMovedFrom(player, player.getChildrenState()));
 
-        southShore.addChild(player);
         wolf = new Wolf("wolf", southShore);
         sheep = new Sheep("sheep", southShore);
         cabbage = new Cabbage("cabbage", southShore);
-        southShore.addChild(wolf);
-        southShore.addChild(sheep);
-        southShore.addChild(cabbage);
+
     }
 
     public String cross(Room room) {

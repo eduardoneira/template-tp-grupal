@@ -20,6 +20,7 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
         this.children = children;
         this.parent = new ParentState();
         setParent(parent);
+        parent.addChild(this);
     }
 
     @Override

@@ -30,7 +30,6 @@ public class BoxTests {
 
     @Test
     public void placeBoxInRoom() {
-        room.addChild(box);
         assert (room.contains("box"));
         assertEquals(box.getParent().getName(), "room");
     }
@@ -39,7 +38,6 @@ public class BoxTests {
     public void placeObjectInBox() {
         placeBoxInRoom();
         key = new Key("key", box, 2);
-        box.addChild(key);
         assert (box.contains("key"));
         assertEquals(key.getParent().getName(), "box");
     }

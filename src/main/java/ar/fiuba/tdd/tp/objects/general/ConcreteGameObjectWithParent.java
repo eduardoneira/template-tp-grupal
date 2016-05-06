@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp.objects.general;
 
-import ar.fiuba.tdd.tp.abilities.control.ParentControlFunctions;
 import ar.fiuba.tdd.tp.objects.states.ParentState;
 
 public class ConcreteGameObjectWithParent extends ConcreteGameObject implements GameObjectWithParent {
@@ -11,6 +10,7 @@ public class ConcreteGameObjectWithParent extends ConcreteGameObject implements 
         super(name);
         this.parent = new ParentState();
         setParent(parent);
+        parent.addChild(this);
     }
 
     @Override

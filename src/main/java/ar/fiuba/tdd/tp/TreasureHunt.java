@@ -108,11 +108,9 @@ public class TreasureHunt extends Game {
     private void populateRoom1() {
         // room1
         door1to2 = new LinkingDoor("door1to2", room1, room2);
-        room1.addChild(door1to2);
         objects.put(door1to2.getName(), door1to2);
 
         keyTo3 = new Key("keyTo3", room1, 3);
-        room1.addChild(keyTo3);
         objects.put(keyTo3.getName(), keyTo3);
     }
 
@@ -125,33 +123,26 @@ public class TreasureHunt extends Game {
 
     private void populateRoom2a() {
         door2to1 = new LinkingDoor("door2to1", room2, room1);
-        room2.addChild(door2to1);
         objects.put(door2to1.getName(), door2to1);
 
         door2to3 = new LinkingLockedDoor("door2to3", room2, 3, room3, door2to3state);
-        room2.addChild(door2to3);
         objects.put(door2to3.getName(), door2to3);
 
         door2to4 = new LinkingLockedDoor("door2to4", room2, 4, room4, door2to4state);
-        room2.addChild(door2to4);
         objects.put(door2to4.getName(), door2to4);
     }
 
     private void populateRoom2b() {
         door2to5 = new LinkingLockedDoor("door2to5", room2, 5, room5, door2to5state);
-        room2.addChild(door2to5);
         objects.put(door2to5.getName(), door2to5);
 
         chestIn2 = new Chest("chestIn2", room2);
-        room2.addChild(chestIn2);
         objects.put(chestIn2.getName(), chestIn2);
 
         boxInChestIn2 = new Box("boxIn2", chestIn2);
-        chestIn2.addChild(boxInChestIn2);
         objects.put(boxInChestIn2.getName(), boxInChestIn2);
 
         antidoteIn2 = new Antidote("antidoteIn2", boxInChestIn2, poisoned);
-        boxInChestIn2.addChild(antidoteIn2);
         objects.put(antidoteIn2.getName(), antidoteIn2);
     }
 
@@ -159,15 +150,12 @@ public class TreasureHunt extends Game {
         // room3
 
         door3to2 = new LinkingLockedDoor("door3to2", room3, 3, room2, door2to3state);
-        room3.addChild(door3to2);
         objects.put(door3to2.getName(), door3to2);
 
         boxIn3 = new Box("boxIn3", room3);
-        room3.addChild(boxIn3);
         objects.put(boxIn3.getName(), boxIn3);
 
         keyTo5 = new Key("keyTo5", boxIn3, 5);
-        boxIn3.addChild(keyTo5);
         objects.put(keyTo5.getName(), keyTo5);
     }
 
@@ -181,25 +169,20 @@ public class TreasureHunt extends Game {
         // room4
 
         door4to2 = new LinkingLockedDoor("door4to2", room4, 4, room2, door2to4state);
-        room4.addChild(door4to2);
         objects.put(door4to2.getName(), door4to2);
 
         chest1In4 = new Chest("chest1In4", room4);
-        room4.addChild(chest1In4);
         objects.put(chest1In4.getName(), chest1In4);
 
         poisonIn4 = new Poison("poisonIn4", chest1In4, killedByPoison, poisoned);
-        chest1In4.addChild(poisonIn4);
         objects.put(poisonIn4.getName(), poisonIn4);
     }
 
     private void populateRoom4b() {
         chest2In4 = new Chest("chest2In4", room4);
-        room4.addChild(chest2In4);
         objects.put(chest2In4.getName(), chest2In4);
 
         treasureInChest2In4  = new Treasure("treasure", chest2In4);
-        chest2In4.addChild(treasureInChest2In4);
         objects.put(treasureInChest2In4.getName(), treasureInChest2In4);
     }
 
@@ -213,35 +196,28 @@ public class TreasureHunt extends Game {
         // room 5
 
         door5to2 = new LinkingLockedDoor("door5to2", room5, 5, room2, door2to5state);
-        room5.addChild(door5to2);
         objects.put(door5to2.getName(), door5to2);
 
         antidoteIn5 = new Antidote("antidoteIn5", room5, poisoned);
-        room5.addChild(antidoteIn5);
         objects.put(antidoteIn5.getName(), antidoteIn5);
 
         chest1In5 = new Chest("chest1In5", room5);
-        room5.addChild(chest1In5);
         objects.put(chest1In5.getName(), chest1In5);
     }
 
     private void populateRoom5b() {
         keyTo4 = new Key("keyTo4", chest1In5, 4);
-        chest1In5.addChild(keyTo4);
         objects.put(keyTo4.getName(), keyTo4);
 
         chest2In5 = new Chest("chest2In5", room5);
-        room5.addChild(chest2In5);
         objects.put(chest2In5.getName(), chest2In5);
 
         poisonIn5 = new Poison("poisonIn5", chest2In5, killedByPoison, poisoned);
-        chest2In5.addChild(poisonIn5);
         objects.put(poisonIn5.getName(), poisonIn5);
     }
 
     private void createPlayer() {
         player = new Player("player", room1, new ChildrenStateLimitedSize(2));
-        room1.addChild(player);
 
         ActionHandler pickAction = new Pick(player);
         player.addAction(pickAction);

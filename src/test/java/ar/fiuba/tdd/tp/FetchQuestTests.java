@@ -25,7 +25,6 @@ public class FetchQuestTests {
 
     @Test
     public void gameTest() {
-        room.addChild(stick);
         assert (room.contains("stick"));
 
         System.out.println(room.getName());
@@ -41,13 +40,11 @@ public class FetchQuestTests {
 
     @Test
     public void placeObjectInRoom() {
-        room.addChild(stick);
         assert (room.contains("stick"));
     }
 
     @Test
     public void playerPicksObject() {
-        room.addChild(stick);
 
         player.addAction(new Pick(player));
         player.handleAction("pick",

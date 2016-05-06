@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp;
 
-import ar.fiuba.tdd.tp.actions.Leave;
 import ar.fiuba.tdd.tp.actions.Open;
 import ar.fiuba.tdd.tp.actions.Pick;
 import ar.fiuba.tdd.tp.actions.Use;
@@ -16,9 +15,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Created by Master on 03/05/2016.
- */
 public class PoisonAndAntidoteTests {
 
     private Room room1;
@@ -45,13 +41,10 @@ public class PoisonAndAntidoteTests {
         player.addAction(new Pick(player));
         player.addAction(new Open(player));
         player.addAction(new Use(player));
-        room1.addChild(player);
 
         box = new Box("box", room1);
-        room1.addChild(box);
 
         box2 = new Box("box2", room1);
-        room1.addChild(box2);
 
         initialization2();
     }
@@ -63,18 +56,13 @@ public class PoisonAndAntidoteTests {
         poisoned.setFalse();
 
         poison = new Poison("poison", box, killedByPoison, poisoned);
-        box.addChild(poison);
         poison2 = new Poison("poison2", box2, killedByPoison, poisoned);
-        box2.addChild(poison2);
 
         antidote = new Antidote("antidote", room1, poisoned);
-        room1.addChild(antidote);
 
         antidote2 = new Antidote("antidote2", room1, poisoned);
-        room1.addChild(antidote2);
 
         doorTo2 = new LinkingDoor("door", room1, room2);
-        room1.addChild(doorTo2);
 
         objectsInvolved = new ArrayList<>();
     }

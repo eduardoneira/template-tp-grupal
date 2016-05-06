@@ -56,15 +56,9 @@ public class HanoiTests {
     }
 
     public void setGame() {
-        room.addChild(pile1);
-        room.addChild(pile2);
-        room.addChild(pile3);
         disc1 = new Disc("disc1", pile1, 1);
         disc2 = new Disc("disc2", pile1, 2);
         disc3 = new Disc("disc3", pile1, 3);
-        pile1.addChild(disc1);
-        pile1.addChild(disc2);
-        pile1.addChild(disc3);
     }
 
     @Test

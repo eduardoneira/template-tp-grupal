@@ -32,9 +32,7 @@ public class CrossTests {
         secondRoom = new Room("second room");
 
         sheep = new Sheep("sheep", firstRoom);
-        cabbage = new Cabbage("cabbage", secondRoom);
-        firstRoom.addChild(sheep);
-        firstRoom.addChild(cabbage);
+        cabbage = new Cabbage("cabbage", firstRoom);
 
         sheepSeparateFromCabbage = new BooleanState();
         sheepSeparateFromCabbage.setFalse();
@@ -47,7 +45,6 @@ public class CrossTests {
         player.addAction(new Leave(player));
         player.addAction(new Take(player));
         player.addAction(new HaveMovedFrom(player, player.getChildrenState()));
-        firstRoom.addChild(player);
     }
 
     @Test

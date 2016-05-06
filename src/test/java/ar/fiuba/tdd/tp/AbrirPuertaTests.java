@@ -28,7 +28,6 @@ public class AbrirPuertaTests {
         room = new Room("room");
 
         key = new Key("key", room, 2);
-        room.addChild(key);
 
         player = new Player("player", room);
         player.addAction(new Open(player));
@@ -38,8 +37,6 @@ public class AbrirPuertaTests {
     public void placeDoorInRoom() {
         door = new Door("door", room);
         door.setClosed();
-        room.addChild(door);
-
         assert (room.contains("door"));
     }
 
@@ -47,7 +44,6 @@ public class AbrirPuertaTests {
     public void playerOpensDoor() {
         door = new Door("door", room);
         door.setClosed();
-        room.addChild(door);
 
         assert (door.isClosed());
         player.handleAction("open",
@@ -65,8 +61,6 @@ public class AbrirPuertaTests {
         lockedDoor = new LockedDoor("door", room, 2);
         lockedDoor.setClosed();
         lockedDoor.setLocked();
-        room.addChild(lockedDoor);
-
         assert (lockedDoor.isClosed());
         player.handleAction("open", new ArrayList<GameObject>() {
             {
@@ -89,7 +83,6 @@ public class AbrirPuertaTests {
         lockedDoor = new LockedDoor("door", room, 2);
         lockedDoor.setClosed();
         lockedDoor.setLocked();
-        room.addChild(lockedDoor);
 
         assert (lockedDoor.isClosed());
         player.handleAction("open", new ArrayList<GameObject>(){

@@ -31,16 +31,13 @@ public class ChangeRoomTests {
 
         door1 = new LinkingDoor("door1", room1, room2);
         door1.setClosed();
-        room1.addChild(door1);
 
         door2 = new LinkingDoor("door2", room2, room1);
         door2.setClosed();
-        room2.addChild(door2);
 
         player = new Player("player", room1);
         player.addAction(new Open(player));
         player.addAction(new Move(player));
-        room1.addChild(player);
     }
 
     @Test

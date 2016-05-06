@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.objects.concrete.Player;
+import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.*;
@@ -21,7 +22,7 @@ public abstract class Game {
     }
 
     public Game(String name) {
-        this(name, new Player("player", null));
+        this(name, new Player("player", new Room("null")));
     }
 
     public Game(String name, Player player) {

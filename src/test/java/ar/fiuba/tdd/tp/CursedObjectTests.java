@@ -43,16 +43,13 @@ public class CursedObjectTests {
         door1to2 = new LinkingLockedDoor("door1to2", room1, keyNumber, room2, new BooleanState());
         door1to2.setClosed();
         door1to2.setLocked();
-        room1.addChild(door1to2);
 
         door2to3 = new AntiCurseLinkingDoor("door2to3", room2, room3);
         door2to3.setClosed();
-        room2.addChild(door2to3);
 
         addActionsAndThief();
 
         keyObject = new CursedKey("key", room1, keyNumber);
-        room1.addChild(keyObject);
 
         objectsInvolved = new LinkedList<>();
     }
@@ -65,10 +62,8 @@ public class CursedObjectTests {
         player.addAction(new Talk(player));
         player.addAction(new HaveEverythingStolen(player, player.getChildrenState()));
         player.addAction(new HaveMovedFrom(player, player.getChildrenState()));
-        room1.addChild(player);
 
         thief = new Thief("thief", room2);
-        room2.addChild(thief);
 
     }
 

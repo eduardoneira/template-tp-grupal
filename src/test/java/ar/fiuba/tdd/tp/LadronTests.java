@@ -30,18 +30,12 @@ public class LadronTests {
         player.addAction(new Talk(player));
         player.addAction(new HaveEverythingStolen(player, player.getChildrenState()));
         player.addAction(new HaveMovedFrom(player, player.getChildrenState()));
-        room.addChild(player);
-
-        stick = new Stick("stick", player);
-
         thief = new Thief("thief", room);
-        room.addChild(thief);
     }
 
     @Test
     public void talkToThiefStickInRoom() {
-        room.addChild(stick);
-
+        stick = new Stick("stick", room);
         assert (room.contains("stick"));
         assert (!player.contains("stick"));
 
@@ -57,8 +51,7 @@ public class LadronTests {
 
     @Test
     public void talkToThiefStickOnPlayer() {
-        player.addChild(stick);
-
+        stick = new Stick("stick", player);
         assert (player.contains("stick"));
 
         player.handleAction("talk", new ArrayList<GameObject>() {

@@ -26,7 +26,6 @@ public class WhatTests {
         player.addAction(new Pick(player));
 
         stick = new Stick("stick", room);
-        room.addChild(stick);
     }
 
     @Test

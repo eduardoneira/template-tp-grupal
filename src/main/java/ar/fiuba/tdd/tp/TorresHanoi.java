@@ -40,7 +40,7 @@ public class TorresHanoi extends Game {
     }
 
     private void createPlayer() {
-        player.placeInRoom(room);
+        player.setParent(room);
         room.addChild(player);
 
         ActionHandler moveTopAction = new MoveTop(player);
@@ -55,28 +55,22 @@ public class TorresHanoi extends Game {
     private void createStacks() {
         torre1 = new Pile("stack1", room);
         objects.put("stack1", torre1);
-        room.addChild(torre1);
 
         torre2 = new Pile("stack2", room);
         objects.put("stack2", torre2);
-        room.addChild(torre2);
 
         torre3 = new Pile("stack3", room);
         objects.put("stack3", torre3);
-        room.addChild(torre3);
     }
 
     private void createDiscs() {
         disc1 = new Disc("disc1", torre1, 1);
-        torre1.addChild(disc1);
         objects.put("disc1", disc1);
 
         disc2 = new Disc("disc2", torre1, 2);
-        torre1.addChild(disc2);
         objects.put("disc2", disc2);
 
         disc3 = new Disc("disc3", torre1, 3);
-        torre1.addChild(disc3);
         objects.put("disc3", disc3);
     }
 

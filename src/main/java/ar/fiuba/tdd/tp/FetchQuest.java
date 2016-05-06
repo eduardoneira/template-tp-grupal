@@ -15,12 +15,10 @@ public class FetchQuest extends Game {
         super("Fetch Quest");
 
         room = new Room("room");
-        player.placeInRoom(room);
-        room.addChild(player);
+        player.setParent(room);
         objects.put(room.getName(), this.room);
 
         stick = new Stick("stick", room);
-        room.addChild(stick);
         stick.setParent(room);
         objects.put(stick.getName(), stick);
 

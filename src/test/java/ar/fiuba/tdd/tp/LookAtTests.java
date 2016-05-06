@@ -23,7 +23,6 @@ public class LookAtTests {
         room = new Room("room");
 
         player = new Player("player", room);
-        room.addChild(player);
 
     }
 
@@ -42,7 +41,6 @@ public class LookAtTests {
     public void lookAtRoomWithStickTest() {
 
         stick = new Stick("stick", room);
-        room.addChild(stick);
 
         assertEquals("there're room stick player", (player.handleAction("look", new ArrayList<GameObject>() {
             {
@@ -58,9 +56,6 @@ public class LookAtTests {
 
         Box box = new Box("a box", room);
         stick = new Stick("stick", box);
-        box.addChild(stick);
-
-        room.addChild(box);
 
         assertEquals("there're room a box player", (player.handleAction("look", new ArrayList<GameObject>() {
             {

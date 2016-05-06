@@ -32,10 +32,8 @@ public class ConditionalActionHandlerTests {
         room = new Room("room");
 
         stick = new Stick("stick", room);
-        room.addChild(stick);
 
         player = new Player("player", room);
-        room.addChild(player);
 
         List<BooleanState> conds = new ArrayList<>();
         cond1 = new BooleanState();

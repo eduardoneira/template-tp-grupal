@@ -51,24 +51,20 @@ public class CursedObject extends Game {
         door1to2 = new LinkingLockedDoor("door1to2", room1, keyNumber, room2, new BooleanState());
         door1to2.setClosed();
         door1to2.setLocked();
-        room1.addChild(door1to2);
         objects.put(door1to2.getName(), door1to2);
 
         door2to3 = new AntiCurseLinkingDoor("door2to3", room2, room3);
         door2to3.setClosed();
-        room2.addChild(door2to3);
         objects.put(door2to3.getName(), door2to3);
     }
 
     private void createKey() {
         keyObject = new CursedKey("key", room1, keyNumber);
-        keyObject.setParent(room1);
-        room1.addChild(keyObject);
         objects.put(keyObject.getName(), keyObject);
     }
 
     private void createPlayer() {
-        player.placeInRoom(room1);
+        player.setParent(room1);
         room1.addChild(player);
 
         Open openAction = new Open(player);
@@ -92,8 +88,6 @@ public class CursedObject extends Game {
 
     private void createThief() {
         thief = new Thief("thief", room2);
-        thief.setParent(room2);
-        room2.addChild(thief);
         objects.put(thief.getName(), thief);
     }
 

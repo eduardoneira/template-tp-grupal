@@ -19,8 +19,4 @@ public class Player extends ConcreteGameObjectWithParentAndChildren {
         addAction(new What(this));
         addAction(new BeLookedAt(this));
     }
-
-    public void placeInRoom(Room room) {
-        this.setParent(room);
-    }
 }

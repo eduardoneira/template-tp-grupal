@@ -44,28 +44,22 @@ public class OpenDoor2 extends Game {
         door = new LockedDoor(nameDoor, room, 1);
         door.setLocked();
         door.setClosed();
-        door.setParent(room);
-        room.addChild(door);
         objects.put(door.getName(), door);
     }
 
     private void createBox() {
         box = new Box(nameBox, room);
         box.setClosed();
-        box.setParent(room);
-        room.addChild(box);
         objects.put(box.getName(), box);
     }
 
     private void createKey() {
-        key = new Key(nameKey, room, 1);
-        key.setParent(box);
-        box.addChild(key);
+        key = new Key(nameKey, box, 1);
         objects.put(key.getName(), key);
     }
 
     private void createPlayer() {
-        player.placeInRoom(room);
+        player.setParent(room);
         room.addChild(player);
 
         Open actionOpen = new Open(player);

@@ -107,21 +107,18 @@ public class WolfSheepCabbage extends Game {
     private void createWolf() {
         String wolfName = "wolf";
         wolf = new Wolf(wolfName, southShore);
-        southShore.addChild(wolf);
         objects.put(wolfName, wolf);
     }
 
     private void createSheep() {
         String sheepName = "sheep";
         sheep = new Sheep(sheepName, southShore);
-        southShore.addChild(sheep);
         objects.put(sheepName, sheep);
     }
 
     private void createCabbage() {
         String cabbageName = "cabbage";
         cabbage = new Cabbage(cabbageName, southShore);
-        southShore.addChild(cabbage);
         objects.put(cabbageName, cabbage);
     }
 }
