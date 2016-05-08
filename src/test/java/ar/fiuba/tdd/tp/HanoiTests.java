@@ -56,9 +56,9 @@ public class HanoiTests {
     }
 
     public void setGame() {
-        disc1 = new Disc("disc1", pile1, 1);
-        disc2 = new Disc("disc2", pile1, 2);
         disc3 = new Disc("disc3", pile1, 3);
+        disc2 = new Disc("disc2", pile1, 2);
+        disc1 = new Disc("disc1", pile1, 1);
     }
 
     @Test

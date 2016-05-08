@@ -13,14 +13,6 @@ public class MoveTop extends Move {
         super(instance);
     }
 
-    /*@Override
-    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        List<GameObject> objectsInvolvedToMove = new ArrayList<GameObject>();
-        objectsInvolvedToMove.add(((Pile) objectsInvolved.get(idObjectToMove)).getTopDisc());
-        objectsInvolvedToMove.add(objectsInvolved.get(idWhereToMove));
-        return super.handleAction(actionName, objectsInvolvedToMove);
-    }*/
-
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
 
@@ -41,16 +33,6 @@ public class MoveTop extends Move {
         objectsInvolved.add(topDisc);
         objectsInvolved.add(pileToMoveTo);
 
-        return checkDiameters(objectsInvolved, response);
-    }
-
-    private boolean checkDiameters(List<GameObject> objectsInvolved, StringBuilder response) {
-        int diameter = ((Disc) objectsInvolved.get(idObjectToMove)).getDiameter();
-        int smallest = ((Pile) objectsInvolved.get(idWhereToMove)).getSmallestDiamater();
-        if (diameter >= smallest) {
-            response.append("You can only put a disc on top of a bigger one");
-            return false;
-        }
         return super.canIHandleAction(objectsInvolved, response);
     }
 

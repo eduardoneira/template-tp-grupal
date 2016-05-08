@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.tp.objects.states;
 
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
+
 public class ChildrenStateLimitedSize extends ChildrenState {
 
     protected final int maxSize;
@@ -10,7 +12,7 @@ public class ChildrenStateLimitedSize extends ChildrenState {
     }
 
     @Override
-    public boolean canAddChild() {
+    public boolean canAddChild(GameObjectWithParent child) {
         return children.size() < maxSize;
     }
 }

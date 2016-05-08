@@ -64,14 +64,15 @@ public class TorresHanoi extends Game {
     }
 
     private void createDiscs() {
-        disc1 = new Disc("disc1", torre1, 1);
-        objects.put("disc1", disc1);
+
+        disc3 = new Disc("disc3", torre1, 3);
+        objects.put("disc3", disc3);
 
         disc2 = new Disc("disc2", torre1, 2);
         objects.put("disc2", disc2);
 
-        disc3 = new Disc("disc3", torre1, 3);
-        objects.put("disc3", disc3);
+        disc1 = new Disc("disc1", torre1, 1);
+        objects.put("disc1", disc1);
     }
 
     @SuppressWarnings("CPD-END")

@@ -58,8 +58,13 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
     }
 
     @Override
-    public boolean canAddChild() {
-        return children.canAddChild();
+    public boolean canAddChild(GameObjectWithParent child) {
+        return children.canAddChild(child);
+    }
+
+    @Override
+    public boolean canRemoveChild(String name) {
+        return children.canRemoveChild(name);
     }
 
     @Override

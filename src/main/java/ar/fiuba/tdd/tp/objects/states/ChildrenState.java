@@ -8,7 +8,7 @@ import java.util.*;
 
 public class ChildrenState implements ChildrenControlFunctions {
 
-    protected final Map<String, GameObjectWithParent> children;
+    protected Map<String, GameObjectWithParent> children;
 
     public ChildrenState() {
         children = new HashMap<>();
@@ -50,8 +50,13 @@ public class ChildrenState implements ChildrenControlFunctions {
     }
 
     @Override
-    public boolean canAddChild() {
+    public boolean canAddChild(GameObjectWithParent child) {
         return true;
+    }
+
+    @Override
+    public boolean canRemoveChild(String name) {
+        return contains(name);
     }
 
     @Override

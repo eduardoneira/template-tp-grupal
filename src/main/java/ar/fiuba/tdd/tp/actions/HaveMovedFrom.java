@@ -23,10 +23,11 @@ public class HaveMovedFrom extends ActionHandler {
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
 
         GameObject objectToMove = objectsInvolved.get(idObjectToMove);
-        if (!children.contains(objectToMove.getName())) {
-            response.append(this.instance.getName());
-            response.append(" does not contain ");
+        if (!children.canRemoveChild(objectToMove.getName())) {
+            response.append("can't get ");
             response.append(objectToMove.getName());
+            response.append(" from ");
+            response.append(this.instance.getName());
             return false;
         }
         return true;

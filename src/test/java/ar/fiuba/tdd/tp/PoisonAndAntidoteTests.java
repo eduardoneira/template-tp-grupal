@@ -169,12 +169,10 @@ public class PoisonAndAntidoteTests {
         assert (poisoned.isTrue());
         // agarro antidoto
         objectsInvolved.add(antidote2);
-        player.handleAction("pick", objectsInvolved);
-        objectsInvolved.clear();
+        doAction("pick");
         // uso antidoto
         objectsInvolved.add(antidote2);
-        player.handleAction("use", objectsInvolved);
-        objectsInvolved.clear();
+        doAction("use");
         assert (poisoned.isFalse());
         // me puedo ir sin morir
         objectsInvolved.add(doorTo2);
@@ -182,5 +180,10 @@ public class PoisonAndAntidoteTests {
         objectsInvolved.clear();
         assert (room2.contains(player.getName()));
         assert (killedByPoison.isFalse());
+    }
+
+    private void doAction(String name) {
+        player.handleAction(name, objectsInvolved);
+        objectsInvolved.clear();
     }
 }

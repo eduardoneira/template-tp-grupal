@@ -28,6 +28,11 @@ public class ConcreteGameObjectWithChildren extends ConcreteGameObject implement
         children.removeChild(child);
     }
 
+    @Override
+    public boolean canAddChild(GameObjectWithParent child) {
+        return children.canAddChild(child);
+    }
+
     public ChildrenState getChildrenState() {
         return children;
     }
@@ -38,8 +43,8 @@ public class ConcreteGameObjectWithChildren extends ConcreteGameObject implement
     }
 
     @Override
-    public boolean canAddChild() {
-        return children.canAddChild();
+    public boolean canRemoveChild(String name) {
+        return children.canRemoveChild(name);
     }
 
     @Override

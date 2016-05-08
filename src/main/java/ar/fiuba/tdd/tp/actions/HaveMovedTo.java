@@ -20,11 +20,7 @@ public class HaveMovedTo extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        /*if (!(objectsInvolved.size() == argsSize)) {
-            setResponseError(objectsInvolved, response);
-            return false;
-        }*/
-        if (!children.canAddChild()) {
+        if (!children.canAddChild((GameObjectWithParent)objectsInvolved.get(idObjectToMove))) {
             response.append(this.instance.getName());
             response.append(" is full");
             return false;
