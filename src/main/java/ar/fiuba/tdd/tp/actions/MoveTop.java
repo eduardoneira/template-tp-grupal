@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp.actions;
 
-import ar.fiuba.tdd.tp.objects.concrete.Disc;
 import ar.fiuba.tdd.tp.objects.concrete.Pile;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObject;

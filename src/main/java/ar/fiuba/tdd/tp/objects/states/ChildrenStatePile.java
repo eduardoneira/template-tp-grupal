@@ -1,14 +1,10 @@
 package ar.fiuba.tdd.tp.objects.states;
 
 import ar.fiuba.tdd.tp.objects.concrete.Disc;
-import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
 
 import java.util.*;
 
-/**
- * Created by Master on 07/05/2016.
- */
 public class ChildrenStatePile extends ChildrenState {
 
     public ChildrenStatePile() {
@@ -17,11 +13,8 @@ public class ChildrenStatePile extends ChildrenState {
 
     @Override
     public boolean canRemoveChild(String name) {
-        if (!contains(name) || !getLastDisc().getName().equals(name)) {
-            return false;
-        }
+        return !(!contains(name) || !getLastDisc().getName().equals(name));
 
-        return true;
     }
 
     @Override
@@ -37,11 +30,8 @@ public class ChildrenStatePile extends ChildrenState {
             int diameter = ((Disc)discToAdd).getDiameter();
             int smallest = getLastDisc().getDiameter();
 
-            if (diameter >= smallest) {
-                return false;
-            }
+            return diameter < smallest;
 
-            return true;
         }
     }
 
