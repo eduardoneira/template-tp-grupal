@@ -10,9 +10,11 @@ import org.junit.Test;
 public class ConcreteGameDriverTests {
     @Test
     public void fetchquestTest() throws GameLoadFailedException {
+
         GameDriver driver = new ConcreteGameDriver();
         driver.initGame("Fetch Quest");
         driver.sendCommand("pick stick");
         assert(GameState.Won == driver.getCurrentState());
+
     }
 }
