@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.tp.command;
 
-import ar.fiuba.tdd.tp.Server;
-import ar.fiuba.tdd.tp.ServerGameData;
+import ar.fiuba.tdd.tp.server.Server;
+import ar.fiuba.tdd.tp.server.ServerGameData;
 
 import java.util.Map;
 

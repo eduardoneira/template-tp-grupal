@@ -1,4 +1,7 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.model;
+
+import ar.fiuba.tdd.tp.*;
+import ar.fiuba.tdd.tp.model.Game;
 
 import java.util.*;
 import java.util.stream.Collectors;

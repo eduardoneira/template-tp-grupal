@@ -1,4 +1,7 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server;
+
+import ar.fiuba.tdd.tp.model.Motor;
+import ar.fiuba.tdd.tp.model.Game;
 
 import java.io.*;
 import java.net.ServerSocket;

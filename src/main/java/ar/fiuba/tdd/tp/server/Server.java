@@ -1,5 +1,6 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.server;
 
+import ar.fiuba.tdd.tp.model.Motor;
 import ar.fiuba.tdd.tp.command.AbstractCommandProxy;
 import ar.fiuba.tdd.tp.command.CloseServerCommand;
 import ar.fiuba.tdd.tp.command.DefaultCommandProxy;

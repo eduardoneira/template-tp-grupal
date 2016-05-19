@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp;
+package ar.fiuba.tdd.tp.client;
 
 public interface ClientResponses {
     String HOSTNAME = "localhost";

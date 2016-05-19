@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.*;
+import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.objects.concrete.Cabbage;
 import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;

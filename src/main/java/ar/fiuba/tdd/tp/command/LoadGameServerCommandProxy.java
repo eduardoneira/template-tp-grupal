@@ -1,6 +1,6 @@
 package ar.fiuba.tdd.tp.command;
 
-import ar.fiuba.tdd.tp.Motor;
+import ar.fiuba.tdd.tp.model.Motor;
 
 public class LoadGameServerCommandProxy extends AbstractCommandProxy {
 
