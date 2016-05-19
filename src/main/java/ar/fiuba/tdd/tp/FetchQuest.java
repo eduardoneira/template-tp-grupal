@@ -41,6 +41,6 @@ public class FetchQuest extends Game {
         player.addAction(actionPickup);
 
         commands.add(actionPickup.getName());
-        return null;
+        return this;
     }
 }

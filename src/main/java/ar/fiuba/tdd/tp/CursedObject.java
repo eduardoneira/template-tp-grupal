@@ -111,6 +111,6 @@ public class CursedObject extends Game {
     @Override
     public ar.fiuba.tdd.tp.model.Game build() {
         initialization();
-        return null;
+        return this;
     }
 }

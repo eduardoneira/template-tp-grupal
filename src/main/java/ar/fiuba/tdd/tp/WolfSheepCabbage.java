@@ -126,6 +126,6 @@ public class WolfSheepCabbage extends Game {
         createCabbage();
 
         createPlayer();
-        return null;
+        return this;
     }
 }

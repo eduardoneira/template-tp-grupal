@@ -74,6 +74,6 @@ public class OpenDoor extends Game {
         createKey();
 
         createPlayer();
-        return null;
+        return this;
     }
 }
