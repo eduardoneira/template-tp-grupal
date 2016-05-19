@@ -250,6 +250,6 @@ public class TreasureHunt extends Game {
         populateRoom5();
 
         createPlayer();
-        return null;
+        return this;
     }
 }

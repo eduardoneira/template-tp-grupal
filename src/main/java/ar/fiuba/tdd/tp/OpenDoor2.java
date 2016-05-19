@@ -86,6 +86,6 @@ public class OpenDoor2 extends Game {
         createKey();
 
         createPlayer();
-        return null;
+        return this;
     }
 }

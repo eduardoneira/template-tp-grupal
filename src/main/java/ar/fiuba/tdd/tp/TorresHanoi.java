@@ -89,6 +89,6 @@ public class TorresHanoi extends Game {
         createStacks();
 
         createDiscs();
-        return null;
+        return this;
     }
 }
