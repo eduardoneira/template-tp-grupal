@@ -17,6 +17,7 @@ public class Motor {
         games.add( new WolfSheepCabbage() );
         games.add( new TorresHanoi() );
         games.add( new TreasureHunt() );
+        games.add( new TempleQuest() );
     }
 
     Game createGame(String game) {

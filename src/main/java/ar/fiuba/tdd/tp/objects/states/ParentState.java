@@ -17,6 +17,11 @@ public class ParentState implements ParentControlFunctions {
     }
 
     @Override
+    public boolean canBeChangedTo(GameObjectWithChildren parent) {
+        return true;
+    }
+
+    @Override
     public GameObjectWithChildren getParent() {
         return parent;
     }

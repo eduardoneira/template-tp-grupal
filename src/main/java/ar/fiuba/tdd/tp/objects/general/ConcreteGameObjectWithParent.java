@@ -7,8 +7,12 @@ public class ConcreteGameObjectWithParent extends ConcreteGameObject implements 
     protected final ParentState parent;
 
     public ConcreteGameObjectWithParent(String name, GameObjectWithChildren parent) {
+        this(name, parent, new ParentState());
+    }
+
+    public ConcreteGameObjectWithParent(String name, GameObjectWithChildren parent, ParentState parentState) {
         super(name);
-        this.parent = new ParentState();
+        this.parent = parentState;
         setParent(parent);
         parent.addChild(this);
     }
@@ -16,6 +20,11 @@ public class ConcreteGameObjectWithParent extends ConcreteGameObject implements 
     @Override
     public void setParent(GameObjectWithChildren parent) {
         this.parent.setParent(parent);
+    }
+
+    @Override
+    public boolean canBeChangedTo(GameObjectWithChildren parent) {
+        return this.parent.canBeChangedTo(parent);
     }
 
     @Override
@@ -31,5 +40,9 @@ public class ConcreteGameObjectWithParent extends ConcreteGameObject implements 
     @Override
     public GameObject getChildFromHierarchy(String name) {
         return null;
+    }
+
+    public ParentState getParentState() {
+        return parent;
     }
 }

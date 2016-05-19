@@ -15,7 +15,7 @@ public class ChangeRoom extends Move {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        GameObject whereToCross = objectsInvolved.get(idWhereTo);
+        GameObject whereToCross = objectsInvolved.get(1);
 
         /*StringBuilder response = new StringBuilder();
         if (!canHandleAction(actionName, objectsInvolved, response)) {

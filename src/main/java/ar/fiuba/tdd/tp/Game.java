@@ -99,10 +99,13 @@ public abstract class Game {
     private List<GameObject> parseObjectsFromCommand(List<String> parsedCommand) {
         List<GameObject> objectsInvolved = new LinkedList<>();
         for (String name : parsedCommand) {
-            if (player.getParent().getName().equals(name)) {
+            /*if (player.getParent().getName().equals(name)) {
                 objectsInvolved.add(player.getParent());
             } else if (player.getParent().containsInHierarchy(name)) {
                 objectsInvolved.add(player.getParent().getChildFromHierarchy(name));
+            }*/
+            if (objects.containsKey(name)) {
+                objectsInvolved.add(objects.get(name));
             }
         }
         return objectsInvolved;
@@ -116,10 +119,12 @@ public abstract class Game {
         }
         response = response.concat("On the following visible objects: ");
         for (String object : objects.keySet()) {
-            if (player.getParent().getName().equals(object) || player.getParent().containsInHierarchy(object)) {
+            /*if (player.getParent().getName().equals(object) || player.getParent().containsInHierarchy(object)) {
                 response = response.concat(object);
                 response = response.concat(", ");
-            }
+            }*/
+            response = response.concat(object);
+            response = response.concat(", ");
         }
         return response;
     }

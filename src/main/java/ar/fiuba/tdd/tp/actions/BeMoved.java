@@ -41,13 +41,20 @@ public class BeMoved extends ActionHandler {
         List<GameObject> me = new LinkedList<>();
         me.add(this.instance);
 
+        GameObjectWithChildren whereToMove = (GameObjectWithChildren) objectsInvolved.get(idWhereToMove);
+        if (!this.parent.canBeChangedTo(whereToMove)) {
+            response.append(this.instance.getName());
+            response.append(" will not be moved to ");
+            response.append(whereToMove.getName());
+            return false;
+        }
+
         // tal vez pasarle quien mueve
         if (/*objectsInvolved.size() != argsSize
                 || */(this.parent.getParent() != null && (!this.parent.getParent().canHandleAction("have moved from", me, response)))) {
             return false;
         }
 
-        GameObjectWithChildren whereToMove = (GameObjectWithChildren) objectsInvolved.get(idWhereToMove);
         if (this.parent.getParent() != null && this.parent.getParent().equals(whereToMove)) {
             response.append(this.instance.getName());
             response.append(" is already in ");
