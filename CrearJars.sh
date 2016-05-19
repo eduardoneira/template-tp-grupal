@@ -1,12 +1,12 @@
 #!/bin/bash
 
-jar -cf CursedObject.jar CursedObject.class 
-jar -cf FetchQuest.jar FetchQuest.class 
-jar -cf OpenDoor.jar OpenDoor.class 
-jar -cf OpenDoor2.jar OpenDoor2.class 
-jar -cf TorresHanoi.jar TorresHanoi.class 
-jar -cf TreasureHunt.jar TreasureHunt.class 
-jar -cf WolfSheepCabbage.jar WolfSheepCabbage.class 
+jar -cf build/classes/main/ar/fiuba/tdd/tp/CursedObject.jar build/classes/main/ar/fiuba/tdd/tp/CursedObject.class 
+jar -cf build/classes/main/ar/fiuba/tdd/tp/FetchQuest.jar build/classes/main/ar/fiuba/tdd/tp/FetchQuest.class 
+jar -cf build/classes/main/ar/fiuba/tdd/tp/OpenDoor.jar build/classes/main/ar/fiuba/tdd/tp/OpenDoor.class 
+jar -cf build/classes/main/ar/fiuba/tdd/tp/OpenDoor2.jar build/classes/main/ar/fiuba/tdd/tp/OpenDoor2.class 
+jar -cf build/classes/main/ar/fiuba/tdd/tp/TorresHanoi.jar build/classes/main/ar/fiuba/tdd/tp/TorresHanoi.class 
+jar -cf build/classes/main/ar/fiuba/tdd/tp/TreasureHunt.jar build/classes/main/ar/fiuba/tdd/tp/TreasureHunt.class 
+jar -cf build/classes/main/ar/fiuba/tdd/tp/WolfSheepCabbage.jar build/classes/main/ar/fiuba/tdd/tp/WolfSheepCabbage.class 
 
 
-
+		
