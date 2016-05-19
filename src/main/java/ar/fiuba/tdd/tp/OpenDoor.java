@@ -19,7 +19,7 @@ public class OpenDoor extends Game {
     @SuppressWarnings("CPD-START")
 
     public OpenDoor() {
-        super("Open Door");
+        super("OpenDoor");
     }
 
     private void createRoom() {

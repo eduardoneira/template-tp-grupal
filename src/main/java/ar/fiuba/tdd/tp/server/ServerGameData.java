@@ -21,7 +21,7 @@ public class ServerGameData {
         return port;
     }
 
-    public void startGame() throws IOException {
+    public void startGame() throws IOException, InstantiationException, IllegalAccessException, ClassNotFoundException {
         this.port = nextFreePort;
         this.worker = new ClientWorker(new ServerSocket(nextFreePort), this.name);
         Thread thread = new Thread(worker);

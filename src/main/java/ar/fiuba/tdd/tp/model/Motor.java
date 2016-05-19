@@ -4,6 +4,7 @@ import ar.fiuba.tdd.tp.*;
 import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.server.BuilderLoader;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -24,19 +25,16 @@ public class Motor {
         games.add( new TempleQuest() );
     }
 
-    public Game createGame(String game) {
+    public Game createGame(String game) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
        /* for (Game actualGame: games) {
             if ( game.equals(actualGame.getName()) ) {
                 return actualGame;
             }
         }*/
-        try {
-            GameBuilder builder = BuilderLoader.load(game);
-            builder.build();
-            return (Game) builder;
-        } catch (Exception e){
-            return null;
-        }
+        String path = "build/classes/main/ar/fiuba/tdd/tp/";
+        GameBuilder builder = BuilderLoader.load(path.concat(game).concat(".jar"));
+        builder.build();
+        return (Game) builder;
     }
 
     public LinkedList<String> getNamesGames() {

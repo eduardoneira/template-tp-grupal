@@ -11,10 +11,8 @@ import java.io.IOException;
 public class ConcreteGameDriver implements GameDriver {
     private Game game;
     private BuilderLoader builderLoader;
-    private Motor motor;
 
     public ConcreteGameDriver() {
-        motor = new Motor();
         builderLoader = new BuilderLoader();
     }
 

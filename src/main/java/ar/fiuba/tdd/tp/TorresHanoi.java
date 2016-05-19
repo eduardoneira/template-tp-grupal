@@ -23,7 +23,7 @@ public class TorresHanoi extends Game {
     String nameRoom;
 
     public TorresHanoi() {
-        super("Hanoi Towers");
+        super("HanoiTowers");
     }
 
     private void createRoom() {

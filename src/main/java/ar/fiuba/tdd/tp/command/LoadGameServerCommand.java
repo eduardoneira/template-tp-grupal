@@ -27,6 +27,12 @@ public class LoadGameServerCommand implements AbstractCommand {
                 System.out.println(loadSuccessful.concat(String.valueOf(game.getPort())));
             } catch (IOException e) {
                 System.out.println(exception);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         }
     }

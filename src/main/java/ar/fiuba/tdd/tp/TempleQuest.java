@@ -76,7 +76,7 @@ public class TempleQuest extends Game {
     Room room4;
 
     public TempleQuest() {
-        super("Temple Quest");
+        super("TempleQuest");
     }
 
     @SuppressWarnings("CPD-START")

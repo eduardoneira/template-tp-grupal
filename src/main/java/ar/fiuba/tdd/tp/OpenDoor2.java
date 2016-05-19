@@ -23,7 +23,7 @@ public class OpenDoor2 extends Game {
 
     public OpenDoor2() {
 
-        super("Open Door 2");
+        super("OpenDoor2");
     }
 
     private void createRoom() {

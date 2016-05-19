@@ -54,7 +54,7 @@ public class TreasureHunt extends Game {
     private BooleanState poisoned;
 
     public TreasureHunt() {
-        super("Treasure Hunt");
+        super("TreasureHunt");
     }
 
     private void createRooms() {

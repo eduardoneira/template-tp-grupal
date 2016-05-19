@@ -56,7 +56,7 @@ public class WolfSheepCabbage extends Game {
     }
 
     public WolfSheepCabbage() {
-        super("Wolf, Sheep and Cabbage");
+        super("WolfSheepCabbage");
 
     }
 

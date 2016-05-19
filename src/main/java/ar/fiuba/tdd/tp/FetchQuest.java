@@ -13,7 +13,7 @@ public class FetchQuest extends Game {
     @SuppressWarnings("CPD-START")
 
     public FetchQuest() {
-        super("Fetch Quest");
+        super("FetchQuest");
     }
 
     @SuppressWarnings("CPD-END")

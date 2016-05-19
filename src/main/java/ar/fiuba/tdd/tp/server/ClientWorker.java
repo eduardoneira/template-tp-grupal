@@ -16,7 +16,7 @@ class ClientWorker implements Runnable {
     private static final String win = ". You won the game!";
     private static final String loose = ". You lost!";
 
-    ClientWorker(ServerSocket server, String gameName) {
+    ClientWorker(ServerSocket server, String gameName) throws ClassNotFoundException, IOException, InstantiationException, IllegalAccessException {
         this.serverSocket = server;
         Motor motor = new Motor();
         this.game = motor.createGame(gameName);
