@@ -8,7 +8,7 @@ import java.util.List;
 public class BeTalkedToThief extends BeTalkedTo {
 
     public BeTalkedToThief(GameObject instance) {
-        super(instance);
+        super(instance, "Hi! The thief just stole all your objects!");
     }
 
     @Override
@@ -19,6 +19,6 @@ public class BeTalkedToThief extends BeTalkedTo {
         whoSteals.add(this.instance);
         objectWhoTalks.handleAction("have everything stolen", whoSteals);
 
-        return "Hi! The thief just stole all your objects!";
+        return super.handleAction(actionName, objectsInvolved);
     }
 }

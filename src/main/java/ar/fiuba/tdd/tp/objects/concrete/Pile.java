@@ -11,7 +11,6 @@ public class Pile extends ConcreteGameObjectWithParentAndChildren {
 
     public Pile(String name, GameObjectWithChildren parent) {
         super(name, parent, new ChildrenStatePile());
-        addAction(new MoveTop(this));
         addAction(new HaveMovedFrom(this, children));
         addAction(new HaveMovedTo(this, children));
         addAction(new BeAskedWhat(this));

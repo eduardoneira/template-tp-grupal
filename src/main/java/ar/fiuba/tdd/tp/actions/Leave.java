@@ -5,16 +5,10 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.List;
 
-public class Leave extends Move {
+public class Leave extends MoveFromInventory {
 
     public Leave(ConcreteGameObjectWithParentAndChildren instance) {
         super(instance, 1);
-    }
-
-    @Override
-    public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-
-        return super.handleAction(getName(), objectsInvolved);
     }
 
     @Override

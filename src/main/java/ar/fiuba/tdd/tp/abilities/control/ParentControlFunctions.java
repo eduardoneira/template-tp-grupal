@@ -5,4 +5,6 @@ import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 
 public interface ParentControlFunctions extends CanHaveParent {
     void setParent(GameObjectWithChildren parent);
+
+    boolean canBeChangedTo(GameObjectWithChildren parent);
 }

@@ -25,6 +25,15 @@ public class Pick extends Move {
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         convertToMove(objectsInvolved);
+
+        GameObject objectToPick = objectsInvolved.get(idObjectToMove);
+        ConcreteGameObjectWithParentAndChildren picker = (ConcreteGameObjectWithParentAndChildren) this.instance;
+        if (!picker.getParent().containsInHierarchy(objectToPick.getName())) {
+            response.append(objectToPick.getName());
+            response.append(" is not accessible");
+            return false;
+        }
+
         return super.canIHandleAction(objectsInvolved, response);
     }
 
