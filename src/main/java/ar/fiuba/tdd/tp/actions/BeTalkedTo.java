@@ -7,10 +7,16 @@ import java.util.List;
 public class BeTalkedTo extends ActionHandler {
 
     protected static final int idObjectWhoTalks = 0;
+    protected String dialog;
     //protected int argsSize = 1;
 
     public BeTalkedTo(GameObject instance) {
+        this(instance, "Hi!");
+    }
+
+    public BeTalkedTo(GameObject instance, String dialog) {
         super(instance, 1);
+        this.dialog = dialog;
     }
 
     @Override
@@ -25,6 +31,6 @@ public class BeTalkedTo extends ActionHandler {
 
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
-        return "Hi!";
+        return dialog;
     }
 }

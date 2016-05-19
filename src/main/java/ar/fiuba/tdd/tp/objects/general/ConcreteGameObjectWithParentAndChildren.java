@@ -47,6 +47,10 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
         return children;
     }
 
+    public ParentState getParentState() {
+        return parent;
+    }
+
     @Override
     public List<GameObject> getChildren() {
         return children.getChildren();
@@ -70,6 +74,11 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
     @Override
     public void setParent(GameObjectWithChildren parent) {
         this.parent.setParent(parent);
+    }
+
+    @Override
+    public boolean canBeChangedTo(GameObjectWithChildren parent) {
+        return this.parent.canBeChangedTo(parent);
     }
 
     @Override

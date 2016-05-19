@@ -32,7 +32,6 @@ public abstract class Game implements GameBuilder {
         this.player = player;
         this.objects = new HashMap<>();
         this.commands = new HashSet<>();
-        this.gameState = GameState.Ready;
 
         // hardcodeo
         this.commands.add("look");
@@ -45,9 +44,6 @@ public abstract class Game implements GameBuilder {
 
     private String preProcess(List<String> parsedCommand) {
         if (parsedCommand.size() > 0) {
-            if (gameState == GameState.Ready) {
-                gameState = GameState.InProgress;
-            }
             return process(parsedCommand);
         } else {
             return "invalid command";
@@ -71,6 +67,7 @@ public abstract class Game implements GameBuilder {
         }
 
         return preProcess(parsedCommand);
+
     }
 
     private String process(List<String> parsedCommand) {
@@ -93,10 +90,8 @@ public abstract class Game implements GameBuilder {
     private String handleProcessedCommand(String command, List<GameObject> objectsInvolved) {
         String result = player.handleAction(command, objectsInvolved);
         if (checkWinCondition()) {
-            gameState = GameState.Won;
             return result + win;
         } else if (checkLooseCondition()) {
-            gameState = GameState.Lost;
             return result + loose;
         } else {
             return result;
@@ -106,10 +101,13 @@ public abstract class Game implements GameBuilder {
     private List<GameObject> parseObjectsFromCommand(List<String> parsedCommand) {
         List<GameObject> objectsInvolved = new LinkedList<>();
         for (String name : parsedCommand) {
-            if (player.getParent().getName().equals(name)) {
+            /*if (player.getParent().getName().equals(name)) {
                 objectsInvolved.add(player.getParent());
             } else if (player.getParent().containsInHierarchy(name)) {
                 objectsInvolved.add(player.getParent().getChildFromHierarchy(name));
+            }*/
+            if (objects.containsKey(name)) {
+                objectsInvolved.add(objects.get(name));
             }
         }
         return objectsInvolved;
@@ -123,10 +121,12 @@ public abstract class Game implements GameBuilder {
         }
         response = response.concat("On the following visible objects: ");
         for (String object : objects.keySet()) {
-            if (player.getParent().getName().equals(object) || player.getParent().containsInHierarchy(object)) {
+            /*if (player.getParent().getName().equals(object) || player.getParent().containsInHierarchy(object)) {
                 response = response.concat(object);
                 response = response.concat(", ");
-            }
+            }*/
+            response = response.concat(object);
+            response = response.concat(", ");
         }
         return response;
     }

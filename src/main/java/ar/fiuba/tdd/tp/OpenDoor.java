@@ -52,8 +52,6 @@ public class OpenDoor extends Game {
         commands.add(actionPickup.getName());
     }
 
-    @SuppressWarnings("CPD-END")
-
     @Override
     public boolean checkWinCondition() {
         return door.isOpen();
@@ -63,6 +61,8 @@ public class OpenDoor extends Game {
     public boolean checkLooseCondition() {
         return false;
     }
+
+    @SuppressWarnings("CPD-END")
 
     @Override
     public ar.fiuba.tdd.tp.model.Game build() {
