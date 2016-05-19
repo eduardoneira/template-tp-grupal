@@ -95,7 +95,6 @@ public class CursedObject extends Game {
 
     public CursedObject() {
         super("Cursed Object");
-        initialization();
     }
 
     @Override
@@ -106,5 +105,11 @@ public class CursedObject extends Game {
     @Override
     public boolean checkLooseCondition() {
         return false;
+    }
+
+    @Override
+    public ar.fiuba.tdd.tp.model.Game build() {
+        initialization();
+        return null;
     }
 }

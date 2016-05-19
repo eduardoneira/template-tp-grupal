@@ -19,14 +19,6 @@ public class OpenDoor extends Game {
 
     public OpenDoor() {
         super("Open Door");
-
-        createRoom();
-
-        createDoor();
-
-        createKey();
-
-        createPlayer();
     }
 
     private void createRoom() {
@@ -69,5 +61,18 @@ public class OpenDoor extends Game {
     @Override
     public boolean checkLooseCondition() {
         return false;
+    }
+
+    @Override
+    public ar.fiuba.tdd.tp.model.Game build() {
+
+        createRoom();
+
+        createDoor();
+
+        createKey();
+
+        createPlayer();
+        return null;
     }
 }

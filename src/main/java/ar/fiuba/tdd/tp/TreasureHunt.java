@@ -54,22 +54,6 @@ public class TreasureHunt extends Game {
 
     public TreasureHunt() {
         super("Treasure Hunt");
-
-        createRooms();
-
-        initBooleans();
-
-        populateRoom1();
-
-        populateRoom2();
-
-        populateRoom3();
-
-        populateRoom4();
-
-        populateRoom5();
-
-        createPlayer();
     }
 
     private void createRooms() {
@@ -245,5 +229,26 @@ public class TreasureHunt extends Game {
     @Override
     public boolean checkLooseCondition() {
         return killedByPoison.isTrue();
+    }
+
+    @Override
+    public ar.fiuba.tdd.tp.model.Game build() {
+
+        createRooms();
+
+        initBooleans();
+
+        populateRoom1();
+
+        populateRoom2();
+
+        populateRoom3();
+
+        populateRoom4();
+
+        populateRoom5();
+
+        createPlayer();
+        return null;
     }
 }

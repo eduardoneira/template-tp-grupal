@@ -1,12 +1,13 @@
 package ar.fiuba.tdd.tp;
 
+import ar.fiuba.tdd.tp.model.GameBuilder;
 import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.*;
 
-public abstract class Game {
+public abstract class Game implements GameBuilder {
 
     protected Player player;
     protected final String name;
