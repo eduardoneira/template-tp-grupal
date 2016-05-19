@@ -7,6 +7,8 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.*;
 
+import static ar.fiuba.tdd.tp.driver.GameState.*;
+
 public abstract class Game implements GameBuilder {
 
     protected Player player;
@@ -32,6 +34,7 @@ public abstract class Game implements GameBuilder {
         this.player = player;
         this.objects = new HashMap<>();
         this.commands = new HashSet<>();
+        gameState = Ready;
 
         // hardcodeo
         this.commands.add("look");
@@ -44,6 +47,9 @@ public abstract class Game implements GameBuilder {
 
     private String preProcess(List<String> parsedCommand) {
         if (parsedCommand.size() > 0) {
+            if (gameState == Ready) {
+                gameState = InProgress;
+            }
             return process(parsedCommand);
         } else {
             return "invalid command";
@@ -90,8 +96,10 @@ public abstract class Game implements GameBuilder {
     private String handleProcessedCommand(String command, List<GameObject> objectsInvolved) {
         String result = player.handleAction(command, objectsInvolved);
         if (checkWinCondition()) {
+            gameState = Won;
             return result + win;
         } else if (checkLooseCondition()) {
+            gameState = Lost;
             return result + loose;
         } else {
             return result;

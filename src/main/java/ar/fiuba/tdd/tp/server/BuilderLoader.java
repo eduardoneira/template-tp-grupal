@@ -47,24 +47,16 @@ public class BuilderLoader {
             throws ClassNotFoundException, IOException,
             IllegalAccessException, InstantiationException {
         File file = new File(filePath);
-        System.out.print("5");
         URL[] urls = { new URL("jar:file:" + filePath + "!/") };
-        System.out.print("6");
         ClassLoader loader = URLClassLoader.newInstance(urls);
-        System.out.print("7");
-        int aux=8;
 
         for (String classFile : scanJar(file)) {
             Class<?> foundClass;
             if (loader == null) {
-                System.out.print("arriba"+aux);
                 foundClass = Class.forName(classFile);
             } else {
-                System.out.print("abajo"+aux);
                 foundClass = Class.forName(classFile, true, loader);
-                System.out.print("abajobis"+aux);
             }
-            aux++;
             if (GameBuilder.class.isAssignableFrom(foundClass) && !foundClass.equals(GameBuilder.class)) {
                 return (GameBuilder)foundClass.newInstance();
             }
