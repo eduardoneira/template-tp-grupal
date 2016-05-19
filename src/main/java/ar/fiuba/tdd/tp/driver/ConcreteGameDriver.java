@@ -22,7 +22,6 @@ public class ConcreteGameDriver implements GameDriver {
     public void initGame(String jarPath) throws GameLoadFailedException, ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
         GameBuilder gameBuilder = builderLoader.load(jarPath);
         game = gameBuilder.build();
-
         if (game == null) {
             throw new GameLoadFailedException();
         }
