@@ -19,7 +19,7 @@ public class Motor {
         games.add( new TreasureHunt() );
     }
 
-    Game createGame(String game) {
+    public Game createGame(String game) {
         for (Game actualGame: games) {
             if ( game.equals(actualGame.getName()) ) {
                 return actualGame;
