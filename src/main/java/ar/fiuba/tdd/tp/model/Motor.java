@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp.model;
 
 import ar.fiuba.tdd.tp.*;
 import ar.fiuba.tdd.tp.model.Game;
+import ar.fiuba.tdd.tp.server.BuilderLoader;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -24,12 +25,18 @@ public class Motor {
     }
 
     public Game createGame(String game) {
-        for (Game actualGame: games) {
+       /* for (Game actualGame: games) {
             if ( game.equals(actualGame.getName()) ) {
                 return actualGame;
             }
+        }*/
+        try {
+            GameBuilder builder = BuilderLoader.load(game);
+            builder.build();
+            return (Game) builder;
+        } catch (Exception e){
+            return null;
         }
-        return null;
     }
 
     public LinkedList<String> getNamesGames() {
