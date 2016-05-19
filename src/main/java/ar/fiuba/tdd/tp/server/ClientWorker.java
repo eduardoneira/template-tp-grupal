@@ -1,7 +1,7 @@
 package ar.fiuba.tdd.tp.server;
 
-import ar.fiuba.tdd.tp.model.Motor;
 import ar.fiuba.tdd.tp.model.Game;
+import ar.fiuba.tdd.tp.model.Motor;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -16,7 +16,8 @@ class ClientWorker implements Runnable {
     private static final String win = ". You won the game!";
     private static final String loose = ". You lost!";
 
-    ClientWorker(ServerSocket server, String gameName) throws ClassNotFoundException, IOException, InstantiationException, IllegalAccessException {
+    ClientWorker(ServerSocket server, String gameName) throws ClassNotFoundException, IOException,
+            InstantiationException, IllegalAccessException {
         this.serverSocket = server;
         Motor motor = new Motor();
         this.game = motor.createGame(gameName);
