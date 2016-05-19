@@ -57,15 +57,6 @@ public class WolfSheepCabbage extends Game {
     public WolfSheepCabbage() {
         super("Wolf, Sheep and Cabbage");
 
-        createShores();
-
-        createWolf();
-
-        createSheep();
-
-        createCabbage();
-
-        createPlayer();
     }
 
     private void createShores() {
@@ -120,5 +111,20 @@ public class WolfSheepCabbage extends Game {
         String cabbageName = "cabbage";
         cabbage = new Cabbage(cabbageName, southShore);
         objects.put(cabbageName, cabbage);
+    }
+
+    @Override
+    public ar.fiuba.tdd.tp.model.Game build() {
+
+        createShores();
+
+        createWolf();
+
+        createSheep();
+
+        createCabbage();
+
+        createPlayer();
+        return null;
     }
 }

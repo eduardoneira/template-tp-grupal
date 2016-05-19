@@ -13,7 +13,21 @@ public class FetchQuest extends Game {
 
     public FetchQuest() {
         super("Fetch Quest");
+    }
 
+    @SuppressWarnings("CPD-END")
+
+    public boolean checkWinCondition() {
+        return player.contains("stick");
+    }
+
+    @Override
+    public boolean checkLooseCondition() {
+        return false;
+    }
+
+    @Override
+    public ar.fiuba.tdd.tp.model.Game build() {
         room = new Room("room");
         player.setParent(room);
         objects.put(room.getName(), this.room);
@@ -26,16 +40,6 @@ public class FetchQuest extends Game {
         player.addAction(actionPickup);
 
         commands.add(actionPickup.getName());
-    }
-
-    @SuppressWarnings("CPD-END")
-
-    public boolean checkWinCondition() {
-        return player.contains("stick");
-    }
-
-    @Override
-    public boolean checkLooseCondition() {
-        return false;
+        return null;
     }
 }

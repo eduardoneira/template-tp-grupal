@@ -23,14 +23,6 @@ public class TorresHanoi extends Game {
 
     public TorresHanoi() {
         super("Hanoi Towers");
-
-        createRoom();
-
-        createPlayer();
-
-        createStacks();
-
-        createDiscs();
     }
 
     private void createRoom() {
@@ -87,4 +79,15 @@ public class TorresHanoi extends Game {
         return false;
     }
 
+    @Override
+    public ar.fiuba.tdd.tp.model.Game build() {
+        createRoom();
+
+        createPlayer();
+
+        createStacks();
+
+        createDiscs();
+        return null;
+    }
 }
