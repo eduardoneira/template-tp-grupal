@@ -60,7 +60,39 @@ public class TheEscape extends Game {
 
     @Override
     public Game build() {
-
+        createRooms();
+        return null;
     }
+
+
+    private void createRooms() {
+        salon1 = new Room("salon1");
+        objects.put(salon1.getName(), salon1);
+
+        salon2 = new Room("salon2");
+        objects.put(salon2.getName(), salon2);
+
+        salon3 = new Room("salon3");
+        objects.put(salon3.getName(), salon3);
+
+        pasillo = new Room("pasillo");
+        objects.put(pasillo.getName(), pasillo);
+
+        bibliotecaAcceso = new Room("bibliotecaAcceso");
+        objects.put(bibliotecaAcceso.getName(), bibliotecaAcceso);
+
+        biblioteca = new Room("biblioteca");
+        objects.put(biblioteca.getName(),biblioteca);
+
+        sotano = new Room("sotano");
+        objects.put(sotano.getName(),sotano);
+
+        sotanoAbajo = new Room("sotanoAbajo");
+        objects.put(sotanoAbajo.getName(),sotanoAbajo);
+
+        afuera = new Room("afuera");
+        objects.put(afuera.getName(),afuera);
+    }
+
 
 }
