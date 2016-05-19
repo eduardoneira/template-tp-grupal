@@ -2,6 +2,7 @@ package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.Open;
 import ar.fiuba.tdd.tp.actions.Pick;
+import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.door.LockedDoor;

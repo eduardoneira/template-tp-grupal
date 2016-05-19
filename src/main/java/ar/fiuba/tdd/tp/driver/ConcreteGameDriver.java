@@ -1,8 +1,8 @@
 package ar.fiuba.tdd.tp.driver;
 
 
-import ar.fiuba.tdd.tp.Game;
-import ar.fiuba.tdd.tp.Motor;
+import ar.fiuba.tdd.tp.model.Game;
+import ar.fiuba.tdd.tp.model.Motor;
 
 public class ConcreteGameDriver implements GameDriver {
     private Game game;
