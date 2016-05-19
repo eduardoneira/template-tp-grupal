@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp;
 
+import ar.fiuba.tdd.tp.driver.GameState;
 import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
@@ -9,6 +10,7 @@ import java.util.*;
 public abstract class Game {
 
     protected Player player;
+    protected GameState gameState;
     protected final String name;
     protected final Set<String> commands;
     protected final Map<String, GameObject> objects;
@@ -30,6 +32,7 @@ public abstract class Game {
         this.player = player;
         this.objects = new HashMap<>();
         this.commands = new HashSet<>();
+        this.gameState = GameState.Ready;
 
         // hardcodeo
         this.commands.add("look");
@@ -42,6 +45,9 @@ public abstract class Game {
 
     private String preProcess(List<String> parsedCommand) {
         if (parsedCommand.size() > 0) {
+            if (gameState == GameState.Ready) {
+                gameState = GameState.InProgress;
+            }
             return process(parsedCommand);
         } else {
             return "invalid command";
@@ -65,7 +71,6 @@ public abstract class Game {
         }
 
         return preProcess(parsedCommand);
-
     }
 
     private String process(List<String> parsedCommand) {
@@ -88,8 +93,10 @@ public abstract class Game {
     private String handleProcessedCommand(String command, List<GameObject> objectsInvolved) {
         String result = player.handleAction(command, objectsInvolved);
         if (checkWinCondition()) {
+            gameState = GameState.Won;
             return result + win;
         } else if (checkLooseCondition()) {
+            gameState = GameState.Lost;
             return result + loose;
         } else {
             return result;
@@ -122,5 +129,9 @@ public abstract class Game {
             }
         }
         return response;
+    }
+
+    public GameState getCurrentState() {
+        return gameState;
     }
 }
