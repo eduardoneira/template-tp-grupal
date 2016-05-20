@@ -203,6 +203,11 @@ public class TheEscape extends Game {
         player.addAction(open);
         commands.add(open.getName());
 
+        keepCreatingPlayer();
+    }
+
+
+    private void keepCreatingPlayer() {
         // dejar cosas en el piso
         ActionHandler leave = new Leave(player);
         player.addAction(new Leave(player));
@@ -250,6 +255,34 @@ public class TheEscape extends Game {
         estante.addAction(new HaveMovedTo(estante, estanteChildren));
         estante.addAction(new HaveMovedFrom(estante, estanteChildren));
 
+        populateLibros();
+    }
+
+    private void populateLibroViejo() {
+
+        libroViejo = new GeneralMovableObject("libroViejo", estante);
+        objects.put(libroViejo.getName(), libroViejo);
+
+        libroViejoRemoved = new BooleanState(false);
+        List<BooleanState> triggers = new LinkedList<>();
+        triggers.add(libroViejoRemoved);
+        List<Boolean> triggeredValues = new LinkedList<>();
+        triggeredValues.add(true);
+        libroViejo.addAction(new TriggerActionHandler(libroViejo,
+                new BeMoved(libroViejo, libroViejo.getParentState()), triggers, triggeredValues, "You see a hidden door appear!"));
+
+        bibliotecaToSotano = new LinkingDoor("doorBibliotecaToSotano", biblioteca, sotano);
+        objects.put(bibliotecaToSotano.getName(), bibliotecaToSotano);
+        bibliotecaToSotano.addAction(new ConditionalActionHandlerFailsDummy(bibliotecaToSotano,
+                                                                            new BeOpened(null, null), triggers));
+        bibliotecaToSotano.addAction(new ConditionalActionHandlerFailsDummy(bibliotecaToSotano,
+                                                                            new BeAskedWhat(null), triggers));
+        bibliotecaToSotano.addAction(new ConditionalActionHandlerFailsDummy(bibliotecaToSotano,
+                                                                            new BeLookedAt(null), triggers));
+
+    }
+
+    private void populateLibros() {
         libro1 = new GeneralMovableObject("libro1", estante);
         objects.put(libro1.getName(), libro1);
         libro2 = new GeneralMovableObject("libro2", estante);
@@ -269,25 +302,6 @@ public class TheEscape extends Game {
         libro9 = new GeneralMovableObject("libro9", estante);
         objects.put(libro9.getName(), libro9);
 
-        libroViejo = new GeneralMovableObject("libroViejo", estante);
-        objects.put(libroViejo.getName(), libroViejo);
-
-        libroViejoRemoved = new BooleanState(false);
-        List<BooleanState> triggers = new LinkedList<>();
-        triggers.add(libroViejoRemoved);
-        List<Boolean> triggeredValues = new LinkedList<>();
-        triggeredValues.add(true);
-        libroViejo.addAction(new TriggerActionHandler(libroViejo,
-                new BeMoved(libroViejo, libroViejo.getParentState()), triggers, triggeredValues, "You see a hidden door appear!"));
-
-        bibliotecaToSotano = new LinkingDoor("doorBibliotecaToSotano", biblioteca, sotano);
-        objects.put(bibliotecaToSotano.getName(), bibliotecaToSotano);
-        bibliotecaToSotano.addAction(new ConditionalActionHandlerFailsDummy(bibliotecaToSotano,
-                new BeOpened(null, null), triggers));
-        bibliotecaToSotano.addAction(new ConditionalActionHandlerFailsDummy(bibliotecaToSotano,
-                new BeAskedWhat(null), triggers));
-        bibliotecaToSotano.addAction(new ConditionalActionHandlerFailsDummy(bibliotecaToSotano,
-                new BeLookedAt(null), triggers));
     }
 
     private void populatePasillo() {
@@ -328,6 +342,11 @@ public class TheEscape extends Game {
                 new BeOpened(bibliotecaAccesoToBiblioteca, new BooleanState()), condDoorABiblioteca));
         objects.put(bibliotecaAccesoToBiblioteca.getName(), bibliotecaAccesoToBiblioteca);
 
+        configureBibliotecario();
+    }
+
+
+    private void configureBibliotecario() {
         List<BooleanState> condicionesBibliotecarioAmigable = new LinkedList<>();
         condicionesBibliotecarioAmigable.add(noPermiteAcceso);
         condicionesBibliotecarioAmigable.add(noVioCredencialFalsa);
@@ -355,12 +374,19 @@ public class TheEscape extends Game {
         bibliotecario.addAction(new ConditionalActionHandlerChecks(bibliotecario,
                 new BeTalkedTo(bibliotecario, "Zzzzz..."), condicionesBibliotecarioDormido));
 
+        makeTriggers();
+
+    }
+
+
+    private void makeTriggers() {
+
         List<BooleanState> triggers = new LinkedList<>();
         triggers.add(talkedLastTurn);
         List<Boolean> tiggeredValues = new LinkedList<>();
         tiggeredValues.add(true);
         bibliotecario.addAction(new TriggerActionHandler(bibliotecario,
-                new BeTalkedTo(bibliotecario, ""), triggers, tiggeredValues));
+                                                         new BeTalkedTo(bibliotecario, ""), triggers, tiggeredValues));
 
         bibliotecario.addAction(new BeLookedAt(bibliotecario));
         bibliotecario.addAction(new BeAskedWhat(bibliotecario));
@@ -416,9 +442,13 @@ public class TheEscape extends Game {
         objects.put(silla2.getName(), silla2);
 
 
+        keepPopulatingSalon1();
+    }
+
+    private void keepPopulatingSalon1() {
+
         cuadroDeTren = new GeneralMovableObject("cuadroDeTren", salon1);
         objects.put(cuadroDeTren.getName(), cuadroDeTren);
-
 
         cuadroBarco = new Box("cuadroDeBarco", salon1);
         objects.put(cuadroBarco.getName(), cuadroBarco);
@@ -455,6 +485,11 @@ public class TheEscape extends Game {
         bibliotecaAcceso = new Room("accesoBiblioteca");
         objects.put(bibliotecaAcceso.getName(), bibliotecaAcceso);
 
+        keepCreatingRooms();
+    }
+
+    private void keepCreatingRooms() {
+
         biblioteca = new Room("biblioteca");
         objects.put(biblioteca.getName(),biblioteca);
 
@@ -470,4 +505,6 @@ public class TheEscape extends Game {
         afuera = new Room("afuera");
         objects.put(afuera.getName(),afuera);
     }
+
+
 }
