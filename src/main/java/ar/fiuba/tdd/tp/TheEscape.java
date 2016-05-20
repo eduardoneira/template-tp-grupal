@@ -169,7 +169,6 @@ public class TheEscape extends Game {
         }
 
         talkedLastTurn.setFalse();
-
         return afuera.contains(player.getName());
     }
 
