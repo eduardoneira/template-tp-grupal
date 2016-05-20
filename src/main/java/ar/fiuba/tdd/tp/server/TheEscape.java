@@ -63,9 +63,10 @@ public class TheEscape extends Game {
         createRooms();
         return null;
     }
-
+    @SuppressWarnings("CPD-START")
 
     private void createRooms() {
+
         salon1 = new Room("salon1");
         objects.put(salon1.getName(), salon1);
 
@@ -92,6 +93,8 @@ public class TheEscape extends Game {
 
         afuera = new Room("afuera");
         objects.put(afuera.getName(),afuera);
+
+
     }
 
 

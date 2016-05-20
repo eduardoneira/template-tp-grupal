@@ -10,6 +10,8 @@ import org.junit.Test;
 import java.io.IOException;
 
 public class AcceptanceTests {
+    @SuppressWarnings("CPD-START")
+
     @Test
     public void loseWhenUseEscalera() throws ClassNotFoundException, IOException,
             GameLoadFailedException, InstantiationException, IllegalAccessException {
@@ -66,6 +68,8 @@ public class AcceptanceTests {
     public void winWhenGoToSotano() throws ClassNotFoundException, IOException,
         GameLoadFailedException, InstantiationException, IllegalAccessException {
         //It should Win if goto basement with a hammer:
+
+
         GameDriver driver = new ConcreteGameDriver();
         driver.initGame("escape");
         driver.sendCommand("goto BibliotecaAcceso");
@@ -91,5 +95,6 @@ public class AcceptanceTests {
         driver.sendCommand("break Ventana using Martillo");
         driver.sendCommand("goto Sotano");
         assert(GameState.Won == driver.getCurrentState());
+
     }
 }
