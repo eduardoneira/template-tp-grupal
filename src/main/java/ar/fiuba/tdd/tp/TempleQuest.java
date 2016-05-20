@@ -340,7 +340,6 @@ public class TempleQuest extends Game {
 
         ActionHandler haveMovedFrom = new HaveMovedFrom(player, player.getChildrenState());
         player.addAction(haveMovedFrom);
-        commands.add(haveMovedFrom.getName());
 
         ActionHandler moveFromInventory = new MoveFromInventory(player);
         player.addAction(moveFromInventory);

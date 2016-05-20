@@ -2,54 +2,125 @@ package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.*;
 import ar.fiuba.tdd.tp.model.Game;
-import ar.fiuba.tdd.tp.objects.concrete.Box;
-import ar.fiuba.tdd.tp.objects.concrete.Chest;
-import ar.fiuba.tdd.tp.objects.concrete.GeneralMovableObject;
-import ar.fiuba.tdd.tp.objects.concrete.Room;
+import ar.fiuba.tdd.tp.objects.concrete.*;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingDoor;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by gabriel on 5/19/2016.
- */
 public class TheEscape extends Game {
+    @SuppressWarnings("CPD-START")
 
-    Room accesoBiblioteca;
-    GeneralMovableObject licor;
-    GeneralMovableObject fotoPlayer;
-    Box credencial;
+    private Room pasillo;
+    private LinkingDoor pasilloToSalon1;
+    private LinkingDoor pasilloToSalon2;
+    private LinkingDoor pasilloToSalon3;
+    private LinkingDoor pasilloToBibliotecaAcceso;
 
-    ConcreteGameObjectWithParent bibliotecario;
-    BooleanState noVioCredencialFalsa;
-    BooleanState vioCredencialFalsa;
-    BooleanState noPermiteAcceso;
-    BooleanState permiteAcceso;
-    BooleanState dormido;
-    BooleanState noDormido;
-    BooleanState talkedLastTurn;
+    private Room salon1;
+    private LinkingDoor salon1ToPasillo;
 
-    LinkingDoor doorToBiblioteca;
+    private Room salon2;
+    private LinkingDoor salon2ToPasillo;
 
-    Room biblioteca;
+    private Room salon3;
+    private LinkingDoor salon3ToPasillo;
+
+    // ------------
+
+    private ConcreteGameObjectWithParent bibliotecario;
+    private BooleanState noVioCredencialFalsa;
+    private BooleanState vioCredencialFalsa;
+    private BooleanState noPermiteAcceso;
+    private BooleanState permiteAcceso;
+    private BooleanState dormido;
+    private BooleanState noDormido;
+    private BooleanState talkedLastTurn;
+
+    private GeneralMovableObject fotoPlayer;
+    private Box credencial;
+
+    // ------------
+
+    private Room bibliotecaAcceso;
+    private LinkingDoor bibliotecaAccesoToPasillo;
+    private LinkingDoor bibliotecaAccesoToBiblioteca;
+
+    private Room biblioteca;
+    private LinkingDoor bibliotecaToBibliotecaAcceso;
+    private LinkingDoor bibliotecaToSotano;
+
+    private Room sotano;
+    private LinkingDoor sotanoToBiblioteca;
+    private LinkingDoor baranda;
+    private LinkingDoor sotanoToCuartoDeLaMuerte;
+
+
+    private Room sotanoAbajo;
+    private LinkingDoor sotanoAbajoToAfuera;
+    private LinkingDoor sotanoAbajoToCuartoDeLaMuerte;
+
+
+    private Room afuera;
+
+    private Room CuartoDeLosMuertos;
+
+    private GeneralMovableObject destornillador1;
+    private GeneralMovableObject destornillador2;
+    private ConcreteGameObjectWithParentAndChildren mesa;
+    private GeneralMovableObject cuadroDeTren;
+    private GeneralMovableObject silla1;
+    private GeneralMovableObject silla2;
+
+    private GeneralMovableObject libro1;
+    private GeneralMovableObject libro2;
+    private GeneralMovableObject libro3;
+    private GeneralMovableObject libro4;
+    private GeneralMovableObject libro5;
+    private GeneralMovableObject libro6;
+    private GeneralMovableObject libro7;
+    private GeneralMovableObject libro8;
+    private GeneralMovableObject libro9;
+
+    private GameObjectWithChildren estante;
+
+    private GeneralMovableObject vaso1;
+    private GeneralMovableObject vaso2;
+    private GeneralMovableObject licor;
+
+    private GeneralMovableObject lapicera;
+    private ConcreteGameObjectWithParentAndChildren foto;
+    private Chest cajaFuerte;
+    private Box cuadroBarco;
+
+    private Key martillo;
+    private Key llave;
 
     @Override
     public Game build() {
 
-        accesoBiblioteca = new Room("accesoBiblioteca");
-        objects.put(accesoBiblioteca.getName(), accesoBiblioteca);
+        createRooms();
+        createMisc();
 
-        licor = new GeneralMovableObject("alcohol", accesoBiblioteca);
+        biblioteca = new Room("biblioteca");
+        objects.put(biblioteca.getName(), biblioteca);
+
+        licor = new GeneralMovableObject("alcohol", bibliotecaAcceso);
         objects.put(licor.getName(), licor);
 
-        fotoPlayer = new GeneralMovableObject("fotoPlayer", accesoBiblioteca);
+        fotoPlayer = new GeneralMovableObject("fotoPlayer", bibliotecaAcceso);
         objects.put(fotoPlayer.getName(), fotoPlayer);
 
-        bibliotecario = new ConcreteGameObjectWithParent("bibliotecario", accesoBiblioteca);
+        credencial = new Box("credential", bibliotecaAcceso);
+        objects.put(credencial.getName(), credencial);
+        credencial.addAction(new BeMoved(credencial, credencial.getParentState()));
+
+        bibliotecario = new ConcreteGameObjectWithParent("bibliotecario", bibliotecaAcceso);
         objects.put(bibliotecario.getName(), bibliotecario);
 
         noPermiteAcceso = new BooleanState(true);
@@ -72,12 +143,12 @@ public class TheEscape extends Game {
         condicionesBibliotecarioFurioso.add(noPermiteAcceso);
         condicionesBibliotecarioAmigable.add(noDormido);
         bibliotecario.addAction(new ConditionalActionHandlerChecks(bibliotecario,
-                new BeTalkedTo(bibliotecario, "You shall not pass!"), condicionesBibliotecarioFurioso));
+                new BeTalkedTo(bibliotecario, "I saw that fake credential, you shall not pass!"), condicionesBibliotecarioFurioso));
 
         List<BooleanState> condicionesBibliotecarioPermitePasar = new LinkedList<>();
         condicionesBibliotecarioPermitePasar.add(noVioCredencialFalsa);
         condicionesBibliotecarioPermitePasar.add(permiteAcceso);
-        condicionesBibliotecarioAmigable.add(noDormido);
+        condicionesBibliotecarioPermitePasar.add(noDormido);
         bibliotecario.addAction(new ConditionalActionHandlerChecks(bibliotecario,
                 new BeTalkedTo(bibliotecario, "Hi again! Feel free to enter"), condicionesBibliotecarioPermitePasar));
 
@@ -86,13 +157,24 @@ public class TheEscape extends Game {
         bibliotecario.addAction(new ConditionalActionHandlerChecks(bibliotecario,
                 new BeTalkedTo(bibliotecario, "Zzzzz..."), condicionesBibliotecarioDormido));
 
-        doorToBiblioteca = new LinkingDoor("doorToBiblioteca", accesoBiblioteca, biblioteca);
+        List<BooleanState> triggers = new LinkedList<>();
+        triggers.add(talkedLastTurn);
+        List<Boolean> tiggeredValues = new LinkedList<>();
+        tiggeredValues.add(true);
+        bibliotecario.addAction(new TriggerActionHandler(bibliotecario,
+                new BeTalkedTo(bibliotecario, ""), triggers, tiggeredValues));
+
+        bibliotecario.addAction(new BeLookedAt(bibliotecario));
+        bibliotecario.addAction(new BeAskedWhat(bibliotecario));
+
+        bibliotecaAccesoToBiblioteca = new LinkingDoor("doorToBiblioteca", bibliotecaAcceso, biblioteca);
         List<BooleanState> condDoorABiblioteca = new LinkedList<>();
         condDoorABiblioteca.add(permiteAcceso);
-        doorToBiblioteca.addAction(new ConditionalActionHandlerFails(doorToBiblioteca, new BeOpened(null, null), condDoorABiblioteca));
+        bibliotecaAccesoToBiblioteca.addAction(new ConditionalActionHandlerFails(bibliotecaAccesoToBiblioteca, new BeOpened(bibliotecaAccesoToBiblioteca, new BooleanState()), condDoorABiblioteca));
+        objects.put(bibliotecaAccesoToBiblioteca.getName(), bibliotecaAccesoToBiblioteca);
 
-        player.setParent(accesoBiblioteca);
-        accesoBiblioteca.addChild(player);
+        player.setParent(bibliotecaAcceso);
+        bibliotecaAcceso.addChild(player);
 
         ActionHandler talk = new Talk(player);
         player.addAction(talk);
@@ -112,7 +194,6 @@ public class TheEscape extends Game {
 
         ActionHandler haveMovedFrom = new HaveMovedFrom(player, player.getChildrenState());
         player.addAction(haveMovedFrom);
-        commands.add(haveMovedFrom.getName());
 
         ActionHandler moveFromInventory = new MoveFromInventory(player);
         player.addAction(moveFromInventory);
@@ -128,11 +209,14 @@ public class TheEscape extends Game {
     @Override
     public boolean checkWinCondition() {
 
-        if (talkedLastTurn.isTrue() && dormido.isFalse() && noVioCredencialFalsa.isTrue() && noPermiteAcceso.isTrue()) {
-            if (player.contains(credencial.getName()) ) {
+        if (noPermiteAcceso.isTrue() && talkedLastTurn.isTrue()) {
+            if (noVioCredencialFalsa.isTrue() && player.contains(credencial.getName()) ) {
                 if(credencial.contains(fotoPlayer.getName())) {
                     permiteAcceso.setTrue();
                     noPermiteAcceso.setFalse();
+                } else {
+                    vioCredencialFalsa.setTrue();
+                    noVioCredencialFalsa.setFalse();
                 }
             } else if (player.contains(licor.getName())) {
                 dormido.setTrue();
@@ -142,6 +226,8 @@ public class TheEscape extends Game {
             }
         }
 
+        talkedLastTurn.setFalse();
+
         return biblioteca.contains(player.getName());
     }
 
@@ -149,4 +235,67 @@ public class TheEscape extends Game {
     public boolean checkLooseCondition() {
         return false;
     }
+
+    private void createMisc() {
+
+
+        //pasillo
+        foto = new ConcreteGameObjectWithParentAndChildren("foto",pasillo);
+        lapicera = new GeneralMovableObject("lapicera",pasillo);
+
+        //Cuarto1
+        mesa = new ConcreteGameObjectWithParentAndChildren("mesa",salon1 );
+        vaso1 = new  GeneralMovableObject("vaso1",salon1);
+        vaso2 = new  GeneralMovableObject("vaso2",salon1);
+        licor = new  GeneralMovableObject("licor",salon1);
+        silla1 = new GeneralMovableObject("silla1",salon1);
+        silla2 = new GeneralMovableObject("silla2",salon2);
+        cuadroDeTren = new GeneralMovableObject("cuadroDeTren",salon1);
+        cuadroBarco = new Box("cuadro",salon1);
+        cajaFuerte = new Chest ("cajaFuerte",salon1);
+
+        //salon2
+        destornillador1 = new GeneralMovableObject("destornillador1",salon2);
+        destornillador2 = new GeneralMovableObject("destornillador2",salon2);
+
+        //salon3
+        llave = new Key("llave",salon3,1);
+
+        //biblioteca
+        estante = new ConcreteGameObjectWithParentAndChildren("estante",biblioteca);
+
+
+    }
+
+
+    private void createRooms() {
+
+            salon1 = new Room("salon1");
+            objects.put(salon1.getName(), salon1);
+
+            salon2 = new Room("salon2");
+            objects.put(salon2.getName(), salon2);
+
+            salon3 = new Room("salon3");
+            objects.put(salon3.getName(), salon3);
+
+            pasillo = new Room("pasillo");
+            objects.put(pasillo.getName(), pasillo);
+
+            bibliotecaAcceso = new Room("accesoBiblioteca");
+            objects.put(bibliotecaAcceso.getName(), bibliotecaAcceso);
+
+            biblioteca = new Room("biblioteca");
+            objects.put(biblioteca.getName(),biblioteca);
+
+            sotano = new Room("sotano");
+            objects.put(sotano.getName(),sotano);
+
+            sotanoAbajo = new Room("sotanoAbajo");
+            objects.put(sotanoAbajo.getName(),sotanoAbajo);
+
+            afuera = new Room("afuera");
+            objects.put(afuera.getName(),afuera);
+        }
+
 }
