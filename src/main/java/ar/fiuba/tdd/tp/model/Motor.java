@@ -2,7 +2,8 @@ package ar.fiuba.tdd.tp.model;
 
 import ar.fiuba.tdd.tp.*;
 import ar.fiuba.tdd.tp.model.Game;
-import ar.fiuba.tdd.tp.server.BuilderLoader;
+import ar.fiuba.tdd.tp.server.*;
+import ar.fiuba.tdd.tp.server.TheEscape;
 
 import java.io.IOException;
 import java.util.*;
@@ -23,6 +24,7 @@ public class Motor {
         games.add( new TorresHanoi() );
         games.add( new TreasureHunt() );
         games.add( new TempleQuest() );
+        games.add( new TheEscape("TheEscape"));
     }
 
     public Game createGame(String game) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {

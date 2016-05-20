@@ -7,13 +7,9 @@ import ar.fiuba.tdd.tp.objects.concrete.GeneralMovableObject;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingDoor;
 import ar.fiuba.tdd.tp.objects.concrete.Key;
-import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithChildren;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParentAndChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 
-/**
- * Created by eduardo.neira on 19/05/2016.
- */
 public class TheEscape extends Game {
 
     private Room pasillo;
@@ -107,6 +103,8 @@ public class TheEscape extends Game {
         return null;
     }
 
+    @SuppressWarnings("CPD-START")
+
     private void createMisc() {
 
 
@@ -139,6 +137,7 @@ public class TheEscape extends Game {
     }
 
     private void createRooms() {
+
         salon1 = new Room("salon1");
         objects.put(salon1.getName(), salon1);
 
@@ -165,6 +164,8 @@ public class TheEscape extends Game {
 
         afuera = new Room("afuera");
         objects.put(afuera.getName(),afuera);
+
+
     }
 
 
