@@ -3,6 +3,8 @@ jdk:
   - oraclejdk8
 before_install:
  - chmod +x gradlew
+ - chmod +x CrearJars.sh
+ - ./CrearJars.sh
 after_failure:
  - cat build/reports/*/*.xml
 cache:
