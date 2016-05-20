@@ -25,8 +25,10 @@ public class BeLookedAtAndChildren extends BeLookedAt {
         builder.append(super.handleAction(actionName, objectsInvolved));
         //builder.append(" ");
         for (GameObject child : children.getChildren()) {
-            builder.append(" ");
-            builder.append(child.handleAction(actionName, objectsInvolved));
+            if (child.canHandleAction(actionName, objectsInvolved, new StringBuilder())) {
+                builder.append(" ");
+                builder.append(child.handleAction(actionName, objectsInvolved));
+            }
         }
         return builder.toString();
     }

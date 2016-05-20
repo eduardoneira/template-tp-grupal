@@ -35,7 +35,7 @@ public class AcceptanceTests {
         driver.sendCommand("move LibroViejo");
         driver.sendCommand("goto Sotano");
         driver.sendCommand("use Escalera");
-        assert(GameState.Lost == driver.getCurrentState());
+        assert (GameState.Lost == driver.getCurrentState());
     }
 
     @Test
@@ -61,7 +61,7 @@ public class AcceptanceTests {
         driver.sendCommand("move LibroViejo");
         driver.sendCommand("goto Sotano");
         driver.sendCommand("use Baranda");
-        assert(GameState.Lost == driver.getCurrentState());
+        assert (GameState.Lost == driver.getCurrentState());
     }
 
     @Test
@@ -94,7 +94,6 @@ public class AcceptanceTests {
         driver.sendCommand("use Baranda");
         driver.sendCommand("break Ventana using Martillo");
         driver.sendCommand("goto Sotano");
-        assert(GameState.Won == driver.getCurrentState());
-
+        assert (GameState.Won == driver.getCurrentState());
     }
 }
