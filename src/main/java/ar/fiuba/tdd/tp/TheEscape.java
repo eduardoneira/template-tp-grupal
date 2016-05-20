@@ -18,31 +18,11 @@ import java.util.List;
 public class TheEscape extends Game {
     @SuppressWarnings("CPD-START")
 
-
-    private Room accesoBiblioteca;
-    private GeneralMovableObject licor;
-    private GeneralMovableObject fotoPlayer;
-    private Box credencial;
-
-    private ConcreteGameObjectWithParent bibliotecario;
-    private BooleanState noVioCredencialFalsa;
-    private BooleanState vioCredencialFalsa;
-    private BooleanState noPermiteAcceso;
-    private BooleanState permiteAcceso;
-    private BooleanState dormido;
-    private BooleanState noDormido;
-    private BooleanState talkedLastTurn;
-
-    private LinkingDoor doorToBiblioteca;
-
-
-
     private Room pasillo;
     private LinkingDoor pasilloToSalon1;
     private LinkingDoor pasilloToSalon2;
     private LinkingDoor pasilloToSalon3;
     private LinkingDoor pasilloToBibliotecaAcceso;
-
 
     private Room salon1;
     private LinkingDoor salon1ToPasillo;
@@ -53,9 +33,26 @@ public class TheEscape extends Game {
     private Room salon3;
     private LinkingDoor salon3ToPasillo;
 
+    // ------------
+
     private Room bibliotecaAcceso;
     private LinkingDoor bibliotecaAccesoToPasillo;
     private LinkingDoor bibliotecaAccesoToBiblioteca;
+
+    private ConcreteGameObjectWithParent bibliotecario;
+    private BooleanState noVioCredencialFalsa;
+    private BooleanState vioCredencialFalsa;
+    private BooleanState noPermiteAcceso;
+    private BooleanState permiteAcceso;
+    private BooleanState dormido;
+    private BooleanState noDormido;
+    private BooleanState talkedLastTurn;
+
+    private GeneralMovableObject licor;
+    private GeneralMovableObject fotoPlayer;
+    private Box credencial;
+
+    // ------------
 
     private Room biblioteca;
     private LinkingDoor bibliotecaToBibliotecaAcceso;
@@ -70,27 +67,25 @@ public class TheEscape extends Game {
 
     private Room afuera;
 
-
     @Override
     public Game build() {
+
         createRooms();
-        accesoBiblioteca = new Room("accesoBiblioteca");
-        objects.put(accesoBiblioteca.getName(), accesoBiblioteca);
 
         biblioteca = new Room("biblioteca");
         objects.put(biblioteca.getName(), biblioteca);
 
-        licor = new GeneralMovableObject("alcohol", accesoBiblioteca);
+        licor = new GeneralMovableObject("alcohol", bibliotecaAcceso);
         objects.put(licor.getName(), licor);
 
-        fotoPlayer = new GeneralMovableObject("fotoPlayer", accesoBiblioteca);
+        fotoPlayer = new GeneralMovableObject("fotoPlayer", bibliotecaAcceso);
         objects.put(fotoPlayer.getName(), fotoPlayer);
 
-        credencial = new Box("credential", accesoBiblioteca);
+        credencial = new Box("credential", bibliotecaAcceso);
         objects.put(credencial.getName(), credencial);
         credencial.addAction(new BeMoved(credencial, credencial.getParentState()));
 
-        bibliotecario = new ConcreteGameObjectWithParent("bibliotecario", accesoBiblioteca);
+        bibliotecario = new ConcreteGameObjectWithParent("bibliotecario", bibliotecaAcceso);
         objects.put(bibliotecario.getName(), bibliotecario);
 
         noPermiteAcceso = new BooleanState(true);
@@ -137,14 +132,14 @@ public class TheEscape extends Game {
         bibliotecario.addAction(new BeLookedAt(bibliotecario));
         bibliotecario.addAction(new BeAskedWhat(bibliotecario));
 
-        doorToBiblioteca = new LinkingDoor("doorToBiblioteca", accesoBiblioteca, biblioteca);
+        bibliotecaAccesoToBiblioteca = new LinkingDoor("doorToBiblioteca", bibliotecaAcceso, biblioteca);
         List<BooleanState> condDoorABiblioteca = new LinkedList<>();
         condDoorABiblioteca.add(permiteAcceso);
-        doorToBiblioteca.addAction(new ConditionalActionHandlerFails(doorToBiblioteca, new BeOpened(doorToBiblioteca, new BooleanState()), condDoorABiblioteca));
-        objects.put(doorToBiblioteca.getName(), doorToBiblioteca);
+        bibliotecaAccesoToBiblioteca.addAction(new ConditionalActionHandlerFails(bibliotecaAccesoToBiblioteca, new BeOpened(bibliotecaAccesoToBiblioteca, new BooleanState()), condDoorABiblioteca));
+        objects.put(bibliotecaAccesoToBiblioteca.getName(), bibliotecaAccesoToBiblioteca);
 
-        player.setParent(accesoBiblioteca);
-        accesoBiblioteca.addChild(player);
+        player.setParent(bibliotecaAcceso);
+        bibliotecaAcceso.addChild(player);
 
         ActionHandler talk = new Talk(player);
         player.addAction(talk);
@@ -220,7 +215,7 @@ public class TheEscape extends Game {
             pasillo = new Room("pasillo");
             objects.put(pasillo.getName(), pasillo);
 
-            bibliotecaAcceso = new Room("bibliotecaAcceso");
+            bibliotecaAcceso = new Room("accesoBiblioteca");
             objects.put(bibliotecaAcceso.getName(), bibliotecaAcceso);
 
             biblioteca = new Room("biblioteca");
@@ -234,8 +229,6 @@ public class TheEscape extends Game {
 
             afuera = new Room("afuera");
             objects.put(afuera.getName(),afuera);
-
-
         }
 
 }
