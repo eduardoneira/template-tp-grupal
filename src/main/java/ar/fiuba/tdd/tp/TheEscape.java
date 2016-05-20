@@ -161,7 +161,7 @@ public class TheEscape extends Game {
     @Override
     public boolean checkWinCondition() {
 
-        if (noPermiteAcceso.isTrue() && talkedLastTurn.isTrue()) {
+        /*if (noPermiteAcceso.isTrue() && talkedLastTurn.isTrue()) {
             if (noVioCredencialFalsa.isTrue() && player.contains(credencial.getName()) ) {
                 if(credencial.contains(fotoPlayer.getName())) {
                     permiteAcceso.setTrue();
@@ -180,12 +180,15 @@ public class TheEscape extends Game {
 
         talkedLastTurn.setFalse();
 
-        return biblioteca.contains(player.getName());
+        return biblioteca.contains(player.getName());*/
+        return afuera.contains(player.getName());
     }
 
     @Override
     public boolean checkLooseCondition() {
-        return false;
+        String playerName = player.getName();
+        return (cuartoDeLosMuertos.contains(playerName)||
+                (sotanoAbajo.contains(playerName)&&(!player.contains(martillo.getName()))));
     }
 
     private void populateSotano() {
