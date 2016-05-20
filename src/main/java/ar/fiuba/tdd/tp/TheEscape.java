@@ -433,7 +433,7 @@ public class TheEscape extends Game {
         cajaFuerte.addAction(new BeOpenedHasLock(cajaFuerte, cajaFuerteAbierta, cajaFuerteConLlave, 1));
         cajaFuerte.addAction(new BeAskedWhat(cajaFuerte));
 
-        credencial = new Box("credential", cajaFuerte);
+        credencial = new Box("credencial", cajaFuerte);
         objects.put(credencial.getName(), credencial);
         credencial.addAction(new BeMoved(credencial, credencial.getParentState()));
     }

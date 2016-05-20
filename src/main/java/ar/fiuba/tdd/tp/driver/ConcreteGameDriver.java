@@ -19,7 +19,8 @@ public class ConcreteGameDriver implements GameDriver {
     @Override
     public void initGame(String jarPath) throws GameLoadFailedException, ClassNotFoundException,
             InstantiationException, IllegalAccessException, IOException {
-        GameBuilder gameBuilder = builderLoader.load(jarPath);
+        String path = "build/classes/main/ar/fiuba/tdd/tp/";
+        GameBuilder gameBuilder = builderLoader.load(path.concat(jarPath).concat(".jar"));
         game = gameBuilder.build();
         if (game == null) {
             throw new GameLoadFailedException();

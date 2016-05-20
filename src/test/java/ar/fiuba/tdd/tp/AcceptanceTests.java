@@ -5,9 +5,12 @@ import ar.fiuba.tdd.tp.driver.ConcreteGameDriver;
 import ar.fiuba.tdd.tp.driver.GameDriver;
 import ar.fiuba.tdd.tp.driver.GameLoadFailedException;
 import ar.fiuba.tdd.tp.driver.GameState;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AcceptanceTests {
     @SuppressWarnings("CPD-START")
@@ -17,24 +20,24 @@ public class AcceptanceTests {
             GameLoadFailedException, InstantiationException, IllegalAccessException {
     //It should Lost if download using stairs:
         GameDriver driver = new ConcreteGameDriver();
-        driver.initGame("build/classes/main/ar/fiuba/tdd/tp/TheEscape.jar");
-        driver.sendCommand("goto BibliotecaAcceso");
-        driver.sendCommand("goto Pasillo");
-        driver.sendCommand("goto Salon3");
-        driver.sendCommand("pick Llave");
-        driver.sendCommand("goto Pasillo");
-        driver.sendCommand("goto Salon1");
-        driver.sendCommand("move CuadroBarco");
-        driver.sendCommand("open CajaFuerte using Llave");
-        driver.sendCommand("pick Credencial");
-        driver.sendCommand("put Foto in Credencial");
-        driver.sendCommand("goto Pasillo");
-        driver.sendCommand("goto BibliotecaAcceso");
-        driver.sendCommand("show Credencial in Bibliotecario");
-        driver.sendCommand("goto Biblioteca");
-        driver.sendCommand("move LibroViejo");
-        driver.sendCommand("goto Sotano");
-        driver.sendCommand("use Escalera");
+        driver.initGame("theescape");
+        driver.sendCommand("open doorPasilloToAccesoBiblioteca");
+        driver.sendCommand("open doorAccesoToPasillo");
+        driver.sendCommand("open doorPasilloToSalon3");
+        driver.sendCommand("pick llave");
+        driver.sendCommand("open doorSalon3ToPasillo");
+        driver.sendCommand("open doorPasilloToSalon1");
+        driver.sendCommand("open cuadroDeBarco");
+        driver.sendCommand("open cajaFuerte");
+        driver.sendCommand("pick credencial");
+        driver.sendCommand("put fotoPlayer credencial");
+        driver.sendCommand("open doorSalon1ToPasillo");
+        driver.sendCommand("open doorPasilloToAccesoBiblioteca");
+        driver.sendCommand("talk bibliotecario");
+        driver.sendCommand("open doorAccesoToBiblioteca");
+        driver.sendCommand("pick libroViejo");
+        driver.sendCommand("open doorBibliotecaToSotano");
+        driver.sendCommand("open escalera");
         assert (GameState.Lost == driver.getCurrentState());
     }
 
@@ -43,24 +46,24 @@ public class AcceptanceTests {
             GameLoadFailedException, InstantiationException, IllegalAccessException {
         //It should Lost if goto basement without a hammer:
         GameDriver driver = new ConcreteGameDriver();
-        driver.initGame("build/classes/main/ar/fiuba/tdd/tp/TheEscape.jar");
-        driver.sendCommand("goto BibliotecaAcceso");
-        driver.sendCommand("goto Pasillo");
-        driver.sendCommand("goto Salon3");
-        driver.sendCommand("pick Llave");
-        driver.sendCommand("goto Pasillo");
-        driver.sendCommand("goto Salon1");
-        driver.sendCommand("move CuadroBarco");
-        driver.sendCommand("open CajaFuerte using Llave");
-        driver.sendCommand("pick Credencial");
-        driver.sendCommand("put Foto in Credencial");
-        driver.sendCommand("goto Pasillo");
-        driver.sendCommand("goto BibliotecaAcceso");
-        driver.sendCommand("show Credencial in Bibliotecario");
-        driver.sendCommand("goto Biblioteca");
-        driver.sendCommand("move LibroViejo");
-        driver.sendCommand("goto Sotano");
-        driver.sendCommand("use Baranda");
+        driver.initGame("theescape");
+        driver.sendCommand("open doorPasilloToAccesoBiblioteca");
+        driver.sendCommand("open doorAccesoToPasillo");
+        driver.sendCommand("open doorPasilloToSalon3");
+        driver.sendCommand("pick llave");
+        driver.sendCommand("open doorSalon3ToPasillo");
+        driver.sendCommand("open doorPasilloToSalon1");
+        driver.sendCommand("open cuadroDeBarco");
+        driver.sendCommand("open cajaFuerte");
+        driver.sendCommand("pick credencial");
+        driver.sendCommand("put fotoPlayer credencial");
+        driver.sendCommand("open doorSalon1ToPasillo");
+        driver.sendCommand("open doorPasilloToAccesoBiblioteca");
+        driver.sendCommand("talk bibliotecario");
+        driver.sendCommand("open doorAccesoToBiblioteca");
+        driver.sendCommand("pick libroViejo");
+        driver.sendCommand("open doorBibliotecaToSotano");
+        driver.sendCommand("open baranda");
         assert (GameState.Lost == driver.getCurrentState());
     }
 
@@ -71,29 +74,29 @@ public class AcceptanceTests {
 
 
         GameDriver driver = new ConcreteGameDriver();
-        driver.initGame("build/classes/main/ar/fiuba/tdd/tp/TheEscape.jar");
-        driver.sendCommand("goto BibliotecaAcceso");
-        driver.sendCommand("goto Pasillo");
-        driver.sendCommand("goto Salon3");
-        driver.sendCommand("pick Llave");
-        driver.sendCommand("goto Pasillo");
-        driver.sendCommand("goto Salon2");
-        driver.sendCommand("pick Martillo");
-        driver.sendCommand("goto Pasillo");
-        driver.sendCommand("goto Salon1");
-        driver.sendCommand("move CuadroBarco");
-        driver.sendCommand("open CajaFuerte using Llave");
-        driver.sendCommand("pick Credencial");
-        driver.sendCommand("put Foto in Credencial");
-        driver.sendCommand("goto Pasillo");
-        driver.sendCommand("goto BibliotecaAcceso");
-        driver.sendCommand("show Credencial in Bibliotecario");
-        driver.sendCommand("goto Biblioteca");
-        driver.sendCommand("move LibroViejo");
-        driver.sendCommand("goto Sotano");
-        driver.sendCommand("use Baranda");
-        driver.sendCommand("break Ventana using Martillo");
-        driver.sendCommand("goto Sotano");
+        driver.initGame("theescape");
+        driver.sendCommand("open doorPasilloToAccesoBiblioteca");
+        driver.sendCommand("open doorAccesoToPasillo");
+        driver.sendCommand("open doorPasilloToSalon3");
+        driver.sendCommand("pick llave");
+        driver.sendCommand("open doorSalon3ToPasillo");
+        driver.sendCommand("open doorPasilloToSalon2");
+        driver.sendCommand("pick martillo");
+        driver.sendCommand("open doorSalon2ToPasillo");
+        driver.sendCommand("open doorPasilloToSalon1");
+        driver.sendCommand("open cuadroDeBarco");
+        driver.sendCommand("open cajaFuerte");
+        driver.sendCommand("pick credencial");
+        driver.sendCommand("put fotoPlayer");
+        driver.sendCommand("open doorSalon1ToPasillo");
+        driver.sendCommand("open doorPasilloToAccesoBiblioteca");
+        driver.sendCommand("talk bibliotecario");
+        driver.sendCommand("open doorAccesoToBiblioteca");
+        driver.sendCommand("pick libroViejo");
+        driver.sendCommand("open doorBibliotecaToSotano");
+        driver.sendCommand("open baranda");
+        driver.sendCommand("open ventana");
+        //driver.sendCommand("open Sotano");
         assert (GameState.Won == driver.getCurrentState());
     }
 }
