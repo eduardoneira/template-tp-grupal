@@ -14,4 +14,9 @@ public class ConditionalActionHandlerChecks extends ConditionalActionHandlerFail
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         return action.canIHandleAction(objectsInvolved, response);
     }
+
+    @Override
+    protected boolean checkConditions(StringBuilder response) {
+        return super.checkConditions(new StringBuilder());
+    }
 }
