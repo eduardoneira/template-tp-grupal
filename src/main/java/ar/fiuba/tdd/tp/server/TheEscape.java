@@ -5,9 +5,6 @@ import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingDoor;
 import sun.awt.image.ImageWatched;
 
-/**
- * Created by eduardo.neira on 19/05/2016.
- */
 public class TheEscape extends Game {
 
     private Room pasillo;
