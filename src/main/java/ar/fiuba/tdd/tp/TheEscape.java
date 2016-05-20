@@ -14,32 +14,65 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by gabriel on 5/19/2016.
- */
 public class TheEscape extends Game {
+    @SuppressWarnings("CPD-START")
 
-    Room accesoBiblioteca;
-    GeneralMovableObject licor;
-    GeneralMovableObject fotoPlayer;
-    Box credencial;
 
-    ConcreteGameObjectWithParent bibliotecario;
-    BooleanState noVioCredencialFalsa;
-    BooleanState vioCredencialFalsa;
-    BooleanState noPermiteAcceso;
-    BooleanState permiteAcceso;
-    BooleanState dormido;
-    BooleanState noDormido;
-    BooleanState talkedLastTurn;
+    private Room accesoBiblioteca;
+    private GeneralMovableObject licor;
+    private GeneralMovableObject fotoPlayer;
+    private Box credencial;
 
-    LinkingDoor doorToBiblioteca;
+    private ConcreteGameObjectWithParent bibliotecario;
+    private BooleanState noVioCredencialFalsa;
+    private BooleanState vioCredencialFalsa;
+    private BooleanState noPermiteAcceso;
+    private BooleanState permiteAcceso;
+    private BooleanState dormido;
+    private BooleanState noDormido;
+    private BooleanState talkedLastTurn;
 
-    Room biblioteca;
+    private LinkingDoor doorToBiblioteca;
+
+
+
+    private Room pasillo;
+    private LinkingDoor pasilloToSalon1;
+    private LinkingDoor pasilloToSalon2;
+    private LinkingDoor pasilloToSalon3;
+    private LinkingDoor pasilloToBibliotecaAcceso;
+
+
+    private Room salon1;
+    private LinkingDoor salon1ToPasillo;
+
+    private Room salon2;
+    private LinkingDoor salon2ToPasillo;
+
+    private Room salon3;
+    private LinkingDoor salon3ToPasillo;
+
+    private Room bibliotecaAcceso;
+    private LinkingDoor bibliotecaAccesoToPasillo;
+    private LinkingDoor bibliotecaAccesoToBiblioteca;
+
+    private Room biblioteca;
+    private LinkingDoor bibliotecaToBibliotecaAcceso;
+    private LinkingDoor bibliotecaToSotano;
+
+    private Room sotano;
+    private LinkingDoor sotanoToBiblioteca;
+    private LinkingDoor sotanoToSotanoAbajo;
+
+    private Room sotanoAbajo;
+    private LinkingDoor sotanoAbajoToAfuera;
+
+    private Room afuera;
+
 
     @Override
     public Game build() {
-
+        createRooms();
         accesoBiblioteca = new Room("accesoBiblioteca");
         objects.put(accesoBiblioteca.getName(), accesoBiblioteca);
 
@@ -149,4 +182,37 @@ public class TheEscape extends Game {
     public boolean checkLooseCondition() {
         return false;
     }
+
+    private void createRooms() {
+
+            salon1 = new Room("salon1");
+            objects.put(salon1.getName(), salon1);
+
+            salon2 = new Room("salon2");
+            objects.put(salon2.getName(), salon2);
+
+            salon3 = new Room("salon3");
+            objects.put(salon3.getName(), salon3);
+
+            pasillo = new Room("pasillo");
+            objects.put(pasillo.getName(), pasillo);
+
+            bibliotecaAcceso = new Room("bibliotecaAcceso");
+            objects.put(bibliotecaAcceso.getName(), bibliotecaAcceso);
+
+            biblioteca = new Room("biblioteca");
+            objects.put(biblioteca.getName(),biblioteca);
+
+            sotano = new Room("sotano");
+            objects.put(sotano.getName(),sotano);
+
+            sotanoAbajo = new Room("sotanoAbajo");
+            objects.put(sotanoAbajo.getName(),sotanoAbajo);
+
+            afuera = new Room("afuera");
+            objects.put(afuera.getName(),afuera);
+
+
+        }
+
 }
