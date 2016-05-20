@@ -20,7 +20,7 @@ public class AcceptanceTests {
             GameLoadFailedException, InstantiationException, IllegalAccessException {
     //It should Lost if download using stairs:
         GameDriver driver = new ConcreteGameDriver();
-        driver.initGame("theescape");
+        driver.initGame("TheEscape");
         driver.sendCommand("open doorPasilloToAccesoBiblioteca");
         driver.sendCommand("open doorAccesoToPasillo");
         driver.sendCommand("open doorPasilloToSalon3");
@@ -46,7 +46,7 @@ public class AcceptanceTests {
             GameLoadFailedException, InstantiationException, IllegalAccessException {
         //It should Lost if goto basement without a hammer:
         GameDriver driver = new ConcreteGameDriver();
-        driver.initGame("theescape");
+        driver.initGame("TheEscape");
         driver.sendCommand("open doorPasilloToAccesoBiblioteca");
         driver.sendCommand("open doorAccesoToPasillo");
         driver.sendCommand("open doorPasilloToSalon3");
@@ -74,7 +74,7 @@ public class AcceptanceTests {
 
 
         GameDriver driver = new ConcreteGameDriver();
-        driver.initGame("theescape");
+        driver.initGame("TheEscape");
         driver.sendCommand("open doorPasilloToAccesoBiblioteca");
         driver.sendCommand("open doorAccesoToPasillo");
         driver.sendCommand("open doorPasilloToSalon3");
