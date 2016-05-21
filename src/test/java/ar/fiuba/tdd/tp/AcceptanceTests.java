@@ -1,6 +1,5 @@
 package ar.fiuba.tdd.tp;
 
-
 import ar.fiuba.tdd.tp.driver.ConcreteGameDriver;
 import ar.fiuba.tdd.tp.driver.GameDriver;
 import ar.fiuba.tdd.tp.driver.GameLoadFailedException;
@@ -9,23 +8,30 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class AcceptanceTests {
+
+    GameDriver driver;
+
     @SuppressWarnings("CPD-START")
 
-    @Test
-    public void loseWhenUseEscalera() throws ClassNotFoundException, IOException,
+    @Before
+    public void initialization() throws ClassNotFoundException, IOException,
             GameLoadFailedException, InstantiationException, IllegalAccessException {
-    //It should Lost if download using stairs:
-        GameDriver driver = new ConcreteGameDriver();
+
+        driver = new ConcreteGameDriver();
         driver.initGame("TheEscape");
         driver.sendCommand("open doorPasilloToAccesoBiblioteca");
         driver.sendCommand("open doorAccesoToPasillo");
         driver.sendCommand("open doorPasilloToSalon3");
         driver.sendCommand("pick llave");
         driver.sendCommand("open doorSalon3ToPasillo");
+    }
+
+    @Test
+    public void loseWhenUseEscalera() {
+
+        //It should Lost if download using stairs:
         driver.sendCommand("open doorPasilloToSalon1");
         driver.sendCommand("open cuadroDeBarco");
         driver.sendCommand("open cajaFuerte");
@@ -42,16 +48,9 @@ public class AcceptanceTests {
     }
 
     @Test
-    public void loseWhenUseBarandaWhitoutHavingAMartillo() throws ClassNotFoundException, IOException,
-            GameLoadFailedException, InstantiationException, IllegalAccessException {
+    public void loseWhenUseBarandaWhitoutHavingAMartillo() {
+
         //It should Lost if goto basement without a hammer:
-        GameDriver driver = new ConcreteGameDriver();
-        driver.initGame("TheEscape");
-        driver.sendCommand("open doorPasilloToAccesoBiblioteca");
-        driver.sendCommand("open doorAccesoToPasillo");
-        driver.sendCommand("open doorPasilloToSalon3");
-        driver.sendCommand("pick llave");
-        driver.sendCommand("open doorSalon3ToPasillo");
         driver.sendCommand("open doorPasilloToSalon1");
         driver.sendCommand("open cuadroDeBarco");
         driver.sendCommand("open cajaFuerte");
@@ -68,18 +67,9 @@ public class AcceptanceTests {
     }
 
     @Test
-    public void winWhenGoToSotano() throws ClassNotFoundException, IOException,
-        GameLoadFailedException, InstantiationException, IllegalAccessException {
+    public void winWhenGoToSotano() {
+
         //It should Win if goto basement with a hammer:
-
-
-        GameDriver driver = new ConcreteGameDriver();
-        driver.initGame("TheEscape");
-        driver.sendCommand("open doorPasilloToAccesoBiblioteca");
-        driver.sendCommand("open doorAccesoToPasillo");
-        driver.sendCommand("open doorPasilloToSalon3");
-        driver.sendCommand("pick llave");
-        driver.sendCommand("open doorSalon3ToPasillo");
         driver.sendCommand("open doorPasilloToSalon2");
         driver.sendCommand("pick martillo");
         driver.sendCommand("open doorSalon2ToPasillo");
