@@ -35,7 +35,7 @@ class ClientWorker implements Runnable {
             String outputLine;
             while (this.isRunning && (inputLine = in.readLine()) != null ) {
                 System.out.println("INPUT LINE " + inputLine);
-                outputLine = this.game.processCommand(inputLine);
+                outputLine = this.game.processCommand(clientSocket.toString(), inputLine);
                 out.println(outputLine);
                 out.flush();
 

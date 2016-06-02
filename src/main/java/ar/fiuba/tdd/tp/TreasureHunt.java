@@ -1,12 +1,17 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.*;
-import ar.fiuba.tdd.tp.model.Game;
+import ar.fiuba.tdd.tp.model.*;
 import ar.fiuba.tdd.tp.objects.concrete.*;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingDoor;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingLockedDoor;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.objects.states.ChildrenStateLimitedSize;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 
 public class TreasureHunt extends Game {
@@ -199,8 +204,32 @@ public class TreasureHunt extends Game {
         objects.put(poisonIn5.getName(), poisonIn5);
     }
 
-    private void createPlayer() {
-        player = new Player("player", room1, new ChildrenStateLimitedSize(2));
+    @Override
+    protected void createPlayer(String playerId) {
+        Player player = new Player("player" + Integer.toString(players.size()+1), null, new ChildrenStateLimitedSize(2));
+        players.put(playerId, player);
+
+        Set<String> commands = new HashSet<>();
+        commandsPerPlayer.put(playerId, commands);
+
+        List<AbstractCondition> winConds = new ArrayList<>();
+        winConditionsPerPlayer.put(playerId, winConds);
+
+        List<AbstractCondition> looseConds = new ArrayList<>();
+        looseConditionsPerPlayer.put(playerId, looseConds);
+
+        configPlayer(playerId);
+    }
+
+    @Override
+    protected void configPlayer(String playerId) {
+        Player player = players.get(playerId);
+        Set<String> commands = commandsPerPlayer.get(playerId);
+        List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
+        List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
+
+        player.setParent(room1);
+        room1.addChild(player);
 
         ActionHandler pickAction = new Pick(player);
         player.addAction(pickAction);
@@ -218,11 +247,21 @@ public class TreasureHunt extends Game {
         ActionHandler leaveAction = new Leave(player);
         player.addAction(leaveAction);
         commands.add(leaveAction.getName());
+
+        winConds.add(new ConditionCompound(new ConditionCheckContains(player.getChildrenState(), treasureInChest2In4.getName(), true),
+                new ConditionCheckContains(room1.getChildrenState(), player.getName(), true)));
+
+        looseConds.add(new ConditionCheckBoolean(killedByPoison, true));
+    }
+
+    @Override
+    protected void updateGameAfterHandle() {
+
     }
 
     @SuppressWarnings("CPD-END")
 
-    @Override
+    /*@Override
     public boolean checkWinCondition() {
         return player.contains(treasureInChest2In4.getName()) && room1.contains(player.getName());
     }
@@ -230,7 +269,7 @@ public class TreasureHunt extends Game {
     @Override
     public boolean checkLooseCondition() {
         return killedByPoison.isTrue();
-    }
+    }*/
 
     @Override
     public ar.fiuba.tdd.tp.model.Game build() {
@@ -249,7 +288,7 @@ public class TreasureHunt extends Game {
 
         populateRoom5();
 
-        createPlayer();
+        //createPlayer();
         return this;
     }
 }

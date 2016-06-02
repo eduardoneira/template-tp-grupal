@@ -31,4 +31,8 @@ public abstract class AbstractLockedOpenable extends AbstractOpenable implements
     public void setUnlocked() {
         locked.setFalse();
     }
+
+    public BooleanState getLockedState() {
+        return locked;
+    }
 }

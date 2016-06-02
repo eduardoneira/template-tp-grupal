@@ -1,15 +1,14 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.*;
-import ar.fiuba.tdd.tp.model.Game;
+import ar.fiuba.tdd.tp.model.*;
 import ar.fiuba.tdd.tp.objects.concrete.*;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingDoor;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingLockedDoor;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Master on 19/05/2016.
@@ -62,8 +61,9 @@ public class TempleQuest extends Game {
 
     LinkingLockedDoor doorTo3;
 
-    BooleanState estabaEnShore1TurnoAnterior;
-    BooleanState estaEnShore1Ahora;
+    Map<String, BooleanState> estabaEnShore1TurnoAnterior;
+    Map<String, BooleanState> estaEnShore1Ahora;
+    Map<String, BooleanState> murioPorSoga;
 
     // cuarto arqueologo
 
@@ -82,6 +82,25 @@ public class TempleQuest extends Game {
     @SuppressWarnings("CPD-START")
 
     @Override
+    protected void updateGameAfterHandle() {
+        if ((switch1IsPressed.isTrue() || switch2IsPressed.isTrue()) && monoDespierto.isTrue()) {
+            switch1IsPressed.setTrue();
+            switch2IsPressed.setTrue();
+        }
+
+        for(String playerId : players.keySet()) {
+            estabaEnShore1TurnoAnterior.get(playerId).setValue(estaEnShore1Ahora.get(playerId).isTrue());
+            estaEnShore1Ahora.get(playerId).setValue(room2shore1.contains(players.get(playerId).getName()));
+            if ((estabaEnShore1TurnoAnterior.get(playerId).isFalse() && estaEnShore1Ahora.get(playerId).isTrue())
+                    || (estabaEnShore1TurnoAnterior.get(playerId).isTrue() && estaEnShore1Ahora.get(playerId).isFalse())) {
+                if (players.get(playerId).getChildren().size() > 1) { // no puedo tener mas de un item cuando cruzo la soga, si no muero
+                    murioPorSoga.get(playerId).setTrue();
+                }
+            }
+        }
+    }
+
+    /*@Override
     public boolean checkWinCondition() {
         if ((switch1IsPressed.isTrue() || switch2IsPressed.isTrue()) && monoDespierto.isTrue()) {
             switch1IsPressed.setTrue();
@@ -106,7 +125,7 @@ public class TempleQuest extends Game {
 
         return acantilado.contains(player.getName())
                 || (room4.contains(player.getName()) && (poisoned.isTrue() || !arqueologo.contains(disc9.getName())));
-    }
+    }*/
 
     private void createRooms() {
         // cuartos
@@ -233,14 +252,15 @@ public class TempleQuest extends Game {
         createPilesAndDiscs();
 
         List<ActionHandler> actionsGrantedDisc9 = new LinkedList<>();
-        actionsGrantedDisc9.add(new Unlock(player, 9));
+        actionsGrantedDisc9.add(new Unlock(disc9, 9)); // TODO
         disc9.removeAction("be moved");
         disc9.addAction(new BeMovedGrantsActions(disc9, disc9.getParentState(), actionsGrantedDisc9));
 
         // simulacion de soga que se rompe si tenes mas de dos discos
 
-        estabaEnShore1TurnoAnterior = new BooleanState(false);
-        estaEnShore1Ahora = new BooleanState(false);
+        estabaEnShore1TurnoAnterior = new HashMap<>();
+        estaEnShore1Ahora = new HashMap<>();
+        murioPorSoga = new HashMap<>();
 
         // cuarto 2 shore 2
 
@@ -304,8 +324,13 @@ public class TempleQuest extends Game {
         objects.put(salida.getName(), salida);
     }
 
-    private void createPlayer() {
+    @Override
+    protected void configPlayer(String playerId) {
         // player
+        Player player = players.get(playerId);
+        Set<String> commands = commandsPerPlayer.get(playerId);
+        List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
+        List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
 
         player.setParent(room1);
         room1.addChild(player);
@@ -326,10 +351,15 @@ public class TempleQuest extends Game {
         player.addAction(cross);
         commands.add(cross.getName());
 
-        createPlayerCont();
+        configPlayerCont(playerId);
     }
 
-    private void createPlayerCont() {
+    private void configPlayerCont(String playerId) {
+        Player player = players.get(playerId);
+        Set<String> commands = commandsPerPlayer.get(playerId);
+        List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
+        List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
+
         ActionHandler use = new Use(player);
         player.addAction(use);
         commands.add(use.getName());
@@ -348,6 +378,20 @@ public class TempleQuest extends Game {
         ActionHandler checkTop = new CheckTop(player);
         player.addAction(checkTop);
         commands.add(checkTop.getName());
+
+        estaEnShore1Ahora.put(playerId, new BooleanState(false));
+        estabaEnShore1TurnoAnterior.put(playerId, new BooleanState(false));
+        murioPorSoga.put(playerId, new BooleanState(false));
+
+        ConditionCheckContains room4ContainsPlayer = new ConditionCheckContains(room4.getChildrenState(), player.getName(), true);
+        ConditionCheckContains arqueologoContainsDisc9 = new ConditionCheckContains(arqueologo.getChildrenState(), disc9.getName(), true);
+        winConds.add(new ConditionCompound(room4ContainsPlayer, arqueologoContainsDisc9));
+
+        ConditionCheckContains acantiladoContainsPlayer = new ConditionCheckContains(acantilado.getChildrenState(), player.getName(), true);
+        looseConds.add(acantiladoContainsPlayer);
+        looseConds.add(new ConditionCompound(room4ContainsPlayer, new ConditionCheckBoolean(poisoned, true)));
+        looseConds.add(new ConditionCompound(room4ContainsPlayer, new ConditionCheckContains(arqueologo.getChildrenState(), disc9.getName(), false)));
+        looseConds.add(new ConditionCheckBoolean(murioPorSoga.get(playerId), true));
     }
 
     @SuppressWarnings("CPD-END")
@@ -363,7 +407,7 @@ public class TempleQuest extends Game {
 
         populateRoom3();
 
-        createPlayer();
+        //createPlayer();
 
         return this;
     }

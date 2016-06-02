@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.*;
+import ar.fiuba.tdd.tp.model.AbstractCondition;
 import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.objects.concrete.*;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingDoor;
@@ -13,7 +14,8 @@ import ar.fiuba.tdd.tp.objects.states.ChildrenState;
 
 import java.util.LinkedList;
 import java.util.List;
-
+import java.util.Set;
+/*
 public class TheEscape extends Game {
     @SuppressWarnings("CPD-START")
 
@@ -178,7 +180,13 @@ public class TheEscape extends Game {
                 || (sotanoAbajo.contains(player.getName()) && !player.contains(martillo.getName()));
     }
 
-    private void createPlayer() {
+    @Override
+    protected void configPlayer(String playerId) {
+        Player player = players.get(playerId);
+        Set<String> commands = commandsPerPlayer.get(playerId);
+        List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
+        List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
+
         player.setParent(pasillo);
         pasillo.addChild(player);
 
@@ -203,11 +211,16 @@ public class TheEscape extends Game {
         player.addAction(open);
         commands.add(open.getName());
 
-        keepCreatingPlayer();
+        keepCreatingPlayer(playerId);
     }
 
 
-    private void keepCreatingPlayer() {
+    private void keepCreatingPlayer(String playerId) {
+        Player player = players.get(playerId);
+        Set<String> commands = commandsPerPlayer.get(playerId);
+        List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
+        List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
+
         // dejar cosas en el piso
         ActionHandler leave = new Leave(player);
         player.addAction(new Leave(player));
@@ -508,3 +521,4 @@ public class TheEscape extends Game {
 
 
 }
+*/

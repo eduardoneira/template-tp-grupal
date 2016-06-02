@@ -1,13 +1,21 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.*;
+import ar.fiuba.tdd.tp.model.AbstractCondition;
+import ar.fiuba.tdd.tp.model.ConditionCheckContains;
 import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.objects.concrete.CursedKey;
+import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.Thief;
 import ar.fiuba.tdd.tp.objects.concrete.door.AntiCurseLinkingDoor;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingLockedDoor;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class CursedObject extends Game {
 
@@ -33,7 +41,7 @@ public class CursedObject extends Game {
 
         createKey();
 
-        createPlayer();
+        //createPlayer();
 
         createThief();
     }
@@ -64,7 +72,13 @@ public class CursedObject extends Game {
         objects.put(keyObject.getName(), keyObject);
     }
 
-    private void createPlayer() {
+    @Override
+    protected void configPlayer(String playerId) {
+        Player player = players.get(playerId);
+        Set<String> commands = commandsPerPlayer.get(playerId);
+        List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
+        List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
+
         player.setParent(room1);
         room1.addChild(player);
 
@@ -85,6 +99,13 @@ public class CursedObject extends Game {
         Talk talkAction = new Talk(player);
         player.addAction(talkAction);
         commands.add(talkAction.getName());
+
+        winConds.add(new ConditionCheckContains(room3.getChildrenState(), player.getName(), true));
+    }
+
+    @Override
+    protected void updateGameAfterHandle() {
+
     }
 
     private void createThief() {
@@ -95,10 +116,10 @@ public class CursedObject extends Game {
     @SuppressWarnings("CPD-END")
 
     public CursedObject() {
-        super("Cursed Object");
+        super("CursedObject");
     }
 
-    @Override
+    /*@Override
     public boolean checkWinCondition() {
         return room3.contains("player");
     }
@@ -106,7 +127,7 @@ public class CursedObject extends Game {
     @Override
     public boolean checkLooseCondition() {
         return false;
-    }
+    }*/
 
     @Override
     public ar.fiuba.tdd.tp.model.Game build() {

@@ -3,10 +3,14 @@ package ar.fiuba.tdd.tp;
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.actions.CheckTop;
 import ar.fiuba.tdd.tp.actions.MoveTop;
-import ar.fiuba.tdd.tp.model.Game;
+import ar.fiuba.tdd.tp.model.*;
 import ar.fiuba.tdd.tp.objects.concrete.Disc;
 import ar.fiuba.tdd.tp.objects.concrete.Pile;
+import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
+
+import java.util.List;
+import java.util.Set;
 
 public class TorresHanoi extends Game {
 
@@ -32,7 +36,13 @@ public class TorresHanoi extends Game {
         objects.put(room.getName(), room);
     }
 
-    private void createPlayer() {
+    @Override
+    protected void configPlayer(String playerId) {
+        Player player = players.get(playerId);
+        Set<String> commands = commandsPerPlayer.get(playerId);
+        List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
+        List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
+
         player.setParent(room);
         room.addChild(player);
 
@@ -43,6 +53,15 @@ public class TorresHanoi extends Game {
         ActionHandler checkTopAction = new CheckTop(player);
         player.addAction(checkTopAction);
         commands.add(checkTopAction.getName());
+
+        winConds.add(new ConditionCompound(new ConditionCheckContains(torre1.getChildrenState(), disc1.getName(), false),
+                new ConditionCheckContains(torre1.getChildrenState(), disc2.getName(), false),
+                new ConditionCheckContains(torre1.getChildrenState(), disc3.getName(), false)));
+    }
+
+    @Override
+    protected void updateGameAfterHandle() {
+
     }
 
     private void createStacks() {
@@ -70,7 +89,7 @@ public class TorresHanoi extends Game {
 
     @SuppressWarnings("CPD-END")
 
-    @Override
+    /*@Override
     public boolean checkWinCondition() {
         return ((torre1.isEmpty()) && (torre2.isEmpty() || torre3.isEmpty()));
     }
@@ -78,13 +97,13 @@ public class TorresHanoi extends Game {
     @Override
     public boolean checkLooseCondition() {
         return false;
-    }
+    }*/
 
     @Override
     public ar.fiuba.tdd.tp.model.Game build() {
         createRoom();
 
-        createPlayer();
+        //createPlayer();
 
         createStacks();
 

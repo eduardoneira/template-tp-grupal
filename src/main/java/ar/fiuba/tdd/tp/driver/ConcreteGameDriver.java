@@ -29,8 +29,8 @@ public class ConcreteGameDriver implements GameDriver {
 
     @Override
     public String sendCommand(String cmd) {
-
-        return game.processCommand(cmd);
+        // TODO: revisar
+        return game.processCommand(" ", cmd);
 
     }
 

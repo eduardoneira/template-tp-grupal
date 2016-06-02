@@ -40,4 +40,8 @@ public abstract class AbstractOpenable extends ConcreteGameObjectWithParent impl
     public boolean isClosed() {
         return !open.isTrue();
     }
+
+    public BooleanState getOpenState() {
+        return open;
+    }
 }

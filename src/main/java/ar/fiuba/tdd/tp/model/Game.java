@@ -3,6 +3,7 @@ package ar.fiuba.tdd.tp.model;
 import ar.fiuba.tdd.tp.driver.GameState;
 import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
+import ar.fiuba.tdd.tp.objects.concrete.door.AbstractLockedOpenable;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.*;
@@ -11,10 +12,13 @@ import static ar.fiuba.tdd.tp.driver.GameState.*;
 
 public abstract class Game implements GameBuilder {
 
-    protected Player player;
+    protected Map<String, Player> players;
+    protected final Map<String, Set<String>> commandsPerPlayer;
+    protected Map<String, List<AbstractCondition>> winConditionsPerPlayer;
+    protected Map<String, List<AbstractCondition>> looseConditionsPerPlayer;
+
     protected GameState gameState;
     protected final String name;
-    protected final Set<String> commands;
     protected final Map<String, GameObject> objects;
 
     protected static final String needHelpRegex = "help(.)*";
@@ -26,61 +30,100 @@ public abstract class Game implements GameBuilder {
     }
 
     public Game(String name) {
-        this(name, new Player("player", new Room("null")));
-    }
-
-    public Game(String name, Player player) {
         this.name = name;
-        this.player = player;
+        this.players = new HashMap<>();
         this.objects = new HashMap<>();
-        this.commands = new HashSet<>();
+        this.winConditionsPerPlayer = new HashMap<>();
+        this.looseConditionsPerPlayer = new HashMap<>();
+        this.commandsPerPlayer = new HashMap<>();
         gameState = Ready;
-
-        // hardcodeo
-        this.commands.add("look");
-        this.commands.add("what");
     }
 
-    public abstract boolean checkWinCondition();
+    public boolean checkWinCondition(String playerId) {
+        for (AbstractCondition cond : winConditionsPerPlayer.get(playerId)) {
+            if (cond.checkCondition()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    public abstract boolean checkLooseCondition();
+    public boolean checkLooseCondition(String playerId) {
+        for (AbstractCondition cond : looseConditionsPerPlayer.get(playerId)) {
+            if (cond.checkCondition()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    private String preProcess(List<String> parsedCommand) {
+    private String preProcess(String playerId, List<String> parsedCommand) {
         if (parsedCommand.size() > 0) {
             if (gameState == Ready) {
                 gameState = InProgress;
             }
-            return process(parsedCommand);
+            return process(playerId, parsedCommand);
         } else {
             return "invalid command";
         }
     }
 
-    public String processCommand(String stringCommand) {
+    protected void createPlayer(String playerId) {
+        Player player = new Player("player" + Integer.toString(players.size()+1), null);
+        players.put(playerId, player);
 
-        System.out.println("SERVER PROCESS " + stringCommand);
+        Set<String> commands = new HashSet<>();
+        commandsPerPlayer.put(playerId, commands);
+        // hardcodeo
+        commands.add("look");
+        commands.add("what");
+
+        List<AbstractCondition> winConds = new ArrayList<>();
+        winConditionsPerPlayer.put(playerId, winConds);
+
+        List<AbstractCondition> looseConds = new ArrayList<>();
+        looseConditionsPerPlayer.put(playerId, looseConds);
+
+        configPlayer(playerId);
+    }
+
+    protected abstract void configPlayer(String playerId);
+
+    public String processCommand(String playerId, String stringCommand) {
+
+        System.out.println("SERVER PROCESS " + stringCommand + " FROM " + playerId);
+
+        // TODO: refactorizar
+        if (!players.containsKey(playerId)) {
+            if (stringCommand.equals("create player")) {
+                createPlayer(playerId);
+                return "Entered game as player";
+            } else {
+                return "You need to input 'create player' to start";
+            }
+        }
 
         if ( stringCommand.toLowerCase().matches(needHelpRegex)) {
-            return help();
+            return help(playerId);
         }
 
         String[] splitCommand = stringCommand.split(" ");
         List<String> parsedCommand = new LinkedList<>();
         for (String elem : splitCommand) {
-            if (commands.contains(elem) || objects.keySet().contains(elem)) {
+            if (commandsPerPlayer.get(playerId).contains(elem) || objects.keySet().contains(elem)) {
                 parsedCommand.add(elem);
             }
         }
 
-        return preProcess(parsedCommand);
+        return preProcess(playerId, parsedCommand);
 
     }
 
-    private String process(List<String> parsedCommand) {
+    private String process(String playerId, List<String> parsedCommand) {
         String command = parsedCommand.get(0);
         parsedCommand.remove(0);
 
-        if (!commands.contains(command)) {
+        if (!commandsPerPlayer.get(playerId).contains(command)) {
             return "invalid command: " + command;
         }
 
@@ -90,15 +133,18 @@ public abstract class Game implements GameBuilder {
             return "you didn't input any visible object names";
         }
 
-        return handleProcessedCommand(command, objectsInvolved);
+        return handleProcessedCommand(playerId, command, objectsInvolved);
     }
 
-    private String handleProcessedCommand(String command, List<GameObject> objectsInvolved) {
-        String result = player.handleAction(command, objectsInvolved);
-        if (checkWinCondition()) {
+    protected abstract void updateGameAfterHandle();
+
+    private String handleProcessedCommand(String playerId, String command, List<GameObject> objectsInvolved) {
+        String result = players.get(playerId).handleAction(command, objectsInvolved);
+        updateGameAfterHandle();
+        if (checkWinCondition(playerId)) {
             gameState = Won;
             return result + win;
-        } else if (checkLooseCondition()) {
+        } else if (checkLooseCondition(playerId)) {
             gameState = Lost;
             return result + loose;
         } else {
@@ -121,9 +167,9 @@ public abstract class Game implements GameBuilder {
         return objectsInvolved;
     }
 
-    private String help() {
+    private String help(String playerId) {
         String response = "You can use the following commands: ";
-        for (String command : commands) {
+        for (String command : commandsPerPlayer.get(playerId)) {
             response = response.concat(command);
             response = response.concat(", ");
         }

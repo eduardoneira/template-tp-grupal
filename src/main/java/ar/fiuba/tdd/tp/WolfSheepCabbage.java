@@ -1,6 +1,9 @@
 package ar.fiuba.tdd.tp;
 
 import ar.fiuba.tdd.tp.actions.*;
+import ar.fiuba.tdd.tp.model.AbstractCondition;
+import ar.fiuba.tdd.tp.model.ConditionCheckContains;
+import ar.fiuba.tdd.tp.model.ConditionCompound;
 import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.objects.concrete.Cabbage;
 import ar.fiuba.tdd.tp.objects.concrete.Player;
@@ -11,7 +14,9 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.objects.states.ChildrenStateLimitedSize;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WolfSheepCabbage extends Game {
 
@@ -24,7 +29,7 @@ public class WolfSheepCabbage extends Game {
     BooleanState sheepNotWithCabbage;
     BooleanState wolfNotWithSheep;
 
-    public boolean checkWinCondition() {
+    /*public boolean checkWinCondition() {
         // TODO: cambiar esto a una forma general para todos los juegos donde se pueden definir "REGLAS" o "CONDICIONES" que se actualizan
         // TODO: en cada turno y cambian el comportamiento de los objetos del juego
         actualizarSheepWithCabbage();
@@ -36,7 +41,7 @@ public class WolfSheepCabbage extends Game {
     @Override
     public boolean checkLooseCondition() {
         return false;
-    }
+    }*/
 
     // TODO: mismo que antes
     private void actualizarSheepWithCabbage() {
@@ -70,8 +75,32 @@ public class WolfSheepCabbage extends Game {
         objects.put(northShoreName, northShore);
     }
 
-    private void createPlayer() {
-        player = new Player("player", southShore, new ChildrenStateLimitedSize(1));
+    @Override
+    protected void createPlayer(String playerId) {
+        Player player = new Player("player" + Integer.toString(players.size()+1), null, new ChildrenStateLimitedSize(1));
+        players.put(playerId, player);
+
+        Set<String> commands = new HashSet<>();
+        commandsPerPlayer.put(playerId, commands);
+
+        List<AbstractCondition> winConds = new ArrayList<>();
+        winConditionsPerPlayer.put(playerId, winConds);
+
+        List<AbstractCondition> looseConds = new ArrayList<>();
+        looseConditionsPerPlayer.put(playerId, looseConds);
+
+        configPlayer(playerId);
+    }
+
+    @Override
+    protected void configPlayer(String playerId) {
+        Player player = players.get(playerId);
+        Set<String> commands = commandsPerPlayer.get(playerId);
+        List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
+        List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
+
+        player.setParent(southShore);
+        southShore.addChild(player);
 
         ActionHandler leaveAction = new Leave(player);
         player.addAction(leaveAction);
@@ -94,6 +123,16 @@ public class WolfSheepCabbage extends Game {
         ActionHandler crossAction = new ConditionalActionHandlerFails(player, new Cross(player), conditions);
         player.addAction(crossAction);
         commands.add(crossAction.getName());
+
+        winConds.add(new ConditionCompound(new ConditionCheckContains(northShore.getChildrenState(), wolf.getName(), true),
+                new ConditionCheckContains(northShore.getChildrenState(), sheep.getName(), true),
+                new ConditionCheckContains(northShore.getChildrenState(), cabbage.getName(), true)));
+    }
+
+    @Override
+    protected void updateGameAfterHandle() {
+        actualizarWolfWithSheep();
+        actualizarSheepWithCabbage();
     }
 
     private void createWolf() {
@@ -125,7 +164,7 @@ public class WolfSheepCabbage extends Game {
 
         createCabbage();
 
-        createPlayer();
+        //createPlayer();
         return this;
     }
 }
