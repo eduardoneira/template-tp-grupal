@@ -54,7 +54,7 @@ public class ConcreteGameObjectWithParentAndChildren extends ConcreteGameObject
     }
 
     @Override
-    public List<GameObject> getChildren() {
+    public List<GameObjectWithParent> getChildren() {
         return children.getChildren();
     }
 

@@ -5,6 +5,8 @@ import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.door.AbstractLockedOpenable;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 import java.util.*;
@@ -18,7 +20,7 @@ public abstract class Game implements GameBuilder {
     protected Map<String, List<AbstractCondition>> winConditionsPerPlayer;
     protected Map<String, List<AbstractCondition>> looseConditionsPerPlayer;
 
-    protected GameState gameState;
+    protected GameState gameState; // esto tambien deberia ser por player no?
     protected final String name;
     protected final Map<String, GameObject> objects;
 
@@ -52,10 +54,26 @@ public abstract class Game implements GameBuilder {
     public boolean checkLooseCondition(String playerId) {
         for (AbstractCondition cond : looseConditionsPerPlayer.get(playerId)) {
             if (cond.checkCondition()) {
+                removePlayer(playerId);
                 return true;
             }
         }
         return false;
+    }
+
+    protected void removePlayer(String playerId) {
+        removePlayerItems(playerId);
+        players.remove(playerId);
+        commandsPerPlayer.remove(playerId);
+        winConditionsPerPlayer.remove(playerId);
+        looseConditionsPerPlayer.remove(playerId);
+    }
+
+    protected void removePlayerItems(String playerId) {
+        Player player = players.get(playerId);
+        for (GameObjectWithParent o : player.getChildren()) {
+            objects.remove(o.getName());
+        }
     }
 
     private String preProcess(String playerId, List<String> parsedCommand, BooleanState forward) {
@@ -69,9 +87,7 @@ public abstract class Game implements GameBuilder {
         }
     }
 
-    protected void createPlayer(String playerId) {
-        Player player = new Player("player" + Integer.toString(players.size()+1), null);
-        players.put(playerId, player);
+    protected void createPlayer(String playerId, String type) {
 
         Set<String> commands = new HashSet<>();
         commandsPerPlayer.put(playerId, commands);
@@ -85,19 +101,20 @@ public abstract class Game implements GameBuilder {
         List<AbstractCondition> looseConds = new ArrayList<>();
         looseConditionsPerPlayer.put(playerId, looseConds);
 
-        configPlayer(playerId);
+        //Player player = new Player("player" + Integer.toString(players.size()+1), null);
+        players.put(playerId, configPlayer(playerId, type));
     }
 
-    protected abstract void configPlayer(String playerId);
+    protected abstract Player configPlayer(String playerId, String type);
 
     public String processCommand(String playerId, String stringCommand, BooleanState forward) {
         forward.setFalse();
         System.out.println("SERVER PROCESS " + stringCommand + " FROM " + playerId);
 
-        // TODO: refactorizar
+        // TODO: refactorizar y agregar tipo de jugador
         if (!players.containsKey(playerId)) {
             if (stringCommand.equals("create player")) {
-                createPlayer(playerId);
+                createPlayer(playerId, "");
                 return "Entered game as player";
             } else {
                 return "You need to input 'create player' to start";

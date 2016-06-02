@@ -325,9 +325,9 @@ public class TempleQuest extends Game {
     }
 
     @Override
-    protected void configPlayer(String playerId) {
+    protected Player configPlayer(String playerId, String type) {
         // player
-        Player player = players.get(playerId);
+        Player player = new Player("player" + Integer.toString(players.size()+1), null);
         Set<String> commands = commandsPerPlayer.get(playerId);
         List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
         List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
@@ -352,6 +352,8 @@ public class TempleQuest extends Game {
         commands.add(cross.getName());
 
         configPlayerCont(playerId);
+
+        return player;
     }
 
     private void configPlayerCont(String playerId) {

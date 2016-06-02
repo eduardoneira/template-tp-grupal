@@ -73,8 +73,8 @@ public class CursedObject extends Game {
     }
 
     @Override
-    protected void configPlayer(String playerId) {
-        Player player = players.get(playerId);
+    protected Player configPlayer(String playerId, String type) {
+        Player player = new Player("player" + Integer.toString(players.size()+1), null);
         Set<String> commands = commandsPerPlayer.get(playerId);
         List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
         List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
@@ -101,6 +101,8 @@ public class CursedObject extends Game {
         commands.add(talkAction.getName());
 
         winConds.add(new ConditionCheckContains(room3.getChildrenState(), player.getName(), true));
+
+        return player;
     }
 
     @Override

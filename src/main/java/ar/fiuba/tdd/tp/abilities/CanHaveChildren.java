@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp.abilities;
 
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
 
 import java.util.List;
 
@@ -14,5 +15,5 @@ public interface CanHaveChildren {
 
     boolean containsInHierarchy(String name);
 
-    List<GameObject> getChildren();
+    List<GameObjectWithParent> getChildren();
 }

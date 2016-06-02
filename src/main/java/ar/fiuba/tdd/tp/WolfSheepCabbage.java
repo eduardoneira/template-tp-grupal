@@ -76,25 +76,8 @@ public class WolfSheepCabbage extends Game {
     }
 
     @Override
-    protected void createPlayer(String playerId) {
+    protected Player configPlayer(String playerId, String type) {
         Player player = new Player("player" + Integer.toString(players.size()+1), null, new ChildrenStateLimitedSize(1));
-        players.put(playerId, player);
-
-        Set<String> commands = new HashSet<>();
-        commandsPerPlayer.put(playerId, commands);
-
-        List<AbstractCondition> winConds = new ArrayList<>();
-        winConditionsPerPlayer.put(playerId, winConds);
-
-        List<AbstractCondition> looseConds = new ArrayList<>();
-        looseConditionsPerPlayer.put(playerId, looseConds);
-
-        configPlayer(playerId);
-    }
-
-    @Override
-    protected void configPlayer(String playerId) {
-        Player player = players.get(playerId);
         Set<String> commands = commandsPerPlayer.get(playerId);
         List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
         List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
@@ -127,6 +110,8 @@ public class WolfSheepCabbage extends Game {
         winConds.add(new ConditionCompound(new ConditionCheckContains(northShore.getChildrenState(), wolf.getName(), true),
                 new ConditionCheckContains(northShore.getChildrenState(), sheep.getName(), true),
                 new ConditionCheckContains(northShore.getChildrenState(), cabbage.getName(), true)));
+
+        return player;
     }
 
     @Override

@@ -46,8 +46,8 @@ public class OpenDoor extends Game {
     }
 
     @Override
-    protected void configPlayer(String playerId) {
-        Player player = players.get(playerId);
+    protected Player configPlayer(String playerId, String type) {
+        Player player = new Player("player" + Integer.toString(players.size()+1), null);
         Set<String> commands = commandsPerPlayer.get(playerId);
         List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
         List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
@@ -64,6 +64,8 @@ public class OpenDoor extends Game {
         commands.add(actionPickup.getName());
 
         winConds.add(new ConditionCheckBoolean(door.getOpenState(), true));
+
+        return player;
     }
 
     @Override

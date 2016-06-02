@@ -7,6 +7,7 @@ import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.Stick;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -49,10 +50,9 @@ public class FetchQuest extends Game {
         return this;
     }
 
-
     @Override
-    protected void configPlayer(String playerId) {
-        Player player = players.get(playerId);
+    protected Player configPlayer(String playerId, String type) {
+        Player player = new Player("player" + Integer.toString(players.size()+1), null);
         Set<String> commands = commandsPerPlayer.get(playerId);
         List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
         List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
@@ -66,6 +66,8 @@ public class FetchQuest extends Game {
 
         ConditionCheckContains cond = new ConditionCheckContains(player.getChildrenState(), stick.getName(), true);
         winConds.add(cond);
+
+        return player;
     }
 
     @Override
