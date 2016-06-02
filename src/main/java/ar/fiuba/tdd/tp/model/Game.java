@@ -5,6 +5,7 @@ import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.concrete.Room;
 import ar.fiuba.tdd.tp.objects.concrete.door.AbstractLockedOpenable;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
+import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 import java.util.*;
 
@@ -57,12 +58,12 @@ public abstract class Game implements GameBuilder {
         return false;
     }
 
-    private String preProcess(String playerId, List<String> parsedCommand) {
+    private String preProcess(String playerId, List<String> parsedCommand, BooleanState forward) {
         if (parsedCommand.size() > 0) {
             if (gameState == Ready) {
                 gameState = InProgress;
             }
-            return process(playerId, parsedCommand);
+            return process(playerId, parsedCommand, forward);
         } else {
             return "invalid command";
         }
@@ -89,8 +90,8 @@ public abstract class Game implements GameBuilder {
 
     protected abstract void configPlayer(String playerId);
 
-    public String processCommand(String playerId, String stringCommand) {
-
+    public String processCommand(String playerId, String stringCommand, BooleanState forward) {
+        forward.setFalse();
         System.out.println("SERVER PROCESS " + stringCommand + " FROM " + playerId);
 
         // TODO: refactorizar
@@ -115,11 +116,11 @@ public abstract class Game implements GameBuilder {
             }
         }
 
-        return preProcess(playerId, parsedCommand);
+        return preProcess(playerId, parsedCommand, forward);
 
     }
 
-    private String process(String playerId, List<String> parsedCommand) {
+    private String process(String playerId, List<String> parsedCommand, BooleanState forward) {
         String command = parsedCommand.get(0);
         parsedCommand.remove(0);
 
@@ -133,7 +134,8 @@ public abstract class Game implements GameBuilder {
             return "you didn't input any visible object names";
         }
 
-        return handleProcessedCommand(playerId, command, objectsInvolved);
+        forward.setTrue();
+        return players.get(playerId).getName() + ": " + handleProcessedCommand(playerId, command, objectsInvolved);
     }
 
     protected abstract void updateGameAfterHandle();

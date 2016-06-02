@@ -2,16 +2,22 @@ package ar.fiuba.tdd.tp.server;
 
 import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.model.Motor;
+import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 class ClientWorker implements Runnable {
-    private Socket clientSocket;
+    private Map<String, Socket> clientSockets;
     private final ServerSocket serverSocket;
     private final Game game;
-    private volatile boolean isRunning = false;
+    private BooleanState isRunning;
 
     private static final String win = ". You won the game!";
     private static final String loose = ". You lost!";
@@ -21,14 +27,30 @@ class ClientWorker implements Runnable {
         this.serverSocket = server;
         Motor motor = new Motor();
         this.game = motor.createGame(gameName);
+        this.clientSockets = new HashMap<>();
+        isRunning = new BooleanState(false);
     }
 
     public void run() {
 
         try {
-            this.isRunning = true;
-            clientSocket = serverSocket.accept();
-            PrintWriter out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
+            this.isRunning.setTrue();
+            serverSocket.setSoTimeout(1000);
+            while(this.isRunning.isTrue()) {
+                try {
+                    Socket clientSocket = serverSocket.accept();
+                    //clientSocket.setSoTimeout(1000);
+                    clientSockets.put(clientSocket.toString(), clientSocket);
+                    ClientWorkerInner inner = new ClientWorkerInner(clientSockets, clientSocket.toString(), game, isRunning);
+                    Thread thread = new Thread(inner);
+                    thread.start();
+                } catch (SocketTimeoutException e) {
+
+                }
+            }
+
+
+            /*PrintWriter out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream(), "UTF-8"));
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
 
             String inputLine;
@@ -45,7 +67,7 @@ class ClientWorker implements Runnable {
             }
             
             out.close();
-            in.close();
+            in.close();*/
             this.closeSockets();
 
         } catch (IOException e) {
@@ -54,12 +76,12 @@ class ClientWorker implements Runnable {
     }
 
     private void closeSockets() throws IOException {
-        this.clientSocket.close();
+        //this.clientSocket.close();
         this.serverSocket.close();
         Server.stopGame(this.game.getName());
     }
 
     public void kill() {
-        this.isRunning = false;
+        this.isRunning.setFalse();
     }
 }

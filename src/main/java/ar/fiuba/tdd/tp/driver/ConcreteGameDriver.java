@@ -4,6 +4,7 @@ package ar.fiuba.tdd.tp.driver;
 import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.model.GameBuilder;
 import ar.fiuba.tdd.tp.model.Motor;
+import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.server.BuilderLoader;
 
 import java.io.IOException;
@@ -30,7 +31,7 @@ public class ConcreteGameDriver implements GameDriver {
     @Override
     public String sendCommand(String cmd) {
         // TODO: revisar
-        return game.processCommand(" ", cmd);
+        return game.processCommand(" ", cmd, new BooleanState());
 
     }
 
