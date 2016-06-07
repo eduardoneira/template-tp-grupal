@@ -8,7 +8,7 @@ import java.util.List;
 
 public class BeUsed extends ActionHandler {
 
-    private int idObjectWhoUses;
+    private int idObjectWhoUses = 0;
     private final int maxAmountOfUses;
     private int currentAmountOfUses;
     private final ParentState holder;

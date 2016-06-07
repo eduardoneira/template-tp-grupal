@@ -9,10 +9,7 @@ import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.objects.states.ChildrenStateLimitedSize;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 public class TreasureHunt extends Game {
@@ -34,7 +31,7 @@ public class TreasureHunt extends Game {
     private LinkingLockedDoor door2to5;
     private Chest chestIn2;
     private Box boxInChestIn2;
-    private Antidote antidoteIn2;
+    private GeneralMovableObject antidoteIn2;
 
     private Room room3;
     private LinkingLockedDoor door3to2;
@@ -44,20 +41,24 @@ public class TreasureHunt extends Game {
     private Room room4;
     private LinkingLockedDoor door4to2;
     private Chest chest1In4;
-    private Poison poisonIn4;
+    private GeneralMovableObject poisonIn4;
     private Chest chest2In4;
     private Treasure treasureInChest2In4;
 
     private Room room5;
-    private Antidote antidoteIn5;
+    private GeneralMovableObject antidoteIn5;
     private LinkingLockedDoor door5to2;
     private Chest chest1In5;
     private Key keyTo4;
     private Chest chest2In5;
-    private Poison poisonIn5;
+    private GeneralMovableObject poisonIn5;
 
-    private BooleanState killedByPoison;
-    private BooleanState poisoned;
+    private List<BooleanState> killedByPoison;
+    private List<Boolean> killedByPoisonTriggeredValues;
+    private List<BooleanState> poisoned;
+    private List<Boolean> poisonedTriggeredValues;
+    private List<Boolean> antidoteTriggeredValues;
+    private List<String> playerNames;
 
     public TreasureHunt() {
         super("TreasureHunt");
@@ -81,10 +82,14 @@ public class TreasureHunt extends Game {
     }
 
     private void initBooleans() {
-        killedByPoison = new BooleanState();
-        killedByPoison.setFalse();
-        poisoned = new BooleanState();
-        poisoned.setFalse();
+        killedByPoison = new ArrayList<>();
+        killedByPoisonTriggeredValues = new ArrayList<>();
+        //killedByPoison.setFalse();
+        poisoned = new ArrayList<>();
+        poisonedTriggeredValues = new ArrayList<>();
+        antidoteTriggeredValues = new ArrayList<>();
+        //poisoned.setFalse();
+        playerNames = new ArrayList<>();
 
         door2to3state = new BooleanState();
         door2to3state.setTrue();
@@ -131,7 +136,11 @@ public class TreasureHunt extends Game {
         boxInChestIn2 = new Box("boxIn2", chestIn2);
         objects.put(boxInChestIn2.getName(), boxInChestIn2);
 
-        antidoteIn2 = new Antidote("antidoteIn2", boxInChestIn2, poisoned);
+        //antidoteIn2 = new Antidote("antidoteIn2", boxInChestIn2, poisoned);
+        antidoteIn2 = new GeneralMovableObject("antidoteIn2", boxInChestIn2);
+        BeUsed usedAction = new BeUsed(antidoteIn2, antidoteIn2.getParentState(), 1);
+        antidoteIn2.addAction(new TriggerActionHandlerByName(antidoteIn2, usedAction, poisoned, playerNames, antidoteTriggeredValues, 0, "All your ailments are healed!"));
+        antidoteIn2.addAction(usedAction);
         objects.put(antidoteIn2.getName(), antidoteIn2);
     }
 
@@ -163,7 +172,16 @@ public class TreasureHunt extends Game {
         chest1In4 = new Chest("chest1In4", room4);
         objects.put(chest1In4.getName(), chest1In4);
 
-        poisonIn4 = new Poison("poisonIn4", chest1In4, killedByPoison, poisoned);
+        //poisonIn4 = new Poison("poisonIn4", chest1In4, killedByPoison, poisoned);
+
+        poisonIn4 = new GeneralMovableObject("poisonIn4", chest1In4);
+        chest1In4.addAction(new TriggerActionHandlerByName(chest1In4, new BeOpened(null, null), poisoned, playerNames, poisonedTriggeredValues, 0));
+        List<ActionHandler> actions = new LinkedList<>();
+        actions.add(new ConditionalActionHandlerChecksByName(poisonIn4,
+                new TriggerActionHandlerByName(poisonIn4,
+                        new BeMoved(null, null), killedByPoison, playerNames, killedByPoisonTriggeredValues, -1),
+                poisoned, playerNames, -1));
+        chest1In4.addAction(new BeOpenedAddsActionsToOpener(chest1In4, actions, "You feel weak!"));
         objects.put(poisonIn4.getName(), poisonIn4);
     }
 
@@ -187,7 +205,11 @@ public class TreasureHunt extends Game {
         door5to2 = new LinkingLockedDoor("door5to2", room5, 5, room2, door2to5state);
         objects.put(door5to2.getName(), door5to2);
 
-        antidoteIn5 = new Antidote("antidoteIn5", room5, poisoned);
+        //antidoteIn5 = new Antidote("antidoteIn5", room5, poisoned);
+        antidoteIn5 = new GeneralMovableObject("antidoteIn5", room5);
+        BeUsed usedAction = new BeUsed(antidoteIn5, antidoteIn5.getParentState(), 1);
+        antidoteIn5.addAction(new TriggerActionHandlerByName(antidoteIn5, usedAction, poisoned, playerNames, antidoteTriggeredValues, 0, "All your ailments are healed!"));
+        antidoteIn5.addAction(usedAction);
         objects.put(antidoteIn5.getName(), antidoteIn5);
 
         chest1In5 = new Chest("chest1In5", room5);
@@ -201,7 +223,17 @@ public class TreasureHunt extends Game {
         chest2In5 = new Chest("chest2In5", room5);
         objects.put(chest2In5.getName(), chest2In5);
 
-        poisonIn5 = new Poison("poisonIn5", chest2In5, killedByPoison, poisoned);
+        //poisonIn5 = new Poison("poisonIn5", chest2In5, killedByPoison, poisoned);
+        //objects.put(poisonIn5.getName(), poisonIn5);
+
+        poisonIn5 = new GeneralMovableObject("poisonIn5", chest2In5);
+        chest2In5.addAction(new TriggerActionHandlerByName(chest2In5, new BeOpened(null, null), poisoned, playerNames, poisonedTriggeredValues, 0));
+        List<ActionHandler> actions = new LinkedList<>();
+        actions.add(new ConditionalActionHandlerChecksByName(poisonIn5,
+                new TriggerActionHandlerByName(poisonIn5,
+                        new BeMoved(null, null), killedByPoison, playerNames, killedByPoisonTriggeredValues, -1),
+                poisoned, playerNames, -1));
+        chest2In5.addAction(new BeOpenedAddsActionsToOpener(chest2In5, actions, "You feel weak!"));
         objects.put(poisonIn5.getName(), poisonIn5);
     }
 
@@ -235,7 +267,15 @@ public class TreasureHunt extends Game {
         winConds.add(new ConditionCompound(new ConditionCheckContains(player.getChildrenState(), treasureInChest2In4.getName(), true),
                 new ConditionCheckContains(room1.getChildrenState(), player.getName(), true)));
 
-        looseConds.add(new ConditionCheckBoolean(killedByPoison, true));
+        playerNames.add(new String(player.getName()));
+        BooleanState myKilledByPoison = new BooleanState(false);
+        killedByPoison.add(myKilledByPoison);
+        killedByPoisonTriggeredValues.add(new Boolean(true));
+        poisoned.add(new BooleanState(false));
+        poisonedTriggeredValues.add(new Boolean(true));
+        antidoteTriggeredValues.add(new Boolean(false));
+
+        looseConds.add(new ConditionCheckBoolean(myKilledByPoison, true));
 
         return player;
     }
@@ -245,7 +285,16 @@ public class TreasureHunt extends Game {
         Player player = players.get(playerId);
         for (GameObjectWithParent o : player.getChildren()) {
             o.setParent(player.getParent());
+            player.getParent().addChild(o);
         }
+
+        int i = playerNames.indexOf(player.getName());
+        playerNames.remove(i);
+        killedByPoison.remove(i);
+        killedByPoisonTriggeredValues.remove(i);
+        poisoned.remove(i);
+        poisonedTriggeredValues.remove(i);
+        antidoteTriggeredValues.remove(i);
     }
 
     @Override

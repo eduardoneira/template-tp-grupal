@@ -16,7 +16,7 @@ public class ConditionalActionHandlerFailsDummy extends ConditionalActionHandler
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         StringBuilder response = new StringBuilder();
-        if (!checkConditions(response)) {
+        if (!checkConditions(objectsInvolved, response)) {
             return response.toString();
         }
 

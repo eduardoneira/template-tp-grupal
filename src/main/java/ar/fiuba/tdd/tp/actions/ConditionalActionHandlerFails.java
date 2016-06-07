@@ -19,14 +19,19 @@ public class ConditionalActionHandlerFails extends ActionHandler {
     @Override
     public String handleAction(String actionName, List<GameObject> objectsInvolved) {
         StringBuilder response = new StringBuilder();
-        if (!checkConditions(response)) {
+        if (!checkConditions(objectsInvolved, response)) {
             return response.toString();
         }
 
         return action.handleAction(actionName, objectsInvolved);
     }
 
-    protected boolean checkConditions(StringBuilder response) {
+    protected void setInstance(GameObject instance) {
+        action.setInstance(instance);
+        this.instance = instance;
+    }
+
+    protected boolean checkConditions(List<GameObject> objectsInvolved, StringBuilder response) {
         for (BooleanState condition : conditions) {
             if (!condition.isTrue()) {
                 response.append("a condition was not met in conditional command ");
@@ -40,7 +45,7 @@ public class ConditionalActionHandlerFails extends ActionHandler {
 
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
-        return checkConditions(response) && action.canIHandleAction(objectsInvolved, response);
+        return checkConditions(objectsInvolved, response) && action.canIHandleAction(objectsInvolved, response);
     }
 
     @Override

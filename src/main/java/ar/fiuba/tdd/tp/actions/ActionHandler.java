@@ -44,6 +44,10 @@ public abstract class ActionHandler {
 
     public abstract String getName();
 
+    protected void setInstance(GameObject instance) {
+        this.instance = instance;
+    }
+
     protected void setResponseError(List<GameObject> objectsInvolved, StringBuilder response) {
         response.append("command ");
         response.append(getName());

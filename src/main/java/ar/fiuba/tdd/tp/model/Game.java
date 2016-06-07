@@ -63,6 +63,7 @@ public abstract class Game implements GameBuilder {
 
     protected void removePlayer(String playerId) {
         removePlayerItems(playerId);
+        players.get(playerId).getParent().removeChild(players.get(playerId));
         players.remove(playerId);
         commandsPerPlayer.remove(playerId);
         winConditionsPerPlayer.remove(playerId);

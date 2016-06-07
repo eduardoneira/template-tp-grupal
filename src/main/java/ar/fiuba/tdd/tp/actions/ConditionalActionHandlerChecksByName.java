@@ -5,9 +5,13 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 import java.util.List;
 
-public class ConditionalActionHandlerChecks extends ConditionalActionHandlerFails {
-    public ConditionalActionHandlerChecks(GameObject instance, ActionHandler action, List<BooleanState> conditions) {
-        super(instance, action, conditions);
+/**
+ * Created by Master on 07/06/2016.
+ */
+public class ConditionalActionHandlerChecksByName extends ConditionalActionHandlerFailsByName {
+
+    public ConditionalActionHandlerChecksByName(GameObject instance, ActionHandler action, List<BooleanState> conditions, List<String> names, int i) {
+        super(instance, action, conditions, names, i);
     }
 
     @Override

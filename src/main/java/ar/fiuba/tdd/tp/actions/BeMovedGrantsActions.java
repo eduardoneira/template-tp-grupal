@@ -26,7 +26,7 @@ public class BeMovedGrantsActions extends BeMoved {
         if (oldParent != null) {
             for (ActionHandler action : actionsGranted) {
                 oldParent.removeAction(action.getName());
-                action.instance = this.instance;
+                action.setInstance(this.instance);
             }
         }
 
@@ -35,7 +35,7 @@ public class BeMovedGrantsActions extends BeMoved {
         GameObject newParent = parent.getParent();
         for (ActionHandler action : actionsGranted) {
             newParent.addAction(action);
-            action.instance = newParent;
+            action.setInstance(newParent);
         }
 
         return ret + resultString;

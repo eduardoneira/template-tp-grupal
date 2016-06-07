@@ -23,7 +23,7 @@ public class BeOpenedAddsActionsToOpener extends BeOpened {
 
         for (ActionHandler action : actionsGranted) {
             opener.addAction(action);
-            action.instance = opener;
+            action.setInstance(opener);
         }
         actionsGranted.clear();
 
