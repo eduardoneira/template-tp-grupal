@@ -6,6 +6,7 @@ import ar.fiuba.tdd.tp.objects.concrete.*;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingDoor;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingLockedDoor;
 import ar.fiuba.tdd.tp.objects.general.ConcreteGameObjectWithParent;
+import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 import java.util.*;
@@ -23,9 +24,13 @@ public class TempleQuest extends Game {
 
     Box nichoOscuro;
     GeneralMovableObject veneno;
-    BooleanState poisoned;
 
-    Antidote antidoto;
+    List<BooleanState> poisoned;
+    List<Boolean> poisonedTriggeredValues;
+    List<String> playerNames;
+
+    GeneralMovableObject antidoto;
+    List<Boolean> antidoteTriggeredValues;
 
     ConcreteGameObjectWithParent mono;
     BooleanState monoDespierto;
@@ -163,7 +168,13 @@ public class TempleQuest extends Game {
 
         crearVeneno();
 
-        antidoto = new Antidote("antidoteFruit", room1, poisoned);
+        /*antidoto = new Antidote("antidoteFruit", room1, poisoned);
+        objects.put(antidoto.getName(), antidoto);*/
+
+        antidoto = new GeneralMovableObject("antidoteFruit", room1);
+        BeUsed usedAction = new BeUsed(antidoto, antidoto.getParentState(), 1);
+        antidoto.addAction(new TriggerActionHandlerByName(antidoto, usedAction, poisoned, playerNames, antidoteTriggeredValues, 0, "All your ailments are healed!"));
+        antidoto.addAction(usedAction);
         objects.put(antidoto.getName(), antidoto);
 
         crearMono();
@@ -176,7 +187,19 @@ public class TempleQuest extends Game {
     }
 
     private void crearVeneno() {
-        poisoned = new BooleanState(false);
+
+        poisoned = new ArrayList<>();
+        poisonedTriggeredValues = new ArrayList<>();
+        playerNames = new ArrayList<>();
+        antidoteTriggeredValues = new ArrayList<>();
+
+        veneno = new GeneralMovableObject("venomousFruit", nichoOscuro);
+        nichoOscuro.addAction(new TriggerActionHandlerByName(nichoOscuro, new BeOpened(null, null), poisoned, playerNames, poisonedTriggeredValues, 0));
+        List<ActionHandler> actions = new LinkedList<>();
+        nichoOscuro.addAction(new BeOpenedAddsActionsToOpener(nichoOscuro, actions, "You feel weak!"));
+        objects.put(veneno.getName(), veneno);
+
+        /*poisoned = new BooleanState(false);
         veneno = new GeneralMovableObject("venomousFruit", nichoOscuro);
         List<BooleanState> conditions = new LinkedList<>();
         conditions.add(this.poisoned);
@@ -185,7 +208,7 @@ public class TempleQuest extends Game {
         nichoOscuro.addAction(new TriggerActionHandler(nichoOscuro, new BeOpened(null, null), conditions, triggeredValues));
         List<ActionHandler> actions = new LinkedList<>();
         nichoOscuro.addAction(new BeOpenedAddsActionsToOpener(nichoOscuro, actions, "You feel weak!"));
-        objects.put(veneno.getName(), veneno);
+        objects.put(veneno.getName(), veneno);*/
 
     }
 
@@ -351,13 +374,13 @@ public class TempleQuest extends Game {
         player.addAction(cross);
         commands.add(cross.getName());
 
-        configPlayerCont(playerId);
+        configPlayerCont(playerId, player);
 
         return player;
     }
 
-    private void configPlayerCont(String playerId) {
-        Player player = players.get(playerId);
+    private void configPlayerCont(String playerId, Player player) {
+        //Player player = players.get(playerId);
         Set<String> commands = commandsPerPlayer.get(playerId);
         List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
         List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
@@ -391,9 +414,31 @@ public class TempleQuest extends Game {
 
         ConditionCheckContains acantiladoContainsPlayer = new ConditionCheckContains(acantilado.getChildrenState(), player.getName(), true);
         looseConds.add(acantiladoContainsPlayer);
-        looseConds.add(new ConditionCompound(room4ContainsPlayer, new ConditionCheckBoolean(poisoned, true)));
+
+        BooleanState myPoisoned = new BooleanState(false);
+        poisoned.add(myPoisoned);
+        poisonedTriggeredValues.add(true);
+        antidoteTriggeredValues.add(false);
+        playerNames.add(player.getName());
+
+        looseConds.add(new ConditionCompound(room4ContainsPlayer, new ConditionCheckBoolean(myPoisoned, true)));
         looseConds.add(new ConditionCompound(room4ContainsPlayer, new ConditionCheckContains(arqueologo.getChildrenState(), disc9.getName(), false)));
         looseConds.add(new ConditionCheckBoolean(murioPorSoga.get(playerId), true));
+    }
+
+    @Override
+    protected void removePlayerItems(String playerId) {
+        Player player = players.get(playerId);
+        for (GameObjectWithParent o : player.getChildren()) {
+            o.setParent(player.getParent());
+            player.getParent().addChild(o);
+        }
+
+        int i = playerNames.indexOf(player.getName());
+        playerNames.remove(i);
+        poisoned.remove(i);
+        poisonedTriggeredValues.remove(i);
+        antidoteTriggeredValues.remove(i);
     }
 
     @SuppressWarnings("CPD-END")
