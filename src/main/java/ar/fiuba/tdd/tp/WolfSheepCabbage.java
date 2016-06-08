@@ -14,7 +14,6 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.objects.states.ChildrenStateLimitedSize;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -115,7 +114,7 @@ public class WolfSheepCabbage extends Game {
     }
 
     @Override
-    protected void updateGameAfterHandle() {
+    protected void updateGameAfterHandle(String playerId) {
         actualizarWolfWithSheep();
         actualizarSheepWithCabbage();
     }

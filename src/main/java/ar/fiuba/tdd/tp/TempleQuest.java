@@ -87,13 +87,13 @@ public class TempleQuest extends Game {
     @SuppressWarnings("CPD-START")
 
     @Override
-    protected void updateGameAfterHandle() {
+    protected void updateGameAfterHandle(String playerId) {
         if ((switch1IsPressed.isTrue() || switch2IsPressed.isTrue()) && monoDespierto.isTrue()) {
             switch1IsPressed.setTrue();
             switch2IsPressed.setTrue();
         }
 
-        for(String playerId : players.keySet()) {
+        //for(String playerId : players.keySet()) {
             estabaEnShore1TurnoAnterior.get(playerId).setValue(estaEnShore1Ahora.get(playerId).isTrue());
             estaEnShore1Ahora.get(playerId).setValue(room2shore1.contains(players.get(playerId).getName()));
             if ((estabaEnShore1TurnoAnterior.get(playerId).isFalse() && estaEnShore1Ahora.get(playerId).isTrue())
@@ -102,7 +102,7 @@ public class TempleQuest extends Game {
                     murioPorSoga.get(playerId).setTrue();
                 }
             }
-        }
+        //}
     }
 
     /*@Override

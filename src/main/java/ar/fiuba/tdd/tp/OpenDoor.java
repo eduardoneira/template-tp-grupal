@@ -69,7 +69,7 @@ public class OpenDoor extends Game {
     }
 
     @Override
-    protected void updateGameAfterHandle() {
+    protected void updateGameAfterHandle(String playerId) {
 
     }
 

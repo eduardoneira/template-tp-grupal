@@ -12,8 +12,6 @@ import ar.fiuba.tdd.tp.objects.concrete.door.AntiCurseLinkingDoor;
 import ar.fiuba.tdd.tp.objects.concrete.door.LinkingLockedDoor;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -106,7 +104,7 @@ public class CursedObject extends Game {
     }
 
     @Override
-    protected void updateGameAfterHandle() {
+    protected void updateGameAfterHandle(String playerId) {
 
     }
 

@@ -2,10 +2,7 @@ package ar.fiuba.tdd.tp.model;
 
 import ar.fiuba.tdd.tp.driver.GameState;
 import ar.fiuba.tdd.tp.objects.concrete.Player;
-import ar.fiuba.tdd.tp.objects.concrete.Room;
-import ar.fiuba.tdd.tp.objects.concrete.door.AbstractLockedOpenable;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
-import ar.fiuba.tdd.tp.objects.general.GameObjectWithChildren;
 import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
@@ -70,6 +67,7 @@ public abstract class Game implements GameBuilder {
         looseConditionsPerPlayer.remove(playerId);
     }
 
+    // esto lo deberia definir cada juego
     protected void removePlayerItems(String playerId) {
         Player player = players.get(playerId);
         for (GameObjectWithParent o : player.getChildren()) {
@@ -156,11 +154,11 @@ public abstract class Game implements GameBuilder {
         return players.get(playerId).getName() + ": " + handleProcessedCommand(playerId, command, objectsInvolved);
     }
 
-    protected abstract void updateGameAfterHandle();
+    protected abstract void updateGameAfterHandle(String playerId);
 
     private String handleProcessedCommand(String playerId, String command, List<GameObject> objectsInvolved) {
         String result = players.get(playerId).handleAction(command, objectsInvolved);
-        updateGameAfterHandle();
+        updateGameAfterHandle(playerId);
         if (checkWinCondition(playerId)) {
             gameState = Won;
             return result + win;

@@ -22,8 +22,8 @@ public class ConditionalActionHandlerFailsByName extends ConditionalActionHandle
     @Override
     protected boolean checkConditions(List<GameObject> objectsInvolved, StringBuilder response) {
         for (int i = 0; i < conditions.size(); ++i) {
-            if ((indexInObjectsInvolved >= 0 && objectsInvolved.get(indexInObjectsInvolved).equals(names.get(i)))
-                    ||  (indexInObjectsInvolved < 0 && this.instance.getName().equals(names.get(i)) )
+            if (((indexInObjectsInvolved >= 0 && objectsInvolved.get(indexInObjectsInvolved).getName().equals(names.get(i)))
+                    ||  (indexInObjectsInvolved < 0 && this.instance.getName().equals(names.get(i)) ))
                     && (!conditions.get(i).isTrue())) {
                 response.append("a condition was not met in conditional command ");
                 response.append(getName());
