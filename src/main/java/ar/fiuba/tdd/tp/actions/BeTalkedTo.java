@@ -7,7 +7,7 @@ import java.util.List;
 public class BeTalkedTo extends ActionHandler {
 
     protected static final int idObjectWhoTalks = 0;
-    protected String dialog;
+    protected final String dialog;
     //protected int argsSize = 1;
 
     public BeTalkedTo(GameObject instance) {

@@ -292,7 +292,7 @@ public class TheEscape extends Game {
         BooleanState permiteAcceso = new BooleanState(false);
         BooleanState noPermiteAcceso = new BooleanState(true);
         BooleanState myTalkedLastTrun = new BooleanState(false);
-        Boolean myTalkedLastTurnTriggeredValue = new Boolean(true);
+        Boolean myTalkedLastTurnTriggeredValue = Boolean.TRUE;
 
         playerNames.add(player.getName());
 

@@ -49,7 +49,7 @@ public class FetchQuest extends Game {
 
     @Override
     protected Player configPlayer(String playerId, String type) {
-        Player player = new Player("player" + Integer.toString(players.size()+1), null);
+        Player player = new Player("player" + Integer.toString(players.size() + 1), null);
         Set<String> commands = commandsPerPlayer.get(playerId);
         List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
         List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
