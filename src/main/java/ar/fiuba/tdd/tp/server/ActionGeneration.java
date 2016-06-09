@@ -27,7 +27,6 @@ public class ActionGeneration implements Runnable{
         }
         return actionsInTime;
     }
-    //TODO
     private boolean isDivisor(int divisor, int numero) { //4 16
         int resto = numero % divisor;
         if ( resto != 0 ) { return false; }

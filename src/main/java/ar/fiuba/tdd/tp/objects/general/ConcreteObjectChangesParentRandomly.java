@@ -4,12 +4,13 @@ import java.util.Random;
 /**
  * Created by fernando on 08/06/16.
  */
-public class ConcreteObjectRandom extends ConcreteGameObjectWithParent implements GameObjectWithParent{
+public class ConcreteObjectChangesParentRandomly extends ConcreteGameObjectWithParent implements GameObjectWithParent{
 
     private static List<GameObjectWithChildren> parents;
 
-    public ConcreteObjectRandom(String name, GameObjectWithChildren parent) {
+    public ConcreteObjectChangesParentRandomly(String name, GameObjectWithChildren parent) {
         super(name, parent);
+        parents.add(parent);
     }
 
     private static int getRandomNaturalNumber(int min, int max) {
@@ -18,13 +19,12 @@ public class ConcreteObjectRandom extends ConcreteGameObjectWithParent implement
     }
     public void setOnePossibleParent(GameObjectWithChildren parent) { parents.add(parent); }
 
-    public GameObjectWithChildren getActualParent() {
+    public void changeParent() {
         GameObjectWithChildren parent;
-        if ( parents.isEmpty()) { return null; }
-        else {
-            int randomNum = getRandomNaturalNumber(0,parents.size());
-            return parents.get(randomNum);
-        }
+        int randomNum = getRandomNaturalNumber(0,parents.size());
+        this.setParent(parents.get(randomNum));
+        parents.get(randomNum).addChild(this);
     }
+
 
 }
