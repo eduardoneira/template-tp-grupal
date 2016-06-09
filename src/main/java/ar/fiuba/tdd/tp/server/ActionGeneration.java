@@ -6,11 +6,20 @@ import java.util.List;
 public class ActionGeneration {
 
     private static List<ActionWithTime> actions;
+    private boolean serverRunning;
 
+    public void killActionGeneration(){ serverRunning = false; }
+
+    public void startDoingActions(){
+        serverRunning = true;
+        //while (serverRunning){
+
+        //}
+    }
     public void setActionWithTime(ActionWithTime actionWithTime ){
         actions.add(actionWithTime);
     }
-    public List<ActionWithTime> getActionsToDo (int currentTime){
+    private List<ActionWithTime> getActionsToDo (int currentTime){
         List<ActionWithTime> actionsInTime = new LinkedList<ActionWithTime>();
         if (actions.isEmpty()){
             return null;
