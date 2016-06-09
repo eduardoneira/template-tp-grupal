@@ -3,19 +3,15 @@ package ar.fiuba.tdd.tp.server;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ActionGeneration {
+import static java.lang.Thread.sleep;
+
+public class ActionGeneration implements Runnable{
 
     private static List<ActionWithTime> actions;
     private boolean serverRunning;
+    static final int oneMinute = 60000; //one minute = 60000 ms
 
     public void killActionGeneration(){ serverRunning = false; }
-
-    public void startDoingActions(){
-        serverRunning = true;
-        //while (serverRunning){
-
-        //}
-    }
     public void setActionWithTime(ActionWithTime actionWithTime ){
         actions.add(actionWithTime);
     }
@@ -32,7 +28,29 @@ public class ActionGeneration {
         return actionsInTime;
     }
     //TODO
-    private boolean isDivisor(int divisor, int numero) {
-        return true;
+    private boolean isDivisor(int divisor, int numero) { //4 16
+        int resto = numero % divisor;
+        if ( resto != 0 ) { return false; }
+        else { return true; }
+    }
+
+    @Override
+    public void run() {
+        serverRunning = true;
+        while (serverRunning){
+            long currentTimeMilis = System.currentTimeMillis();
+            float currentTimeSecs = currentTimeMilis / 1000;
+            int timeMin  = (int) (currentTimeSecs / 60);
+            List<ActionWithTime> actionsTodo = (LinkedList<ActionWithTime>) getActionsToDo(timeMin);
+            while (!actionsTodo.isEmpty()){
+                ActionWithTime actual = actionsTodo.get(actionsTodo.size());
+                //escupir esta accion
+            }
+            try {
+                sleep(oneMinute);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
