@@ -89,16 +89,6 @@ public class TorresHanoi extends Game {
 
     @SuppressWarnings("CPD-END")
 
-    /*@Override
-    public boolean checkWinCondition() {
-        return ((torre1.isEmpty()) && (torre2.isEmpty() || torre3.isEmpty()));
-    }
-
-    @Override
-    public boolean checkLooseCondition() {
-        return false;
-    }*/
-
     @Override
     public ar.fiuba.tdd.tp.model.Game build() {
         createRoom();

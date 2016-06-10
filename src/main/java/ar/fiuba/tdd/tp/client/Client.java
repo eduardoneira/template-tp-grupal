@@ -9,6 +9,7 @@ public class Client implements ClientResponses {
 
         BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in, "UTF-8"));
         Socket socket = makeConnection(stdIn);
+
         while (socket != null) {
             PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(), "UTF-8"));
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
@@ -45,7 +46,7 @@ public class Client implements ClientResponses {
                 input = in.readLine();
             }
         }
-        socket.setSoTimeout(1000);
+
         return socket;
     }
 
