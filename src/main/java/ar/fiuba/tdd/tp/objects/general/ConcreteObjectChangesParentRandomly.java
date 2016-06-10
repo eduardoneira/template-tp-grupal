@@ -1,4 +1,5 @@
 package ar.fiuba.tdd.tp.objects.general;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 /**
@@ -10,6 +11,7 @@ public class ConcreteObjectChangesParentRandomly extends ConcreteGameObjectWithP
 
     public ConcreteObjectChangesParentRandomly(String name, GameObjectWithChildren parent) {
         super(name, parent);
+        parents = new ArrayList<>();
         parents.add(parent);
     }
 
@@ -20,10 +22,13 @@ public class ConcreteObjectChangesParentRandomly extends ConcreteGameObjectWithP
     public void setOnePossibleParent(GameObjectWithChildren parent) { parents.add(parent); }
 
     public void changeParent() {
-        GameObjectWithChildren parent;
-        int randomNum = getRandomNaturalNumber(0,parents.size());
-        this.setParent(parents.get(randomNum));
-        parents.get(randomNum).addChild(this);
+        List<GameObjectWithChildren> parentsToJump = new ArrayList<GameObjectWithChildren>(parents);
+        parentsToJump.remove(this.getParent());
+
+        int randomNum = getRandomNaturalNumber(0,parentsToJump.size());
+        this.getParent().removeChild(this);
+        this.setParent(parentsToJump.get(randomNum));
+        this.getParent().addChild(this);
     }
 
 

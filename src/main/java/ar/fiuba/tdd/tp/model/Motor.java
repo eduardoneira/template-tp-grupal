@@ -24,6 +24,7 @@ public class Motor {
         games.add( new TreasureHunt() );
         games.add( new TempleQuest() );
         games.add( new TheEscape());
+        games.add( new TheEscape2());
     }
 
     public Game createGame(String game) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {

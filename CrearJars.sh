@@ -11,3 +11,4 @@ jar cvf ar/fiuba/tdd/tp/TreasureHunt.jar ar/fiuba/tdd/tp/TreasureHunt.class
 jar cvf ar/fiuba/tdd/tp/WolfSheepCabbage.jar ar/fiuba/tdd/tp/WolfSheepCabbage.class
 jar cvf ar/fiuba/tdd/tp/TempleQuest.jar ar/fiuba/tdd/tp/TempleQuest.class
 jar cvf ar/fiuba/tdd/tp/TheEscape.jar ar/fiuba/tdd/tp/TheEscape.class
+jar cvf ar/fiuba/tdd/tp/TheEscape2.jar ar/fiuba/tdd/tp/TheEscape2.class

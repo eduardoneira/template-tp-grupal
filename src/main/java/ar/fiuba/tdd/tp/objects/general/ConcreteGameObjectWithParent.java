@@ -28,7 +28,7 @@ public class ConcreteGameObjectWithParent extends ConcreteGameObject implements 
     }
 
     @Override
-    public GameObject getParent() {
+    public GameObjectWithChildren getParent() {
         return this.parent.getParent();
     }
 

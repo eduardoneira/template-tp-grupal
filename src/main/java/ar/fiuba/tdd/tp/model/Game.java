@@ -154,6 +154,12 @@ public abstract class Game implements GameBuilder {
         return players.get(playerId).getName() + ": " + handleProcessedCommand(playerId, command, objectsInvolved);
     }
 
+    public void updateGameState() {
+        for (String playerId : players.keySet()) {
+            updateGameAfterHandle(playerId);
+        }
+    }
+
     protected abstract void updateGameAfterHandle(String playerId);
 
     private String handleProcessedCommand(String playerId, String command, List<GameObject> objectsInvolved) {
