@@ -239,7 +239,7 @@ public class TreasureHunt extends Game {
 
     @Override
     protected Player configPlayer(String playerId, String type) {
-        Player player = new Player("player" + Integer.toString(players.size()+1), null, new ChildrenStateLimitedSize(2));
+        Player player = new Player("player" + Integer.toString(players.size() + 1), null, new ChildrenStateLimitedSize(2));
         Set<String> commands = commandsPerPlayer.get(playerId);
         List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
         List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
@@ -267,13 +267,13 @@ public class TreasureHunt extends Game {
         winConds.add(new ConditionCompound(new ConditionCheckContains(player.getChildrenState(), treasureInChest2In4.getName(), true),
                 new ConditionCheckContains(room1.getChildrenState(), player.getName(), true)));
 
-        playerNames.add(new String(player.getName()));
+        playerNames.add(player.getName());
         BooleanState myKilledByPoison = new BooleanState(false);
         killedByPoison.add(myKilledByPoison);
-        killedByPoisonTriggeredValues.add(new Boolean(true));
+        killedByPoisonTriggeredValues.add(Boolean.TRUE);
         poisoned.add(new BooleanState(false));
-        poisonedTriggeredValues.add(new Boolean(true));
-        antidoteTriggeredValues.add(new Boolean(false));
+        poisonedTriggeredValues.add(Boolean.TRUE);
+        antidoteTriggeredValues.add(Boolean.FALSE);
 
         looseConds.add(new ConditionCheckBoolean(myKilledByPoison, true));
 
@@ -288,13 +288,13 @@ public class TreasureHunt extends Game {
             player.getParent().addChild(o);
         }
 
-        int i = playerNames.indexOf(player.getName());
-        playerNames.remove(i);
-        killedByPoison.remove(i);
-        killedByPoisonTriggeredValues.remove(i);
-        poisoned.remove(i);
-        poisonedTriggeredValues.remove(i);
-        antidoteTriggeredValues.remove(i);
+        int playerIndex = playerNames.indexOf(player.getName());
+        playerNames.remove(playerIndex);
+        killedByPoison.remove(playerIndex);
+        killedByPoisonTriggeredValues.remove(playerIndex);
+        poisoned.remove(playerIndex);
+        poisonedTriggeredValues.remove(playerIndex);
+        antidoteTriggeredValues.remove(playerIndex);
     }
 
     @Override

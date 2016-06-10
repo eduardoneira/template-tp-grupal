@@ -40,8 +40,7 @@ public class ActionGeneration implements Runnable{
 
     private boolean isDivisor(int divisor, int numero) {
         int resto = numero % divisor;
-        if ( resto != 0 ) { return false; }
-        else { return true; }
+        return resto == 0;
     }
 
     @Override

@@ -350,7 +350,7 @@ public class TempleQuest extends Game {
     @Override
     protected Player configPlayer(String playerId, String type) {
         // player
-        Player player = new Player("player" + Integer.toString(players.size()+1), null);
+        Player player = new Player("player" + Integer.toString(players.size() + 1), null);
         Set<String> commands = commandsPerPlayer.get(playerId);
         List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
         List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
@@ -434,11 +434,11 @@ public class TempleQuest extends Game {
             player.getParent().addChild(o);
         }
 
-        int i = playerNames.indexOf(player.getName());
-        playerNames.remove(i);
-        poisoned.remove(i);
-        poisonedTriggeredValues.remove(i);
-        antidoteTriggeredValues.remove(i);
+        int playerIndex = playerNames.indexOf(player.getName());
+        playerNames.remove(playerIndex);
+        poisoned.remove(playerIndex);
+        poisonedTriggeredValues.remove(playerIndex);
+        antidoteTriggeredValues.remove(playerIndex);
     }
 
     @SuppressWarnings("CPD-END")

@@ -1,6 +1,7 @@
 package ar.fiuba.tdd.tp.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -12,9 +13,7 @@ public class ConditionCompound implements AbstractCondition {
 
     public ConditionCompound(AbstractCondition... conditions) {
         this.conditions = new ArrayList<>();
-        for (AbstractCondition condition : conditions) {
-            this.conditions.add(condition);
-        }
+        Collections.addAll(this.conditions, conditions);
     }
 
     @Override

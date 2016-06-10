@@ -27,7 +27,9 @@ public class BooleanState {
         return !state;
     }
 
-    public boolean getValue() { return state; }
+    public boolean getValue() {
+        return state;
+    }
 
     public void setValue(boolean value) {
         this.state = value;
