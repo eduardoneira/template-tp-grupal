@@ -15,8 +15,9 @@ public class ConditionalActionHandlerChecksByName extends ConditionalActionHandl
         return super.checkConditions(objectsInvolved, new StringBuilder());
     }
 
-    public ConditionalActionHandlerChecksByName(GameObject instance, ActionHandler action, List<BooleanState> conditions, List<String> names, int i) {
-        super(instance, action, conditions, names, i);
+    public ConditionalActionHandlerChecksByName(GameObject instance,
+                                                ActionHandler action, List<BooleanState> conditions, List<String> names, int index) {
+        super(instance, action, conditions, names, index);
     }
 
     @Override

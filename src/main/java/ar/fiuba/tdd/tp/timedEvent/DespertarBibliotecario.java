@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.timedEvent;
+package ar.fiuba.tdd.tp.timedevent;
 
 /**
  * Created by gabriel on 6/9/2016.

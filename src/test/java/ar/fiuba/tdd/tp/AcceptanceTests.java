@@ -21,6 +21,7 @@ public class AcceptanceTests {
 
         driver = new ConcreteGameDriver();
         driver.initGame("TheEscape");
+        driver.sendCommand("create player");
         driver.sendCommand("open doorPasilloToAccesoBiblioteca");
         driver.sendCommand("open doorAccesoToPasillo");
         driver.sendCommand("open doorPasilloToSalon3");

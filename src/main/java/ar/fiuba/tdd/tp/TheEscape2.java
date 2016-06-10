@@ -8,10 +8,10 @@ import ar.fiuba.tdd.tp.objects.concrete.door.LinkingLockedDoor;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
-import ar.fiuba.tdd.tp.timedEvent.ActionGeneration;
-import ar.fiuba.tdd.tp.timedEvent.ActionWithTime;
-import ar.fiuba.tdd.tp.timedEvent.TimedEventMovesObjectRandomly;
-import ar.fiuba.tdd.tp.timedEvent.TimedEventSetBoolean;
+import ar.fiuba.tdd.tp.timedevent.ActionGeneration;
+import ar.fiuba.tdd.tp.timedevent.ActionWithTime;
+import ar.fiuba.tdd.tp.timedevent.TimedEventMovesObjectRandomly;
+import ar.fiuba.tdd.tp.timedevent.TimedEventSetBoolean;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

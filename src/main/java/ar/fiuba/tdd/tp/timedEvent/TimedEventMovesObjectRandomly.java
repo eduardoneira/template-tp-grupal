@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.timedEvent;
+package ar.fiuba.tdd.tp.timedevent;
 
 import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.objects.general.ConcreteObjectChangesParentRandomly;
@@ -16,7 +16,7 @@ public class TimedEventMovesObjectRandomly extends TimedEvent {
     }
 
     @Override
-    protected boolean _doEvent() {
+    protected boolean doEventStuff() {
         object.changeParent();
         return true;
     }

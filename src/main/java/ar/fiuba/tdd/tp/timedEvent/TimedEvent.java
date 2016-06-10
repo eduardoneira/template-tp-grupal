@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.timedEvent;
+package ar.fiuba.tdd.tp.timedevent;
 
 import ar.fiuba.tdd.tp.model.Game;
 
@@ -14,10 +14,10 @@ public abstract class TimedEvent {
     }
 
     public boolean doEvent() {
-        boolean temp = _doEvent();
+        boolean temp = doEventStuff();
         game.updateGameState();
         return temp;
     }
 
-    protected abstract boolean _doEvent();
+    protected abstract boolean doEventStuff();
 }

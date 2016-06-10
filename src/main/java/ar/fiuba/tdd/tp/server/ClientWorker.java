@@ -36,7 +36,7 @@ class ClientWorker implements Runnable {
         try {
             this.isRunning.setTrue();
             serverSocket.setSoTimeout(1000);
-            while(this.isRunning.isTrue()) {
+            while (this.isRunning.isTrue()) {
                 try {
                     Socket clientSocket = serverSocket.accept();
                     //clientSocket.setSoTimeout(1000);
@@ -45,7 +45,7 @@ class ClientWorker implements Runnable {
                     Thread thread = new Thread(inner);
                     thread.start();
                 } catch (SocketTimeoutException e) {
-
+                    // timeout
                 }
             }
 

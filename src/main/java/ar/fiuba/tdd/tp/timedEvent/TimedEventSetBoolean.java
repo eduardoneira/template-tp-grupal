@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.timedEvent;
+package ar.fiuba.tdd.tp.timedevent;
 
 import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
@@ -18,7 +18,7 @@ public class TimedEventSetBoolean extends TimedEvent {
     }
 
     @Override
-    public boolean _doEvent() {
+    public boolean doEventStuff() {
         if (estado.getValue() != triggeredValue) {
             //System.out.println("Cambio un booleano");
             estado.setValue(triggeredValue);

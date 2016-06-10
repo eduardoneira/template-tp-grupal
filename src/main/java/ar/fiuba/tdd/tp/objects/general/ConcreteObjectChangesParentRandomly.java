@@ -1,11 +1,14 @@
 package ar.fiuba.tdd.tp.objects.general;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 /**
  * Created by fernando on 08/06/16.
  */
-public class ConcreteObjectChangesParentRandomly extends ConcreteGameObjectWithParent implements GameObjectWithParent{
+
+public class ConcreteObjectChangesParentRandomly extends ConcreteGameObjectWithParent implements GameObjectWithParent {
 
     private List<GameObjectWithChildren> parents;
 
@@ -19,7 +22,10 @@ public class ConcreteObjectChangesParentRandomly extends ConcreteGameObjectWithP
         Random rand = new Random();
         return rand.nextInt((max - min) + 1) + min;
     }
-    public void setOnePossibleParent(GameObjectWithChildren parent) { parents.add(parent); }
+
+    public void setOnePossibleParent(GameObjectWithChildren parent) {
+        parents.add(parent);
+    }
 
     public void changeParent() {
         List<GameObjectWithChildren> parentsToJump = new ArrayList<GameObjectWithChildren>(parents);

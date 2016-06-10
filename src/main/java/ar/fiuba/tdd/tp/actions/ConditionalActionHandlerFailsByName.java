@@ -13,10 +13,11 @@ public class ConditionalActionHandlerFailsByName extends ConditionalActionHandle
     protected List<String> names;
     protected int indexInObjectsInvolved;
 
-    public ConditionalActionHandlerFailsByName(GameObject instance, ActionHandler action, List<BooleanState> conditions, List<String> names, int i) {
+    public ConditionalActionHandlerFailsByName(GameObject instance, ActionHandler action,
+                                               List<BooleanState> conditions, List<String> names, int index) {
         super(instance, action, conditions);
         this.names = names;
-        this.indexInObjectsInvolved = i;
+        this.indexInObjectsInvolved = index;
     }
 
     @Override

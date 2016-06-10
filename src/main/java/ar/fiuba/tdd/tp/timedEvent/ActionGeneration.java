@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.timedEvent;
+package ar.fiuba.tdd.tp.timedevent;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -25,12 +25,12 @@ public class ActionGeneration implements Runnable{
         actions.add(actionWithTime);
     }
 
-    private List<ActionWithTime> getActionsToDo (int currentTime) {
+    private List<ActionWithTime> getActionsToDo(int currentTime) {
         List<ActionWithTime> actionsInTime = new LinkedList<ActionWithTime>();
-        if (actions.isEmpty()){
+        if (actions.isEmpty()) {
             return null;
         }
-        for (int i=0;i<actions.size();i++){
+        for (int i = 0; i < actions.size(); i++) {
             if (isDivisor(actions.get(i).getTime(),currentTime)) {
                 actionsInTime.add(actions.get(i));
             }
@@ -52,10 +52,10 @@ public class ActionGeneration implements Runnable{
             long currentTimeSecs = currentTimeMilis / 1000;
             int timeMin  = (int) (currentTimeSecs / 60);
             List<ActionWithTime> actionsTodo = (LinkedList<ActionWithTime>) getActionsToDo(timeMin);
-            while (!actionsTodo.isEmpty()){
-                ActionWithTime actual = actionsTodo.get(actionsTodo.size()-1);
+            while (!actionsTodo.isEmpty()) {
+                ActionWithTime actual = actionsTodo.get(actionsTodo.size() - 1);
                 boolean result = actual.getAction().doEvent(); // ver cuando informar a players
-                actionsTodo.remove(actionsTodo.size()-1);
+                actionsTodo.remove(actionsTodo.size() - 1);
             }
             try {
                 sleep(oneMinute);

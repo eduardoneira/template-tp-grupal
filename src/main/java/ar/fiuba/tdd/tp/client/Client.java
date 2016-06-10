@@ -69,7 +69,8 @@ public class Client implements ClientResponses {
                 }
 
                 // leo el resultado de mi accion. En general se llega aca antes que el server procese la accion, por eso funciona
-                // pero si el server la procesa antes y la leo en el while anterior, aca me voy a quedar clavado esperando a que llegue input
+                // pero si el server la procesa antes y la leo en el while anterior,
+                // aca me voy a quedar clavado esperando a que llegue input
                 // por eso el socketTimeout de 1 segundo
                 fromServer = in.readLine();
                 System.out.println(/*"Server: " +*/ fromServer);
@@ -77,7 +78,7 @@ public class Client implements ClientResponses {
             } catch (IOException e) {
                 // si recibo una SocketTimeout es porque ya habia leido lo que tenia para leer y me quede clavado
                 // en cambio si llega una IOException que no es SocketTimeout, es pq se cerro el juego
-                if(!(e instanceof  SocketTimeoutException)) {
+                if (!(e instanceof  SocketTimeoutException)) {
                     System.out.println("Connection to server ended");
                     break;
                 }
