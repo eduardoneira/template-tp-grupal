@@ -10,6 +10,11 @@ import java.util.List;
  */
 public class ConditionalActionHandlerChecksByName extends ConditionalActionHandlerFailsByName {
 
+    @Override
+    protected boolean checkConditions(List<GameObject> objectsInvolved, StringBuilder response) {
+        return super.checkConditions(objectsInvolved, new StringBuilder());
+    }
+
     public ConditionalActionHandlerChecksByName(GameObject instance, ActionHandler action, List<BooleanState> conditions, List<String> names, int i) {
         super(instance, action, conditions, names, i);
     }
@@ -17,10 +22,5 @@ public class ConditionalActionHandlerChecksByName extends ConditionalActionHandl
     @Override
     protected boolean canIHandleAction(List<GameObject> objectsInvolved, StringBuilder response) {
         return action.canIHandleAction(objectsInvolved, response);
-    }
-
-    @Override
-    protected boolean checkConditions(List<GameObject> objectsInvolved, StringBuilder response) {
-        return super.checkConditions(objectsInvolved, new StringBuilder());
     }
 }

@@ -86,12 +86,9 @@ public class TheEscape2 extends Game {
     private List<BooleanState> puertaPermiteAcceso;
     private int BIBLIOTECARIO_ACCESO = 0;
     private int BIBLIOTECARIO_CREDENCIAL_FALSA = 1;
-    private int BIBLIOTECARIO_DORMIDO = 2;
+    //private int BIBLIOTECARIO_DORMIDO = 2;
     private int BIBLIOTECARIO_CREDENCIAL_VERDADERA = 3;
-    /*private List<BooleanState> noVioCredencialFalsa;
-    private List<BooleanState> vioCredencialFalsa;
-    private List<BooleanState> noPermiteAcceso;
-    private List<BooleanState> permiteAcceso;*/
+
     private List<BooleanState> losIlegales;
     private List<BooleanState> conBibliotecario;
     private List<BooleanState> talkedLastTurn;
@@ -211,7 +208,7 @@ public class TheEscape2 extends Game {
         BooleanState permiteAcceso = bibliotecarioPermitePasarConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_ACCESO);
         BooleanState noVioCredencialFalsa = bibliotecarioAmigableConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_CREDENCIAL_FALSA);
         BooleanState vioCredencialFalsa = bibliotecarioFuriosoConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_CREDENCIAL_FALSA);
-        BooleanState vioCredencialVerdadera = bibliotecarioFuriosoConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_CREDENCIAL_VERDADERA);
+        BooleanState vioCredencialVerdadera = bibliotecarioPermitePasarConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_CREDENCIAL_VERDADERA);
         BooleanState noVioCredencialVerdadera = bibliotecarioFuriosoConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_CREDENCIAL_VERDADERA);
 
 
@@ -326,7 +323,7 @@ public class TheEscape2 extends Game {
         BooleanState permiteAcceso = new BooleanState(false);
         BooleanState noPermiteAcceso = new BooleanState(true);
         BooleanState myTalkedLastTrun = new BooleanState(false);
-        Boolean myTalkedLastTurnTriggeredValue = new Boolean(true);
+        Boolean myTalkedLastTurnTriggeredValue = Boolean.valueOf(true);
         BooleanState myIlegal = new BooleanState(false);
         losIlegales.add(myIlegal);
         BooleanState myConBibliotecario = new BooleanState(false);

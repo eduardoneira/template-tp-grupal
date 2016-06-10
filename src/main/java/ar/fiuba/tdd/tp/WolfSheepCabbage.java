@@ -79,7 +79,6 @@ public class WolfSheepCabbage extends Game {
         Player player = new Player("player" + Integer.toString(players.size() + 1), null, new ChildrenStateLimitedSize(1));
         Set<String> commands = commandsPerPlayer.get(playerId);
         List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
-        List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
 
         player.setParent(southShore);
         southShore.addChild(player);

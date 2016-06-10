@@ -41,8 +41,6 @@ public class TorresHanoi extends Game {
         Player player = new Player("player" + Integer.toString(players.size() + 1), null);
         Set<String> commands = commandsPerPlayer.get(playerId);
         List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
-        List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
-
         player.setParent(room);
         room.addChild(player);
 

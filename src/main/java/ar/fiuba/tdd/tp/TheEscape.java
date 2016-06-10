@@ -84,11 +84,8 @@ public class TheEscape extends Game {
     private List<BooleanState> puertaPermiteAcceso;
     private int BIBLIOTECARIO_ACCESO = 0;
     private int BIBLIOTECARIO_CREDENCIAL_FALSA = 1;
-    private int BIBLIOTECARIO_DORMIDO = 2;
-    /*private List<BooleanState> noVioCredencialFalsa;
-    private List<BooleanState> vioCredencialFalsa;
-    private List<BooleanState> noPermiteAcceso;
-    private List<BooleanState> permiteAcceso;*/
+    //private int BIBLIOTECARIO_DORMIDO = 2;
+
     private List<BooleanState> talkedLastTurn;
     private List<Boolean> talkedLastTurnTiggeredValues;
 

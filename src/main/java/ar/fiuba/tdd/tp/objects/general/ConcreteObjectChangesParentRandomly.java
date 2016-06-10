@@ -7,7 +7,7 @@ import java.util.Random;
  */
 public class ConcreteObjectChangesParentRandomly extends ConcreteGameObjectWithParent implements GameObjectWithParent{
 
-    private static List<GameObjectWithChildren> parents;
+    private List<GameObjectWithChildren> parents;
 
     public ConcreteObjectChangesParentRandomly(String name, GameObjectWithChildren parent) {
         super(name, parent);

@@ -8,7 +8,7 @@ import static java.lang.Thread.sleep;
 
 public class ActionGeneration implements Runnable{
 
-    private static List<ActionWithTime> actions;
+    private List<ActionWithTime> actions;
     private boolean serverRunning;
     static final int oneMinute = 60000; //one minute = 60000 ms
     long startTime;
@@ -49,7 +49,7 @@ public class ActionGeneration implements Runnable{
         startTime = System.currentTimeMillis();
         while (serverRunning) {
             long currentTimeMilis = System.currentTimeMillis() - startTime;
-            float currentTimeSecs = currentTimeMilis / 1000;
+            long currentTimeSecs = currentTimeMilis / 1000;
             int timeMin  = (int) (currentTimeSecs / 60);
             List<ActionWithTime> actionsTodo = (LinkedList<ActionWithTime>) getActionsToDo(timeMin);
             while (!actionsTodo.isEmpty()){
