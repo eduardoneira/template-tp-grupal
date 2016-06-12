@@ -101,7 +101,10 @@ public class WolfSheepCabbage extends Game {
         List<BooleanState> conditions = new ArrayList<>();
         conditions.add(sheepNotWithCabbage);
         conditions.add(wolfNotWithSheep);
-        ActionHandler crossAction = new ConditionalActionHandlerFails(player, new Cross(player), conditions);
+        List<Boolean> conditionsValues = new ArrayList<>();
+        conditionsValues.add(true);
+        conditionsValues.add(true);
+        ActionHandler crossAction = new ConditionalActionHandlerFails(player, new Cross(player), conditions, conditionsValues);
         player.addAction(crossAction);
         commands.add(crossAction.getName());
 

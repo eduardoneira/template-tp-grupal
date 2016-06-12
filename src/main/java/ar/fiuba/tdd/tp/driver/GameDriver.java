@@ -1,5 +1,6 @@
 package ar.fiuba.tdd.tp.driver;
 
+import ar.fiuba.tdd.tp.random.RNG;
 import ar.fiuba.tdd.tp.timedevent.AbstractTimer;
 import ar.fiuba.tdd.tp.timedevent.InstantTimerDummy;
 
@@ -16,4 +17,7 @@ public interface GameDriver {
     GameState getCurrentStateByPlayer(String playerId);
 
     void setTimer(AbstractTimer timer);
+    void setRandom(RNG random);
+
+    void close();
 }

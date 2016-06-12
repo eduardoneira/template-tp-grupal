@@ -37,8 +37,11 @@ public class CrossTests {
         List<BooleanState> conditions = new ArrayList<>();
         conditions.add(sheepSeparateFromCabbage);
 
+        List<Boolean> conditionsValues = new ArrayList<>();
+        conditionsValues.add(true);
+
         player = new Player("player", firstRoom, new ChildrenStateLimitedSize(1));
-        player.addAction(new ConditionalActionHandlerFails(player, new Cross(player), conditions));
+        player.addAction(new ConditionalActionHandlerFails(player, new Cross(player), conditions, conditionsValues));
         player.addAction(new Leave(player));
         player.addAction(new Take(player));
         player.addAction(new HaveMovedFrom(player, player.getChildrenState()));

@@ -76,12 +76,16 @@ public class TheEscape extends Game {
 
     private ConcreteGameObjectWithParent bibliotecario;
     private BooleanState dormido;
-    private BooleanState noDormido;
 
     private List<BooleanState> bibliotecarioAmigableConds;
+    private List<Boolean> bibliotecarioAmigableCondsValues;
     private List<BooleanState> bibliotecarioFuriosoConds;
+    private List<Boolean> bibliotecarioFuriosoCondsValues;
     private List<BooleanState> bibliotecarioPermitePasarConds;
+    private List<Boolean> bibliotecarioPermitePasarCondsValues;
     private List<BooleanState> puertaPermiteAcceso;
+    private List<Boolean> puertaPermiteAccesoValues;
+
     private int BIBLIOTECARIO_ACCESO = 0;
     private int BIBLIOTECARIO_CREDENCIAL_FALSA = 1;
     //private int BIBLIOTECARIO_DORMIDO = 2;
@@ -162,36 +166,6 @@ public class TheEscape extends Game {
         super("TheEscape");
     }
 
-    /*@Override
-    public boolean checkWinCondition() {
-
-        if (noPermiteAcceso.isTrue() && talkedLastTurn.isTrue()) {
-            if (noVioCredencialFalsa.isTrue() && player.contains(credencial.getName()) ) {
-                if (credencial.contains(fotoPlayer.getName())) {
-                    permiteAcceso.setTrue();
-                    noPermiteAcceso.setFalse();
-                } else {
-                    vioCredencialFalsa.setTrue();
-                    noVioCredencialFalsa.setFalse();
-                }
-            } else if (player.contains(licor.getName())) {
-                dormido.setTrue();
-                noDormido.setFalse();
-                permiteAcceso.setTrue();
-                noPermiteAcceso.setFalse();
-            }
-        }
-
-        talkedLastTurn.setFalse();
-        return afuera.contains(player.getName());
-    }*/
-
-    /*@Override
-    public boolean checkLooseCondition() {
-        return cuartoDeLosMuertos.contains(player.getName())
-                || (sotanoAbajo.contains(player.getName()) && !player.contains(martillo.getName()));
-    }*/
-
     @Override
     protected void updateGameAfterHandle(String playerId) {
         Player player = players.get(playerId);
@@ -199,26 +173,20 @@ public class TheEscape extends Game {
         int indexInPlayerNames = playerNames.indexOf(playerName);
         int indexInPlayerNamesBibliotecario = playerNamesBibliotecario.indexOf(playerName);
 
-        BooleanState noPermiteAcceso = bibliotecarioAmigableConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_ACCESO);
         BooleanState permiteAcceso = bibliotecarioPermitePasarConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_ACCESO);
-        BooleanState noVioCredencialFalsa = bibliotecarioAmigableConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_CREDENCIAL_FALSA);
         BooleanState vioCredencialFalsa = bibliotecarioFuriosoConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_CREDENCIAL_FALSA);
 
 
-        if (noPermiteAcceso.isTrue() && talkedLastTurn.get(indexInPlayerNames).isTrue()) {
-            if (noVioCredencialFalsa.isTrue() && player.contains(credencial.getName()) ) {
+        if (permiteAcceso.isFalse() && talkedLastTurn.get(indexInPlayerNames).isTrue()) {
+            if (vioCredencialFalsa.isFalse() && player.contains(credencial.getName()) ) {
                 if (credencial.contains(fotoPlayer.get(indexInPlayerNames).getName())) {
                     permiteAcceso.setTrue();
-                    noPermiteAcceso.setFalse();
                 } else {
                     vioCredencialFalsa.setTrue();
-                    noVioCredencialFalsa.setFalse();
                 }
             } else if (player.contains(licor.getName())) {
                 dormido.setTrue();
-                noDormido.setFalse();
                 permiteAcceso.setTrue();
-                noPermiteAcceso.setFalse();
             }
         }
 
@@ -297,22 +265,32 @@ public class TheEscape extends Game {
         talkedLastTurnTiggeredValues.add(myTalkedLastTurnTriggeredValue);
 
         puertaPermiteAcceso.add(permiteAcceso);
+        puertaPermiteAccesoValues.add(true);
 
         playerNamesBibliotecario.add(player.getName());
         playerNamesBibliotecario.add(player.getName());
         playerNamesBibliotecario.add(player.getName());
 
-        bibliotecarioAmigableConds.add(noPermiteAcceso);
-        bibliotecarioAmigableConds.add(noVioCredencialFalsa);
-        bibliotecarioAmigableConds.add(noDormido);
+        bibliotecarioAmigableConds.add(permiteAcceso);
+        bibliotecarioAmigableConds.add(vioCredencialFalsa);
+        bibliotecarioAmigableConds.add(dormido);
+        bibliotecarioAmigableCondsValues.add(false);
+        bibliotecarioAmigableCondsValues.add(false);
+        bibliotecarioAmigableCondsValues.add(false);
 
-        bibliotecarioFuriosoConds.add(noPermiteAcceso);
+        bibliotecarioFuriosoConds.add(permiteAcceso);
         bibliotecarioFuriosoConds.add(vioCredencialFalsa);
-        bibliotecarioFuriosoConds.add(noDormido);
+        bibliotecarioFuriosoConds.add(dormido);
+        bibliotecarioFuriosoCondsValues.add(false);
+        bibliotecarioFuriosoCondsValues.add(true);
+        bibliotecarioFuriosoCondsValues.add(false);
 
         bibliotecarioPermitePasarConds.add(permiteAcceso);
-        bibliotecarioPermitePasarConds.add(noVioCredencialFalsa);
-        bibliotecarioPermitePasarConds.add(noDormido);
+        bibliotecarioPermitePasarConds.add(vioCredencialFalsa);
+        bibliotecarioPermitePasarConds.add(dormido);
+        bibliotecarioPermitePasarCondsValues.add(true);
+        bibliotecarioPermitePasarCondsValues.add(false);
+        bibliotecarioPermitePasarCondsValues.add(false);
 
         return player;
     }
@@ -330,19 +308,32 @@ public class TheEscape extends Game {
 
         playerNames.remove(indexInPlayerNames);
         puertaPermiteAcceso.remove(indexInPlayerNames);
+        puertaPermiteAccesoValues.remove(indexInPlayerNames);
 
         playerNamesBibliotecario.remove(indexInPlayerNamesBibliotecario);
         playerNamesBibliotecario.remove(indexInPlayerNamesBibliotecario);
         playerNamesBibliotecario.remove(indexInPlayerNamesBibliotecario);
+
         bibliotecarioAmigableConds.remove(indexInPlayerNamesBibliotecario);
         bibliotecarioAmigableConds.remove(indexInPlayerNamesBibliotecario);
         bibliotecarioAmigableConds.remove(indexInPlayerNamesBibliotecario);
+        bibliotecarioAmigableCondsValues.remove(indexInPlayerNamesBibliotecario);
+        bibliotecarioAmigableCondsValues.remove(indexInPlayerNamesBibliotecario);
+        bibliotecarioAmigableCondsValues.remove(indexInPlayerNamesBibliotecario);
+
         bibliotecarioFuriosoConds.remove(indexInPlayerNamesBibliotecario);
         bibliotecarioFuriosoConds.remove(indexInPlayerNamesBibliotecario);
         bibliotecarioFuriosoConds.remove(indexInPlayerNamesBibliotecario);
+        bibliotecarioFuriosoCondsValues.remove(indexInPlayerNamesBibliotecario);
+        bibliotecarioFuriosoCondsValues.remove(indexInPlayerNamesBibliotecario);
+        bibliotecarioFuriosoCondsValues.remove(indexInPlayerNamesBibliotecario);
+
         bibliotecarioPermitePasarConds.remove(indexInPlayerNamesBibliotecario);
         bibliotecarioPermitePasarConds.remove(indexInPlayerNamesBibliotecario);
         bibliotecarioPermitePasarConds.remove(indexInPlayerNamesBibliotecario);
+        bibliotecarioPermitePasarCondsValues.remove(indexInPlayerNamesBibliotecario);
+        bibliotecarioPermitePasarCondsValues.remove(indexInPlayerNamesBibliotecario);
+        bibliotecarioPermitePasarCondsValues.remove(indexInPlayerNamesBibliotecario);
 
         talkedLastTurn.remove(indexInPlayerNames);
         talkedLastTurnTiggeredValues.remove(indexInPlayerNames);
@@ -403,11 +394,11 @@ public class TheEscape extends Game {
         bibliotecaToSotano = new LinkingDoor("doorBibliotecaToSotano", biblioteca, sotano);
         objects.put(bibliotecaToSotano.getName(), bibliotecaToSotano);
         bibliotecaToSotano.addAction(new ConditionalActionHandlerFailsDummy(bibliotecaToSotano,
-                                                                            new BeOpened(null, null), triggers));
+                                                                            new BeOpened(null, null), triggers, triggeredValues));
         bibliotecaToSotano.addAction(new ConditionalActionHandlerFailsDummy(bibliotecaToSotano,
-                                                                            new BeAskedWhat(null), triggers));
+                                                                            new BeAskedWhat(null), triggers, triggeredValues));
         bibliotecaToSotano.addAction(new ConditionalActionHandlerFailsDummy(bibliotecaToSotano,
-                                                                            new BeLookedAt(null), triggers));
+                                                                            new BeLookedAt(null), triggers, triggeredValues));
 
     }
 
@@ -456,16 +447,16 @@ public class TheEscape extends Game {
         bibliotecario = new ConcreteGameObjectWithParent("bibliotecario", bibliotecaAcceso);
         objects.put(bibliotecario.getName(), bibliotecario);
 
-        /*noPermiteAcceso = new ArrayList<>();
-        permiteAcceso = new ArrayList<>();
-        noVioCredencialFalsa = new ArrayList<>();
-        vioCredencialFalsa = new ArrayList<>();*/
         bibliotecarioAmigableConds = new ArrayList<>();
+        bibliotecarioAmigableCondsValues = new ArrayList<>();
         bibliotecarioFuriosoConds = new ArrayList<>();
+        bibliotecarioFuriosoCondsValues = new ArrayList<>();
         bibliotecarioPermitePasarConds = new ArrayList<>();
+        bibliotecarioPermitePasarCondsValues = new ArrayList<>();
         puertaPermiteAcceso = new ArrayList<>();
+        puertaPermiteAccesoValues = new ArrayList<>();
+
         dormido = new BooleanState(false);
-        noDormido = new BooleanState(true);
         talkedLastTurn = new ArrayList<>();
         talkedLastTurnTiggeredValues = new ArrayList<>();
         playerNames = new ArrayList<>();
@@ -475,7 +466,7 @@ public class TheEscape extends Game {
         //List<BooleanState> condDoorABiblioteca = new LinkedList<>();
         //condDoorABiblioteca.add(permiteAcceso);
         bibliotecaAccesoToBiblioteca.addAction(new ConditionalActionHandlerFailsByName(bibliotecaAccesoToBiblioteca,
-                new BeOpened(bibliotecaAccesoToBiblioteca, new BooleanState()), puertaPermiteAcceso, playerNames, 0));
+                new BeOpened(bibliotecaAccesoToBiblioteca, new BooleanState()), puertaPermiteAcceso, puertaPermiteAccesoValues, playerNames, 0));
         objects.put(bibliotecaAccesoToBiblioteca.getName(), bibliotecaAccesoToBiblioteca);
 
         configureBibliotecario();
@@ -483,34 +474,24 @@ public class TheEscape extends Game {
 
 
     private void configureBibliotecario() {
-        /*List<BooleanState> condicionesBibliotecarioAmigable = new LinkedList<>();
-        condicionesBibliotecarioAmigable.add(noPermiteAcceso);
-        condicionesBibliotecarioAmigable.add(noVioCredencialFalsa);
-        condicionesBibliotecarioAmigable.add(noDormido);*/
         bibliotecario.addAction(new ConditionalActionHandlerChecksByName(bibliotecario,
                 new BeTalkedTo(bibliotecario, "Hi! You need a credential to pass. Wait, what's that in your inventory?"),
-                bibliotecarioAmigableConds, playerNamesBibliotecario, 0));
+                bibliotecarioAmigableConds, bibliotecarioAmigableCondsValues, playerNamesBibliotecario, 0));
 
-        /*List<BooleanState> condicionesBibliotecarioFurioso = new LinkedList<>();
-        condicionesBibliotecarioFurioso.add(noPermiteAcceso);
-        condicionesBibliotecarioFurioso.add(vioCredencialFalsa);
-        condicionesBibliotecarioAmigable.add(noDormido);*/
         bibliotecario.addAction(new ConditionalActionHandlerChecksByName(bibliotecario,
                 new BeTalkedTo(bibliotecario, "I saw that fake credential, you shall not pass!"),
-                bibliotecarioFuriosoConds, playerNamesBibliotecario, 0));
+                bibliotecarioFuriosoConds, bibliotecarioFuriosoCondsValues, playerNamesBibliotecario, 0));
 
-        /*List<BooleanState> condicionesBibliotecarioPermitePasar = new LinkedList<>();
-        condicionesBibliotecarioPermitePasar.add(permiteAcceso);
-        condicionesBibliotecarioPermitePasar.add(noVioCredencialFalsa);
-        condicionesBibliotecarioPermitePasar.add(noDormido);*/
         bibliotecario.addAction(new ConditionalActionHandlerChecksByName(bibliotecario,
                 new BeTalkedTo(bibliotecario, "Hi again! Feel free to enter"),
-                bibliotecarioPermitePasarConds, playerNamesBibliotecario, 0));
+                bibliotecarioPermitePasarConds, bibliotecarioPermitePasarCondsValues, playerNamesBibliotecario, 0));
 
         List<BooleanState> condicionesBibliotecarioDormido = new LinkedList<>();
         condicionesBibliotecarioDormido.add(dormido);
+        List<Boolean> condicionesBibliotecarioDormidoValues = new LinkedList<>();
+        condicionesBibliotecarioDormidoValues.add(true);
         bibliotecario.addAction(new ConditionalActionHandlerChecks(bibliotecario,
-                new BeTalkedTo(bibliotecario, "Zzzzz..."), condicionesBibliotecarioDormido));
+                new BeTalkedTo(bibliotecario, "Zzzzz..."), condicionesBibliotecarioDormido, condicionesBibliotecarioDormidoValues));
 
         makeTriggers();
 
@@ -519,10 +500,6 @@ public class TheEscape extends Game {
 
     private void makeTriggers() {
 
-        /*List<BooleanState> triggers = new LinkedList<>();
-        triggers.add(talkedLastTurn);
-        List<Boolean> tiggeredValues = new LinkedList<>();
-        tiggeredValues.add(true);*/
         bibliotecario.addAction(new TriggerActionHandlerByName(bibliotecario,
                 new BeTalkedTo(bibliotecario, ""), talkedLastTurn, playerNames, talkedLastTurnTiggeredValues, 0));
 

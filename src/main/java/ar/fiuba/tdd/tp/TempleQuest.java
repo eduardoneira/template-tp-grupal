@@ -230,10 +230,16 @@ public class TempleQuest extends Game {
         doorTo2 = new LinkingDoor("doorTo2", room1, room2shore1);
         switch1IsPressed = new BooleanState(false);
         switch2IsPressed = new BooleanState(false);
+
         List<BooleanState> switchesActivados = new LinkedList<>();
         switchesActivados.add(switch1IsPressed);
         switchesActivados.add(switch2IsPressed);
-        doorTo2.addAction(new ConditionalActionHandlerFails(doorTo2, new BeOpened(doorTo2, new BooleanState()), switchesActivados));
+
+        List<Boolean> switchesActivadosValues = new LinkedList<>();
+        switchesActivadosValues.add(true);
+        switchesActivadosValues.add(true);
+
+        doorTo2.addAction(new ConditionalActionHandlerFails(doorTo2, new BeOpened(doorTo2, new BooleanState()), switchesActivados, switchesActivadosValues));
         objects.put(doorTo2.getName(), doorTo2);
     }
 

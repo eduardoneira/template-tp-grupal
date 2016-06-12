@@ -71,6 +71,7 @@ class ClientWorker implements Runnable {
             
             out.close();
             in.close();*/
+            this.game.close();
             this.closeSockets();
 
         } catch (IOException e) {

@@ -180,7 +180,7 @@ public class TreasureHunt extends Game {
         actions.add(new ConditionalActionHandlerChecksByName(poisonIn4,
                 new TriggerActionHandlerByName(poisonIn4,
                         new BeMoved(null, null), killedByPoison, playerNames, killedByPoisonTriggeredValues, -1),
-                poisoned, playerNames, -1));
+                poisoned, poisonedTriggeredValues, playerNames, -1));
         chest1In4.addAction(new BeOpenedAddsActionsToOpener(chest1In4, actions, "You feel weak!"));
         objects.put(poisonIn4.getName(), poisonIn4);
     }
@@ -232,7 +232,7 @@ public class TreasureHunt extends Game {
         actions.add(new ConditionalActionHandlerChecksByName(poisonIn5,
                 new TriggerActionHandlerByName(poisonIn5,
                         new BeMoved(null, null), killedByPoison, playerNames, killedByPoisonTriggeredValues, -1),
-                poisoned, playerNames, -1));
+                poisoned, poisonedTriggeredValues, playerNames, -1));
         chest2In5.addAction(new BeOpenedAddsActionsToOpener(chest2In5, actions, "You feel weak!"));
         objects.put(poisonIn5.getName(), poisonIn5);
     }

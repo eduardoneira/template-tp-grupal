@@ -30,7 +30,7 @@ public class Poison extends ConcreteGameObjectWithParent {
         List<Boolean> triggeredValues = new ArrayList<>();
         triggeredValues.add(true);
         actions.add(new ConditionalActionHandlerChecks(this,
-                new TriggerActionHandler(this, new BeMoved(null, null), triggers, triggeredValues), conditions));
+                new TriggerActionHandler(this, new BeMoved(null, null), triggers, triggeredValues), conditions, triggeredValues));
         parent.addAction(new BeOpenedAddsActionsToOpener(this, actions, "You feel weak!"));
         parent.addAction(new TriggerActionHandler(this, new BeOpened(null, null), conditions, triggeredValues));
     }

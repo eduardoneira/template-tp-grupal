@@ -14,18 +14,18 @@ public class TimedEvent {
 
     Game game;
     String eventDescription;
-    ActionHandler action;
+    List<ActionHandler> actions;
     List<GameObject> objectsInvolved;
     int cantRepeticiones;
     int currRepeticiones;
 
-    public TimedEvent(Game game, ActionHandler action, List<GameObject> objectsInvolved, String eventDescription) {
-        this(game, action, objectsInvolved, eventDescription, -1, -1);
+    public TimedEvent(Game game, List<ActionHandler> actions, List<GameObject> objectsInvolved, String eventDescription) {
+        this(game, actions, objectsInvolved, eventDescription, -1, -1);
     }
 
-    public TimedEvent(Game game, ActionHandler action, List<GameObject> objectsInvolved, String eventDescription, int cantRepeticiones, int valorInicialRepeticiones) {
+    public TimedEvent(Game game, List<ActionHandler> actions, List<GameObject> objectsInvolved, String eventDescription, int cantRepeticiones, int valorInicialRepeticiones) {
         this.game = game;
-        this.action = action;
+        this.actions = actions;
         this.eventDescription = eventDescription;
         this.objectsInvolved = objectsInvolved;
         this.cantRepeticiones = cantRepeticiones;
@@ -37,11 +37,13 @@ public class TimedEvent {
     }
 
     public boolean doEvent(StringBuilder response) {
-        if (currRepeticiones == -1 || currRepeticiones < cantRepeticiones) {
-            action.handleAction(action.getName(), objectsInvolved);
-            game.updateGameState();
+        if (cantRepeticiones == -1 || currRepeticiones < cantRepeticiones) {
+            for (ActionHandler action : actions) {
+                action.handleAction(action.getName(), objectsInvolved);
+                game.updateGameState();
+            }
             //System.out.println("timed event: " + eventDescription);
-            response.append("timed event: " + eventDescription);
+            response.append(/*"timed event: " + */eventDescription);
             currRepeticiones++;
             return true;
         } else {

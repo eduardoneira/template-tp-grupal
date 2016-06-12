@@ -5,7 +5,11 @@ import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
+import ar.fiuba.tdd.tp.random.RNG;
+import ar.fiuba.tdd.tp.random.RandomJava;
+import ar.fiuba.tdd.tp.random.RandomReference;
 import ar.fiuba.tdd.tp.timedevent.AbstractTimer;
+import ar.fiuba.tdd.tp.timedevent.ActionGeneration;
 import ar.fiuba.tdd.tp.timedevent.TimerReference;
 import ar.fiuba.tdd.tp.timedevent.TimerSystem;
 
@@ -18,11 +22,14 @@ public abstract class Game implements GameBuilder {
     protected final Map<String, Set<String>> commandsPerPlayer;
     protected Map<String, List<AbstractCondition>> winConditionsPerPlayer;
     protected Map<String, List<AbstractCondition>> looseConditionsPerPlayer;
+    protected ActionGeneration actionGeneration;
+    protected Thread actionGenerationThread;
 
     protected Map<String, GameState> gameStateByPlayer;
     protected final String name;
     protected final Map<String, GameObject> objects;
     protected TimerReference timer;
+    protected RandomReference random;
 
     protected static final String needHelpRegex = "help(.)*";
     protected static final String win = ". You won the game!";
@@ -43,7 +50,31 @@ public abstract class Game implements GameBuilder {
         //gameStateByPlayer = Ready;
         gameStateByPlayer = new HashMap<>();
         timer = new TimerReference(new TimerSystem());
+        random = new RandomReference(new RandomJava());
         this.clientSockets = new HashMap<>();
+        actionGeneration = null;
+        actionGenerationThread = null;
+    }
+
+    public void startActionGeneration() {
+        actionGeneration = new ActionGeneration(this.clientSockets, this.timer);
+        actionGenerationThread = new Thread(actionGeneration);
+        actionGenerationThread.start();
+    }
+
+    public void stopActionGeneration() {
+        if (actionGenerationThread != null) {
+            actionGeneration.killActionGeneration();
+            try {
+                actionGenerationThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void close() {
+        stopActionGeneration();
     }
 
     public boolean checkWinCondition(String playerId) {
@@ -142,25 +173,7 @@ public abstract class Game implements GameBuilder {
         }
 
         return preProcess(playerId, parsedCommand, forward);
-
     }
-
-    /*public String processCommandForObject(String stringCommand) {
-        String[] splitCommand = stringCommand.split(" ");
-        List<String> parsedCommand = new LinkedList<>();
-        for (String elem : splitCommand) {
-            parsedCommand.add(elem);
-        }
-        String command = parsedCommand.get(0);
-        parsedCommand.remove(0);
-
-        GameObject object = objects.get(parsedCommand.get(0));
-        parsedCommand.remove(0);
-
-        String temp = object.handleAction(command, parseObjectsFromCommand(parsedCommand));
-        updateGameState();
-        return temp;
-    }*/
 
     private String process(String playerId, List<String> parsedCommand, BooleanState forward) {
         String command = parsedCommand.get(0);
@@ -250,5 +263,9 @@ public abstract class Game implements GameBuilder {
 
     public void setTimer(AbstractTimer instance) {
         this.timer.setTimer(instance);
+    }
+
+    public void setRandom(RNG random) {
+        this.random.setRandom(random);
     }
 }

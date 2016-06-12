@@ -5,6 +5,7 @@ import ar.fiuba.tdd.tp.driver.GameDriver;
 import ar.fiuba.tdd.tp.driver.GameLoadFailedException;
 import ar.fiuba.tdd.tp.driver.GameState;
 
+import ar.fiuba.tdd.tp.random.RandomDummy;
 import ar.fiuba.tdd.tp.timedevent.AbstractTimer;
 import ar.fiuba.tdd.tp.timedevent.InstantTimerDummy;
 import org.junit.Before;
@@ -20,7 +21,7 @@ public class AcceptanceTestsIt3 {
 
     @SuppressWarnings("CPD-START")
 
-    @Before
+    /*@Before
     public void initialization() throws ClassNotFoundException, IOException,
             GameLoadFailedException, InstantiationException, IllegalAccessException {
 
@@ -35,30 +36,86 @@ public class AcceptanceTestsIt3 {
 
         driver.sendCommandByPlayer("p2", "create player");
         driver.sendCommandByPlayer("p2", "open doorPasilloToAccesoBiblioteca");
+    }*/
+
+    @Test
+    public void escenario1() throws IllegalAccessException, InterruptedException, IOException, InstantiationException, GameLoadFailedException, ClassNotFoundException {
+        assert (P1LooseWhenCaughtInBiblioteca());
+    }
+
+    //@Test
+    public void escenario1trucho() throws IllegalAccessException, InterruptedException, IOException, InstantiationException, GameLoadFailedException, ClassNotFoundException {
+        boolean result = false;
+        for (int i = 0; i < 50; ++i) {
+            result |= P1LooseWhenCaughtInBiblioteca();
+        }
+        assert (result);
     }
 
     @Test
-    public void P1LooseWhenCaughtInBiblioteca() {
-        assert (GameState.InProgress == driver.getCurrentStateByPlayer("p1"));
-        System.out.println(driver.sendCommandByPlayer("p1", "talk bibliotecario"));
-        System.out.println(driver.sendCommandByPlayer("p1", "open doorAccesoToBiblioteca"));
-        System.out.println(driver.sendCommandByPlayer("p1", "open doorBibliotecaToAcceso"));
-        //System.out.println(driver.sendCommandByPlayer("p1", "look pasillo"));
-        //System.out.println(driver.sendCommandByPlayer("p1", "open doorAccesoToPasillo"));
-        //System.out.println(driver.sendCommandByPlayer("p1", "look pasillo"));
-        GameState state = driver.getCurrentStateByPlayer("p1");
-        assert (GameState.Lost == state || null == state);
+    public void escenario2() throws IllegalAccessException, InterruptedException, IOException, InstantiationException, GameLoadFailedException, ClassNotFoundException {
+        assert (P1LooseWhenCaughtInPasilloButNotP2());
     }
 
-    @Test
-    public void P1LooseWhenCaughtInPasilloButNotP2() {
+    //@Test
+    public void escenario2trucho() throws IllegalAccessException, InterruptedException, IOException, InstantiationException, GameLoadFailedException, ClassNotFoundException {
+        boolean result = false;
+        for (int i = 0; i < 50; ++i) {
+            result |= P1LooseWhenCaughtInPasilloButNotP2();
+        }
+        assert (result);
+    }
+
+    public boolean P1LooseWhenCaughtInBiblioteca() throws InterruptedException, ClassNotFoundException, IOException, GameLoadFailedException, InstantiationException, IllegalAccessException {
+
+        driver = new ConcreteGameDriver();
+        driver.initGame("TheEscape2");
+        driver.setTimer(new InstantTimerDummy());
+        driver.sendCommandByPlayer("p1", "create player");
+        driver.sendCommandByPlayer("p1", "open doorPasilloToSalon1");
+        driver.sendCommandByPlayer("p1", "pick licor");
+        driver.sendCommandByPlayer("p1", "open doorSalon1ToPasillo");
+        driver.sendCommandByPlayer("p1", "open doorPasilloToAccesoBiblioteca");
+
+        driver.sendCommandByPlayer("p2", "create player");
+        driver.sendCommandByPlayer("p2", "open doorPasilloToAccesoBiblioteca");
+
+        driver.setRandom(new RandomDummy(4));
         driver.sendCommandByPlayer("p1", "talk bibliotecario");
-        System.out.println(driver.sendCommandByPlayer("p1", "open doorAccesoToBiblioteca"));
-        System.out.println(driver.sendCommandByPlayer("p2", "open doorAccesoToBiblioteca"));
-        //driver.sendCommandByPlayer("p2", "open doorBibliotecaToAcceso");
-        System.out.println(driver.sendCommandByPlayer("p1", "open doorAccesoToPasillo"));
-        System.out.println(driver.sendCommandByPlayer("p2", "look pasillo"));
-        assert (GameState.Lost == driver.getCurrentStateByPlayer("p2") || null == driver.getCurrentStateByPlayer("p2")); // para el jugador2
-        assert (GameState.InProgress == driver.getCurrentStateByPlayer("p1")); // para el jugador1
+        driver.sendCommandByPlayer("p1", "open doorAccesoToBiblioteca");
+        driver.sendCommandByPlayer("p1", "open doorBibliotecaToAcceso");
+        //System.out.println(driver.sendCommandByPlayer("p1", "look accesoBiblioteca"));
+        GameState state = driver.getCurrentStateByPlayer("p1");
+        //driver.close();
+        return (GameState.Lost == state || null == state);
+    }
+
+    public boolean P1LooseWhenCaughtInPasilloButNotP2() throws InterruptedException, ClassNotFoundException, IOException, GameLoadFailedException, InstantiationException, IllegalAccessException {
+
+        driver = new ConcreteGameDriver();
+        driver.initGame("TheEscape2");
+        driver.setTimer(new InstantTimerDummy());
+        driver.sendCommandByPlayer("p1", "create player");
+        driver.sendCommandByPlayer("p1", "open doorPasilloToSalon1");
+        driver.sendCommandByPlayer("p1", "pick licor");
+        driver.sendCommandByPlayer("p1", "open doorSalon1ToPasillo");
+        driver.sendCommandByPlayer("p1", "open doorPasilloToAccesoBiblioteca");
+
+        driver.sendCommandByPlayer("p2", "create player");
+        driver.sendCommandByPlayer("p2", "open doorPasilloToAccesoBiblioteca");
+
+        driver.setRandom(new RandomDummy(3));
+        driver.sendCommandByPlayer("p1", "talk bibliotecario");
+        driver.sendCommandByPlayer("p1", "open doorAccesoToBiblioteca");
+        driver.sendCommandByPlayer("p2", "open doorAccesoToBiblioteca");
+        driver.sendCommandByPlayer("p1", "open doorAccesoToPasillo");
+        driver.sendCommandByPlayer("p1", "look pasillo");
+        //assert (GameState.Lost == driver.getCurrentStateByPlayer("p1") || null == driver.getCurrentStateByPlayer("p1")); // para el jugador1
+        //assert (GameState.InProgress == driver.getCurrentStateByPlayer("p2")); // para el jugador2
+        GameState stateP1 = driver.getCurrentStateByPlayer("p1");
+        GameState stateP2 = driver.getCurrentStateByPlayer("p2");
+        //driver.close();
+        return (GameState.Lost == stateP1 || null == stateP1) &&
+                (GameState.InProgress == stateP2);
     }
 }

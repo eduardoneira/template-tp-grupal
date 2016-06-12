@@ -37,8 +37,11 @@ public class ConditionalActionHandlerTests {
         conds.add(cond1);
         cond2 = new BooleanState();
         conds.add(cond2);
+        List<Boolean> condsValues = new ArrayList<>();
+        condsValues.add(true);
+        condsValues.add(true);
 
-        ActionHandler conditionalPick = new ConditionalActionHandlerFails(player, new Pick(player), conds);
+        ActionHandler conditionalPick = new ConditionalActionHandlerFails(player, new Pick(player), conds, condsValues);
         player.addAction(conditionalPick);
 
         objectsInvolved = new LinkedList<>();

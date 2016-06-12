@@ -14,8 +14,8 @@ public class ConditionalActionHandlerFailsByName extends ConditionalActionHandle
     protected int indexInObjectsInvolved;
 
     public ConditionalActionHandlerFailsByName(GameObject instance, ActionHandler action,
-                                               List<BooleanState> conditions, List<String> names, int index) {
-        super(instance, action, conditions);
+                                               List<BooleanState> conditions, List<Boolean> conditionsValues, List<String> names, int index) {
+        super(instance, action, conditions, conditionsValues);
         this.names = names;
         this.indexInObjectsInvolved = index;
     }
@@ -25,7 +25,7 @@ public class ConditionalActionHandlerFailsByName extends ConditionalActionHandle
         for (int i = 0; i < conditions.size(); ++i) {
             if (((indexInObjectsInvolved >= 0 && objectsInvolved.get(indexInObjectsInvolved).getName().equals(names.get(i)))
                     ||  (indexInObjectsInvolved < 0 && this.instance.getName().equals(names.get(i)) ))
-                    && (!conditions.get(i).isTrue())) {
+                    && (conditions.get(i).getValue() != conditionsValues.get(i).booleanValue())) {
                 response.append("a condition was not met in conditional command ");
                 response.append(getName());
                 return false;

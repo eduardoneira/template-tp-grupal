@@ -1,5 +1,7 @@
 package ar.fiuba.tdd.tp.timedevent;
 
+import ar.fiuba.tdd.tp.objects.states.BooleanState;
+
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -12,8 +14,7 @@ public class ActionGeneration implements Runnable{
 
     private List<ActionWithTime> actions;
     private List<Integer> timeToNextEvent;
-    private boolean serverRunning;
-    static final int oneMinute = 1000; //one minute = 60000 ms
+    private BooleanState serverRunning;
     private Map<String, Socket> clientSockets;
     int lastTime;
     private TimerReference timer;
@@ -23,10 +24,11 @@ public class ActionGeneration implements Runnable{
         timeToNextEvent = new ArrayList<>();
         this.clientSockets = clientSockets;
         this.timer = timer;
+        serverRunning = new BooleanState(true);
     }
 
     public void killActionGeneration() {
-        serverRunning = false;
+        serverRunning.setFalse();
     }
 
     public void addActionWithTime(ActionWithTime actionWithTime ) {
@@ -42,10 +44,10 @@ public class ActionGeneration implements Runnable{
 
     @Override
     public void run() {
-        serverRunning = true;
+        serverRunning.setTrue();
         lastTime = timer.currentTimeSeconds();
 
-        while (serverRunning) {
+        while (serverRunning.isTrue()) {
             int currTime = timer.currentTimeSeconds();
             int elapsed = currTime - lastTime;
             lastTime = currTime;
@@ -57,8 +59,8 @@ public class ActionGeneration implements Runnable{
                     ActionWithTime actual = actions.get(i);
                     StringBuilder response = new StringBuilder();
 
-                    // TODO: negrada para enviar el mensaje a todos los jugadores
                     if (actual.getAction().doEvent(response)) {
+                        // TODO: negrada para enviar el mensaje a todos los jugadores
                         try {
                             for (Socket s : clientSockets.values()) {
                                 PrintWriter out = new PrintWriter(new OutputStreamWriter(s.getOutputStream(), "UTF-8"));
@@ -75,13 +77,21 @@ public class ActionGeneration implements Runnable{
                 }
             }
 
-            int minTime = Collections.min(timeToNextEvent);
+            int minTime = getMinTimeToNextEvent();
 
             try {
                 sleep(timer.getSleepTime(minTime));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private int getMinTimeToNextEvent() {
+        if (timeToNextEvent.isEmpty()) {
+            return 1;
+        } else {
+            return Collections.min(timeToNextEvent);
         }
     }
 }

@@ -5,6 +5,7 @@ import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.model.GameBuilder;
 import ar.fiuba.tdd.tp.model.Motor;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
+import ar.fiuba.tdd.tp.random.RNG;
 import ar.fiuba.tdd.tp.server.BuilderLoader;
 import ar.fiuba.tdd.tp.timedevent.AbstractTimer;
 
@@ -56,5 +57,15 @@ public class ConcreteGameDriver implements GameDriver {
     @Override
     public void setTimer(AbstractTimer timer) {
         game.setTimer(timer);
+    }
+
+    @Override
+    public void setRandom(RNG random) {
+        game.setRandom(random);
+    }
+
+    @Override
+    public void close() {
+        game.close();
     }
 }
