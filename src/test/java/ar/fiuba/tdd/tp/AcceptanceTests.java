@@ -45,7 +45,7 @@ public class AcceptanceTests {
         driver.sendCommand("pick libroViejo");
         driver.sendCommand("open doorBibliotecaToSotano");
         driver.sendCommand("open escalera");
-        assert (GameState.Lost == driver.getCurrentState());
+        assert (null == driver.getCurrentState());
     }
 
     @Test
@@ -64,7 +64,7 @@ public class AcceptanceTests {
         driver.sendCommand("pick libroViejo");
         driver.sendCommand("open doorBibliotecaToSotano");
         driver.sendCommand("open baranda");
-        assert (GameState.Lost == driver.getCurrentState());
+        assert (null == driver.getCurrentState());
     }
 
     @Test
