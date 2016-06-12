@@ -6,6 +6,8 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.*;
 
 import static ar.fiuba.tdd.tp.driver.GameState.*;
@@ -24,6 +26,7 @@ public abstract class Game implements GameBuilder {
     protected static final String needHelpRegex = "help(.)*";
     protected static final String win = ". You won the game!";
     protected static final String loose = ". You lost!";
+    protected Map<String, Socket> clientSockets;
 
     public String getName() {
         return name;
@@ -136,6 +139,23 @@ public abstract class Game implements GameBuilder {
 
     }
 
+    /*public String processCommandForObject(String stringCommand) {
+        String[] splitCommand = stringCommand.split(" ");
+        List<String> parsedCommand = new LinkedList<>();
+        for (String elem : splitCommand) {
+            parsedCommand.add(elem);
+        }
+        String command = parsedCommand.get(0);
+        parsedCommand.remove(0);
+
+        GameObject object = objects.get(parsedCommand.get(0));
+        parsedCommand.remove(0);
+
+        String temp = object.handleAction(command, parseObjectsFromCommand(parsedCommand));
+        updateGameState();
+        return temp;
+    }*/
+
     private String process(String playerId, List<String> parsedCommand, BooleanState forward) {
         String command = parsedCommand.get(0);
         parsedCommand.remove(0);
@@ -211,5 +231,9 @@ public abstract class Game implements GameBuilder {
 
     public GameState getCurrentState() {
         return gameState;
+    }
+
+    public void setClients(Map<String,Socket> clients) {
+        this.clientSockets = clients;
     }
 }

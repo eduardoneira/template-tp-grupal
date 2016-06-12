@@ -24,10 +24,13 @@ class ClientWorker implements Runnable {
 
     ClientWorker(ServerSocket server, String gameName) throws ClassNotFoundException, IOException,
             InstantiationException, IllegalAccessException {
+
         this.serverSocket = server;
-        Motor motor = new Motor();
-        this.game = motor.createGame(gameName);
         this.clientSockets = new HashMap<>();
+
+        Motor motor = new Motor();
+        this.game = motor.createGame(gameName, clientSockets);
+        this.game.setClients(clientSockets);
         isRunning = new BooleanState(false);
     }
 

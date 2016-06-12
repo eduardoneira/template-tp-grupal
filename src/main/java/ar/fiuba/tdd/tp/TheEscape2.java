@@ -8,10 +8,7 @@ import ar.fiuba.tdd.tp.objects.concrete.door.LinkingLockedDoor;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
-import ar.fiuba.tdd.tp.timedevent.ActionGeneration;
-import ar.fiuba.tdd.tp.timedevent.ActionWithTime;
-import ar.fiuba.tdd.tp.timedevent.TimedEventMovesObjectRandomly;
-import ar.fiuba.tdd.tp.timedevent.TimedEventSetBoolean;
+import ar.fiuba.tdd.tp.timedevent.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -75,10 +72,13 @@ public class TheEscape2 extends Game {
     private LinkingDoor bibliotecaAccesoToPasillo;
     private LinkingDoor bibliotecaAccesoToBiblioteca;
 
-    private ConcreteObjectChangesParentRandomly bibliotecario;
+    private ConcreteGameObjectWithParent bibliotecario;
     private BooleanState dormido;
     private BooleanState noDormido;
     private BooleanState cazandoJugadores;
+    private List<GameObject> objetosParaBibliotecarioCazando;
+    private TimedEvent despertarBibliotecarioEvent;
+    private TimedEvent despertarBibliotecarioNegadoEvent;
 
     private List<BooleanState> bibliotecarioAmigableConds;
     private List<BooleanState> bibliotecarioFuriosoConds;
@@ -232,6 +232,9 @@ public class TheEscape2 extends Game {
                 dormido.setTrue();
                 noDormido.setFalse();
 
+                despertarBibliotecarioEvent.resetRepeticiones(0);
+                despertarBibliotecarioNegadoEvent.resetRepeticiones(0);
+
                 permiteAcceso.setTrue();
                 noPermiteAcceso.setFalse();
             }
@@ -243,10 +246,11 @@ public class TheEscape2 extends Game {
 
             if (cazandoJugadores.isFalse()) {
                 cazandoJugadores.isTrue();
-                actionGeneration.addActionWithTime(new ActionWithTime(new TimedEventMovesObjectRandomly(this, bibliotecario), 1));
-                for (String subPlayerId : players.keySet()) {
-
-                }
+                // TODO: hacer que en algun momento se actualice la lista segun las habitaciones adyacentes a la actual del bibliotecario
+                objetosParaBibliotecarioCazando.add(pasillo);
+                actionGeneration.addActionWithTime(new ActionWithTime(
+                        new TimedEvent(this, new Move(bibliotecario), objetosParaBibliotecarioCazando,
+                                "El bibliotecario esta cazando wonejos"), 10));
             }
         }
 
@@ -510,9 +514,7 @@ public class TheEscape2 extends Game {
         bibliotecaAccesoToPasillo = new LinkingDoor("doorAccesoToPasillo", bibliotecaAcceso, pasillo);
         objects.put(bibliotecaAccesoToPasillo.getName(), bibliotecaAccesoToPasillo);
 
-        bibliotecario = new ConcreteObjectChangesParentRandomly("bibliotecario", bibliotecaAcceso);
-        bibliotecario.setOnePossibleParent(pasillo);
-
+        bibliotecario = new ConcreteGameObjectWithParent("bibliotecario", bibliotecaAcceso);
         objects.put(bibliotecario.getName(), bibliotecario);
 
         /*noPermiteAcceso = new ArrayList<>();
@@ -526,6 +528,8 @@ public class TheEscape2 extends Game {
         dormido = new BooleanState(false);
         noDormido = new BooleanState(true);
         cazandoJugadores = new BooleanState(false);
+        objetosParaBibliotecarioCazando = new ArrayList<>();
+        objetosParaBibliotecarioCazando.add(bibliotecario);
         talkedLastTurn = new ArrayList<>();
         losIlegales = new ArrayList<>();
         conBibliotecario = new ArrayList<>();
@@ -533,11 +537,30 @@ public class TheEscape2 extends Game {
         playerNames = new ArrayList<>();
         playerNamesBibliotecario = new ArrayList<>();
 
-        actionGeneration = new ActionGeneration();
-        ActionWithTime despertarBibliotecario = new ActionWithTime(new TimedEventSetBoolean(this, dormido, false), 1);
-        ActionWithTime despertarBibliotecario2 = new ActionWithTime(new TimedEventSetBoolean(this, noDormido, true), 1);
+        // TODO: probablemente actionGeneration va en Game directo
+
+        actionGeneration = new ActionGeneration(this.clientSockets);
+
+        List<BooleanState> triggerablesDormido = new ArrayList<>();
+        triggerablesDormido.add(dormido);
+        List<Boolean> triggeredDormido = new ArrayList<>();
+        triggeredDormido.add(false);
+        despertarBibliotecarioEvent = new TimedEvent(this,
+                new TriggerActionHandler(null, new BeTalkedTo(null), triggerablesDormido, triggeredDormido),
+                null, "Se desperto el bibliotecario! Cuidado con que te atrape", 1, 1);
+        ActionWithTime despertarBibliotecario = new ActionWithTime(despertarBibliotecarioEvent, 20);
+
+        List<BooleanState> triggerablesNoDormido = new ArrayList<>();
+        triggerablesNoDormido.add(noDormido);
+        List<Boolean> triggeredNoDormido = new ArrayList<>();
+        triggeredNoDormido.add(true);
+        despertarBibliotecarioNegadoEvent = new TimedEvent(this,
+                new TriggerActionHandler(null, new BeTalkedTo(null), triggerablesNoDormido, triggeredNoDormido),
+                null, "Se desperto el bibliotecario! Cuidado con que te atrape", 1, 1);
+        ActionWithTime despertarBibliotecarioNegado = new ActionWithTime(despertarBibliotecarioNegadoEvent, 20);
+
         actionGeneration.addActionWithTime(despertarBibliotecario);
-        actionGeneration.addActionWithTime(despertarBibliotecario2);
+        actionGeneration.addActionWithTime(despertarBibliotecarioNegado);
         (new Thread(actionGeneration)).start();
 
         bibliotecaAccesoToBiblioteca = new LinkingDoor("doorAccesoToBiblioteca", bibliotecaAcceso, biblioteca);
@@ -580,6 +603,8 @@ public class TheEscape2 extends Game {
         condicionesBibliotecarioDormido.add(dormido);
         bibliotecario.addAction(new ConditionalActionHandlerChecks(bibliotecario,
                 new BeTalkedTo(bibliotecario, "Zzzzz..."), condicionesBibliotecarioDormido));
+
+        bibliotecario.addAction(new BeMoved(bibliotecario, bibliotecario.getParentState()));
 
         makeTriggers();
 

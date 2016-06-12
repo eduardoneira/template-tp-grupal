@@ -5,6 +5,7 @@ import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.server.*;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,7 @@ public class Motor {
         games.add( new TheEscape2());
     }
 
-    public Game createGame(String game) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
+    public Game createGame(String game, Map<String, Socket> clientSockets) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
        /* for (Game actualGame: games) {
             if ( game.equals(actualGame.getName()) ) {
                 return actualGame;
@@ -35,6 +36,7 @@ public class Motor {
         }*/
         String path = "build/classes/main/ar/fiuba/tdd/tp/";
         GameBuilder builder = BuilderLoader.load(path.concat(game).concat(".jar"));
+        ((Game)builder).setClients(clientSockets);
         builder.build();
         return (Game) builder;
     }
