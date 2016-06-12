@@ -16,11 +16,13 @@ public class ActionGeneration implements Runnable{
     static final int oneMinute = 1000; //one minute = 60000 ms
     private Map<String, Socket> clientSockets;
     int lastTime;
+    private TimerReference timer;
 
-    public ActionGeneration(Map<String, Socket> clientSockets) {
+    public ActionGeneration(Map<String, Socket> clientSockets, TimerReference timer) {
         actions = new ArrayList<>();
         timeToNextEvent = new ArrayList<>();
         this.clientSockets = clientSockets;
+        this.timer = timer;
     }
 
     public void killActionGeneration() {
@@ -41,13 +43,14 @@ public class ActionGeneration implements Runnable{
     @Override
     public void run() {
         serverRunning = true;
-        lastTime = (int) (System.currentTimeMillis() / 1000);
+        lastTime = timer.currentTimeSeconds();
 
         while (serverRunning) {
-            int currTime = (int)(System.currentTimeMillis() / 1000);
+            int currTime = timer.currentTimeSeconds();
             int elapsed = currTime - lastTime;
             lastTime = currTime;
             updateTimesToNextEvent(elapsed);
+            //System.out.println("veo timed events");
 
             for (int i = 0; i < timeToNextEvent.size(); ++i) {
                 if (timeToNextEvent.get(i) <= 0) {
@@ -75,7 +78,7 @@ public class ActionGeneration implements Runnable{
             int minTime = Collections.min(timeToNextEvent);
 
             try {
-                sleep(minTime * 1000);
+                sleep(timer.getSleepTime(minTime));
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

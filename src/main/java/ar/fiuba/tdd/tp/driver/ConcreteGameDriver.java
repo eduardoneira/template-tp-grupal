@@ -6,6 +6,7 @@ import ar.fiuba.tdd.tp.model.GameBuilder;
 import ar.fiuba.tdd.tp.model.Motor;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.server.BuilderLoader;
+import ar.fiuba.tdd.tp.timedevent.AbstractTimer;
 
 import java.io.IOException;
 
@@ -32,12 +33,28 @@ public class ConcreteGameDriver implements GameDriver {
     public String sendCommand(String cmd) {
         // TODO: revisar
         return game.processCommand(" ", cmd, new BooleanState());
+    }
 
+    @Override
+    public String sendCommandByPlayer(String playerId, String cmd) {
+        // TODO: revisar
+        return game.processCommand(playerId, cmd, new BooleanState());
     }
 
     @Override
     public GameState getCurrentState() {
 
         return game.getCurrentState();
+    }
+
+    @Override
+    public GameState getCurrentStateByPlayer(String playerId) {
+
+        return game.getCurrentState(playerId);
+    }
+
+    @Override
+    public void setTimer(AbstractTimer timer) {
+        game.setTimer(timer);
     }
 }

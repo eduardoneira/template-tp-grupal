@@ -5,12 +5,12 @@ import ar.fiuba.tdd.tp.objects.concrete.Player;
 import ar.fiuba.tdd.tp.objects.general.GameObject;
 import ar.fiuba.tdd.tp.objects.general.GameObjectWithParent;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
+import ar.fiuba.tdd.tp.timedevent.AbstractTimer;
+import ar.fiuba.tdd.tp.timedevent.TimerReference;
+import ar.fiuba.tdd.tp.timedevent.TimerSystem;
 
-import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.*;
-
-import static ar.fiuba.tdd.tp.driver.GameState.*;
 
 public abstract class Game implements GameBuilder {
 
@@ -19,9 +19,10 @@ public abstract class Game implements GameBuilder {
     protected Map<String, List<AbstractCondition>> winConditionsPerPlayer;
     protected Map<String, List<AbstractCondition>> looseConditionsPerPlayer;
 
-    protected GameState gameState; // esto tambien deberia ser por player no?
+    protected Map<String, GameState> gameStateByPlayer;
     protected final String name;
     protected final Map<String, GameObject> objects;
+    protected TimerReference timer;
 
     protected static final String needHelpRegex = "help(.)*";
     protected static final String win = ". You won the game!";
@@ -39,7 +40,10 @@ public abstract class Game implements GameBuilder {
         this.winConditionsPerPlayer = new HashMap<>();
         this.looseConditionsPerPlayer = new HashMap<>();
         this.commandsPerPlayer = new HashMap<>();
-        gameState = Ready;
+        //gameStateByPlayer = Ready;
+        gameStateByPlayer = new HashMap<>();
+        timer = new TimerReference(new TimerSystem());
+        this.clientSockets = new HashMap<>();
     }
 
     public boolean checkWinCondition(String playerId) {
@@ -54,7 +58,6 @@ public abstract class Game implements GameBuilder {
     public boolean checkLooseCondition(String playerId) {
         for (AbstractCondition cond : looseConditionsPerPlayer.get(playerId)) {
             if (cond.checkCondition()) {
-                removePlayer(playerId);
                 return true;
             }
         }
@@ -68,6 +71,7 @@ public abstract class Game implements GameBuilder {
         commandsPerPlayer.remove(playerId);
         winConditionsPerPlayer.remove(playerId);
         looseConditionsPerPlayer.remove(playerId);
+        gameStateByPlayer.remove(playerId);
     }
 
     // esto lo deberia definir cada juego
@@ -80,8 +84,8 @@ public abstract class Game implements GameBuilder {
 
     private String preProcess(String playerId, List<String> parsedCommand, BooleanState forward) {
         if (parsedCommand.size() > 0) {
-            if (gameState == Ready) {
-                gameState = InProgress;
+            if (gameStateByPlayer.get(playerId) == GameState.Ready) {
+                gameStateByPlayer.put(playerId, GameState.InProgress);
             }
             return process(playerId, parsedCommand, forward);
         } else {
@@ -105,6 +109,8 @@ public abstract class Game implements GameBuilder {
 
         //Player player = new Player("player" + Integer.toString(players.size()+1), null);
         players.put(playerId, configPlayer(playerId, type));
+
+        gameStateByPlayer.put(playerId, GameState.Ready);
     }
 
     protected abstract Player configPlayer(String playerId, String type);
@@ -186,10 +192,11 @@ public abstract class Game implements GameBuilder {
         String result = players.get(playerId).handleAction(command, objectsInvolved);
         updateGameAfterHandle(playerId);
         if (checkWinCondition(playerId)) {
-            gameState = Won;
+            gameStateByPlayer.put(playerId, GameState.Won);
             return result + win;
         } else if (checkLooseCondition(playerId)) {
-            gameState = Lost;
+            gameStateByPlayer.put(playerId, GameState.Lost);
+            removePlayer(playerId);
             return result + loose;
         } else {
             return result;
@@ -230,10 +237,18 @@ public abstract class Game implements GameBuilder {
     }
 
     public GameState getCurrentState() {
-        return gameState;
+        return gameStateByPlayer.get(" ");
+    }
+
+    public GameState getCurrentState(String playerId) {
+        return gameStateByPlayer.get(playerId);
     }
 
     public void setClients(Map<String,Socket> clients) {
         this.clientSockets = clients;
+    }
+
+    public void setTimer(AbstractTimer instance) {
+        this.timer.setTimer(instance);
     }
 }
