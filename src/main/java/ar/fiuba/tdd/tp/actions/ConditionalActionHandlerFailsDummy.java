@@ -9,7 +9,8 @@ import java.util.List;
  * Created by Master on 20/05/2016.
  */
 public class ConditionalActionHandlerFailsDummy extends ConditionalActionHandlerFails {
-    public ConditionalActionHandlerFailsDummy(GameObject instance, ActionHandler action, List<BooleanState> conditions, List<Boolean> conditionsValues) {
+    public ConditionalActionHandlerFailsDummy(GameObject instance, ActionHandler action,
+                                              List<BooleanState> conditions, List<Boolean> conditionsValues) {
         super(instance, action, conditions, conditionsValues);
     }
 

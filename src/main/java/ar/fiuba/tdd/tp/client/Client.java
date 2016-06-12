@@ -53,7 +53,7 @@ public class Client implements ClientResponses {
     }
 
     private static void playGame(PrintWriter out, BufferedReader in, BufferedReader stdIn) throws IOException {
-        String fromServer;
+        //String fromServer;
         StringBuilder fromUser = new StringBuilder();
         BooleanState keepPlaying = new BooleanState(true);
 
@@ -66,7 +66,7 @@ public class Client implements ClientResponses {
             //System.out.println("Client: " + fromUser);
             out.println(fromUser.toString());
             out.flush();
-            if(EXIT.equals(fromUser)) {
+            if (EXIT.equals(fromUser.toString())) {
                 keepPlaying.setFalse();
             }
         }

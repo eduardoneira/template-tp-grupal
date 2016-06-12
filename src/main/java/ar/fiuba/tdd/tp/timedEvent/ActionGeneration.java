@@ -48,42 +48,55 @@ public class ActionGeneration implements Runnable{
         lastTime = timer.currentTimeSeconds();
 
         while (serverRunning.isTrue()) {
-            int currTime = timer.currentTimeSeconds();
-            int elapsed = currTime - lastTime;
-            lastTime = currTime;
-            updateTimesToNextEvent(elapsed);
-            //System.out.println("veo timed events");
 
-            for (int i = 0; i < timeToNextEvent.size(); ++i) {
-                if (timeToNextEvent.get(i) <= 0) {
-                    ActionWithTime actual = actions.get(i);
-                    StringBuilder response = new StringBuilder();
+            this.updateEvents();
 
-                    if (actual.getAction().doEvent(response)) {
-                        // TODO: negrada para enviar el mensaje a todos los jugadores
-                        try {
-                            for (Socket s : clientSockets.values()) {
-                                PrintWriter out = new PrintWriter(new OutputStreamWriter(s.getOutputStream(), "UTF-8"));
-                                out.println("juego: " + response.toString());
-                                out.flush();
-                                //out.close();
-                            }
-                        } catch (IOException e) {
+            this.sleepUntilNextEvent();
+        }
+    }
 
-                        }
-                    }
-                    //System.out.println(currTime + "/" + timeToNextEvent.get(i) + ": timed event: " + response.toString());
-                    timeToNextEvent.set(i, actual.getTime());
+    private void updateEvents() {
+        int currTime = timer.currentTimeSeconds();
+        int elapsed = currTime - lastTime;
+        lastTime = currTime;
+        updateTimesToNextEvent(elapsed);
+        //System.out.println("veo timed events");
+
+        for (int i = 0; i < timeToNextEvent.size(); ++i) {
+            if (timeToNextEvent.get(i) <= 0) {
+                ActionWithTime actual = actions.get(i);
+                StringBuilder response = new StringBuilder();
+
+                if (actual.getAction().doEvent(response)) {
+                    // TODO: negrada para enviar el mensaje a todos los jugadores
+                    forwardEventMessage(response);
                 }
+                //System.out.println(currTime + "/" + timeToNextEvent.get(i) + ": timed event: " + response.toString());
+                timeToNextEvent.set(i, actual.getTime());
             }
+        }
+    }
 
-            int minTime = getMinTimeToNextEvent();
+    private void sleepUntilNextEvent() {
+        int minTime = getMinTimeToNextEvent();
 
-            try {
-                sleep(timer.getSleepTime(minTime));
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        try {
+            sleep(timer.getSleepTime(minTime));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void forwardEventMessage(StringBuilder response) {
+        try {
+            for (Socket s : clientSockets.values()) {
+                PrintWriter out = new PrintWriter(new OutputStreamWriter(s.getOutputStream(), "UTF-8"));
+                out.println("juego: " + response.toString());
+                out.flush();
+                //out.close();
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

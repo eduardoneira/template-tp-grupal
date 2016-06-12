@@ -11,7 +11,8 @@ public class ConditionalActionHandlerFails extends ActionHandler {
     protected final List<Boolean> conditionsValues;
     protected final ActionHandler action;
 
-    public ConditionalActionHandlerFails(GameObject instance, ActionHandler action, List<BooleanState> conditions, List<Boolean> conditionsValues) {
+    public ConditionalActionHandlerFails(GameObject instance, ActionHandler action,
+                                         List<BooleanState> conditions, List<Boolean> conditionsValues) {
         super(instance, action.argsSize);
         this.action = action;
         this.conditions = conditions;

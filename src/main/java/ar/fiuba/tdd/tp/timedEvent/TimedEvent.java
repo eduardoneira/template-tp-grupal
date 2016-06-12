@@ -23,7 +23,8 @@ public class TimedEvent {
         this(game, actions, objectsInvolved, eventDescription, -1, -1);
     }
 
-    public TimedEvent(Game game, List<ActionHandler> actions, List<GameObject> objectsInvolved, String eventDescription, int cantRepeticiones, int valorInicialRepeticiones) {
+    public TimedEvent(Game game, List<ActionHandler> actions, List<GameObject> objectsInvolved,
+                      String eventDescription, int cantRepeticiones, int valorInicialRepeticiones) {
         this.game = game;
         this.actions = actions;
         this.eventDescription = eventDescription;

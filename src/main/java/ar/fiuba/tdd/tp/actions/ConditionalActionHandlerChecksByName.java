@@ -16,7 +16,8 @@ public class ConditionalActionHandlerChecksByName extends ConditionalActionHandl
     }
 
     public ConditionalActionHandlerChecksByName(GameObject instance,
-                                                ActionHandler action, List<BooleanState> conditions, List<Boolean> conditionsValues, List<String> names, int index) {
+                                                ActionHandler action, List<BooleanState> conditions,
+                                                List<Boolean> conditionsValues, List<String> names, int index) {
         super(instance, action, conditions, conditionsValues, names, index);
     }
 

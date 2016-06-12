@@ -28,6 +28,7 @@ public class ClientWorkerInner implements Runnable {
         this.isRunning = isRunning;
     }
 
+    @Override
     public void run() {
         Socket clientSocket = clientSockets.get(myClientSocket);
         try {
@@ -35,32 +36,14 @@ public class ClientWorkerInner implements Runnable {
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream(), "UTF-8"));
 
             String inputLine;
-            String outputLine;
+            String outputLine = "";
             BooleanState forward = new BooleanState();
-            while (this.isRunning.isTrue() && (inputLine = in.readLine()) != null ) {
+
+            while (this.isRunning.isTrue() && (inputLine = in.readLine()) != null && (!outputLine.contains(loose))) {
                 System.out.println("INPUT LINE " + inputLine);
                 // mutex aca?
                 outputLine = this.game.processCommand(clientSocket.toString(), inputLine, forward);
-
-                if (forward.isTrue()) {
-                    for (Socket s : clientSockets.values()) {
-                        PrintWriter out = new PrintWriter(new OutputStreamWriter(s.getOutputStream(), "UTF-8"));
-                        out.println(outputLine);
-                        out.flush();
-                        //out.close();
-                    }
-                } else {
-                    myOut.println(outputLine);
-                    myOut.flush();
-                }
-
-
-                //out.println(outputLine);
-                //out.flush();
-
-                if (outputLine.contains(loose)) {
-                    break;
-                }
+                printOutput(forward, outputLine, myOut);
 
                 if (outputLine.contains(win)) {
                     this.isRunning.setFalse();
@@ -74,6 +57,19 @@ public class ClientWorkerInner implements Runnable {
 
         } catch (IOException e) {
             System.err.println("Thread failed");
+        }
+    }
+
+    private void printOutput(BooleanState forward, String outputLine, PrintWriter myOut) throws IOException {
+        if (forward.isTrue()) {
+            for (Socket s : clientSockets.values()) {
+                PrintWriter out = new PrintWriter(new OutputStreamWriter(s.getOutputStream(), "UTF-8"));
+                out.println(outputLine);
+                out.flush();
+            }
+        } else {
+            myOut.println(outputLine);
+            myOut.flush();
         }
     }
 

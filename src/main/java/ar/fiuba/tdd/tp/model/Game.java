@@ -158,21 +158,25 @@ public abstract class Game implements GameBuilder {
             } else {
                 return "You need to input 'create player' to start";
             }
+        } else {
+            if ( stringCommand.toLowerCase().matches(needHelpRegex)) {
+                return help(playerId);
+            } else {
+                List<String> parsedCommand = parseCommand(playerId, stringCommand);
+                return preProcess(playerId, parsedCommand, forward);
+            }
         }
+    }
 
-        if ( stringCommand.toLowerCase().matches(needHelpRegex)) {
-            return help(playerId);
-        }
-
-        String[] splitCommand = stringCommand.split(" ");
+    private List<String> parseCommand(String playerId, String command) {
+        String[] splitCommand = command.split(" ");
         List<String> parsedCommand = new LinkedList<>();
         for (String elem : splitCommand) {
             if (commandsPerPlayer.get(playerId).contains(elem) || objects.keySet().contains(elem)) {
                 parsedCommand.add(elem);
             }
         }
-
-        return preProcess(playerId, parsedCommand, forward);
+        return parsedCommand;
     }
 
     private String process(String playerId, List<String> parsedCommand, BooleanState forward) {

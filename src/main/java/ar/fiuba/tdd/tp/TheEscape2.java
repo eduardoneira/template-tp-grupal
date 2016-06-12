@@ -86,7 +86,7 @@ public class TheEscape2 extends Game {
     private List<Boolean> puertaPermiteAccesoValues;
 
     private int BIBLIOTECARIO_CREDENCIAL_FALSA = 0;
-    private int BIBLIOTECARIO_DORMIDO = 1;
+    //private int BIBLIOTECARIO_DORMIDO = 1;
     private int BIBLIOTECARIO_CREDENCIAL_VERDADERA = 2;
 
     // biblioteca
@@ -351,28 +351,28 @@ public class TheEscape2 extends Game {
         talkedLastTurnTiggeredValues.add(myTalkedLastTurnTriggeredValue);
 
         puertaPermiteAcceso.add(permiteAcceso);
-        puertaPermiteAccesoValues.add(new Boolean(true));
+        puertaPermiteAccesoValues.add(Boolean.valueOf(true));
 
         bibliotecarioAmigableConds.add(vioCredencialFalsa);
         bibliotecarioAmigableConds.add(dormido);
         bibliotecarioAmigableConds.add(vioCredencialVerdadera);
-        bibliotecarioAmigableCondsValues.add(new Boolean(false));
-        bibliotecarioAmigableCondsValues.add(new Boolean(false));
-        bibliotecarioAmigableCondsValues.add(new Boolean(false));
+        bibliotecarioAmigableCondsValues.add(Boolean.valueOf(false));
+        bibliotecarioAmigableCondsValues.add(Boolean.valueOf(false));
+        bibliotecarioAmigableCondsValues.add(Boolean.valueOf(false));
 
         bibliotecarioFuriosoConds.add(vioCredencialFalsa);
         bibliotecarioFuriosoConds.add(dormido);
         bibliotecarioFuriosoConds.add(vioCredencialVerdadera);
-        bibliotecarioFuriosoCondsValues.add(new Boolean(true));
-        bibliotecarioFuriosoCondsValues.add(new Boolean(false));
-        bibliotecarioFuriosoCondsValues.add(new Boolean(false));
+        bibliotecarioFuriosoCondsValues.add(Boolean.valueOf(true));
+        bibliotecarioFuriosoCondsValues.add(Boolean.valueOf(false));
+        bibliotecarioFuriosoCondsValues.add(Boolean.valueOf(false));
 
         bibliotecarioPermitePasarConds.add(vioCredencialFalsa);
         bibliotecarioPermitePasarConds.add(dormido);
         bibliotecarioPermitePasarConds.add(vioCredencialVerdadera);
-        bibliotecarioPermitePasarCondsValues.add(new Boolean(false));
-        bibliotecarioPermitePasarCondsValues.add(new Boolean(false));
-        bibliotecarioPermitePasarCondsValues.add(new Boolean(true));
+        bibliotecarioPermitePasarCondsValues.add(Boolean.valueOf(false));
+        bibliotecarioPermitePasarCondsValues.add(Boolean.valueOf(false));
+        bibliotecarioPermitePasarCondsValues.add(Boolean.valueOf(true));
 
         return player;
     }

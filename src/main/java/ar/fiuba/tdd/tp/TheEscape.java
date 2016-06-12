@@ -252,10 +252,8 @@ public class TheEscape extends Game {
         looseConds.add(new ConditionCompound(new ConditionCheckContains(sotanoAbajo.getChildrenState(), player.getName(), true),
                 new ConditionCheckContains(player.getChildrenState(), martillo.getName(), false)));
 
-        BooleanState noVioCredencialFalsa = new BooleanState(true);
         BooleanState vioCredencialFalsa = new BooleanState(false);
         BooleanState permiteAcceso = new BooleanState(false);
-        BooleanState noPermiteAcceso = new BooleanState(true);
         BooleanState myTalkedLastTrun = new BooleanState(false);
         Boolean myTalkedLastTurnTriggeredValue = Boolean.TRUE;
 
