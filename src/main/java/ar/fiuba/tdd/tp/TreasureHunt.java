@@ -139,7 +139,8 @@ public class TreasureHunt extends Game {
         //antidoteIn2 = new Antidote("antidoteIn2", boxInChestIn2, poisoned);
         antidoteIn2 = new GeneralMovableObject("antidoteIn2", boxInChestIn2);
         BeUsed usedAction = new BeUsed(antidoteIn2, antidoteIn2.getParentState(), 1);
-        antidoteIn2.addAction(new TriggerActionHandlerByName(antidoteIn2, usedAction, poisoned, playerNames, antidoteTriggeredValues, 0, "All your ailments are healed!"));
+        antidoteIn2.addAction(new TriggerActionHandlerByName(
+                antidoteIn2, usedAction, poisoned, playerNames, antidoteTriggeredValues, 0, "All your ailments are healed!"));
         antidoteIn2.addAction(usedAction);
         objects.put(antidoteIn2.getName(), antidoteIn2);
     }
@@ -175,7 +176,8 @@ public class TreasureHunt extends Game {
         //poisonIn4 = new Poison("poisonIn4", chest1In4, killedByPoison, poisoned);
 
         poisonIn4 = new GeneralMovableObject("poisonIn4", chest1In4);
-        chest1In4.addAction(new TriggerActionHandlerByName(chest1In4, new BeOpened(null, null), poisoned, playerNames, poisonedTriggeredValues, 0));
+        chest1In4.addAction(new TriggerActionHandlerByName(
+                chest1In4, new BeOpened(null, null), poisoned, playerNames, poisonedTriggeredValues, 0));
         List<ActionHandler> actions = new LinkedList<>();
         actions.add(new ConditionalActionHandlerChecksByName(poisonIn4,
                 new TriggerActionHandlerByName(poisonIn4,
@@ -208,7 +210,8 @@ public class TreasureHunt extends Game {
         //antidoteIn5 = new Antidote("antidoteIn5", room5, poisoned);
         antidoteIn5 = new GeneralMovableObject("antidoteIn5", room5);
         BeUsed usedAction = new BeUsed(antidoteIn5, antidoteIn5.getParentState(), 1);
-        antidoteIn5.addAction(new TriggerActionHandlerByName(antidoteIn5, usedAction, poisoned, playerNames, antidoteTriggeredValues, 0, "All your ailments are healed!"));
+        antidoteIn5.addAction(new TriggerActionHandlerByName(
+                antidoteIn5, usedAction, poisoned, playerNames, antidoteTriggeredValues, 0, "All your ailments are healed!"));
         antidoteIn5.addAction(usedAction);
         objects.put(antidoteIn5.getName(), antidoteIn5);
 
@@ -227,7 +230,8 @@ public class TreasureHunt extends Game {
         //objects.put(poisonIn5.getName(), poisonIn5);
 
         poisonIn5 = new GeneralMovableObject("poisonIn5", chest2In5);
-        chest2In5.addAction(new TriggerActionHandlerByName(chest2In5, new BeOpened(null, null), poisoned, playerNames, poisonedTriggeredValues, 0));
+        chest2In5.addAction(new TriggerActionHandlerByName(chest2In5,
+                new BeOpened(null, null), poisoned, playerNames, poisonedTriggeredValues, 0));
         List<ActionHandler> actions = new LinkedList<>();
         actions.add(new ConditionalActionHandlerChecksByName(poisonIn5,
                 new TriggerActionHandlerByName(poisonIn5,
@@ -240,9 +244,9 @@ public class TreasureHunt extends Game {
     @Override
     protected Player configPlayer(String playerId, String type) {
         Player player = new Player("player" + Integer.toString(players.size() + 1), null, new ChildrenStateLimitedSize(2));
-        Set<String> commands = commandsPerPlayer.get(playerId);
         List<AbstractCondition> winConds = winConditionsPerPlayer.get(playerId);
         List<AbstractCondition> looseConds = looseConditionsPerPlayer.get(playerId);
+        Set<String> commands = commandsPerPlayer.get(playerId);
 
         player.setParent(room1);
         room1.addChild(player);

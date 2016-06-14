@@ -10,7 +10,7 @@ import java.util.*;
 
 import static java.lang.Thread.sleep;
 
-public class ActionGeneration implements Runnable{
+public class ActionGeneration implements Runnable {
 
     private List<ActionWithTime> actions;
     private List<Integer> timeToNextEvent;

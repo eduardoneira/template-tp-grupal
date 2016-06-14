@@ -85,9 +85,9 @@ public class TheEscape2 extends Game {
     private List<BooleanState> puertaPermiteAcceso;
     private List<Boolean> puertaPermiteAccesoValues;
 
-    private int BIBLIOTECARIO_CREDENCIAL_FALSA = 0;
+    private int bibliotecarioCredencialFalsa = 0;
     //private int BIBLIOTECARIO_DORMIDO = 1;
-    private int BIBLIOTECARIO_CREDENCIAL_VERDADERA = 2;
+    private int bibliotecarioCredencialVerdadera = 2;
 
     // biblioteca
     private Room biblioteca;
@@ -179,8 +179,9 @@ public class TheEscape2 extends Game {
         }
 
         BooleanState permiteAcceso = puertaPermiteAcceso.get(indexInPlayerNames);
-        BooleanState vioCredencialFalsa = bibliotecarioFuriosoConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_CREDENCIAL_FALSA);
-        BooleanState vioCredencialVerdadera = bibliotecarioPermitePasarConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_CREDENCIAL_VERDADERA);
+        BooleanState vioCredencialFalsa = bibliotecarioFuriosoConds.get(indexInPlayerNamesBibliotecario + bibliotecarioCredencialFalsa);
+        BooleanState vioCredencialVerdadera = bibliotecarioPermitePasarConds.get(
+                indexInPlayerNamesBibliotecario + bibliotecarioCredencialVerdadera);
 
         // comportamiento de bibliotecario cuando le hablan
         if (permiteAcceso.isFalse() && talkedLastTurn.get(indexInPlayerNames).isTrue()) {
@@ -212,13 +213,14 @@ public class TheEscape2 extends Game {
             bibliotecarioCambioCuarto.setFalse();
 
             // TODO: hacer que en algun momento se actualice la lista segun las habitaciones adyacentes a la actual del bibliotecario
-            objetosParaBibliotecarioCazando.remove(objetosParaBibliotecarioCazando.size()-1);
+            objetosParaBibliotecarioCazando.remove(objetosParaBibliotecarioCazando.size() - 1);
             objetosParaBibliotecarioCazando.add(bibliotecarioGetNextCuarto());
             //System.out.println("bibliotecario cambio cuarto");
         }
 
         // si bibliotecario volvio a la biblioteca, los que no tenian permiso ya no tienen
-        if (permiteAcceso.isTrue() && vioCredencialVerdadera.isFalse() && dormido.isFalse() && bibliotecaAcceso.contains(bibliotecario.getName())) {
+        if (permiteAcceso.isTrue() && vioCredencialVerdadera.isFalse()
+                && dormido.isFalse() && bibliotecaAcceso.contains(bibliotecario.getName())) {
             permiteAcceso.setFalse();
 
             // esto va a ocurrir la 1ra vez que se despierta
@@ -263,24 +265,24 @@ public class TheEscape2 extends Game {
         rooms.add(bibliotecaAcceso);
         rooms.add(biblioteca);
 
-        int chosenRoom = this.random.getRandomNumber(0, rooms.size()-1);
+        int chosenRoom = this.random.getRandomNumber(0, rooms.size() - 1);
 
         return rooms.get(chosenRoom);
     }
 
     @Override
     protected Player configPlayer(String playerId, String type) {
-        Player player = new Player("player" + Integer.toString(players.size()+1), null, new ChildrenState());
+        Player player = new Player("player" + Integer.toString(players.size() + 1), null, new ChildrenState());
         Set<String> commands = commandsPerPlayer.get(playerId);
 
         player.setParent(pasillo);
         pasillo.addChild(player);
 
-        GeneralMovableObject myFotoPlayer = new GeneralMovableObject("fotoPlayer" + Integer.toString(players.size()+1), player);
+        GeneralMovableObject myFotoPlayer = new GeneralMovableObject("fotoPlayer" + Integer.toString(players.size() + 1), player);
         objects.put(myFotoPlayer.getName(), myFotoPlayer);
         fotoPlayer.add(myFotoPlayer);
 
-        GeneralMovableObject myLapicera = new GeneralMovableObject("lapicera" + Integer.toString(players.size()+1), player);
+        GeneralMovableObject myLapicera = new GeneralMovableObject("lapicera" + Integer.toString(players.size() + 1), player);
         objects.put(myLapicera.getName(), myLapicera);
         lapicera.add(myLapicera);
 
@@ -572,7 +574,8 @@ public class TheEscape2 extends Game {
 
         bibliotecaAccesoToBiblioteca = new LinkingDoor("doorAccesoToBiblioteca", bibliotecaAcceso, biblioteca);
         bibliotecaAccesoToBiblioteca.addAction(new ConditionalActionHandlerFailsByName(bibliotecaAccesoToBiblioteca,
-                new BeOpened(bibliotecaAccesoToBiblioteca, new BooleanState()), puertaPermiteAcceso, puertaPermiteAccesoValues, playerNames, 0));
+                new BeOpened(bibliotecaAccesoToBiblioteca, new BooleanState()),
+                puertaPermiteAcceso, puertaPermiteAccesoValues, playerNames, 0));
         objects.put(bibliotecaAccesoToBiblioteca.getName(), bibliotecaAccesoToBiblioteca);
 
         configureBibliotecario();
