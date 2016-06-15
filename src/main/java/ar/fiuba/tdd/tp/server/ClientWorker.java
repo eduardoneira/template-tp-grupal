@@ -34,11 +34,13 @@ class ClientWorker implements Runnable {
         isRunning = new BooleanState(false);
     }
 
+    @Override
     public void run() {
 
         try {
             this.isRunning.setTrue();
             serverSocket.setSoTimeout(1000);
+            this.game.start();
             while (this.isRunning.isTrue()) {
                 try {
                     Socket clientSocket = serverSocket.accept();

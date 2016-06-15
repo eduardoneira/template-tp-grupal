@@ -14,14 +14,14 @@ public class InstantTimerDummy implements AbstractTimer {
     @Override
     public long currentTimeMillis() {
         int temp = time;
-        time += 10000;
+        time += 30000;
         return temp;
     }
 
     @Override
     public int currentTimeSeconds() {
         int temp = time;
-        time += 10000;
+        time += 30;
         return temp;
     }
 

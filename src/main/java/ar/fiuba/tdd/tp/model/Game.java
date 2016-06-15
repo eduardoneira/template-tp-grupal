@@ -15,6 +15,7 @@ import ar.fiuba.tdd.tp.timedevent.TimerSystem;
 
 import java.net.Socket;
 import java.util.*;
+import java.util.concurrent.locks.ReentrantLock;
 
 public abstract class Game implements GameBuilder {
 
@@ -36,6 +37,8 @@ public abstract class Game implements GameBuilder {
     protected static final String loose = ". You lost!";
     protected Map<String, Socket> clientSockets;
 
+    ReentrantLock lock;
+
     public String getName() {
         return name;
     }
@@ -54,18 +57,29 @@ public abstract class Game implements GameBuilder {
         this.clientSockets = new HashMap<>();
         actionGeneration = null;
         actionGenerationThread = null;
+
+        lock = new ReentrantLock(true);
     }
 
-    public void startActionGeneration() {
-        actionGeneration = new ActionGeneration(this.clientSockets, this.timer);
-        actionGenerationThread = new Thread(actionGeneration);
-        actionGenerationThread.start();
+    protected void configActionGeneration() {
+        actionGeneration = new ActionGeneration(this.clientSockets, this.timer, this.lock);
+    }
+
+    public void start() {
+        lock.lock();
+        try {
+            actionGenerationThread = new Thread(actionGeneration);
+            actionGenerationThread.start();
+        } finally {
+            lock.unlock();
+        }
     }
 
     public void stopActionGeneration() {
         if (actionGenerationThread != null) {
             actionGeneration.killActionGeneration();
             try {
+                actionGenerationThread.interrupt();
                 actionGenerationThread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -74,7 +88,12 @@ public abstract class Game implements GameBuilder {
     }
 
     public void close() {
-        stopActionGeneration();
+        lock.lock();
+        try {
+            stopActionGeneration();
+        } finally {
+            lock.unlock();
+        }
     }
 
     public boolean checkWinCondition(String playerId) {
@@ -147,24 +166,29 @@ public abstract class Game implements GameBuilder {
     protected abstract Player configPlayer(String playerId, String type);
 
     public String processCommand(String playerId, String stringCommand, BooleanState forward) {
-        forward.setFalse();
-        System.out.println("SERVER PROCESS " + stringCommand + " FROM " + playerId);
+        lock.lock();
+        try {
+            forward.setFalse();
+            System.out.println("SERVER PROCESS " + stringCommand + " FROM " + playerId);
 
-        // TODO: refactorizar y agregar tipo de jugador
-        if (!players.containsKey(playerId)) {
-            if (stringCommand.equals("create player")) {
-                createPlayer(playerId, "");
-                return "Entered game as player";
+            // TODO: refactorizar y agregar tipo de jugador
+            if (!players.containsKey(playerId)) {
+                if (stringCommand.equals("create player")) {
+                    createPlayer(playerId, "");
+                    return "Entered game as player";
+                } else {
+                    return "You need to input 'create player' to start";
+                }
             } else {
-                return "You need to input 'create player' to start";
+                if (stringCommand.toLowerCase().matches(needHelpRegex)) {
+                    return help(playerId);
+                } else {
+                    List<String> parsedCommand = parseCommand(playerId, stringCommand);
+                    return preProcess(playerId, parsedCommand, forward);
+                }
             }
-        } else {
-            if ( stringCommand.toLowerCase().matches(needHelpRegex)) {
-                return help(playerId);
-            } else {
-                List<String> parsedCommand = parseCommand(playerId, stringCommand);
-                return preProcess(playerId, parsedCommand, forward);
-            }
+        } finally {
+            lock.unlock();
         }
     }
 
@@ -198,21 +222,33 @@ public abstract class Game implements GameBuilder {
     }
 
     public void updateGameState() {
-        for (String playerId : players.keySet()) {
-            updateGameAfterHandle(playerId);
+        lock.lock();
+        try {
+            for (String playerId : players.keySet()) {
+                updateGameState(playerId);
+            }
+        } finally {
+            lock.unlock();
         }
     }
 
     protected abstract void updateGameAfterHandle(String playerId);
 
-    private String handleProcessedCommand(String playerId, String command, List<GameObject> objectsInvolved) {
-        String result = players.get(playerId).handleAction(command, objectsInvolved);
+    protected void updateGameState(String playerId) {
         updateGameAfterHandle(playerId);
         if (checkWinCondition(playerId)) {
             gameStateByPlayer.put(playerId, GameState.Won);
-            return result + win;
         } else if (checkLooseCondition(playerId)) {
             gameStateByPlayer.put(playerId, GameState.Lost);
+        }
+    }
+
+    private String handleProcessedCommand(String playerId, String command, List<GameObject> objectsInvolved) {
+        String result = players.get(playerId).handleAction(command, objectsInvolved);
+        updateGameState();
+        if (gameStateByPlayer.get(playerId).equals(GameState.Won)) {
+            return result + win;
+        } else if (gameStateByPlayer.get(playerId).equals(GameState.Lost)) {
             removePlayer(playerId);
             return result + loose;
         } else {
@@ -258,18 +294,43 @@ public abstract class Game implements GameBuilder {
     }
 
     public GameState getCurrentState(String playerId) {
-        return gameStateByPlayer.get(playerId);
+        lock.lock();
+        try {
+            // TODO: descomentar esta linea para debugear mejor las tests
+            //System.out.println("devuelvo estado de " + playerId);
+            if (gameStateByPlayer.containsKey(playerId)) {
+                updateGameState();
+            }
+            return gameStateByPlayer.get(playerId);
+        } finally {
+            lock.unlock();
+        }
     }
 
     public void setClients(Map<String,Socket> clients) {
-        this.clientSockets = clients;
+        lock.lock();
+        try {
+            this.clientSockets = clients;
+        } finally {
+            lock.unlock();
+        }
     }
 
     public void setTimer(AbstractTimer instance) {
-        this.timer.setTimer(instance);
+        lock.lock();
+        try {
+            this.timer.setTimer(instance);
+        } finally {
+            lock.unlock();
+        }
     }
 
     public void setRandom(RNG random) {
-        this.random.setRandom(random);
+        lock.lock();
+        try {
+            this.random.setRandom(random);
+        } finally {
+            lock.unlock();
+        }
     }
 }

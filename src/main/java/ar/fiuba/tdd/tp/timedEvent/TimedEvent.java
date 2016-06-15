@@ -6,13 +6,14 @@ import ar.fiuba.tdd.tp.objects.general.GameObject;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Created by gabriel on 6/9/2016.
  */
 public class TimedEvent {
 
-    Game game;
+    AtomicReference<Game> game;
     String eventDescription;
     List<ActionHandler> actions;
     List<GameObject> objectsInvolved;
@@ -25,7 +26,7 @@ public class TimedEvent {
 
     public TimedEvent(Game game, List<ActionHandler> actions, List<GameObject> objectsInvolved,
                       String eventDescription, int cantRepeticiones, int valorInicialRepeticiones) {
-        this.game = game;
+        this.game = new AtomicReference<>(game);
         this.actions = actions;
         this.eventDescription = eventDescription;
         this.objectsInvolved = objectsInvolved;
@@ -41,7 +42,7 @@ public class TimedEvent {
         if (cantRepeticiones == -1 || currRepeticiones < cantRepeticiones) {
             for (ActionHandler action : actions) {
                 action.handleAction(action.getName(), objectsInvolved);
-                game.updateGameState();
+                game.get().updateGameState();
             }
             //System.out.println("timed event: " + eventDescription);
             response.append(/*"timed event: " + */eventDescription);

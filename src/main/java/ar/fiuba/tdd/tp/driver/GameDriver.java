@@ -20,10 +20,11 @@ public interface GameDriver {
 
     GameState getCurrentStateByPlayer(String playerId);
 
-
     void setTimer(AbstractTimer timer);
 
     void setRandom(RNG random);
+
+    void start();
 
     void close();
 }

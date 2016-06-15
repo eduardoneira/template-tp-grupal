@@ -10,6 +10,7 @@ import ar.fiuba.tdd.tp.server.BuilderLoader;
 import ar.fiuba.tdd.tp.timedevent.AbstractTimer;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ConcreteGameDriver implements GameDriver {
     private Game game;
@@ -28,6 +29,11 @@ public class ConcreteGameDriver implements GameDriver {
         if (game == null) {
             throw new GameLoadFailedException();
         }
+    }
+
+    @Override
+    public void start() {
+        game.start();
     }
 
     @Override

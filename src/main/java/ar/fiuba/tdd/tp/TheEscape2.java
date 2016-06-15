@@ -204,7 +204,7 @@ public class TheEscape2 extends Game {
         talkedLastTurn.get(indexInPlayerNames).setFalse();
 
         // si bibliotecario no esta en biblioteca, todos pueden pasar (esto podria ir solo cuando cambia de cuarto)
-        if (!bibliotecaAcceso.contains(bibliotecario.getName())) {
+        if (dormido.isTrue() || !bibliotecaAcceso.contains(bibliotecario.getName())) {
             permiteAcceso.setTrue();
         }
 
@@ -556,7 +556,7 @@ public class TheEscape2 extends Game {
         playerNamesBibliotecario = new ArrayList<>();
 
         //actionGeneration = new ActionGeneration(this.clientSockets, this.timer);
-        startActionGeneration();
+        configActionGeneration();
 
         List<BooleanState> triggerablesDormido = new ArrayList<>();
         triggerablesDormido.add(dormido);
