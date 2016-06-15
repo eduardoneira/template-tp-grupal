@@ -94,14 +94,14 @@ public class TempleQuest extends Game {
         }
 
         //for(String playerId : players.keySet()) {
-            estabaEnShore1TurnoAnterior.get(playerId).setValue(estaEnShore1Ahora.get(playerId).isTrue());
-            estaEnShore1Ahora.get(playerId).setValue(room2shore1.contains(players.get(playerId).getName()));
-            if ((estabaEnShore1TurnoAnterior.get(playerId).isFalse() && estaEnShore1Ahora.get(playerId).isTrue())
-                    || (estabaEnShore1TurnoAnterior.get(playerId).isTrue() && estaEnShore1Ahora.get(playerId).isFalse())) {
-                if (players.get(playerId).getChildren().size() > 1) { // no puedo tener mas de un item cuando cruzo la soga, si no muero
-                    murioPorSoga.get(playerId).setTrue();
-                }
+        estabaEnShore1TurnoAnterior.get(playerId).setValue(estaEnShore1Ahora.get(playerId).isTrue());
+        estaEnShore1Ahora.get(playerId).setValue(room2shore1.contains(players.get(playerId).getName()));
+        if ((estabaEnShore1TurnoAnterior.get(playerId).isFalse() && estaEnShore1Ahora.get(playerId).isTrue())
+                || (estabaEnShore1TurnoAnterior.get(playerId).isTrue() && estaEnShore1Ahora.get(playerId).isFalse())) {
+            if (players.get(playerId).getChildren().size() > 1) { // no puedo tener mas de un item cuando cruzo la soga, si no muero
+                murioPorSoga.get(playerId).setTrue();
             }
+        }
         //}
     }
 
@@ -173,7 +173,8 @@ public class TempleQuest extends Game {
 
         antidoto = new GeneralMovableObject("antidoteFruit", room1);
         BeUsed usedAction = new BeUsed(antidoto, antidoto.getParentState(), 1);
-        antidoto.addAction(new TriggerActionHandlerByName(antidoto, usedAction, poisoned, playerNames, antidoteTriggeredValues, 0, "All your ailments are healed!"));
+        antidoto.addAction(new TriggerActionHandlerByName(
+                antidoto, usedAction, poisoned, playerNames, antidoteTriggeredValues, 0, "All your ailments are healed!"));
         antidoto.addAction(usedAction);
         objects.put(antidoto.getName(), antidoto);
 
@@ -194,7 +195,8 @@ public class TempleQuest extends Game {
         antidoteTriggeredValues = new ArrayList<>();
 
         veneno = new GeneralMovableObject("venomousFruit", nichoOscuro);
-        nichoOscuro.addAction(new TriggerActionHandlerByName(nichoOscuro, new BeOpened(null, null), poisoned, playerNames, poisonedTriggeredValues, 0));
+        nichoOscuro.addAction(new TriggerActionHandlerByName(
+                nichoOscuro, new BeOpened(null, null), poisoned, playerNames, poisonedTriggeredValues, 0));
         List<ActionHandler> actions = new LinkedList<>();
         nichoOscuro.addAction(new BeOpenedAddsActionsToOpener(nichoOscuro, actions, "You feel weak!"));
         objects.put(veneno.getName(), veneno);
@@ -239,7 +241,8 @@ public class TempleQuest extends Game {
         switchesActivadosValues.add(true);
         switchesActivadosValues.add(true);
 
-        doorTo2.addAction(new ConditionalActionHandlerFails(doorTo2, new BeOpened(doorTo2, new BooleanState()), switchesActivados, switchesActivadosValues));
+        doorTo2.addAction(new ConditionalActionHandlerFails(
+                doorTo2, new BeOpened(doorTo2, new BooleanState()), switchesActivados, switchesActivadosValues));
         objects.put(doorTo2.getName(), doorTo2);
     }
 
@@ -428,7 +431,8 @@ public class TempleQuest extends Game {
         playerNames.add(player.getName());
 
         looseConds.add(new ConditionCompound(room4ContainsPlayer, new ConditionCheckBoolean(myPoisoned, true)));
-        looseConds.add(new ConditionCompound(room4ContainsPlayer, new ConditionCheckContains(arqueologo.getChildrenState(), disc9.getName(), false)));
+        looseConds.add(new ConditionCompound(
+                room4ContainsPlayer, new ConditionCheckContains(arqueologo.getChildrenState(), disc9.getName(), false)));
         looseConds.add(new ConditionCheckBoolean(murioPorSoga.get(playerId), true));
     }
 

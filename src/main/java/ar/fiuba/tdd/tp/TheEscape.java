@@ -86,8 +86,8 @@ public class TheEscape extends Game {
     private List<BooleanState> puertaPermiteAcceso;
     private List<Boolean> puertaPermiteAccesoValues;
 
-    private int BIBLIOTECARIO_ACCESO = 0;
-    private int BIBLIOTECARIO_CREDENCIAL_FALSA = 1;
+    private int bibliotecarioAcceso = 0;
+    private int bibliotecarioCredencialFalsa = 1;
     //private int BIBLIOTECARIO_DORMIDO = 2;
 
     private List<BooleanState> talkedLastTurn;
@@ -173,8 +173,8 @@ public class TheEscape extends Game {
         int indexInPlayerNames = playerNames.indexOf(playerName);
         int indexInPlayerNamesBibliotecario = playerNamesBibliotecario.indexOf(playerName);
 
-        BooleanState permiteAcceso = bibliotecarioPermitePasarConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_ACCESO);
-        BooleanState vioCredencialFalsa = bibliotecarioFuriosoConds.get(indexInPlayerNamesBibliotecario + BIBLIOTECARIO_CREDENCIAL_FALSA);
+        BooleanState permiteAcceso = bibliotecarioPermitePasarConds.get(indexInPlayerNamesBibliotecario + bibliotecarioAcceso);
+        BooleanState vioCredencialFalsa = bibliotecarioFuriosoConds.get(indexInPlayerNamesBibliotecario + bibliotecarioCredencialFalsa);
 
 
         if (permiteAcceso.isFalse() && talkedLastTurn.get(indexInPlayerNames).isTrue()) {
@@ -195,17 +195,17 @@ public class TheEscape extends Game {
 
     @Override
     protected Player configPlayer(String playerId, String type) {
-        Player player = new Player("player" + Integer.toString(players.size()+1), null, new ChildrenState());
+        Player player = new Player("player" + Integer.toString(players.size() + 1), null, new ChildrenState());
         Set<String> commands = commandsPerPlayer.get(playerId);
 
         player.setParent(pasillo);
         pasillo.addChild(player);
 
-        GeneralMovableObject myFotoPlayer = new GeneralMovableObject("fotoPlayer" + Integer.toString(players.size()+1), player);
+        GeneralMovableObject myFotoPlayer = new GeneralMovableObject("fotoPlayer" + Integer.toString(players.size() + 1), player);
         objects.put(myFotoPlayer.getName(), myFotoPlayer);
         fotoPlayer.add(myFotoPlayer);
 
-        GeneralMovableObject myLapicera = new GeneralMovableObject("lapicera" + Integer.toString(players.size()+1), player);
+        GeneralMovableObject myLapicera = new GeneralMovableObject("lapicera" + Integer.toString(players.size() + 1), player);
         objects.put(myLapicera.getName(), myLapicera);
         lapicera.add(myLapicera);
 
@@ -464,7 +464,8 @@ public class TheEscape extends Game {
         //List<BooleanState> condDoorABiblioteca = new LinkedList<>();
         //condDoorABiblioteca.add(permiteAcceso);
         bibliotecaAccesoToBiblioteca.addAction(new ConditionalActionHandlerFailsByName(bibliotecaAccesoToBiblioteca,
-                new BeOpened(bibliotecaAccesoToBiblioteca, new BooleanState()), puertaPermiteAcceso, puertaPermiteAccesoValues, playerNames, 0));
+                new BeOpened(bibliotecaAccesoToBiblioteca,
+                        new BooleanState()), puertaPermiteAcceso, puertaPermiteAccesoValues, playerNames, 0));
         objects.put(bibliotecaAccesoToBiblioteca.getName(), bibliotecaAccesoToBiblioteca);
 
         configureBibliotecario();
