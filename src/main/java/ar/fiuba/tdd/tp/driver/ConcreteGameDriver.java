@@ -7,7 +7,7 @@ import ar.fiuba.tdd.tp.model.Motor;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.random.RNG;
 import ar.fiuba.tdd.tp.server.BuilderLoader;
-import ar.fiuba.tdd.tp.timedevent.AbstractTimer;
+import ar.fiuba.tdd.tp.timedEvent.AbstractTimer;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicReference;

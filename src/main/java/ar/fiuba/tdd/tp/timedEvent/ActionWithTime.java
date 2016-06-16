@@ -1,8 +1,4 @@
-package ar.fiuba.tdd.tp.timedevent;
-
-/**
- * Created by fernando on 08/06/16.
- */
+package ar.fiuba.tdd.tp.timedEvent;
 
 public class ActionWithTime {
     //tiempo en minutos

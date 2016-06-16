@@ -6,9 +6,9 @@ import ar.fiuba.tdd.tp.driver.GameLoadFailedException;
 import ar.fiuba.tdd.tp.driver.GameState;
 
 import ar.fiuba.tdd.tp.random.RandomDummy;
-import ar.fiuba.tdd.tp.timedevent.AbstractTimer;
-import ar.fiuba.tdd.tp.timedevent.ControllableInstantTimerDummy;
-import ar.fiuba.tdd.tp.timedevent.InstantTimerDummy;
+import ar.fiuba.tdd.tp.timedEvent.AbstractTimer;
+import ar.fiuba.tdd.tp.timedEvent.ControllableInstantTimerDummy;
+import ar.fiuba.tdd.tp.timedEvent.InstantTimerDummy;
 import org.junit.Test;
 
 import java.io.IOException;

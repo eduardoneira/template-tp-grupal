@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.timedevent;
+package ar.fiuba.tdd.tp.timedEvent;
 
 import ar.fiuba.tdd.tp.actions.ActionHandler;
 import ar.fiuba.tdd.tp.model.Game;
