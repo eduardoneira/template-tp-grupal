@@ -8,10 +8,10 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.random.RNG;
 import ar.fiuba.tdd.tp.random.RandomJava;
 import ar.fiuba.tdd.tp.random.RandomReference;
-import ar.fiuba.tdd.tp.timedevent.AbstractTimer;
-import ar.fiuba.tdd.tp.timedevent.ActionGeneration;
-import ar.fiuba.tdd.tp.timedevent.TimerReference;
-import ar.fiuba.tdd.tp.timedevent.TimerSystem;
+import ar.fiuba.tdd.tp.timedEvent.AbstractTimer;
+import ar.fiuba.tdd.tp.timedEvent.ActionGeneration;
+import ar.fiuba.tdd.tp.timedEvent.TimerReference;
+import ar.fiuba.tdd.tp.timedEvent.TimerSystem;
 
 import java.net.Socket;
 import java.util.*;

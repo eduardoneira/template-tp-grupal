@@ -1,8 +1,5 @@
-package ar.fiuba.tdd.tp.timedevent;
+package ar.fiuba.tdd.tp.timedEvent;
 
-/**
- * Created by Master on 14/06/2016.
- */
 public class ControllableInstantTimerDummy extends InstantTimerDummy {
 
     boolean passTimeVar;

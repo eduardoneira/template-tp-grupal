@@ -8,7 +8,7 @@ import ar.fiuba.tdd.tp.objects.concrete.door.LinkingLockedDoor;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
-import ar.fiuba.tdd.tp.timedevent.*;
+import ar.fiuba.tdd.tp.timedEvent.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
