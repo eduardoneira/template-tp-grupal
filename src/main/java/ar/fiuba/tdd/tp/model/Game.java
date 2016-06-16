@@ -76,10 +76,14 @@ public abstract class Game implements GameBuilder {
     }
 
     public void stopActionGeneration() {
-        if (actionGenerationThread != null) {
+        lock.lock();
+        try {
             actionGeneration.killActionGeneration();
+        } finally {
+            lock.unlock();
+        }
+        if (actionGenerationThread != null) {
             try {
-                actionGenerationThread.interrupt();
                 actionGenerationThread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -88,12 +92,7 @@ public abstract class Game implements GameBuilder {
     }
 
     public void close() {
-        lock.lock();
-        try {
-            stopActionGeneration();
-        } finally {
-            lock.unlock();
-        }
+        stopActionGeneration();
     }
 
     public boolean checkWinCondition(String playerId) {
@@ -296,11 +295,16 @@ public abstract class Game implements GameBuilder {
     public GameState getCurrentState(String playerId) {
         lock.lock();
         try {
-            // TODO: descomentar esta linea para debugear mejor las tests
-            //System.out.println("devuelvo estado de " + playerId);
+            //String state;
             if (gameStateByPlayer.containsKey(playerId)) {
                 updateGameState();
-            }
+                //state = gameStateByPlayer.get(playerId).toString();
+            }/* else {
+                state = "null";
+            }*/
+            // TODO: descomentar esta linea para debugear mejor las tests
+            //System.out.println("devuelvo estado de " + playerId + ": " + state);
+
             return gameStateByPlayer.get(playerId);
         } finally {
             lock.unlock();

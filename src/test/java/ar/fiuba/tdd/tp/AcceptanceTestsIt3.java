@@ -74,9 +74,10 @@ public class AcceptanceTestsIt3 {
         timer.passTime();
         System.out.println(driver.sendCommandByPlayer("p1", "open doorBibliotecaToAcceso"));
 
-        //driver.close();
-        /*GameState stateP1 = GameState.InProgress;
-        while ((stateP1 = driver.getCurrentStateByPlayer("p1")) != GameState.InProgress.Lost) {
+        driver.close();
+
+        /*GameState stateP1;
+        while ((stateP1 = driver.getCurrentStateByPlayer("p1")) != GameState.Lost && stateP1 != null) {
             yield();
         }*/
 
@@ -111,12 +112,13 @@ public class AcceptanceTestsIt3 {
         // TODO: como se cuelga con driver.close(), a veces queda abierto el ActionGeneration del test anterior
         // TODO: y esto hace que el bibliotecario se mueva siempre al accesoBiblioteca en vez de al pasillo
         // TODO: descomentar esta linea para chequear
-        //System.out.println(driver.sendCommandByPlayer("p2", "look pasillo"));
+        System.out.println(driver.sendCommandByPlayer("p2", "look pasillo"));
+        System.out.println(driver.sendCommandByPlayer("p2", "look pasillo"));
 
-        //driver.close();
+        driver.close();
 
-        /*GameState stateP1 = GameState.InProgress;
-        while ((stateP1 = driver.getCurrentStateByPlayer("p1")) != GameState.InProgress.Lost) {
+        /*GameState stateP1;
+        while ((stateP1 = driver.getCurrentStateByPlayer("p1")) != GameState.Lost  && stateP1 != null) {
             yield();
         }*/
 

@@ -17,23 +17,39 @@ public class ActionGeneration implements Runnable {
 
     private List<ActionWithTime> actions;
     private List<Integer> timeToNextEvent;
-    private BooleanState serverRunning;
+    volatile boolean finished;
     private Map<String, Socket> clientSockets;
     int lastTime;
     private TimerReference timer;
     ReentrantLock lock;
+    //int count;
 
     public ActionGeneration(Map<String, Socket> clientSockets, TimerReference timer, ReentrantLock lock) {
         actions = new ArrayList<>();
         timeToNextEvent = new ArrayList<>();
         this.clientSockets = clientSockets;
         this.timer = timer;
-        serverRunning = new BooleanState(true);
+        this.finished = false;
         this.lock = lock;
+        //count = 0;
     }
 
     public void killActionGeneration() {
-        serverRunning.setFalse();
+        lock.lock();
+        try {
+            finished = true;
+            // TODO: descomentar para debugear mejor los tests
+            //System.out.println("llego señal de kill: " + finished);
+            try {
+                sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } catch (Exception e) {
+            System.out.println("error aca");
+        } finally {
+            lock.unlock();
+        }
     }
 
     public void addActionWithTime(ActionWithTime actionWithTime ) {
@@ -49,10 +65,15 @@ public class ActionGeneration implements Runnable {
 
     @Override
     public void run() {
-        serverRunning.setTrue();
+        finished = false;
         lastTime = timer.currentTimeSeconds();
 
-        while (serverRunning.isTrue()) {
+        while (!finished) {
+            /*if (count < 150) {
+                //System.out.println(Thread.getAllStackTraces().keySet());
+                System.out.println("action generation is finished: " + finished);
+                count++;
+            }*/
             // TODO: descomentar para debugear mejor los tests
             //System.out.println("espero lock");
             lock.lock();
@@ -65,6 +86,8 @@ public class ActionGeneration implements Runnable {
             }
             this.sleepUntilNextEvent();
         }
+        // TODO: descomentar para debugear mejor los tests
+        //System.out.println("action generation stops");
     }
 
     private void updateEvents() {
@@ -104,7 +127,9 @@ public class ActionGeneration implements Runnable {
 
     private void forwardEventMessage(StringBuilder response) {
         // TODO: descomentar esta linea para debugear mejor las tests
-        //System.out.println(response);
+        /*if (count < 150) {
+            System.out.println(response);
+        }*/
         try {
             for (Socket s : clientSockets.values()) {
                 PrintWriter out = new PrintWriter(new OutputStreamWriter(s.getOutputStream(), "UTF-8"));
