@@ -21,6 +21,7 @@ public class AcceptanceTestsIt3 {
     GameDriver driver;
 
     @SuppressWarnings("CPD-START")
+    //BEGIN GENERATED CODE
 
     /*@Before
     public void initialization() throws ClassNotFoundException, IOException,
@@ -125,4 +126,5 @@ public class AcceptanceTestsIt3 {
         return (GameState.InProgress == driver.getCurrentStateByPlayer("p2"))
             && (null == driver.getCurrentStateByPlayer("p1") || GameState.Lost == driver.getCurrentStateByPlayer("p1"));
     }
+    //END GENERATED CODE
 }
