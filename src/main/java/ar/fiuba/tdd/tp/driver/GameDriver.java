@@ -1,8 +1,8 @@
 package ar.fiuba.tdd.tp.driver;
 
 import ar.fiuba.tdd.tp.random.RNG;
-import ar.fiuba.tdd.tp.timedEvent.AbstractTimer;
-import ar.fiuba.tdd.tp.timedEvent.InstantTimerDummy;
+import ar.fiuba.tdd.tp.timedevent.AbstractTimer;
+import ar.fiuba.tdd.tp.timedevent.InstantTimerDummy;
 
 import java.io.IOException;
 

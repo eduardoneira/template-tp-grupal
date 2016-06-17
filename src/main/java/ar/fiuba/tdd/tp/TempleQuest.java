@@ -11,9 +11,7 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 
 import java.util.*;
 
-/**
- * Created by Master on 19/05/2016.
- */
+
 public class TempleQuest extends Game {
 
     // cuarto inicial
@@ -85,6 +83,7 @@ public class TempleQuest extends Game {
     }
 
     @SuppressWarnings("CPD-START")
+    //BEGIN GENERATED CODE
 
     @Override
     protected void updateGameAfterHandle(String playerId) {
@@ -468,4 +467,5 @@ public class TempleQuest extends Game {
 
         return this;
     }
+    //END GENERATED CODE
 }

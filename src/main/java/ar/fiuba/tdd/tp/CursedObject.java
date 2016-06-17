@@ -30,6 +30,7 @@ public class CursedObject extends Game {
     private Thief thief;
 
     @SuppressWarnings("CPD-START")
+    //BEGIN GENERATED CODE
 
     private void initialization() {
 
@@ -133,4 +134,5 @@ public class CursedObject extends Game {
         initialization();
         return this;
     }
+    //END GENERATED CODE
 }

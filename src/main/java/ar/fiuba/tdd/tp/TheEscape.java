@@ -22,6 +22,7 @@ import java.util.Set;
 
 public class TheEscape extends Game {
     @SuppressWarnings("CPD-START")
+    //BEGIN GENERATED CODE
 
     // pasillo
     private Room pasillo;
@@ -622,4 +623,5 @@ public class TheEscape extends Game {
         afuera = new Room("afuera");
         objects.put(afuera.getName(),afuera);
     }
+    //END GENERATED CODE
 }

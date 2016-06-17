@@ -8,10 +8,10 @@ import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.random.RNG;
 import ar.fiuba.tdd.tp.random.RandomJava;
 import ar.fiuba.tdd.tp.random.RandomReference;
-import ar.fiuba.tdd.tp.timedEvent.AbstractTimer;
-import ar.fiuba.tdd.tp.timedEvent.ActionGeneration;
-import ar.fiuba.tdd.tp.timedEvent.TimerReference;
-import ar.fiuba.tdd.tp.timedEvent.TimerSystem;
+import ar.fiuba.tdd.tp.timedevent.AbstractTimer;
+import ar.fiuba.tdd.tp.timedevent.ActionGeneration;
+import ar.fiuba.tdd.tp.timedevent.TimerReference;
+import ar.fiuba.tdd.tp.timedevent.TimerSystem;
 
 import java.net.Socket;
 import java.util.*;
@@ -233,6 +233,8 @@ public abstract class Game implements GameBuilder {
 
     protected abstract void updateGameAfterHandle(String playerId);
 
+    //BEGIN GENERATED CODE
+
     protected void updateGameState(String playerId) {
         updateGameAfterHandle(playerId);
         if (checkWinCondition(playerId)) {
@@ -241,6 +243,8 @@ public abstract class Game implements GameBuilder {
             gameStateByPlayer.put(playerId, GameState.Lost);
         }
     }
+
+    //END GENERATED CODE
 
     private String handleProcessedCommand(String playerId, String command, List<GameObject> objectsInvolved) {
         String result = players.get(playerId).handleAction(command, objectsInvolved);
@@ -299,7 +303,7 @@ public abstract class Game implements GameBuilder {
             if (gameStateByPlayer.containsKey(playerId)) {
                 updateGameState();
                 //state = gameStateByPlayer.get(playerId).toString();
-            }/* else {
+            } /*else {
                 state = "null";
             }*/
             // TODO: descomentar esta linea para debugear mejor las tests

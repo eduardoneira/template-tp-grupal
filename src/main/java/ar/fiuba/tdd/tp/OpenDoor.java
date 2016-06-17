@@ -23,6 +23,7 @@ public class OpenDoor extends Game {
     String nameDoor = "door";
 
     @SuppressWarnings("CPD-START")
+    //BEGIN GENERATED CODE
 
     public OpenDoor() {
         super("OpenDoor");
@@ -96,4 +97,5 @@ public class OpenDoor extends Game {
         //createPlayer();
         return this;
     }
+    //END GENERATED CODE
 }

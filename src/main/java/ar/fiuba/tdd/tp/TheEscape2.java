@@ -8,7 +8,7 @@ import ar.fiuba.tdd.tp.objects.concrete.door.LinkingLockedDoor;
 import ar.fiuba.tdd.tp.objects.general.*;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
 import ar.fiuba.tdd.tp.objects.states.ChildrenState;
-import ar.fiuba.tdd.tp.timedEvent.*;
+import ar.fiuba.tdd.tp.timedevent.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -17,6 +17,8 @@ import java.util.Set;
 
 public class TheEscape2 extends Game {
     @SuppressWarnings("CPD-START")
+    //BEGIN GENERATED CODE
+
 
     // pasillo
     private Room pasillo;
@@ -254,6 +256,8 @@ public class TheEscape2 extends Game {
             losIlegales.get(indexInPlayerNames).setTrue();
         }
     }
+    //CHECKSTYLE:ON
+
 
     private Room bibliotecarioGetNextCuarto() {
 
@@ -739,4 +743,5 @@ public class TheEscape2 extends Game {
         afuera = new Room("afuera");
         objects.put(afuera.getName(),afuera);
     }
+    //END GENERATED CODE
 }

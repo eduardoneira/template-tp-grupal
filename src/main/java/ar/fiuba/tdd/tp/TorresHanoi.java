@@ -15,6 +15,7 @@ import java.util.Set;
 public class TorresHanoi extends Game {
 
     @SuppressWarnings("CPD-START")
+    //BEGIN GENERATED CODE
 
     Room room;
     Pile torre1;
@@ -100,4 +101,5 @@ public class TorresHanoi extends Game {
         createDiscs();
         return this;
     }
+    //END GENERATED CODE
 }

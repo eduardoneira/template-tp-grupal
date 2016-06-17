@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Set;
 
 public class WolfSheepCabbage extends Game {
+    //BEGIN GENERATED CODE
 
     Room southShore;
     Room northShore;
@@ -153,4 +154,5 @@ public class WolfSheepCabbage extends Game {
         //createPlayer();
         return this;
     }
+    //END GENERATED CODE
 }

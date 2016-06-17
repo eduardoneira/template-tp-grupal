@@ -16,9 +16,8 @@ public class FetchQuest extends Game {
     Room room;
     Stick stick;
 
-
-
     @SuppressWarnings("CPD-START")
+    //BEGIN GENERATED CODE
 
     public FetchQuest() {
         super("FetchQuest");
@@ -70,4 +69,6 @@ public class FetchQuest extends Game {
     protected void updateGameAfterHandle(String playerId) {
 
     }
+
+    //END GENERATED CODE
 }

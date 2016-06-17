@@ -1,4 +1,4 @@
-package ar.fiuba.tdd.tp.timedEvent;
+package ar.fiuba.tdd.tp.timedevent;
 
 import ar.fiuba.tdd.tp.model.Game;
 import ar.fiuba.tdd.tp.objects.states.BooleanState;
@@ -90,6 +90,7 @@ public class ActionGeneration implements Runnable {
         //System.out.println("action generation stops");
     }
 
+    //BEGIN GENERATED CODE
     private void updateEvents() {
         int currTime = timer.currentTimeSeconds();
         int elapsed = currTime - lastTime;
@@ -111,6 +112,7 @@ public class ActionGeneration implements Runnable {
             }
         }
     }
+    //END GENERATED CODE
 
     private void sleepUntilNextEvent() {
         int minTime = getMinTimeToNextEvent();

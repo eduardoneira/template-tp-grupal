@@ -15,6 +15,7 @@ import java.util.*;
 public class TreasureHunt extends Game {
 
     @SuppressWarnings("CPD-START")
+    //BEGIN GENERATED CODE
 
     private BooleanState door2to3state;
     private BooleanState door2to4state;
@@ -338,4 +339,6 @@ public class TreasureHunt extends Game {
         //createPlayer();
         return this;
     }
+
+    //END GENERATED CODE
 }
